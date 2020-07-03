@@ -1,0 +1,111 @@
+<div class="container-fluid px-3 ">
+
+    <page-title> {{'TRANS.Managestudenattendance'|translate}} </page-title>
+
+
+    <h3 class="  text-center ">
+        <b *ngIf="pageLang == 'ar'" class="text-info"> <i class="fas fa-user text-warning"></i>  {{StudentNameAr}}   </b>
+        <b *ngIf="pageLang == 'en'" class="text-info"> <i class="fas fa-user text-warning"></i>  {{StudentNameEn}}   </b>
+
+
+      </h3>
+
+
+    <div class="row  justify-content-center">
+
+        <div class="col-md-6  ">
+        <div class="progress mt-1 rounded-pill " style="height: 20px;">
+            <div class="progress-bar progress-bar-striped progress-bar-animated " [style.width.%]="AttendanceTotalRate" role="progressbar" aria-valuenow="0" aria-valuemin="{{AttendanceTotalRate}}" aria-valuemax="100">{{AttendanceTotalRate}}%</div>
+          </div>
+        </div>
+      </div>
+
+
+    <br>
+
+
+
+
+
+
+
+
+          <div class="col-md-12 ">
+
+
+    <table datatable [dtTrigger]="dtTrigger" [dtOptions]="dtOptions"  class="row-border hover table table-striped z-depth-1 excel-print">
+
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>{{ 'TRANS.lecTime' | translate }} </th>
+          <th> {{ 'TRANS.lectureTime' | translate }}</th>
+          <th> {{ 'TRANS.collegesthStatus' | translate }}</th>
+          <th>{{ 'TRANS.tablethActions' | translate }} </th>
+
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let Student of Students?.Group; let i = index;">
+          <td>{{i+1}}</td>
+          <td>
+            <span class="lectureDate color-p d-block"> <i class="far fa-calendar-alt"></i> |
+             {{Student.Date}} </span>
+
+
+          </td>
+          <td  *ngIf="pageLang == 'ar'"> <span class="lectureTime color-p "><i class="far fa-clock"></i> | {{Student.StartTime | convertFrom24To12FormatAr}}<span class="text-danger px-1 font-weight-bold"> {{ 'TRANS.to' | translate }}</span> {{Student.EndTime | convertFrom24To12FormatAr}}</span>
+          <td  *ngIf="pageLang == 'en'"> <span class="lectureTime color-p "><i class="far fa-clock"></i> | {{Student.StartTime | convertFrom24To12Format}}<span class="text-danger px-1 font-weight-bold"> {{ 'TRANS.to' | translate }}</span> {{Student.EndTime | convertFrom24To12Format}}</span>
+
+
+          <td>
+            <ul class="list-unstyled d-flex justify-content-center mb-0 ">
+              <li title="{{ 'TRANS.atendant' | translate }}" class="border-0 card-textgreen pr-3" *ngIf="Student.AttendanceStatusCode == 1"><b><i class="fas fa-circle"></i> {{ 'TRANS.atendant' | translate }}</b> </li>
+              <li title="{{ 'TRANS.absence' | translate }}" class="border-0 card-textred pr-3" *ngIf="Student.AttendanceStatusCode == 2"><b><i class="fas fa-circle"></i> {{ 'TRANS.absence' | translate }}</b> </li>
+              <li title="{{ 'TRANS.permission' | translate }}" class="border-0 Permissiontext pr-3" *ngIf="Student.AttendanceStatusCode == 3"><b><i class="fas fa-circle"></i> {{ 'TRANS.permission' | translate }}</b> </li>
+              <li title="{{ 'TRANS.late' | translate }}" class="border-0 Latetext pr-3" *ngIf="Student.AttendanceStatusCode == 4"><b><i class="fas fa-circle"></i> {{ 'TRANS.late' | translate }}</b> </li>
+              <li title="{{ 'TRANS.medical' | translate }}" class="border-0 Medicaltext pr-3" *ngIf="Student.AttendanceStatusCode == 5"><b><i class="fas fa-circle"></i> {{ 'TRANS.medical' | translate }}</b> </li>
+             </ul>
+          </td>
+
+
+
+        <td >
+
+          <div class="btn-group" mdbDropdown >
+            <a mdbDropdownToggle type="button" mdbBtn color="primary" class="dropdown-toggle waves-light"
+              mdbWavesEffect>
+            </a>
+
+            <div class="dropdown-menu dropdown-primary">
+
+              <ul>
+                <li class="dropdown-item text-center border-bottom" *ngFor="let status of attendanceStatus" [value]="status.AttendanceStatusCode" (click)="changeStatus(Student, status)">
+                  <span  *ngIf="pageLang == 'ar'">{{ status.NameAr }}</span>
+                  <span  *ngIf="pageLang == 'en'">{{ status.NameEn }}</span>
+
+                </li>
+              </ul>
+
+            </div>
+          </div>
+        </td>
+
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+
+
+  <div class="col-md-12 text-center  mt-2">
+    <button type="button" class="btn-main px-4 py-2 rounded-pill px-5" (click)="updateAllStudents(Students.Group)">
+      {{ 'TRANS.save' | translate }}
+      <i class="far fa-save "></i>
+    </button>
+  </div>
+    </div>
+
+    <br>
+
+

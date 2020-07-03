@@ -1,0 +1,121 @@
+<div class="container-fluid px-3">
+
+    <page-title> {{'TRANS.TaskUnderProcedure'|translate}} </page-title>
+
+
+<div class="row mb-2">
+    <div class="col-md-6 d-flex ">
+        <h4 class="section-header py-3 d-inline-block my-2 shadow" >{{'TRANS.Applicationdata'|translate}}
+        </h4>
+    </div>
+
+
+
+</div>
+
+
+<div class="row">
+    <div class="control-group form-group col-md-6 d-flex">
+        <div class="controls">
+             <label class="mx-3 color-p"><b>  {{'TRANS.OrderNumber'|translate}}</b></label>
+            <span >{{TaskDetails.RequestNumber}}</span>
+        </div>
+    </div>
+    <div class="control-group form-group col-md-6 d-flex">
+        <div class="controls">
+
+             <label class="mx-3 color-p"><b>    {{'TRANS.DateOfApplication'|translate}}</b></label>
+            <span >{{TaskDetails.RequestDate}}</span>
+        </div>
+    </div>
+
+
+</div>
+
+<div class="row ">
+
+    <div class="control-group form-group col-md-6 d-flex">
+        <div class="controls">
+            <label class="mx-3 color-p"><b>{{'TRANS.studentname'|translate}} </b></label>
+            <span > {{TaskDetails.RequesterName}}</span>
+        </div>
+    </div>
+    <div class="control-group form-group col-md-6 d-flex">
+        <div class="controls">
+
+            <label class="mx-3 color-p"><b> </b>{{'TRANS.collegesthCollegeName'|translate}}</label>
+            <span >{{TaskDetails.CollegeName}} </span>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+<div class="row">
+    <div class="control-group form-group col-md-6 d-flex">
+        <div class="controls">
+
+             <label class="mx-3 color-p"><b>   {{'TRANS.coursesthcourseName'|translate}}</b></label>
+            <span >{{TaskDetails.CourseName}}</span>
+        </div>
+    </div>
+
+    <div class="control-group form-group col-md-6 d-flex">
+        <div class="controls">
+             <label class="mx-3 color-p"><b>   {{'TRANS.Durationofexcuse'|translate}}</b></label>
+            <span >{{TaskDetails.DateFrom}} الي {{TaskDetails.DateTo}}   </span>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="row">
+    <div class="col-md-6 d-flex">
+        <h4 class="section-header py-3 d-inline-block my-2 shadow" > {{'TRANS.thedecision'|translate}}
+        </h4>
+    </div>
+
+</div>
+
+<form [formGroup]="decisionForm" (ngSubmit)="submit()">
+<div class="d-flex justify-content-center">
+    <div class="custom-control custom-radio custom-control-inline ">
+        <input type="radio" class="custom-control-input shadow" (change)="onChangeApproved($event)"  required id="IsCompleted1" value="Approved" name="Decision" formControlName="Decision"   mdbInput [attr.enabled]="TaskDetails.TaskStatus === 'Pending'? true : null" [attr.disabled]="TaskDetails.TaskStatus === 'Rejected' ||  TaskDetails.TaskStatus === 'Approved'? true : null">
+        <label class="custom-control-label px-2 c1 font-Lable font-weight-bold "    for="IsCompleted1"> {{'TRANS.Acceptance'|translate}}  </label>
+      </div>
+
+      <!-- Default inline 2-->
+      <div class="custom-control custom-radio custom-control-inline">
+        <input type="radio" class="custom-control-input " (change)="onChangeRejected($event)" required  name="Decision" id="IsCompleted2" value="Rejected" formControlName="Decision"  mdbInput [attr.enabled]="TaskDetails.TaskStatus === 'Pending'? true : null" [attr.disabled]="TaskDetails.TaskStatus === 'Rejected' ||  TaskDetails.TaskStatus === 'Approved'? true : null">
+        <label class="custom-control-label px-2 p-color c2 font-weight-bold font-Lable "  for="IsCompleted2"> {{'TRANS.Rejection'|translate}} </label>
+      </div>
+</div>
+<div class="row " *ngIf="show">
+    <div class="form-group col-md-12">
+      <b class="color-p mx-3 my-2 d-block text-right">{{ 'TRANS.Notes' | translate }}</b>
+
+      <textarea class="form-control " rows="4"   cols="50" formControlName="Notes"  required [attr.enabled]="TaskDetails.TaskStatus === 'Pending'? true : null" [attr.disabled]="TaskDetails.TaskStatus === 'Rejected' ||  TaskDetails.TaskStatus === 'Approved'? true : null">{{TaskDetails.Note}}</textarea>
+    </div>
+  </div>
+
+<br>
+<input type="hidden" formControlName="TaskId">
+
+  <div class="d-flex justify-content-center">
+
+
+    <button type="submit" *ngIf="TaskDetails.TaskStatus === 'تحت الاجراء' || TaskDetails.TaskStatus === 'Pending'" mdbBtn  class="relative waves-light s6 shadow text-white px-5" mdbWavesEffect>{{'TRANS.save'|translate}}</button>
+
+    <button type="button" (click)="close()" mdbBtn  class="waves-light s2 shadow text-white px-5" aria-label="Close"  mdbWavesEffect>{{'TRANS.close'|translate}}</button>
+</div>
+
+</form>
+</div>
+
+
+
+

@@ -1,0 +1,57 @@
+<!-- <div class="container mt-5">
+
+    <mat-tab-group>
+        <mat-tab label="First"> Content 1 </mat-tab>
+        <mat-tab label="Second"> Content 2 </mat-tab>
+        <mat-tab label="Third"> Content 3 </mat-tab>
+      </mat-tab-group>
+</div>
+
+
+
+
+<mat-form-field color="accent">
+  <mat-label>Inherited calendar color</mat-label>
+  <input matInput [matDatepicker]="picker1">
+  <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+  <mat-datepicker #picker1></mat-datepicker>
+</mat-form-field>
+
+<mat-form-field color="accent">
+  <mat-label>Custom calendar color</mat-label>
+  <input matInput [matDatepicker]="picker2">
+  <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+  <mat-datepicker #picker2 color="primary"></mat-datepicker>
+</mat-form-field>
+
+
+
+<button type="button" mdbBtn color="default" rounded="true" data-toggle="modal" data-target="#basicExample" (click)="frame.show()"
+  mdbWavesEffect>Success modal </button>
+
+<div mdbModal #frame="mdbModal" class="modal fade top" id="frameModalTop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-notify modal-success" role="document">
+    <!--Content-->
+
+
+<div class="confirm-dialog-container"  >
+
+<div class="content-container border  " width="390px" >
+  <mat-icon class="text-danger p-3 " id="close-icon" (click)="closeDialog()" title="{{'TRANS.close'|translate}}"><i class="far fa-times-circle fa-1x "></i></mat-icon>
+ 
+
+  <div class="text-center text-success">
+    <mdb-icon fas icon="check" size="4x" class="py-1 animated rotateIn"></mdb-icon>
+    <h2 class="py-1">تم حفظ البيانات بي نجاح.</h2>
+  </div>
+</div>
+<div class="justify-content-center">
+
+  <a type="button" mdbBtn color="success" outline="true" class="waves-effect" mdbWavesEffect (click)="closeDialog()">اغلاق </a>
+</div>
+</div>
+
+
+
+

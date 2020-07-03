@@ -1,0 +1,390 @@
+<!-- إدارة الشعب الدراسية -->
+
+<div class="container-fluid px-3">
+
+
+
+
+  <div class="page-title mt-2  text-center">
+    <div class="page-icon d-none">
+      <img src="imgs/Icon feather-settings.png" alt="">
+    </div>
+
+
+
+
+    <h2 class="color-p pageTitle  text-center">
+      <b> <i class="fas fa-university"></i> {{ "TRANS.sectionsTitle" | translate }} </b>
+
+    </h2>
+
+
+  </div>
+<div class="row" >
+<div class="col-md-12">
+
+  <form [formGroup]="srchForm" (ngSubmit)="submit()">
+    <div class="row my-4 " >
+      <!-- print-div -->
+
+      <div class="col-md-3 mx-auto row rowInfo my-2">
+        <div>
+          <b for="" class="color-p mx-3 my-1 d-block">{{'TRANS.CollegeName'|translate}}  </b>
+        </div>
+        <div class=" col-md-12 text-right ">
+          <select class="form-control py-0"  formControlName="college" (change)="onChangeCollege($event.target.value)" title="{{'TRANS.CollegeName'|translate}}">
+
+            <option value="" selected disabled >{{'TRANS.selectColleges'|translate}}</option>
+
+
+
+              <option  *ngFor="let college of colleges" [value]="college.CollegeCode">
+                {{  college.NameAr }}
+              </option>
+          </select>
+        </div>
+      </div>
+
+
+
+      <div class="col-md-3 mx-auto row rowInfo my-2">
+        <div>
+          <b for="" class="color-p mx-3 my-1 d-block">{{'TRANS.DepartmentName'|translate}} </b>
+        </div>
+        <div class=" col-md-12 text-right ">
+          <select class="form-control py-0 "  formControlName="department" (change)="onChangeDepartments($event.target.value)"  title="{{'TRANS.DepartmentName'|translate}}">
+
+            <option value="" selected  >{{'TRANS.selectDepartments'|translate}}</option>
+            <option *ngFor="let department of departments" [value]="department.DepartmentCode">
+              {{ department.NameAr }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+
+
+      <div class="col-md-3 mx-auto row rowInfo my-2">
+        <div>
+          <b for="" class="color-p mx-3 my-1 d-block">{{'TRANS.term-Semester'|translate}} </b>
+        </div>
+        <div class=" col-md-12 text-right ">
+          <select class="form-control py-0"  formControlName="term"  title="{{'TRANS.term-Semester'|translate}}">
+
+            <option value="" selected  >{{'TRANS.selectterm'|translate}}</option>
+            <option *ngFor="let term of terms" [value]="term.TermCode">
+              {{ term.NameAr }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+
+
+
+      <div class="col-md-2 text-center botSerach ">
+        <button mdbWavesEffect type="submit" class="w-75 btn-main  py-2 rounded-pill " [disabled]="srchForm.invalid">
+
+          {{ 'TRANS.search' | translate }}
+          <i class="fas fa-search pr-2"></i>
+        </button>
+      </div>
+    </div>
+
+</form>
+
+
+
+
+  <!-- <div class="col-md-12">
+    <p>
+      {{ srchForm.value | json }}
+    </p>
+  </div> -->
+
+
+
+  <div class=" table-responsive mr-3 content" #content>
+
+    <export></export>
+
+    <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover table table-striped z-depth-1 excel-print" >
+      <thead>
+        <tr>
+          <th width="2%">#</th>
+          <th >{{ 'TRANS.CollegeName' | translate }}</th>
+          <th>{{ 'TRANS.DepartmentName' | translate }}</th>
+          <th class="d-none">{{ 'TRANS.term-Semester' | translate }}</th>
+          <th>{{ 'TRANS.Coursecode' | translate }}</th>
+          <th>{{ 'TRANS.CourseSubject' | translate }}</th>
+          <th width="5%">{{ 'TRANS.namedivision' | translate }}</th>
+          <th class="Status  d-none-print">{{ 'TRANS.Status' | translate }}</th>
+          <th width="10%" class="Action  d-none-print">{{ 'TRANS.Action' | translate }}</th>
+
+
+
+
+
+
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let element of elementsFiltered,index as i">
+          <td>{{ i+1 }}</td>
+
+
+
+
+          <td >{{ element.College.NameAr }}</td>
+
+
+          <td>{{ element.Department.NameAr }}</td>
+
+
+          <td class="d-none">{{ element.Term.NameAr }}</td>
+          <td>{{ element.CourseSubject }} - {{ element.CourseNumber }} </td>
+          <td>{{element.CourseTitleAr}}</td>
+          <td >{{ element.Crn }}</td>
+
+          <td class="Status d-none-print">
+            <div class="form-group">
+              <label class="switch">
+                <input
+                  type="checkbox"
+                  [checked]="element.IsActive"
+                  (change)="changeActive(element)"
+                />
+                <span class="slider round"></span>
+              </label>
+            </div>
+          </td>
+          <td class="Action d-none-print">
+
+
+            <!-- <a mdbBtn  href="#/admin/LectureSchedule/Section/{{element.Crn}}/{{element.College.CollegeCode}}/{{ element.Department.DepartmentCode }}/{{ element.Term.TermCode }}/{{element.CourseTitleAr}}/{{element.CourseSubject}}/{{element.CourseNumber}}"   target="_blank"  class="w-auto px-3 circle-btn"  mdbWavesEffect title="{{ 'TRANS.ViewTimeSession' | translate }} " > -->
+            <a mdbBtn  (click)=LectureSchedule(element.Crn,element.College.CollegeCode,element.Department.DepartmentCode,element.Term.TermCode,element.CourseTitleAr,element.CourseSubject,element.CourseNumber)  target="_blank"  class="w-auto px-3 circle-btn"  mdbWavesEffect title="{{ 'TRANS.ViewTimeSession' | translate }} " >
+
+              <i class="far fa-calendar-alt"></i>
+             </a>
+
+             <!-- (click)="selectMember(element.Crn)" -->
+      <!-- <span> -->
+     
+
+        <a mdbBtn title="{{ 'TRANS.Viewregisteredstudents' | translate }}"   (click)="StudentEnrollmentView(element.Crn,element.College.CollegeCode,element.Department.DepartmentCode,element.Term.TermCode)" target="_blank"  class="w-auto px-3 circle-btn"  mdbWavesEffect >
+          <i class="fas fa-users"></i>
+         </a>
+
+          </td>
+        </tr>
+      </tbody>
+
+
+    </table>
+  </div>
+</div>
+</div>
+</div>
+
+
+
+
+
+<div mdbModal #schedulesModal="mdbModal" class="modal fade " tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-fluid" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close pull-right" aria-label="Close" (click)="schedulesModal.hide()">
+          <span aria-hidden="true">×</span>
+        </button>
+
+
+        <span class="color-p pageTitle  text-center w-100" id="myModalLabel">
+          <b><i class="far fa-calendar-alt"></i> {{'TRANS.SessionTimemanagement'|translate}} </b>
+
+        </span>
+      </div>
+      <mdb-card>
+          <mdb-card-header class="text-center color-p pageTitle font-weight-bold">
+              <i class="far fa-calendar-check"></i>
+              {{'TRANS.basicinformation'|translate}}
+
+          </mdb-card-header>
+          <mdb-card-body>
+   <div class="row">
+
+
+    <div class="col-md-4 text-center">
+      <div class=" row">
+          <label  class="col-sm-4 color-p pageTitle font-weight-bold">{{'TRANS.CollegeName'|translate}}</label>
+          <div class="col-sm-5">
+          <span>  علوم الحاسب والمعلومات  </span>
+          </div>
+       </div>
+      </div>
+
+       <div class="col-md-4 text-center">
+          <div class=" row">
+              <label class="col-sm-4 color-p pageTitle font-weight-bold">{{'TRANS.DepartmentName'|translate}}</label>
+              <div class="col-sm-5">
+              <span>  الشبكات وأنظمة الاتصالات </span>
+              </div>
+           </div>
+          </div>
+          <div class="col-md-4 text-center">
+              <div class=" row">
+                  <label for="inputEmail3" class="col-sm-4 color-p pageTitle font-weight-bold">{{'TRANS.CourseSubject'|translate}}</label>
+                  <div class="col-sm-5">
+                  <span>نظم المعومات</span>
+                  </div>
+               </div>
+              </div>
+
+
+
+
+   </div>
+<br>
+   <div class="row">
+      <div class="col-md-4 text-center">
+          <div class=" row">
+              <label  class="col-sm-4 color-p pageTitle font-weight-bold">{{'TRANS.term-Semester'|translate}}</label>
+              <div class="col-sm-5">
+              <span>الفصل الدراسي الثاني 2020</span>
+              </div>
+           </div>
+          </div>
+          <div class="col-md-4 text-center">
+              <div class=" row">
+                  <label  class="col-sm-4 color-p pageTitle font-weight-bold">{{'TRANS.namedivision'|translate}}</label>
+                  <div class="col-sm-5">
+                  <span>برمجه 1-شعبه-2</span>
+                  </div>
+               </div>
+              </div>
+
+   </div>
+          </mdb-card-body>
+        </mdb-card>
+
+
+
+
+
+
+
+
+
+      <!-- [dtTrigger]="dtTrigger" -->
+      <div class="modal-body">
+          <table    class="row-border hover table table-striped z-depth-1 text-center" >
+              <thead>
+                <tr>
+                  <th>#</th>
+
+                  <th>{{ 'TRANS.Today' | translate }}</th>
+                  <th>{{ 'TRANS.Tabletype' | translate }}</th>
+                  <th>{{ 'TRANS.Fromhour' | translate }}</th>
+                  <th>{{ 'TRANS.tohour' | translate }}</th>
+                  <th>{{ 'TRANS.ArticleConsultant' | translate }}</th>
+                  <th>{{ 'TRANS.Action' | translate }}</th>
+
+
+
+
+                </tr>
+              </thead>
+              <tbody>
+
+
+
+                <tr>
+                  <td>2</td>
+
+                  <td>الاحد</td>
+                  <td>نظري</td>
+                  <td>12:00 pm</td>
+                  <td>03:00 pm</td>
+                  <td>احمد محمد </td>
+                  <td>
+                    <a><i class="fas fa-edit fa-2x px-2 text-primary  "></i></a>
+                    <a><i class="far fa-trash-alt px-2 fa-2x text-danger  " ></i></a>
+
+
+
+                  </td>
+                </tr>
+
+
+                <tr>
+                  <td>2</td>
+
+                  <td>الاحد</td>
+                  <td>نظري</td>
+                  <td>12:00 pm</td>
+                  <td>03:00 pm</td>
+                  <td>احمد محمد </td>
+                  <td>
+                    <a><i class="fas fa-edit fa-2x px-2 text-primary  "></i></a>
+                    <a><i class="far fa-trash-alt px-2 fa-2x text-danger  " ></i></a>
+
+
+
+                  </td>
+                </tr>
+                <tr>
+
+                  <td > <mdb-badge color="cyan" class="p-2 rounded-pill  z-depth-1">اضافة</mdb-badge></td>
+
+
+                    <td>  <select class="custom-select custom-select-sm">
+
+                      <option selected>Open this select menu</option>
+                      <option value="1">One</option>
+                      <option value="2">Two</option>
+                      <option value="3">Three</option>
+                    </select>
+                </td>
+                  <td>  <select class="custom-select custom-select-sm">
+                    <option selected>Open this select menu</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                  </select></td>
+                  <td> <input  class="form-control-1 form-control-sm" type="time" ></td>
+                  <td>
+                    <input  class="form-control-1 form-control-sm" type="time" >
+                  </td>
+                  <td>  <select class="custom-select custom-select-sm">
+                    <option selected>Open this select menu</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                  </select></td>
+                  <td class="text-center">
+                    <a><i class="fas fa-plus fa-2x text-info text-center "></i></a>
+
+                  </td>
+                </tr>
+
+              </tbody>
+
+
+            </table>
+
+
+
+      </div>
+      <div class=" text-center">
+        <a  type="button" mdbBtn  class="btn-main px-4 py-2 rounded-pill" aria-label="Close" (click)="schedulesModal.hide()" mdbWavesEffect>{{'TRANS.close'|translate}}
+          <i class="fas fa-door-open"></i>
+        </a>
+        <!-- <button type="button" mdbBtn color="primary" class="relative waves-light" mdbWavesEffect>Save changes</button> -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<br>
+
+

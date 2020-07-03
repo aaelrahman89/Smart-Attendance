@@ -1,0 +1,28 @@
+.mat-expansion-panel-header-description{
+    flex-grow: 1;
+}
+
+
+
+.mat-expansion-panel-header{
+background-color: #F7F7F7 !important;
+height: 43px !important;
+}
+
+.mat-expansion-panel-header{
+background-color: #F7F7F7 !important;
+height: 43px !important;
+
+
+
+}
+
+.subject-details {
+    padding: 1em 5px;
+  }
+
+  .subject-details ul li:not(:last-child) {
+    border-right: 1px solid #ccc;
+    border-left: 1px solid #ccc;
+
+  }

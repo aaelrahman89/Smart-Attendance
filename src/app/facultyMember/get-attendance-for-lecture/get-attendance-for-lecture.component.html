@@ -1,0 +1,116 @@
+<div class="container-fluid mb-4">
+  <page-title> {{ 'TRANS.StudentAttendanceForLectureTitle' | translate }} </page-title>
+
+
+  <!-- Search Start -->
+  <form [formGroup]="srchForm">
+  <div class="srchform mb-3">
+   <div class="row">
+     <div class="col-md-3 col-6 p-1 pr-0">
+      <b class="color-p mx-3 my-3 d-block text-right"> {{ 'TRANS.CourseSubject' | translate }} </b>
+       <select class="form-control" formControlName="sections">
+         <option selected disabled [value]="null">{{ 'TRANS.CourseSubject' | translate }}</option>
+         <option *ngFor="let section of sections" [ngValue]="section">
+          <span *ngIf="pageLang === 'ar'">{{section.CourseTitleAr}} - {{section.Crn}}</span>
+          <span *ngIf="pageLang === 'en'">{{section.CourseTitleEn}} - {{section.Crn}}</span>
+         </option>
+       </select>
+
+     </div>
+
+     <div class="col-md-1">
+      <b class="color-p mx-3 my-3 d-block text-right"><br/></b>
+      <button type="button" class="btn-main px-4 py-2 rounded-pill mt-1" (click)="searchSubmit()" [disabled]="srchForm.invalid">
+        {{ 'TRANS.search' | translate }}
+        </button>
+    </div>
+
+   </div>
+  </div>
+
+  <!-- <p>{{ srchForm.value | json }}</p> -->
+
+  </form>
+  <!-- Search End -->
+
+  <div class="col-md-12">
+
+    <!-- Horizontal Steppers -->
+    <div class="row">
+      <div class="col-md-12">
+
+        <ul class="row w-100 color-p justify-content-center py-2" type="none">
+          <li class="col-md-2 text-center" >
+            <div class="info my-3"> <b> {{ 'TRANS.Numberlectures' | translate }}</b> </div>
+            <div class="head my-3"> <span class="badge badge-info"> <ng-container *ngIf="show0">0</ng-container> {{ lectures?.AppoitmentsCount }}</span></div>
+          </li>
+          <li class="col-md-2 text-center" >
+            <div class="info my-3"> <b>{{ 'TRANS.menuStudents' | translate }}</b> </div>
+            <div class="head my-3"> <span class="badge badge-info"><ng-container *ngIf="show0">0</ng-container>{{lectures?.StudentsCount}}</span></div>
+          </li>
+          <li class="col-md-2 text-center" >
+            <div class="info my-3"> <b>{{ 'TRANS.AbsencePercent' | translate }}</b> </div>
+            <div class="head my-3"> <span class="badge badge-info s2"><ng-container *ngIf="show0">0</ng-container>{{ lectures?.AttendanceTotalRate }}%</span></div>
+          </li>
+        </ul>
+
+
+      </div>
+    </div>
+    <!-- /.Horizontal Steppers -->
+
+        </div>
+
+
+
+  <div class="allData" *ngIf="searched">
+
+    <!-- Lectures Start -->
+    <div class="col-md-12 table-responsive">
+
+      <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover table table-striped z-depth-1 excel-print">
+        <thead>
+          <tr>
+            <th>#</th>
+        <th>{{'TRANS.Date' | translate}}</th>
+        <th>{{'TRANS.lectureTime' | translate}}</th>
+        <th>{{'TRANS.atendant' | translate}}</th>
+        <th>{{'TRANS.absence' | translate}}</th>
+        <th>{{'TRANS.permission' | translate}}</th>
+        <th>{{'TRANS.medical' | translate}}</th>
+        <th>{{'TRANS.late' | translate}}</th>
+        <th>{{'TRANS.AttendancePercent' | translate}}</th>
+        <th>{{'TRANS.tablethActions' | translate}}</th>
+          </tr>
+        </thead>
+        <tbody>
+           <tr *ngFor="let lecture of lectures?.Group; let i = index;">
+             <td>{{i+1}}</td>
+             <td>{{lecture.Date}}</td>
+             <td *ngIf="pageLang == 'ar'">{{lecture.StartTime | convertFrom24To12FormatAr}} الى {{lecture.EndTime | convertFrom24To12FormatAr}}</td>
+             <td *ngIf="pageLang == 'en'">{{lecture.StartTime | convertFrom24To12Format}} الى {{lecture.EndTime | convertFrom24To12Format}}</td>
+             <td><span class="badge s1 text-white">{{lecture.AttendanceCount}}</span></td>
+             <td><span class="badge s2 text-white">{{lecture.AbsenceCount}}</span></td>
+             <td><span class="badge s3 text-white">{{lecture.PremissionCount}}</span></td>
+             <td><span class="badge s4 text-white">{{lecture.ExcuseCount}}</span></td>
+             <td><span class="badge s5 text-white">{{lecture.LateCount}}</span></td>
+             <td><span class="badge text-white" [ngClass]="{
+              's1' : lecture.AttendanceRate >= 70,
+              's2' : lecture.AttendanceRate < 70
+              }">{{lecture.AttendanceRate}}%</span></td>
+             <td>
+              <a mdbBtn type="button" class="w-auto px-3 circle-btn"  mdbWavesEffect
+              [routerLink]="['/facultyMember/attendanceRecordByLecture', lectures.CRN, lectures.TermCode, lecture.Date, lecture.Day, lecture.AttendanceLocationCode, lecture.StartTime, lecture.EndTime, lectures.CourseNumber, lectures.CourseSubject, CourseTitle]">
+              <i class="far fa-edit"></i></a>
+              <a mdbBtn type="button" class="w-auto px-3 circle-btn delbtn" mdbWavesEffect (click)="deleteLecture(lecture, lectures)"><i class="far fa-trash-alt"></i></a>
+             </td>
+           </tr>
+        </tbody>
+      </table>
+
+    </div>
+    <!-- Lectures End -->
+  </div>
+
+</div>
+

@@ -1,0 +1,20 @@
+.delbtn{
+  background: red;
+}
+
+.stepper-horizontal li:hover {
+  background-color: transparent !important;
+}
+ul.stepper li a {
+  cursor: default !important;
+  pointer-events: none;
+}
+.primary-color, ul.stepper li.active a .circle, ul.stepper li.completed a .circle {
+  background-color: #17a2b8 !important;
+  font-size: 12px;
+}
+ul.stepper li a .circle {
+  width: 2rem;
+  height: 2rem;
+  line-height: 2rem;
+}

@@ -1,0 +1,113 @@
+<div class="bg-menu closed" [class.notifyBg]="notification" (click)="close()" *ngIf="blurBg"></div>
+<header class="p-3 row">
+  <div class="settingsBar">
+    <ul type="none" class="p-0 left-links row">
+      <li class="px-2">
+        <a href=""> 
+          <i class="fas fa-power-off headerIcons"></i>
+          <span class="mx-1">Signout</span>
+        </a>
+      </li>
+      <li class="px-2"> <a href=""><span class="mx-1">عربي</span></a> </li>
+      <li class="px-2"> 
+        <span class="material-icons fas headerIcons  fa-minus-circle mx-1"></span>
+        <span class="material-icons fas headerIcons  fa-plus-circle mx-1"></span>
+        <span class="mx-1">Font Size</span>
+      </li>
+      <li class="px-2" (click)="specialColors()">
+        <span class="material-icons fas headerIcons fa-eye">
+        </span> <span class="mx-1" [class.clicked]="blackAndWhite" >Special Colors</span>
+        <!-- <i class="fas headerIcons fa-eye-slash"></i>-->
+      </li>
+    </ul>
+  </div>
+  <div class="row userBar">
+    <div class="responsive-btn text-center">
+      <i class="fas fa-bars"></i>
+    </div>
+    <ul type="none" class="p-0 rightLinks row">
+      <li class="px-2 notify "> 
+        <a href="" class="notify"> 
+        <span class=" fas headerIcons fa-user material-icons"></span>
+        <span class="mx-1">Dr.Mohamed Ali  Hassan</span></a> </li>
+      <li class="px-2 notify" (click)="notify()">
+        <span class="material-icons far   fa-bell "></span>
+        <span class="material-icons fas fa-circle">  </span>
+      </li>
+    </ul>
+  </div>
+</header>
+
+<div class="menu-parent">
+  <div class="main-menu">
+    <ul type="none" class="p-0 text-white">
+      <li class="py-4 text-center Expand" (click)="expand()" title="Expand">
+        <span class="material-icons far fa-arrow-alt-circle-right">
+         
+          </span>
+          <span class="d-block text-center expnd">Expand</span>
+      </li>
+      <li class="py-4 text-left  ">
+        <a routerLinkActive="menuActive" (click)="close()"  [routerLinkActiveOptions]="{exact : true}" routerLink="" title="Home">
+          <span class="d-inline-block imgIcon text-center">
+            <img src="./assets/imgs/Icon feather-home.png" class="lightIcon" alt="home icon">
+            <div class="darkIcon ">
+              <img src="./assets/imgs/Icon feather-home2.png" alt="home icon">
+            </div>
+          </span>
+          <span [class.menuOpened]="expanded" class="d-inline-block menuTxt text-left">Home</span>
+        </a>
+      </li>
+      <li class="py-4 text-left">
+        <a routerLinkActive="menuActive" (click)="close()"  routerLink="AttendanceRecord" 
+          title="Register Attendance">
+          <span class="d-inline-block imgIcon text-center">
+            <img src="./assets/imgs/Icon feather-check-square.png" class="lightIcon" alt="Register Attendance icon">
+            <div class="darkIcon ">
+              <img src="./assets/imgs/Icon feather-check-square2.png" alt="Register Attendance icon">
+            </div>
+          </span>
+          <span [class.menuOpened]="expanded" class="d-inline-block menuTxt text-left">Register Attendance </span>
+        </a>
+      </li>
+      <li class="py-4 text-left ">
+        <a routerLink="ManageAtt" routerLinkActive="menuActive" (click)="close()"
+          title="Manage Attendance and Absence">
+          <span class="d-inline-block imgIcon text-center">
+            <img src="./assets/imgs/Icon feather-settings.png" class="lightIcon" alt="Manage Attendance and Absence icon">
+            <div class="darkIcon ">
+              <img src="./assets/imgs/Icon feather-settings2.png" alt="Manage Attendance and Absence icon">
+            </div>
+          </span>
+          <span [class.menuOpened]="expanded" class="d-inline-block menuTxt text-left"> Manage Attendance and Absence </span>
+        </a>
+      </li>
+      <li class="py-4 text-left">
+        <a routerLink="ManageREQ" routerLinkActive="menuActive" (click)="close()" title="Manage Requests">
+          <span class="d-inline-block imgIcon text-center">
+            <img src="./assets/imgs/Icon awesome-list-ul.png" class="lightIcon" alt="Manage Requests icon">
+            <div class="darkIcon ">
+              <img src="./assets/imgs/Icon awesome-list-ul2.png" alt="Manage Requests icon">
+            </div>
+          </span>
+          <span [class.menuOpened]="expanded" class="d-inline-block menuTxt text-left">Manage Requests</span>
+        </a>
+      </li> 
+      <li class="py-4 text-left ">
+        <a  routerLink="Help" routerLinkActive="menuActive" (click)="close()"  title="Help Center">
+          <span class="d-inline-block imgIcon text-center">
+            <img src="./assets/imgs/Icon material-help-outline.png" class="lightIcon" alt="Help Center icon">
+            <div class="darkIcon ">
+              <img src="./assets/imgs/2.png" alt="Help Center icon">
+            </div>
+          </span>
+          <span [class.menuOpened]="expanded" class="d-inline-block menuTxt text-left">Help Center</span>
+        </a>
+      </li>
+    </ul>
+  
+
+  </div>
+</div>
+
+<router-outlet></router-outlet>

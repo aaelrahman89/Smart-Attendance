@@ -1,0 +1,318 @@
+{
+  "TRANS":{
+     "signOut":"الخروج",
+     "profile":"الملف الشخصى",
+     "fontSize":"حجم الخط",
+     "specialColors":"ألوان خاصة",
+     "drName":"د.محمد علي حسن",
+     "collegesTitle":"الكليات",
+     "deptartmentsTitle":"الاقسام",
+     "coursesTitle":"المقررات",
+     "menuExpand":"أفتح",
+     "menuHome":"الرئيسية",
+     "menuCollege":"الكلية",
+     "menuManageColleges":"إدارة الكليات",
+     "menuManageDepartments":"إدارة الاقسام",
+     "menuManageMajors":"إدارة التخصصات",
+     "menuManageStudying":"الدراسة",
+     "menuClassroomSettings":"الفصول الدراسية",
+     "menuCourses":"المقررات",
+     "menuSections":"الشعب الدراسية",
+     "menuLecturesDates":"مواعيد المحاضرات",
+     "menuStudents":"الطلاب",
+     "menuManageStudentData":"إدارة بيانات الطلاب",
+     "menuRegisterStudent":"إدارة تسجيل الطلاب",
+     "menuFacultyMember":"هيئة التدريس",
+     "menuManageMemberData":"إدارة بيانات الأعضاء",
+     "menuRegisterMember":"إدارة تسجيل الأعضاء",
+     "menuAttendanceAbsence":"الحضور والغياب",
+     "menuManageAttendanceAbsenceRules":"إدارة قواعد الحضور  والغياب",
+     "tablethActions":"الاجراء",
+     "collegesthCollegeCode":"كود الكلية",
+     "collegesthCollegeName":"اسم الكلية",
+     "collegesthCollegeNameAr":"اسم الكلية عربى ",
+     "collegesthCollegeNameEn":"اسم الكلية انجليزى ",
+     "collegesthStatus":"الحالة",
+     "termTitle":"الفصول الدراسية",
+     "MajorsthMajorCode":"كود التخصص",
+     "MajorsthCollege":"الكلية",
+     "MajorsthDepartment":"القسم",
+     "MajorsthMajorName":"اسم التخصص  ",
+     "MajorsthMajorNameAr":"اسم التخصص بالعربى ",
+     "MajorsthMajorNameEn":"اسم التخصص بالانجليزى",
+     "MajorsthMajorEN":"اسم التخصص بالانجليزى",
+     "DepartmentsthDepartmentCode":"كود القسم",
+     "DepartmentsthCollege":"الكلية",
+     "DepartmentsthDepartmentName":"اسم القسم ",
+     "DepartmentsthDepartmentNameAr":" اسم القسم عربى",
+     "DepartmentsthDepartmentNameEn":" اسم القسم انجليزى",
+     "DepartmentsthStatus":"الحالة",
+     "coursesthcourseCode":"كود المقرر",
+     "coursesthcourseName":"اسم المقرر ",
+     "coursesthcourseNameAr":"اسم المقرر بالعربى ",
+     "coursesthcourseNameEn":"اسم المقرر بالانجليزى ",
+     "coursesthTotalHours":" الساعات الكلى",
+     "coursesthTheoretical":" الساعات النظرى",
+     "coursesthExercises":" ساعات التمارين",
+     "coursesthPracticality":" الساعات العملى",
+     "majorsTitle":"التخصصات",
+     "majorssubTitle":"التخصص",
+     "ٍSelectmajors":"-- اختر التخصص  --",
+
+
+
+     "sectionsTitle":"الشعب الدراسية",
+     "facultyMemberTHMemberNumber":"رقم العضو",
+     "facultyMemberTHName":"الاسم",
+     "facultyMemberTHEmail":"البريد الالكترونى",
+     "facultyMemberTHId":"رقم الهوية",
+     "facultyMemberTHCollege":"الكلية",
+     "facultyMemberTHDepartment":"القسم",
+     "facultyMemberTHStatus":"الحالة",
+     "search":"بحث",
+     "modalEditTitle":"تعديل",
+     "save":"حفظ",
+     "Scholasticdivision":"الشعب الدراسية",
+     "namedivision":"   الشعبه",
+     "namedivisionAr":" اسم الشعبه بالعربى",
+     "namedivisionEn":" اسم الشعبه بالانجليزى",
+     "CodeDivision":"كود ",
+     "CollegeName":" الكليه ",
+     "DepartmentName":"  القسم",
+     "term-Semester":"الفصل الدراسي",
+
+
+     "CourseSubject":"  المقرر",
+     "Select-CourseSubject":" -- اختر اسم المقرر --",
+
+     "Coursecode":" كود المقرر",
+     "Status":"الحاله",
+     "selectColleges":"-- اختر الكلية  --",
+     "selectDepartments":"-- اخترالقسم  --",
+     "selectterm":"--  اختر الفصل الدراسي  --",
+
+     "select-Division-Code":" --اختر كوده الشعبة --",
+
+     "Selet-namedivision":"-- اختر  الشعبه --",
+     "Division-Code":"كوده الشعبة",
+
+     "Term":"الفصل الدراسي",
+     "Termcode":" ترم كود",
+     "Name":"اسم",
+     "TermNameAr":"اسم الفصل الدراسي بالعربى",
+     "TermNameEn":"اسم الفصل الدراسي بالانجليزى",
+     "Year":"سنة",
+     "Date":"تاريخ",
+     "StartDate":"تاريخ البدء",
+     "EndDate":"تاريخ الانتهاء",
+     "Lecture":"المحاضرة  ",
+     "Lecturesmanagement":"إدارة مواعيد المحاضرات  ",
+     "ViewTimeSession":"عرض مواعيد المحاضرات",
+     "SessionTimemanagement":"ادارة مواعيد المحاضرات",
+     "close":"اغلاق",
+     "Managementtools":"ادوات الاداره",
+     "Today":"اليوم",
+     "Tabletype":"نوع الجدول",
+     "SelectTabletype":"-- اختار نوع الجدول --",
+
+     "Fromhour":"من الساعة ",
+     "tohour":"الى الساعة ",
+     "time":"المده ",
+     "basicinformation":"البيانات الاساسية",
+     "CollegeDetails":" تفاصيل الكلية ",
+     "MemberDetails":" عرض تسجيل الاعضاء ",
+     "FacultyMemberName":" عضو هيئة التدريس ",
+     "Action":"اجراء",
+     "ArticleConsultant":"استاذ المادة",
+     "Viewstudentregis":"عرض تسجيل الطلاب",
+     "StudentID":"رقم الهويه ",
+     "name":"الاسم",
+     "E-mail":"البريد الالكتروني ",
+     "college":"الكليه",
+     "Department":"القسم",
+     "Specialization":"التخصص",
+     "Studentstatus":"حاله الطالب",
+     "Managestudentdata":"اداره بيانات الطلاب",
+     "code":"الكود",
+     "Educationsystem":"نظام الدراسة",
+     "studentstatus":"وضع الطالب",
+     "PauseAbsence":"رفع الغياب",
+     "WarningsAndS":"الانذارات والحرمان",
+     "attendanceStatus": "حالات الحضور",
+     "notFound":"عذراً, الصفحة التى تحاول ان تدخل عليها غير موجودة",
+
+
+     "studentNumber":"رقم الطالب",
+     "studentEmail":"البريد الالكترونى",
+     "studentNationalId":"رقم الهوية",
+     "studentSystemStatus":"حالة الطالب بالنظام",
+
+     "Saturday":"السبت",
+     "Sunday":"الاحد",
+     "Monday":"الاثنين",
+     "Tuesday":"الثلاثاء",
+     "Wednesday":"الاربعاء",
+     "Thursday":"الخميس",
+     "days":"الايام",
+"ProfessorArticle":"-- اختر استاذ المادة  -- ",
+
+
+"ScheduleType":" نوع  الجلسة ",
+"ScheduleTypeSelect":"-- اختير نوع الجلسة   --",
+
+
+"roomcode":"رقم القاعة ",
+"room":"القاعة",
+
+"table": "الجدول",
+"lectureTime": "الوقت ",
+"startTime": "وقت البداية",
+"endTime": "وقت النهاية",
+"place": "المكان",
+"studentDataTitle": "بيانات الطالب",
+"studentNameAr": "الاسم بالعربى",
+"studentNameEn": "الاسم بالانجليزى",
+"studentNationality": "الجنسية",
+"studentGender": "الجنس",
+"studentMobile": "رقم الجوال",
+"studentAltEmail": "البريد الالكترونى البديل",
+"studentAcademicStatus": "الوضع الاكاديمى",
+"studentBirthDate": "تاريخ الميلاد",
+"studentGuardianDataTitle": "بيانات ولى الامر",
+"studentGuardianName": "اسم ولى الامر",
+"studentGuardianRelation": "صلة القرابة",
+"studentGuardianMobile": "رقم جوال ولى الامر",
+"studentGuardianEmail": "بريد الكترونى ولى الامر",
+"facultyMembersDepartment":"  أساتذةالمقرر   ",
+"Definedecisions":"  الجدول الدراسي ",
+"Filterresults":"تصفيه النتائج",
+"ClearFilter":"مسح المحددات ",
+"Delete":"حذف",
+"Edit":"تعديل",
+"Add":"اضافة",
+
+
+"StudentRegistration":"تسجيل الطالب",
+"Viewregisteredstudents":" عرض الطلاب المسجلين",
+
+
+"validationReq":"هذا الحقل الزامى",
+"validationEmail":"بريد الكترونى خاطىء",
+
+"studentname":"اسم الطالب ",
+"selectstudentname":"--اختر اسم الطالب   --",
+
+"arabicError": "الأسم يجب ان يكون باللغة العربية",
+"englishError": "الأسم يجب ان يكون باللغة الانجليزية",
+
+"registerStudents": " بدء التسجيل",
+"registerIn": " السماح للطلاب التسجيل",
+
+"lecTime": " موعد المحاضرة",
+"SeletelecTime": "-- اختر موعد المحاضرة --",
+
+
+"lectureLocation": "مكان المحاضرة",
+"lectureLocationInside": "داخلى",
+"lectureLocationOnline": "عبر الانترنت",
+
+"seconds": "ثانية",
+"timeFinished": "تم انتهاء الوقت",
+
+"studentsLength": "طالب",
+
+"atendant": "حضور",
+"absence": "غياب",
+"permission": "استئذان",
+"late": "تأخير",
+"medical": "عذر",
+
+"back": "الرجوع",
+
+"AttendanceAbsentregistrationtitle": "تسجيل الحضور والغياب",
+
+"AttendancePercent":"نسبة الحضور",
+"AbsencePercent":"نسبة الغياب",
+
+"lecDate": " تاريخ المحاضرة",
+
+"secondsValidation": "الثوانى يجب ان تكون بين 1 الى 900",
+"StudentAttendanceForLectureTitle": "ادارة الحضور والغياب بالمحاضرة",
+
+"Numberlectures":"عدد المحاضرات ",
+"Absence ":"غياب",
+
+"attendrate":"معدل الحضور",
+"AttendanceAbsence":"إدارة الحضور والغياب بالطالب",
+
+"Managestudenattendance":"إدارة حضور الطلاب",
+
+"from":"من",
+"to":"الي",
+"yes":"نعم",
+"no":"لا",
+"deleterecord":"هل أنت متأكد من حذف هذا السجل؟",
+
+"Reviewstudentinformation":"استعراض معلومات الطالب ",
+
+"totalStudentsNumber":"اجمالى عدد الطلاب",
+"TaskUnderProcedure":" طلب عذر طبي ",
+
+
+"RecordOrder":"سجل الطلب ",
+"OrderDetails":"تفاصيل الطلب ",
+
+"OrderNumber":"رقم الطلب",
+"DateOfApplication":"تاريخ الطلب",
+"Durationofexcuse":"مدة العذر",
+"thedecision":"القرار",
+"Rejection":"رفض",
+"Acceptance":"قبول",
+"Notes":"ملاحظات",
+"Applicationdata":"بيانات الطلب ",
+
+
+"Introductionapplication":" مقدمة الطلب ",
+"Orderstatus":" حالة الطالب",
+"dateapplication":"تاريخ الطلب",
+"details":"التفاصيل",
+"review":"استعراض",
+"nameservice":"إسم الخدمة",
+
+"customize":"تخصيص",
+"CreditHourSystem":"نظام الساعات المعتمدة",
+"Systemofectures":"نظام المحاضرات",
+"absenceRatioParagraph":"نسبة الغياب =(( مجموع الساعات الكلي للمقرر - مجموع الساعات حضور الطالب / مجموع الساعات الكلي للمقرر )* 100)",
+"allowed":"مسموح بــ",
+"permissions":"أذونات",
+"rate":"نسبة",
+"permissionsAsAttendance":"% من الاذونات يحسب حضور",
+"permissionPower":"منح صلاحية لاعضاء هيئة التدريس لتسجيل الاستئذان",
+"execusePower":"منح صلاحية لاعضاء هيئة التدريس لتسجيل العذر",
+"latePower":" منح صلاحية لاعضاء هيئة التدريس لتسجيل التأخير",
+"execusesAsAttendance":"% من الاعذار يحسب حضور",
+"lateAsAttendance":" % من التأخير يحسب حضور",
+"calculated":" تحسب",
+"generalSettings":" اعدادات عامة ",
+"attendanceCalculated":" يحسب الحضور للطالب ذو الحالة ",
+"customizeStudySystem":"تخصيص نظام دراسى لكلية محددة",
+"excusesRequests":"طلبات الاعذار",
+"underTheProcedure":"تحت الاجراء ",
+"completed":"مكتملة"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  }
+}

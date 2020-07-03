@@ -1,0 +1,18 @@
+<div class="container-fluid container-fluid-custom mb-4">
+
+  <div class="col-md-12">
+
+    <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover table table-striped">
+      <thead>
+        <tr>
+          <th *ngFor="let headElement of headElements">{{headElement}}</th>
+        </tr>
+      </thead>
+      <tbody *ngIf="elements?.length != 0">
+              <ng-content></ng-content>
+      </tbody>
+      </table>
+
+
+    </div>
+</div>

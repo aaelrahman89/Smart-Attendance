@@ -1,0 +1,93 @@
+
+.login-Page{
+  height: 100%;
+}
+.login-Side{
+  height: 100%;
+  background-color: var(--lightGrey) ;
+
+}
+.login-side-bottom{
+  height: 5%;
+  text-align: center;
+  width: 100%;
+}
+.login-side-top{
+  height: 95%;
+}
+.logo-side-top img{
+  width: 130px !important;
+}
+.logoSide, .login-side-top{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.logoSide{
+  background: white;
+}
+.systemName{
+  color: var(--purb);
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  padding: 10px;
+}
+.poweredby{
+  width: 200px !important;
+  display: inline-block;
+}
+.login-Card .username, .login-Card .password{
+  border-radius: 20px;
+  width: 300px;
+  border: 1px solid var(--purb);
+  overflow: hidden;
+  background: white;
+}
+.login-Card .form-control{
+  width: 85%;
+  border: none;
+  padding: 0 10px;
+  border-radius: 0;
+  border-left: 1px solid #ccc;
+}
+.login-Card .form-control::placeholder{
+  font-size: 0.9em;
+  opacity: 0.5;
+}
+.alert{
+  width: 100% !important;
+}
+.login-Card .icon{
+  width: 15%;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--purb);
+}
+.login-Card{
+  width: 300px;
+}
+
+.forgetPass{
+  color: var(--purb);
+}
+h2, h3{
+  font-family: 'Cairo';
+  text-align: right;
+}
+.main-btn{
+  background: var(--rightGrediant);
+  color: white;
+  border: none;
+  border-radius: 20px;
+  text-align: center;
+  padding: 5px 10px;
+  font-weight: bold;
+}
+
+.main-btn:hover{
+  background: #505891;
+}

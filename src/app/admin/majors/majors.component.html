@@ -1,0 +1,171 @@
+
+
+
+
+
+  <div class="container-fluid px-3 ">
+
+    <div class="page-title mt-3  text-center">
+      <div class="page-icon d-none">
+        <img src="imgs/Icon feather-settings.png" alt="">
+      </div>
+
+
+
+
+      <h1 class="color-p pageTitle  text-center">
+        <b> <i class="fas fa-university"></i> {{ 'TRANS.majorsTitle' | translate }} </b>
+
+      </h1>
+
+
+    </div>
+
+    <hr class="shadow">
+
+
+  <form [formGroup]="srchForm" (ngSubmit)="submit()">
+    <div class="row mx-4">
+      <div class="col-md-3 pr-0">
+        <div class="form-group">
+          <b class="color-p mx-3 my-1 d-block text-right">{{ 'TRANS.menuCollege' | translate }} <span  class="text-danger">*</span> </b>
+          <select
+            class="form-control"
+            formControlName="college"
+            (change)="onChangeCollege($event.target.value)"
+          >
+            <option value="" selected>{{'TRANS.selectColleges'|translate}}</option>
+            <option
+              *ngFor="let college of colleges"
+              [value]="college.CollegeCode"
+            >
+            <span *ngIf="pageLang === 'ar'">
+              {{ college.NameAr }}
+            </span>
+            <span *ngIf="pageLang === 'en'">
+              {{ college.NameEn }}
+            </span>
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div class="col-md-3 pr-0">
+        <div class="form-group">
+          <b class="color-p mx-3 my-1 d-block text-right">{{ 'TRANS.MajorsthDepartment' | translate }}</b>
+          <select class="form-control" formControlName="department">
+            <option value="" selected>{{'TRANS.selectDepartments'|translate}}</option>
+            <option
+              *ngFor="let department of departments"
+              [value]="department.DepartmentCode"
+            >
+            <span *ngIf="pageLang === 'ar'">
+              {{ department.NameAr }}
+            </span>
+            <span *ngIf="pageLang === 'en'">
+              {{ department.NameEn }}
+            </span>
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div class="col-md-2">
+        <b class="color-p mx-3  d-block text-right"><br/></b>
+        <button type="submit" class="w-75 btn-main px-4 py-2 rounded-pill" [disabled]="srchForm.invalid">
+          {{ 'TRANS.search' | translate }}
+          <i class="fas fa-search pr-2"></i>
+        </button>
+      </div>
+    </div>
+  </form>
+
+  <!-- <div class="col-md-12">
+    <p>
+      {{ srchForm.value | json }}
+    </p>
+  </div> -->
+
+
+  <div class="col-md-12 table-responsive">
+
+    <export></export>
+
+    <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover table table-striped excel-print">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>{{ 'TRANS.code' | translate }} </th>
+          <th>{{ 'TRANS.MajorsthCollege' | translate }}</th>
+          <th>{{ 'TRANS.MajorsthDepartment' | translate }}</th>
+          <th>{{ 'TRANS.MajorsthMajorName' | translate }}</th>
+          <th class="d-none-print">{{ 'TRANS.collegesthStatus' | translate }}</th>
+          <th class="d-none-print">{{ 'TRANS.tablethActions' | translate }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let element of elements, let i = index">
+          <td>{{i+1}}</td>
+          <td>{{ element.MajorCode }}</td>
+          <td *ngIf="pageLang === 'ar'">{{ element.Department.College.NameAr }}</td>
+          <td *ngIf="pageLang === 'en'">{{ element.Department.College.NameEn }}</td>
+          <td *ngIf="pageLang === 'ar'">{{ element.Department.NameAr }}</td>
+          <td *ngIf="pageLang === 'en'">{{ element.Department.NameEn }}</td>
+          <td *ngIf="pageLang === 'ar'">{{ element.NameAr }}</td>
+          <td *ngIf="pageLang === 'en'">{{ element.NameEn }}</td>
+          <td class="d-none-print">
+            <div class="form-group">
+              <label class="switch">
+                <input
+                  type="checkbox"
+                  [checked]="element.IsActive"
+                  (change)="changeActive(element)"
+                />
+                <span class="slider round"></span>
+              </label>
+            </div>
+          </td>
+          <td class="d-none-print">
+            <div (click)="showMod(element.Id)">
+              <a mdbBtn type="button" class="w-auto px-3 circle-btn"  mdbWavesEffect  (click)="basicModal.show()"><i class="far fa-edit"></i></a>
+            </div>
+
+            <div mdbModal #basicModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close pull-right" aria-label="Close" (click)="basicModal.hide()">
+                      <span aria-hidden="true"><i class="far fa-times-circle"></i></span>
+                    </button>
+                    <h4 class="modal-title w-100" id="myModalLabel">{{ 'TRANS.modalEditTitle' | translate }}</h4>
+                  </div>
+                  <div class="modal-body">
+                    <form [formGroup]="editForm" (ngSubmit)="edit(element)">
+                      <div class="form-group">
+                        <b class="color-p mx-3 my-3 d-block text-right">{{ 'TRANS.MajorsthMajorNameAr' | translate }}</b>
+                        <input type="text" class="form-control" formControlName="nameAR">
+                      </div>
+                      <div class="form-group">
+                        <b class="color-p mx-3 my-3 d-block text-right">{{ 'TRANS.MajorsthMajorNameEn' | translate }}</b>
+                        <input type="text" class="form-control" formControlName="nameEN">
+                      </div>
+                     <div class="row">
+                      <div class="col-md-4 mx-auto">
+                        <button type="submit" class="w-75 btn-main px-4 py-2 rounded-pill" aria-label="Close" (click)="basicModal.hide()" [disabled]="editForm.invalid">{{ 'TRANS.save' | translate }}</button>
+                      </div>
+                     </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+
+</div>

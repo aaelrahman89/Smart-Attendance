@@ -1,0 +1,117 @@
+<div class="container-fluid px-3 ">
+
+    <page-title> {{'TRANS.AttendanceAbsence'|translate}} </page-title>
+
+       <!-- Search Start -->
+  <form [formGroup]="srchForm">
+    <div class="srchform ">
+     <div class="row">
+       <div class="col-md-3 col-6 p-1 pr-0">
+        <b class="color-p mx-3 my-2 d-block text-right"> {{ 'TRANS.CourseSubject' | translate }} </b>
+         <select class="form-control" formControlName="sections">
+           <option selected disabled [value]="null">{{ 'TRANS.CourseSubject' | translate }}</option>
+           <option *ngFor="let section of sections" [ngValue]="section">
+            <span *ngIf="pageLang === 'ar'">{{section.CourseTitleAr}} - {{section.Crn}}</span>
+            <span *ngIf="pageLang === 'en'">{{section.CourseTitleEn}} - {{section.Crn}}</span>
+           </option>
+         </select>
+
+       </div>
+
+       <div class="col-md-1">
+        <b class="color-p mx-3 my-2 d-block text-right"><br/></b>
+        <button type="button" class="btn-main px-4 py-2 rounded-pill mt-1" (click)="searchSubmit()" [disabled]="srchForm.invalid">
+          {{ 'TRANS.search' | translate }}
+          </button>
+      </div>
+
+     </div>
+    </div>
+
+    <!-- <p>{{ srchForm.value | json }}</p> -->
+
+    </form>
+
+
+
+ <br>
+
+            <ul class="row w-100 color-p justify-content-center py-2  " type="none">
+              <li class="col-md-2 text-center font-weight-bold" >
+                <div class="info my-3"> <b> {{'TRANS.Numberlectures'|translate}}</b> </div>
+                <div class="head my-3"> <span><ng-container *ngIf="show0">0</ng-container>{{AppoitmentsCount}}</span></div>
+              </li>
+              <li class="col-md-2 text-center font-weight-bold" >
+                <div class="info my-3"> <b>{{'TRANS.attendrate'|translate}}</b> </div>
+                <div class="head my-3"> <span><ng-container *ngIf="show0">0</ng-container>{{ AttendanceTotalRate }}%</span></div>
+              </li>
+              <li class="col-md-2 text-center font-weight-bold" >
+                <div class="info my-3"> <b>{{'TRANS.menuStudents'|translate}}</b> </div>
+                <div class="head my-3"> <span><ng-container *ngIf="show0">0</ng-container>{{studentsCount}}</span></div>
+              </li>
+
+            </ul>
+
+
+
+
+
+
+
+
+            <div class="col-md-12 table-responsive"  *ngIf="searched">
+
+              <!-- <export></export> -->
+              <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover table table-striped excel-print">
+
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>{{ 'TRANS.studentname' | translate }} </th>
+                    <th>{{ 'TRANS.atendant' | translate }} </th>
+                    <th>{{ 'TRANS.absence' | translate }} </th>
+                    <th>{{ 'TRANS.permission' | translate }} </th>
+                    <th>{{ 'TRANS.late' | translate }} </th>
+                    <th>{{ 'TRANS.medical' | translate }} </th>
+                    <th>{{ 'TRANS.attendrate' | translate }} </th>
+
+                    <th width="10%">{{ 'TRANS.studentDataTitle' | translate }} </th>
+                  </tr>
+                </thead>
+                <tbody>
+
+                  <tr *ngFor="let Student of Students?.Group; let i = index;">
+                    <td>{{i+1}}</td>
+                    <td *ngIf="pageLang === 'ar'">{{Student.StudentNameAr}}</td>
+                    <td *ngIf="pageLang === 'en'">{{Student.StudentNameEn}}</td>
+
+                    <td><span class="s1 px-3 shadow rounded text-white font-weight-bold">{{Student.AttendanceCount}}</span></td>
+                    <td><span class="s2 px-3 shadow rounded text-white font-weight-bold">{{Student.AbsenceCount}}</span></td>
+                    <td><span class="s3 px-3 shadow rounded text-white font-weight-bold">{{Student.PremissionCount}}</span></td>
+
+                    <td><span class="s4 px-3 shadow rounded text-white font-weight-bold">{{Student.LateCount}}</span></td>
+                    <td><span class="s5 px-3 shadow rounded text-white font-weight-bold">{{Student.ExcuseCount}}</span></td>
+
+
+                   <td>
+                    <mdb-badge class="shadow rounded px-3 text-white font-weight-bold"  [ngClass]="{
+                      's1' : Student.AttendanceRate >= 70,
+                      's2' : Student.AttendanceRate < 70
+                      }">{{Student.AttendanceRate}}%</mdb-badge>
+                   </td>
+
+
+
+
+                     <td><a title="{{ 'TRANS.Reviewstudentinformation' | translate }} "><i class="fas fa-user-clock fa-2x color-p" (click)="StudentAttendance(Student.StudentId)"></i></a></td>
+                  </tr>
+
+                </tbody>
+              </table>
+            </div>
+
+    </div>
+
+    <br>
+
+

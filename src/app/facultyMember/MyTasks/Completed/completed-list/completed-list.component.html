@@ -1,0 +1,47 @@
+<div class="container-fluid px-3 ">
+
+    <!-- <page-title> {{'TRANS.TaskUnderProcedure'|translate}} </page-title> -->
+    <page-title>اعذار مكتملة  </page-title>
+
+
+</div>
+
+
+
+
+<div class="col-md-12 table-responsive ">
+    <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover table table-striped excel-print">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th> {{'TRANS.nameservice'|translate}}</th>
+          <th> {{'TRANS.OrderNumber'|translate}}</th>
+          <th>  {{'TRANS.Introductionapplication'|translate}} </th>
+          <th>  {{'TRANS.Orderstatus'|translate}} </th>
+          <th>  {{'TRANS.dateapplication'|translate}} </th>
+          <th>  {{'TRANS.details'|translate}} </th>
+        </tr>
+    </thead>
+    <tbody>
+
+      <tr  *ngFor="let MyTask of MyTasks let i = index;">
+        <td> {{i+1}}</td>
+
+        <td> {{MyTask.RequestTypeName}}</td>
+        <td> {{MyTask.RequestNumber}}</td>
+        <td> {{MyTask.RequesterName}}</td>
+        <td> {{MyTask.TaskStatus}}</td>
+        <td> {{MyTask.RequestDate}}</td>
+
+
+
+        <td><a (click)="TasksProgresView(MyTask.Id)" target="_blank"> <i class="fas fa-chalkboard-teacher fa-2x c6" title="{{'TRANS.nameservice'|translate}}"></i></a></td>
+
+
+      </tr>
+
+
+    </tbody>
+    </table>
+
+</div>

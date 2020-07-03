@@ -1,0 +1,7 @@
+.print-icon{
+  position: absolute;
+    display: flow-root;
+    margin: -7px 0;
+    z-index: 9;
+    right: 15px;
+}

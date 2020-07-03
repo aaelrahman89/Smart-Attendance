@@ -1,0 +1,35 @@
+<div class="col-md-12">
+    <export></export>
+    <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover table table-striped">
+      <thead>
+        <tr>
+          <th>{{ 'TRANS.coursesthcourseName' | translate }}</th> 
+          <th>{{ 'TRANS.Today' | translate }}</th> 
+          <th>{{ 'TRANS.lectureTime' | translate }}</th>
+          <th>{{ 'TRANS.Tabletype' | translate }}</th>
+          <th>{{ 'TRANS.place' | translate }}</th>
+          <th>{{ 'TRANS.room' | translate }}</th>
+        </tr>
+      </thead>
+      <tbody> 
+        <tr *ngFor="let element of timeLine" > 
+            <td *ngIf="pageLang === 'ar'" >{{ element.CourseTitleAr + " - " +  element.CourseSubject + " - "  + element.Crn}}</td>
+            <td *ngIf="pageLang === 'en'" >{{ element.CourseTitleEn + " - " +  element.CourseSubject + " - "  + element.Crn}}</td>
+            <td *ngIf="pageLang === 'ar'"> {{element.DayNameAr}} </td>
+            <td *ngIf="pageLang === 'en'"> {{element.DayNameEn}} </td>
+            <td> {{element.StartTime + " - " + element.EndTime}} </td>
+            <td *ngIf="pageLang === 'ar'"> {{element.LectureType.NameAr}} </td>
+            <td *ngIf="pageLang === 'en'"> {{element.LectureType.NameEn}} </td>
+            <td> {{ 'TRANS.place' | translate }} </td>
+            <td> {{'TRANS.room' | translate }} </td>
+        </tr>
+      </tbody>
+      <tbody *ngIf="timeLine?.length == 0">
+        <tr>
+          <td colspan="5" class="no-data-available">No data!</td>
+        </tr>
+      <tbody>
+    </table>
+    <!--  -->
+
+  </div>

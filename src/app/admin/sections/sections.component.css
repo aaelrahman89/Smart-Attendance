@@ -1,0 +1,51 @@
+.table-responsive {
+  overflow-x: initial !important;
+}
+
+.form-control {
+  height: calc(1.7em + 0.75rem + 3px) !important;
+}
+
+.mat-form-field-infix{
+  position: inherit !important;
+}
+
+html[lang="en-US"].en {
+  display: block !important;
+}
+
+html[lang="ar-SA"].ar {
+  display: block !important;
+}
+
+
+.form-control-1 {
+  border: 1px solid #653b8c75;
+ 
+}
+
+
+/* @media print { 
+
+  .btn-print , .print-div , .Status , .Action{
+    display: none !important;
+  }
+  
+
+} */
+
+.mat-form-field {
+  display: inline-block;
+  position: relative;
+  text-align: initial;
+}
+.mat-option{
+  text-align: right;
+
+}
+
+
+
+.botSerach {
+  bottom: -35px !important;
+}

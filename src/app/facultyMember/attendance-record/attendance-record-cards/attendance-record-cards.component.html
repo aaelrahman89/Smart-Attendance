@@ -1,0 +1,142 @@
+<div class="manage-statusbar" *ngIf="showStatusBar">
+  <div class="row">
+
+    <div class="col-md-3 position-relative">
+      <!-- <div class="srch-icon"><i class="fas fa-search"></i></div> -->
+      <input type="text" class="form-control searchinput-style" [placeholder]="'TRANS.search' | translate" id="searchStudentInput" [(ngModel)]="searchTerm">
+    </div>
+
+    <div class="col-md-5 d-sm-block mt-2 text-center">
+     <span><strong class="m-3">{{'TRANS.totalStudentsNumber' | translate}}</strong></span> <span class="badge badge-info">{{StudentsCount}}</span> <b class="mr-1 ml-1">{{ 'TRANS.studentsLength' | translate }}</b>
+   </div>
+
+    <div class="col-md-4 mt-2 d-none d-sm-block">
+         <ul class="list-unstyled d-flex justify-content-between">
+          <li class="border-0 card-textgreen pr-3"><b class="d-flex"><div class="circle-number s11">{{ getAttendStatusLength(1) }}</div> {{ 'TRANS.atendant' | translate }}</b> </li>
+          <li class="border-0 card-textred pr-3"><b class="d-flex"><div class="circle-number s22">{{ getAttendStatusLength(2) }}</div> {{ 'TRANS.absence' | translate }}</b> </li>
+          <li class="border-0 Permissiontext pr-3"><b class="d-flex"><div class="circle-number s33">{{ getAttendStatusLength(3) }}</div> {{ 'TRANS.permission' | translate }}</b> </li>
+          <li class="border-0 Medicaltext pr-3"><b class="d-flex"><div class="circle-number s44">{{ getAttendStatusLength(4) }}</div> {{ 'TRANS.medical' | translate }}</b> </li>
+          <li class="border-0 Latetext pr-3"><b class="d-flex"><div class="circle-number s55">{{ getAttendStatusLength(5) }}</div> {{ 'TRANS.late' | translate }}</b> </li>
+         </ul>
+    </div>
+
+
+
+  </div>
+</div>
+
+<div id="manageCards" class="mb-5" *ngIf="showCards">
+
+
+  <div class="manage-cards">
+    <div class="row">
+
+      <!--card start-->
+      <div class="col-md-3 mb-2 p-1" *ngFor="let student of students | studentsFilter: {StudentId: searchTerm, StudentNameAr:searchTerm, StudentNameEn: searchTerm}: false; let i = index;">
+        <div class="cardmenu text-white text-right">
+           <div class="btn-group" mdbDropdown>
+             <button mdbDropdownToggle type="button" mdbBtn class="dropdown-toggle waves-light"
+               mdbWavesEffect>
+               <i class="fas fa-ellipsis-v"></i>
+             </button>
+             <ul class="dropdown-menu dropdown-primary">
+               <li class="dropdown-item" *ngFor="let status of attendanceStatus" [value]="status.AttendanceStatusCode" (click)="changeAttend(student, status)">
+                 <span *ngIf="pageLang ==='ar'">{{ status.NameAr }}</span>
+                 <span *ngIf="pageLang ==='en'">{{ status.NameEn }}</span>
+               </li>
+             </ul>
+           </div>
+        </div>
+
+        <div class="indexNumber">
+          <span class="badge badge-info" [ngClass]="{
+           's11' : student.AttendanceStatusCode == 1,
+           's22' : student.AttendanceStatusCode == 2,
+           's33' : student.AttendanceStatusCode == 3,
+           's44' : student.AttendanceStatusCode == 4,
+           's55' : student.AttendanceStatusCode == 5
+           }">{{ i+1 }}</span>
+        </div>
+
+<div class="manage-card cursor-pointer" (click)="changeAttendAbsence(student)"
+
+[ngClass]="{
+'s1' : student.AttendanceStatusCode == 1,
+'s2' : student.AttendanceStatusCode == 2,
+'s3' : student.AttendanceStatusCode == 3,
+'s4' : student.AttendanceStatusCode == 4,
+'s5' : student.AttendanceStatusCode == 5
+}"
+>
+<div class="row">
+ <div class="col-md-1 col-8 p-0"></div>
+  <div class="col-md-7 col-8 p-0">
+   <div class="cardtitle text-white text-center" *ngIf="pageLang === 'ar'">{{ student.StudentNameAr }}</div>
+   <div class="cardtitle text-white text-center" *ngIf="pageLang === 'en'">{{ student.StudentNameEn }}</div>
+     <div class="cardnumber text-center">
+       {{ student.StudentId }}
+     </div>
+  </div>
+  <div class="col-md-4 col-4">
+    <div class="cardicon text-white">
+      <i class="far fa-check-circle" *ngIf="student.AttendanceStatusCode == 1"></i>
+      <i class="far fa-times-circle" *ngIf="student.AttendanceStatusCode == 2"></i>
+      <i class="far fa-hand-paper" *ngIf="student.AttendanceStatusCode == 3"></i>
+      <i class="fas fa-notes-medical" *ngIf="student.AttendanceStatusCode == 4"></i>
+      <i class="far fa-clock" *ngIf="student.AttendanceStatusCode == 5"></i>
+    </div>
+  </div>
+</div>
+</div>
+
+
+      </div>
+      <!--card end-->
+
+
+    </div>
+  </div>
+
+  <div class="row"><br/><br/></div>
+  <div class="col-md-12 text-center">
+   <button type="button" class="btn-main px-4 py-2 rounded-pill" (click)="updateAllStudents()"> {{ 'TRANS.save' | translate }} </button>
+ </div>
+
+</div>
+
+
+
+<ng-container>
+  <div mdbModal #frame="mdbModal" class="modal fade" id="frameModalTop" tabindex="-1" role="dialog"
+  aria-labelledby="myModalLabel" aria-hidden="true">
+
+  <div class="modal-dialog modal-notify modal-success" role="document">
+    <!--Content-->
+    <div class="modal-content">
+      <!--Header-->
+      <div class="modal-header">
+
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="frame.hide()">
+          <span aria-hidden="true" class="white-text">&times;</span>
+        </button>
+      </div>
+
+      <!--Body-->
+      <div class="modal-body">
+        <div class="text-center">
+          <mdb-icon fas icon="check" size="4x" class="mb-3 animated rotateIn"></mdb-icon>
+          <!-- <p>{{updateMessage}}</p> -->
+          <h4>تم تسجيل الحضور بنجاح</h4>
+        </div>
+      </div>
+
+    </div>
+    <!--/.Content-->
+  </div>
+
+
+</div>
+</ng-container>
+
+
+

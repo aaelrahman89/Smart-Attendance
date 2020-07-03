@@ -1,0 +1,235 @@
+<div class="container-fluid mb-4">
+
+  <div class="page-title my-5 pb-3 text-center">
+    <h2 class="color-p text-center ">
+      <b> <i class="fas fa-university"></i> {{ 'TRANS.menuManageMemberData' | translate }} </b>
+      <p *ngIf="loading" >Loading Data...</p>
+    </h2>
+  </div>
+
+  <div class="col-md-12">
+    <export></export>
+    <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover table table-striped">
+      <thead>
+        <tr>
+          <th>{{ 'TRANS.facultyMemberTHName' | translate }}</th>
+          <th>{{ 'TRANS.facultyMemberTHEmail' | translate }}</th>
+          <th>{{ 'TRANS.facultyMemberTHCollege' | translate }}</th>
+          <th>{{ 'TRANS.facultyMemberTHDepartment' | translate }}</th>
+          <th>{{ 'TRANS.facultyMemberTHStatus' | translate }}</th>
+          <th>{{ 'TRANS.modalEditTitle' | translate }}</th>
+          <th>{{ 'TRANS.table' | translate }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let element of elements">
+          <td *ngIf="pageLang === 'ar'" >{{ element.NameAr }}</td>
+          <td *ngIf="pageLang === 'en'" >{{ element.NameEn }}</td>
+          <td>{{ element.UniversityEmail }}</td>
+          <td *ngIf="pageLang === 'ar'" >{{ element.College.NameAr }}</td>
+          <td *ngIf="pageLang === 'en'" >{{ element.College.NameEn }}</td>
+          <td *ngIf="pageLang === 'ar'" >{{ element.Department.NameAr }}</td>
+          <td *ngIf="pageLang === 'en'" >{{ element.Department.NameEn }}</td>
+          <td>
+            <div class="form-group">
+              <label class="switch">
+                <input type="checkbox" [checked]="element.IsActive" (change)="changeActive(element)">
+                <span class="slider round"></span>
+              </label>
+            </div>
+          </td>
+          <td   (click)="showUp(element.Id, element.DepartmentCode,  element.NationalityCode, element.CollegeCode)">
+              <button type="button" mdbBtn class="w-auto px-3 circle-btn btn waves-effect" (click)="basicModal.show()"
+              mdbWavesEffect>
+              <i class="far fa-edit"></i>
+            </button>  
+          </td>
+          <td (click)="showTimeTable(element.FacultyMemberId, element.NameAr)">
+            <button type="button" mdbBtn class="w-auto px-3 circle-btn  btn waves-effect" (click)="basicModal.show()"
+            mdbWavesEffect>
+            <i class="fas fa-table"></i>
+          </button> 
+          </td>
+        </tr>
+      </tbody>
+      <tbody *ngIf="elements?.length == 0">
+        <tr>
+          <td colspan="5" class="no-data-available">No data!</td>
+        </tr>
+      <tbody>
+    </table>
+    <!--  -->
+
+  </div>
+</div>
+
+<div mdbModal (closed)="onClosed($event)" #basicModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content" *ngIf="stop">
+      <div class="modal-header" >
+        <button type="button" class="close pull-right" aria-label="Close" (click)="basicModal.hide()">
+          <span aria-hidden="true">×</span>
+        </button>
+        <h3 class="modal-title text-center color-p w-100" id="myModalLabel">
+          <i class="fas fa-university"></i>
+          {{ 'TRANS.modalEditTitle' | translate }}
+        </h3>
+      </div>
+      <div class="modal-body "> 
+        <!-- // start of form  -->
+        <form  class="row"  [formGroup]="editForm" (ngSubmit)="submit(popupElements)"  >
+        <div class="col-md-6 mx-auto row rowInfo my-3">
+          <div class="">
+            <b for="" class="color-p mx-3 my-3 d-block"> الأسم باللغة العربية </b>
+          </div>
+          <div class=" col-md-12 text-right " [class.valError]="editForm.get('nameAr').errors?.notArabic" >
+            <input type="text" class="form-control py-0" formControlName="nameAr"   >
+            <span *ngIf="editForm.get('nameAr').errors?.notArabic" class="errorSpan">
+              {{ 'TRANS.arabicError' | translate }}
+            </span>
+          </div>
+        </div> 
+        <div class="col-md-6 mx-auto row rowInfo my-3">
+          <div class="">
+            <b for="" class="color-p mx-3 my-3 d-block"> الأسم باللغة الأنجليزية </b>
+          </div>
+          <div class=" col-md-12 text-right ">
+            <input type="text" class="form-control py-0" formControlName="nameEn"  >
+          </div>
+        </div> 
+        <div class="col-md-6 mx-auto row rowInfo my-3">
+          <div class="">
+            <b for="" class="color-p mx-3 my-3 d-block"> تاريخ الميلاد </b>
+          </div>
+          <div class=" col-md-12 text-right ">
+            <input type="text" class="form-control py-0" formControlName="birthDate"  >
+          </div>
+        </div> 
+       <div class="col-md-6 mx-auto row rowInfo my-3">
+          <div class="">
+            <b for="" class="color-p mx-3 my-3 d-block"> القسم </b>
+          </div>
+          <div class=" col-md-12 text-right ">
+            <select class="form-control py-0" formControlName="Departmentcode">
+              <option [value]="dep.DepartmentCode"  [selected]="dep.DepartmentCode == selectedDepartment"
+              *ngFor="let dep of departments"> {{dep.NameAr}} 
+              </option>
+            </select>
+          </div>
+        </div>  
+         <div class="col-md-6 mx-auto row rowInfo my-3">
+          <div class="">
+            <b for="" class="color-p mx-3 my-3 d-block"> الكلية </b>
+          </div>
+          <div class=" col-md-12 text-right ">
+            <select class="form-control py-0"  formControlName="collegeCode">
+              <option [value]="College.CollegeCode"  [selected]="College.CollegeCode == selectedCollege"
+              *ngFor="let College of CollegeDTO"> {{College.NameAr}} </option>
+            </select>
+          </div>
+        </div>   
+        <div class="col-md-6 mx-auto row rowInfo my-3">
+          <div class="">
+            <b for="" class="color-p mx-3 my-3 d-block"> البريد الالكترونى الجامعى </b>
+          </div>
+          <div class=" col-md-12 text-right ">
+            <input type="text" class="form-control py-0" formControlName="uniEmail"  >
+          </div>
+        </div> 
+        <div class="col-md-6 mx-auto row rowInfo my-3">
+          <div class="">
+            <b for="" class="color-p mx-3 my-3 d-block"> البريد الالكترونى البديل </b>
+          </div>
+          <div class=" col-md-12 text-right ">
+            <input type="text" class="form-control py-0" formControlName="altEmail" >
+          </div>
+        </div> 
+       <div class="col-md-6 mx-auto row rowInfo my-3">
+          <div class="">
+            <b for="" class="color-p mx-3 my-3 d-block">رقم عضو هيئة التدريس </b>
+          </div>
+          <div class=" col-md-12 text-right ">
+            <input type="text" class="form-control py-0" value="{{popupElements.FacultyMemberNumber}}">
+          </div>
+        </div>   
+        <div class="col-md-6 mx-auto row rowInfo my-3">
+          <div class="">
+            <b for="" class="color-p mx-3 my-3 d-block"> رقم الهوية </b>
+          </div>
+          <div class=" col-md-12 text-right ">
+            <input type="text" class="form-control py-0" formControlName="idNum" >
+          </div>
+        </div> 
+         <div class="col-md-6 mx-auto row rowInfo my-3">
+          <div class="">
+            <b for="" class="color-p mx-3 my-3 d-block"> الجنسية </b>
+          </div>
+          <div class=" col-md-12 text-right ">
+            <select class="form-control py-0" formControlName="NationalityCode" >
+              <option value="{{nat.NationalityCode}}"  [selected]="nat.NationalityCode == selectednatio" 
+              *ngFor=" let nat of nationalties " > 
+              <span *ngIf="pageLang === 'ar'" > {{nat.NameAr}} </span>   
+              <span *ngIf="pageLang === 'en'" > {{nat.NameEn}} </span>   
+            </option>
+            </select>
+          </div>
+        </div>  
+        <div class="col-md-6 mx-auto row rowInfo my-3">
+          <div class="">
+            <b for="" class="color-p mx-3 my-3 d-block"> الجنس </b>
+          </div>
+          <div class=" col-md-12 text-right ">
+            <input type="text" class="form-control py-0" formControlName="gender"  >
+          </div>
+        </div> 
+          <div class="col-md-6 mx-auto row rowInfo my-3">
+          <div class="">
+            <b for="" class="color-p mx-3 my-3 d-block"> رقم الجوال </b>
+          </div>
+          <div class=" col-md-12 text-right ">
+            <input type="text" class="form-control py-0" formControlName="TelephoneNumber">
+          </div>
+        </div>  
+        <div class="col-md-6  row rowInfo my-3">
+          <div class="">
+            <b for="" class="color-p mx-3 my-3 d-block"> الدرجة العلمية </b>
+          </div>
+          <div class=" col-md-12 text-right ">
+            <input type="text" class="form-control py-0" formControlName="degree"  >
+          </div>
+        </div>  
+        <div class="modal-footer w-100">
+          <!-- <button type="button" mdbBtn   class="waves-light " aria-label="Close"
+            (click)="basicModal.hide()" mdbWavesEffect>Close</button> -->
+               <button type="submit" mdbBtn   [disabled]="editForm.invalid" aria-label="Close" (click)="basicModal.hide()" 
+                class="relative save btn btn-main px-5 py-2 mx-auto waves-light" mdbWavesEffect> 
+            حفظ  </button>
+        </div>
+      </form>
+      </div>
+     
+    </div>
+    <div class="modal-content" *ngIf="table">
+      <div class="modal-header">
+        <button type="button" class="close pull-right" aria-label="Close" (click)="basicModal.hide()">
+          <span aria-hidden="true">×</span>
+        </button>
+        <h3 class="modal-title text-center color-p w-100" id="myModalLabel">
+          <i class="fas fa-university"></i>
+          التفاصيل
+        </h3>
+        
+      </div>
+      <div class="modal-body "> 
+        <b class="d-block text-center color-p w-100">
+          <i class="fas fa-user"></i>
+          {{memberName}}</b>
+        <!-- // start of form  --> 
+        <member-table [memberIdForFilter]="memberIdForFilter" ></member-table>
+      </div>
+     
+    </div>
+  </div>
+</div>
+<router-outlet></router-outlet>

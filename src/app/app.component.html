@@ -1,0 +1,11 @@
+<!-- <facultymember-menu></facultymember-menu> -->
+<admin-menu *ngIf="showMenu$ | async"></admin-menu>
+
+<router-outlet></router-outlet>
+
+<ngx-spinner
+  bdColor="rgba(255,255,255)">
+ <img src='/assets/imgs/lodaer.gif' />
+  <h1 class="text-center">برجاء الانتظار</h1>
+</ngx-spinner>
+

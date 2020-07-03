@@ -1,0 +1,12 @@
+:root {
+    --lightGrey: rgb(240, 240, 240);
+    --rightGrediant: linear-gradient(to right, #0f6d84, #70358d);
+    --topGrediant: linear-gradient(to top, #0f6d84, #70358d);
+    --purb: #653b8c;
+    --blue: #0f6d84;
+    --darkGrey: #686868;
+    --green: #2acf82;
+    --red: #e93737;
+    --orange: #e78931;
+  }
+

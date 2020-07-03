@@ -1,0 +1,100 @@
+<div class="container-fluid mb-4">
+
+  <div class="page-title my-5 pb-3 text-center">
+    <h2 class="color-p text-center ">
+      <b> <i class="fas fa-university"></i> {{ 'TRANS.menuRegisterMember' | translate }} </b>
+    </h2>
+  </div>
+
+  <div class="col-md-12">
+
+    <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover table table-striped">
+      <thead>
+        <tr>
+          <th>{{ 'TRANS.collegesthCollegeNameAR' | translate }}</th>
+          <th>{{ 'TRANS.DepartmentName' | translate }}</th>
+          <th>{{ 'TRANS.term-Semester' | translate }}</th>
+          <th>{{ 'TRANS.MemberDetails' | translate }}</th>
+
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let element of elements">
+          <td>{{ element.CollegeNameAR }}</td>
+          <td>{{ element.DepartmentNameAR }}</td>
+          <td>{{ element.TermNameAr    }}</td> 
+
+          <td (click)="showUp(element.Id)">
+            <button mdbBtn type="button" (click)="basicModal.show()" 
+            class="w-auto btn-main px-3 rounded-pill" mdbWavesEffect>
+              <i class="fas fa-search-plus"></i>
+            </button>
+          </td>
+
+        </tr>
+      </tbody>
+      <tbody *ngIf="elements?.length == 0">
+        <tr>
+          <td colspan="5" class="no-data-available">No data!</td>
+        </tr>
+      <tbody>
+    </table>
+    <!--  -->
+    <div mdbModal #basicModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content" *ngIf="stop">
+        
+          <div class="modal-body py-5">
+            <div class="row">
+              <div class="col-md-4 mx-auto  text-center ">
+                <b class="color-p d-block">
+                  {{ 'TRANS.collegesthCollegeNameAR' | translate }}
+                </b>
+                <span>    {{popupElements.FacultyMember.College.NameAr}} </span>
+              </div>
+              <div class="col-md-4 mx-auto  text-center ">
+                <b class="color-p d-block">
+                  {{ 'TRANS.DepartmentName' | translate }}
+                </b>
+                <span> {{popupElements.FacultyMember.Department.NameAr}} </span>
+              </div>
+             
+              <div class="col-md-4 mx-auto  text-center ">
+                <b class="color-p d-block">
+                  {{ 'TRANS.term-Semester' | translate }}
+                </b>
+                <span> {{popupElements.Term.NameAr + ' ' +  popupElements.Term.Year }} </span>
+              </div>
+            </div>
+            <hr class="w-100 my-5 d-block" >
+            <table datatable [dtOptions]="dtOptions" [dtTriggerTwo]="dtTriggerTwo" 
+            class="row-border hover table table-striped">
+              <thead>
+                <tr>
+                  <th>{{ 'TRANS.CourseSubject' | translate }}</th>
+                  <th>{{ 'TRANS.namedivision' | translate }}</th>
+                  <th>{{ 'TRANS.Lecture' | translate }}</th>
+                  <th>{{ 'TRANS.FacultyMemberName' | translate }}</th>
+        
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td> {{popupElements.CourseSubject}} </td>
+                  <td>{{ popupElements.Sections.NameAr }}</td>
+                  <td>{{ popupElements.LectureTypeId    }}</td>  
+                  <td>{{ popupElements.FacultyMember.NameAr    }}</td>  
+                </tr>
+              </tbody>
+              <tbody *ngIf="elements?.length == 0">
+                <tr>
+                  <td colspan="5" class="no-data-available">No data!</td>
+                </tr>
+              <tbody> 
+            </table>
+          </div> 
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

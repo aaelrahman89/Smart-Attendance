@@ -1,0 +1,148 @@
+{
+  "subject-charts": [
+    {
+      "subject": "Subject Name 1 ",
+      "attendance": "2301",
+      "absence": "3215",
+      "total": "15014",
+      "rate": 70
+    },
+    {
+      "subject": "Subject Name 2 ",
+      "attendance": "4301",
+      "absence": "6325",
+      "total": "32014",
+      "rate": 60
+    },
+    {
+      "subject": "Subject Name 3 ",
+      "attendance": "3601",
+      "absence": "9658",
+      "total": "45014",
+      "rate": 90
+    }
+  ],
+  "subjects": [
+     "Accountant",
+    "law",
+    "subject name"],
+  "students-Charts": [
+    {
+      "id": "mha",
+      "name": "mohamed hassan",
+      "attendanceRate": 70,
+      "subject": "Accountant"
+    },
+    {
+      "id": "mal",
+      "name": "mohamed ali mustafa",
+      "attendanceRate": 90,
+      "subject": "law"
+    },
+    {
+      "id": "kas",
+      "name": "Kareem mohamed ragab",
+      "attendanceRate": 68,
+      "subject": "subject name"
+    },
+    {
+      "id": "kas",
+      "name": "hassan Abdullah ali",
+      "attendanceRate": 80,
+      "subject": "subject name"
+    },
+    {
+      "id": "kas",
+      "name": "hassan Abdullah ali",
+      "attendanceRate": 66,
+      "subject": "subject name"
+    },
+    {
+      "id": "kxs",
+      "name": "nader Abdullah ragab",
+      "attendanceRate": 83,
+      "subject": "subject name"
+    },
+    {
+      "id": "kls",
+      "name": "Kareem aziz ragab",
+      "attendanceRate": 70,
+      "subject": "subject name"
+    },
+    {
+      "id": "kas",
+      "name": "Kareem aziz ragab",
+      "attendanceRate": 80,
+      "subject": "subject name"
+    },
+    {
+      "id": "maa",
+      "name": "malk abudllah mustafa",
+      "attendanceRate": 68,
+      "subject": "Accountant"
+    },
+    {
+      "id": "maa",
+      "name": "malk abudllah mustafa",
+      "attendanceRate": 68,
+      "subject": "Accountant"
+    },
+    {
+      "id": "aal",
+      "name": "aziz ali nader",
+      "attendanceRate": 100,
+      "subject": "law"
+    },
+    {
+      "id": "aal",
+      "name": "aziz ali nader",
+      "attendanceRate": 80,
+      "subject": "law"
+    },
+    {
+      "id": "aal",
+      "name": "aziz ali nader",
+      "attendanceRate": 94,
+      "subject": "law"
+    }
+  ],
+  "students-Charts-low": [
+    {
+      "id": "mha",
+      "name": "mohamed hassan",
+      "attendanceRate": 20,
+      "subject": "Accountant"
+    },
+    {
+      "id": "mal",
+      "name": "mohamed ali mustafa",
+      "attendanceRate": 40,
+      "subject": "law"
+    },
+    {
+      "id": "kas",
+      "name": "Kareem mohamed ragab",
+      "attendanceRate": 25,
+      "subject": "subject name"
+    },
+    {
+      "id": "kas",
+      "name": "hassan Abdullah ali",
+      "attendanceRate": 40,
+      "subject": "subject name"
+    },
+    {
+      "id": "kas",
+      "name": "hassan Abdullah ali",
+      "attendanceRate": 50,
+      "subject": "subject name"
+    },
+    {
+      "id": "kxs",
+      "name": "nader Abdullah ragab",
+      "attendanceRate": 37,
+      "subject": "subject name"
+    }
+ 
+  ]
+}

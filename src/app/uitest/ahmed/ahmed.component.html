@@ -1,0 +1,15 @@
+<a class="btn btn-success text-white" (click)="exportexcel()"><i class="far fa-file-excel"></i> </a>
+
+  <div class="col-md-12">
+    <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover table table-striped excel-table" >
+      <thead>
+        <tr>
+          <th *ngFor="let headElement of headElements">{{ headElement }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-content></ng-content>
+      </tbody>
+    </table>
+  </div>
+

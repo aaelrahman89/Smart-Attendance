@@ -1,0 +1,14 @@
+table {
+  width: 100%;
+}
+
+
+.mat-form-field {
+  display: inline-block;
+  position: relative;
+  text-align: initial;
+}
+.mat-option{
+  text-align: right;
+
+}

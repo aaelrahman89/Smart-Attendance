@@ -1,0 +1,171 @@
+<!-- إدارة الشعب الدراسية -->
+
+<div class="container-fluid px-5">
+  <div class="page-title pb-3 text-center">
+    <div class="page-icon d-none">
+      <img src="imgs/Iconfeather-settings.png" alt="" />
+    </div>
+    <h5 class="color-p text-center">
+      <b>
+        <i class="fas fa-university"></i>
+        {{ pageTitle }}
+      </b>
+    </h5>
+  </div>
+
+  <div class="col-md-12 table-responsive">
+    <table
+      datatable
+      [dtOptions]="dtOptions"
+      class="row-border hover table table-striped z-depth-1"
+    >
+      <thead>
+        <tr>
+          <th *ngFor="let headElement of headElements">{{ headElement }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let element of elements; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ element.College }}</td>
+          <td>{{ element.Scheduledcode }}</td>
+          <td>{{ element.ScheduledName }}</td>
+          <td>{{ element.Semester }}</td>
+          <td>{{ element.Numberclasses }}</td>
+          <td>{{ element.Scheduledstatus }}</td>
+
+          <td>
+            <button
+              type="button"
+              mdbBtn
+              color="primary"
+              class="morpheus-den-gradient rounded z-depth-2 px-3"
+              (click)="basicModal.show()"
+              mdbWavesEffect
+            >
+              عرض الشعب الدراسيه
+            </button>
+          </td>
+        </tr>
+      </tbody>
+      <tbody *ngIf="elements?.length == 0">
+        <tr>
+          <td colspan="5" class="no-data-available">No data!</td>
+        </tr>
+      </tbody>
+
+      <tbody></tbody>
+    </table>
+  </div>
+
+  <div
+    style="overflow-y: auto;"
+    mdbModal
+    #basicModal="mdbModal"
+    class="modal fade"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="myBasicModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog modal-fluid" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button
+            type="button"
+            class="close pull-right"
+            aria-label="Close"
+            (click)="basicModal.hide()"
+          >
+            <span aria-hidden="true">×</span>
+          </button>
+          <h4 class="modal-title w-100" id="myModalLabel">Modal title</h4>
+        </div>
+        <div class="modal-body">
+          <mdb-card>
+            <mdb-card-header>Featured</mdb-card-header>
+            <mdb-card-body>
+              sda
+            </mdb-card-body>
+          </mdb-card>
+          <br />
+
+          <mdb-card>
+            <mdb-card-header>Featured</mdb-card-header>
+            <mdb-card-body>
+              <div class="col-md-12 table-responsive">
+                <table
+                  datatable
+                  [dtOptions]="dtOptions"
+                  class="row-border hover table table-striped"
+                >
+                  <thead>
+                    <tr>
+                      <th *ngFor="let headElement of headElements">
+                        {{ headElement }}
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let element of elements; let i = index">
+                      <td>{{ i + 1 }}</td>
+                      <td>{{ element.College }}</td>
+                      <td>{{ element.Scheduledcode }}</td>
+                      <td>{{ element.ScheduledName }}</td>
+                      <td>{{ element.Semester }}</td>
+                      <td>{{ element.Numberclasses }}</td>
+                      <td>{{ element.Scheduledstatus }}</td>
+                      <td>
+                        <div class="custom-control custom-switch">
+                          <input
+                            type="checkbox"
+                            class="custom-control-input"
+                            id="customSwitches"
+                          />
+                          <label
+                            class="custom-control-label"
+                            for="customSwitches"
+                            >switch</label
+                          >
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                  <tbody *ngIf="elements?.length == 0">
+                    <tr>
+                      <td colspan="5" class="no-data-available">No data!</td>
+                    </tr>
+                  </tbody>
+
+                  <tbody></tbody>
+                </table>
+              </div>
+            </mdb-card-body>
+          </mdb-card>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            mdbBtn
+            color="secondary"
+            class="waves-light"
+            aria-label="Close"
+            (click)="basicModal.hide()"
+            mdbWavesEffect
+          >
+            Close
+          </button>
+          <button
+            type="button"
+            mdbBtn
+            color="primary"
+            class="relative waves-light"
+            mdbWavesEffect
+          >
+            Save!
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

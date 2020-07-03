@@ -1,0 +1,46 @@
+.mat-expansion-panel-header-description{
+    flex-grow: 1;
+}
+
+
+.mat-expansion-panel-header{
+background-color: #F7F7F7 !important;
+height: 43px !important;
+}
+
+
+.mat-expansion-panel-header{
+background-color: #F7F7F7 !important;
+height: 43px !important;
+}
+
+.icon-add{
+	display: table-header-group;
+    z-index: 50;
+}
+.custom-control-input:checked ~ .custom-control-label::before{
+
+	background-color: #653b8c !important;
+}
+.custom-control-input {
+    z-index: 444 !important;
+  }
+
+
+  .custom-control-label::after, .custom-control-label::before {
+    right: none !important;
+    left: none !important;
+}
+
+.custom-control-label[_ngcontent-ekf-c2]::after, .custom-control-label[_ngcontent-ekf-c2]::before {
+
+
+  right: none !important;
+  left: none !important;
+
+}
+
+.custom-control-label::before, .custom-control-label::after{
+  right: 3rem !important;
+  left: auto !important;
+}

@@ -1,0 +1,246 @@
+<ngx-spinner></ngx-spinner>
+<div class="container-fluid px-3 ">
+
+    <div class="page-title mt-3  text-center">
+      <div class="page-icon d-none">
+        <img src="imgs/Icon feather-settings.png" alt="">
+      </div>
+
+
+
+
+      <h1 class="color-p pageTitle  text-center">
+        <b> <i class="far fa-address-card"></i> {{'TRANS.StudentRegistration'|translate}} </b>
+
+      </h1>
+
+
+    </div>
+
+    <hr class="shadow">
+   
+          <div class="row">
+<div class="col-md-12">
+
+            <form [formGroup]="srchForm" (ngSubmit)="SubmitFormSearch()">
+              <div class="row " >
+
+
+
+
+
+                <div class="col-md-3 mx-auto row rowInfo my-2">
+                  <div>
+                    <b for="" class="color-p mx-3 my-1 d-block">{{'TRANS.term-Semester'|translate}}  <span  class="text-danger">*</span> </b>
+                  </div>
+                  <div class=" col-md-12 text-right ">
+                    <select class="form-control py-0" required formControlName="term"  title="{{'TRANS.term-Semester'|translate}}" [ngClass]="{ 'is-invalid': btnSearchStudent && SerachFormErrors.term.errors }">
+
+                      <option value="" selected disabled >{{'TRANS.selectterm'|translate}}</option>
+
+                      <!-- <option *ngFor="let term of terms" [value]="term.TermCode" [selected]="term.IsActive == true"> -->
+
+                        <option *ngFor="let term of terms" [value]="term.TermCode" >
+                          {{ term.NameAr }}
+                        </option>
+                    </select>
+                    <div *ngIf="btnSearchStudent && SerachFormErrors.term.errors" class="invalid-feedback">
+                      <h4 *ngIf="SerachFormErrors.term.errors.required">{{'TRANS.validationReq'|translate}}</h4>
+                        </div>
+                  </div>
+                </div>
+
+
+
+                <div class="col-md-3 mx-auto row rowInfo my-2">
+                  <div>
+                    <b for="" class="color-p mx-3 my-1 d-block">{{'TRANS.CollegeName'|translate}}   <span  class="text-danger">*</span></b>
+                  </div>
+                  <div class=" col-md-12 text-right ">
+                    <select class="form-control py-0" required  title="{{'TRANS.CollegeName'|translate}}"  formControlName="college" (change)="onChangeCollege($event.target.value)" [ngClass]="{ 'is-invalid': btnSearchStudent && SerachFormErrors.college.errors }">
+                      <option value="" selected disabled>{{'TRANS.selectColleges'|translate}}</option>
+                      <option  *ngFor="let college of colleges" [value]="college.CollegeCode">
+
+                        {{  college.NameAr }}
+
+                      </option>
+                    </select>
+                    <div *ngIf="btnSearchStudent && SerachFormErrors.college.errors" class="invalid-feedback">
+                      <h4 *ngIf="SerachFormErrors.college.errors.required">{{'TRANS.validationReq'|translate}}</h4>
+                        </div>
+                  </div>
+                </div>
+
+
+
+                <div class="col-md-3 mx-auto row rowInfo my-2">
+                  <div>
+                    <b for="" class="color-p mx-3 my-1 d-block">{{'TRANS.DepartmentName'|translate}}  <span  class="text-danger">*</span></b>
+                  </div>
+                  <div class=" col-md-12 text-right ">
+                    <select class="form-control py-0" required title="{{'TRANS.DepartmentName'|translate}} "  formControlName="department" (change)="onChangeDepartments($event.target.value)" [ngClass]="{ 'is-invalid': btnSearchStudent && SerachFormErrors.department.errors }">
+                      <option value="" selected disabled>{{'TRANS.selectDepartments'|translate}} </option>
+
+                      <option *ngFor="let department of departments" [value]="department.DepartmentCode">
+                        {{ department.NameAr   }}
+                      </option>
+                    </select>
+                    <div *ngIf="btnSearchStudent && SerachFormErrors.department.errors" class="invalid-feedback">
+                      <h4 *ngIf="SerachFormErrors.department.errors.required">{{'TRANS.validationReq'|translate}}</h4>
+                        </div>
+                  </div>
+                </div>
+
+
+  
+
+
+                <div class="col-md-3 mx-auto row rowInfo my-2">
+                  <div>
+                    <b for="" class="color-p mx-3 my-1 d-block">{{'TRANS.namedivision'|translate}}  <span  class="text-danger">*</span> </b>
+                  </div>
+                  <div class=" col-md-12 text-right ">
+                    <select class="form-control py-0" required  formControlName="crnSection"  title="{{'TRANS.namedivision'|translate}}" [ngClass]="{ 'is-invalid': btnSearchStudent && SerachFormErrors.crnSection.errors }">
+                      <option value="" selected disabled>{{'TRANS.Selet-namedivision'|translate}}</option>
+
+                      <option  *ngFor="let CrnSection of CrnSections" [value]="CrnSection.Crn">
+                     {{CrnSection.CourseTitleAr  + " - "+ CrnSection.Crn}}
+                      </option>
+
+                      <label>{{CrnSection.Crn</label>
+                    </select>
+                    <div *ngIf="btnSearchStudent && SerachFormErrors.crnSection.errors" class="invalid-feedback">
+                      <h4 *ngIf="SerachFormErrors.crnSection.errors.required">{{'TRANS.validationReq'|translate}}</h4>
+                        </div>
+                  </div>
+                </div>
+
+
+
+              </div>
+
+              <div class="row justify-content-center my-3 ">
+                
+                <div class="col-md-3 text-center">
+                  <button mdbWavesEffect type="submit" [disabled]="srchForm.invalid"  class="w-50 btn-main px-4 py-2 rounded-pill"  title="{{'TRANS.search'|translate}}">
+                    {{'TRANS.search'|translate}}
+
+                    <i class="fas fa-search"></i>
+                  </button>
+                </div>
+
+
+               
+                </div>
+
+
+          </form>
+                <!-- {{srchForm.value|json}} -->
+
+        </div>
+
+
+            </div>
+<hr class="shadow">
+
+            <h4 class="color-p pageTitle  text-center">
+              <b> <i class="fas fa-chalkboard-teacher"></i> {{'TRANS.Viewstudentregis'|translate}} </b>
+      
+            </h4>
+
+            
+      
+          <div class="row">
+      <!-- Material input -->
+
+
+      <form class="example-form col-12 " (ngSubmit)="submitStudentEnrollment()" [formGroup]="StudentEnrollment">
+
+        <div class="row justify-content-center">
+
+
+
+
+          <div class="col-md-4 row ">
+            <div>
+              <b for="" class="color-p mx-3 my-1 d-block">{{'TRANS.studentname'|translate}}  <span  class="text-danger">*</span> </b>
+            </div>
+            <div class=" col-md-12 text-right ">
+              <select class="form-control py-0" required title="{{'TRANS.ProfessorArticle'|translate}}"   formControlName="StudentId" [ngClass]="{ 'is-invalid': btnAddStudent && AddStudentFormErrors.StudentId.errors }">
+                <option disabled value="" selected>{{'TRANS.selectstudentname'|translate}}</option>
+                <option  *ngFor="let Student of Students" [value]="Student.Id">
+                 {{Student.NameAr +" - "+ Student.StudentNumber}}
+                   </option>
+              </select>
+              <div *ngIf="btnAddStudent && AddStudentFormErrors.StudentId.errors" class="invalid-feedback">
+                <h4 *ngIf="AddStudentFormErrors.StudentId.errors.required">{{'TRANS.validationReq'|translate}}</h4>
+                  </div>
+            </div>
+          </div>
+
+
+
+
+
+      <input type="hidden" formControlName="Crn" >
+      <input type="hidden" formControlName="TermCode" >
+    
+
+
+
+
+
+      <div class="col-md-2  mt-4">
+        <button mdbWavesEffect type="submit" [disabled]="StudentEnrollment.invalid"  class="w-75 btn-main px-4 py-2 rounded-pill"  title="  {{ 'TRANS.Add' | translate }}">
+
+          {{ 'TRANS.Add' | translate }}
+        <i class="fas fa-user-plus"></i>
+        </button>
+      </div>
+      </div>
+
+
+      </form>
+          </div>
+
+      <div class="col-md-12">
+     
+        <!-- *ngIf="showtable" -->
+        <table datatable [dtTrigger]="dtTrigger" [dtOptions]="dtOptions"  class="row-border hover table table-striped z-depth-1 excel-print">
+          <thead >
+            <tr >
+              <th>#</th>
+              <th width="10%">{{'TRANS.studentNumber'|translate}}</th>
+              <th width="25%">{{'TRANS.facultyMemberTHName'|translate}}</th>
+              
+
+              <th>{{'TRANS.facultyMemberTHId'|translate}}</th>
+              <th>{{'TRANS.Studentstatus'|translate}}</th>
+              <th class="d-none-print">{{'TRANS.tablethActions'|translate}}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let element of elements,index as i">
+              <td>{{i+1}}</td>
+              <td>{{element.StudentId}}</td>
+              <td>{{element.StudentNameAr}}</td>
+             
+
+              <td>{{element.StudentNumber}}</td>
+              <td>{{element.StudentStatusNameAr}}</td>
+              <td class="d-none-print" title="{{'TRANS.Delete'|translate}}" (click)="DeleteStudentEnrollment(element.Id)" ><i class="far fa-trash-alt fa-2x text-danger"></i></td>
+              
+              
+            </tr>
+        </tbody>
+      </table>
+
+    </div>
+  
+
+
+  
+
+
+
+</div>

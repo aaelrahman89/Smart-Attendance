@@ -1,0 +1,73 @@
+.disableInfo{
+    opacity: 1 !important;
+    background: transparent;
+    border: none;
+}
+.mainRow .rowInfo:nth-child(odd):lang(ar){
+    border-left: 1px solid #acacac ;
+}
+.mainRow .rowInfo:nth-child(even):lang(en){
+    border-left: 1px solid #acacac ;
+}
+
+.rowInfo{
+    justify-content: space-between;
+    display: flex;
+}
+.generalStyle input {
+    width: 300px;
+    transition: all 0.5s;
+    padding: 0 5px;
+
+}
+.generalStyle
+{
+    transition: all 0.5s;
+
+}
+.editRow:hover{
+    font-weight: bold;
+    border: 1px solid #653b8c;
+    border-radius: 20px;
+    transition: all 0.5s;
+    cursor: pointer;
+}
+ 
+/* .infoBody .row .col-6{
+    display: flex;
+    justify-content: space-between;
+} */
+
+.infoBody{
+    background: white;
+    border-radius: 20px;
+}
+.editInput{
+    border: 1px solid #1a99cc;
+    border-radius: 20px;
+    transition: all 0.5s;
+    padding: 5px 0;
+    font-size: 0.9em;
+    box-shadow: 5px 4px 5px #ccc;
+}
+.fa-edit{
+    transition: all 0.5s;
+
+}
+ 
+ 
+.inputBtns{
+    padding: 0 3px;
+    display: inline;
+    font-size: 1.3em;
+
+}
+.inputBtns.accept{
+    color: rgb(37, 177, 118);
+    font-size: 1.3em;
+
+}
+.inputBtns.cancel{
+    color: #acacac;
+
+}

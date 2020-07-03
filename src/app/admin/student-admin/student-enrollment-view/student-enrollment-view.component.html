@@ -1,0 +1,193 @@
+<div class="container-fluid px-3 ">
+
+    <div class="page-title mt-3  text-center">
+      <div class="page-icon d-none">
+        <img src="imgs/Icon feather-settings.png" alt="">
+      </div>
+
+
+
+
+      <h1 class="color-p pageTitle  text-center">
+        <b> <i class="far fa-address-card"></i> {{'TRANS.StudentRegistration'|translate}} </b>
+
+      </h1>
+
+
+    </div>
+
+<hr class="shadow"> 
+  
+          <div class="row">
+<div class="col-md-12">
+
+            <form [formGroup]="srchForm" >
+              <div class="row " >
+
+
+
+
+
+                <div class="col-md-3 mx-auto row rowInfo my-2" title="{{'TRANS.term-Semester'|translate}}">
+                  <div>
+                    <b for="" class="color-p mx-3 my-1 d-block">{{'TRANS.term-Semester'|translate}}  </b>
+                  </div>
+                  <div class=" col-md-12 text-right ">
+                    <select class="form-control py-0" disabled required formControlName="term"  >
+
+                      <option value="" selected disabled >{{'TRANS.selectterm'|translate}}</option>
+
+                      <!-- <option *ngFor="let term of terms" [value]="term.TermCode" [selected]="term.IsActive == true"> -->
+
+                        <option *ngFor="let term of terms" [value]="term.TermCode" >
+                          {{ term.NameAr }}
+                        </option>
+                    </select>
+                  </div>
+                </div>
+
+
+
+                <div class="col-md-3 mx-auto row rowInfo my-2 " title="{{'TRANS.CollegeName'|translate}}">
+                  <div>
+                    <b for="" class="color-p mx-3 my-1 d-block">{{'TRANS.CollegeName'|translate}}  </b>
+                  </div>
+                  <div class=" col-md-12 text-right ">
+                    <select  class="form-control py-0" required disabled    formControlName="college" >
+                      <option value="" selected disabled>{{'TRANS.selectColleges'|translate}}</option>
+                      <option  *ngFor="let college of colleges" [value]="college.CollegeCode">
+
+                        {{  college.NameAr }}
+
+                      </option>
+                    </select>
+                  </div>
+                </div>
+
+
+
+                <div class="col-md-3 mx-auto row rowInfo my-2" title="{{'TRANS.DepartmentName'|translate}} ">
+                  <div>
+                    <b for="" class="color-p mx-3 my-1 d-block">{{'TRANS.DepartmentName'|translate}} </b>
+                  </div>
+                  <div class=" col-md-12 text-right ">
+                    <select disabled class="form-control py-0" required   (change)="departmentList()" formControlName="department" >
+                      <option value="" selected disabled>{{'TRANS.selectDepartments'|translate}} </option>
+
+                      <option *ngFor="let department of departments" [value]="department.DepartmentCode">
+                        {{ department.NameAr   }}
+                      </option>
+                    </select>
+                  </div>
+                </div>
+
+
+                <div class="col-md-3 mx-auto row rowInfo my-2" title="{{'TRANS.namedivision'|translate}}">
+                  <div>
+                    <b for="" class="color-p mx-3 my-1 d-block">{{'TRANS.namedivision'|translate}} </b>
+                  </div>
+                  <div class=" col-md-12 text-right ">
+                    <select disabled class="form-control py-0" required  formControlName="crnSection"  (change)="CrnSectionssList()" >
+                      <option value="" selected disabled>{{'TRANS.Selet-namedivision'|translate}}</option>
+
+                      <option  *ngFor="let CrnSection of CrnSections" [value]="CrnSection.Crn">
+                     {{CrnSection.CourseTitleAr  + " - "+ CrnSection.Crn}}
+                      </option>
+
+                      <label>{{CrnSection.Crn</label>
+                    </select>
+                  </div>
+                </div>
+              </div>
+          </form>
+        </div>
+            </div>
+<hr class="shadow">
+            <h3 class="color-p   text-center">
+              <b>   <i class="fas fa-user-plus"></i> {{'TRANS.Viewstudentregis'|translate}} </b>
+      
+            </h3>
+      
+           
+     
+          <div class="row">
+      <!-- Material input -->
+
+      <form class="example-form col-12 " (ngSubmit)="submitStudentEnrollment()" [formGroup]="StudentEnrollment">
+
+        <div class="row justify-content-center">
+
+          <div class="col-md-4 row ">
+            <div>
+              <b for="" class="color-p mx-3 my-1 d-block">{{'TRANS.studentname'|translate}}  <span  class="text-danger">*</span> </b>
+            </div>
+            <div class=" col-md-12 text-right ">
+              <select class="form-control py-0" required title="{{'TRANS.ProfessorArticle'|translate}}"   formControlName="StudentId" [ngClass]="{ 'is-invalid': btnAddStudent && AddStudentFormErrors.StudentId.errors }">
+                <option disabled value="" selected>{{'TRANS.studentname'|translate}}</option>
+                <option  *ngFor="let Student of Students" [value]="Student.Id">
+                 {{Student.NameAr +" - "+ Student.StudentNumber}}
+                   </option>
+              </select>
+              <div *ngIf="btnAddStudent && AddStudentFormErrors.StudentId.errors" class="invalid-feedback">
+                <h4 *ngIf="AddStudentFormErrors.StudentId.errors.required">{{'TRANS.validationReq'|translate}}</h4>
+                  </div>
+            </div>
+          </div>
+
+      <input type="hidden" formControlName="Crn" >
+      <input type="hidden" formControlName="TermCode" >
+    
+
+      <div class="col-md-2 botSerach">
+        <button mdbWavesEffect type="submit"  [disabled]="StudentEnrollment.invalid"  class="w-75 btn-main px-4 py-2 rounded-pill"   title="  {{ 'TRANS.Add' | translate }}">
+
+          {{ 'TRANS.Add' | translate }}
+        <i class="fas fa-user-plus"></i>
+        </button>
+      </div>
+      </div>
+      </form>
+          </div>
+
+
+      <div class="col-md-12">
+
+        <export></export>
+    
+        <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover table table-striped excel-print">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th width="10%">{{'TRANS.studentNumber'|translate}}</th>
+              <th width="25%">{{'TRANS.facultyMemberTHName'|translate}}</th>
+              
+
+              <th>{{'TRANS.facultyMemberTHId'|translate}}</th>
+              <th>{{'TRANS.Studentstatus'|translate}}</th>
+              <th class="d-none-print">{{'TRANS.tablethActions'|translate}}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let element of elements,index as i">
+              <td>{{i+1}}</td>
+              <td>{{element.StudentId}}</td>
+              <td>{{element.StudentNameAr}}</td>
+             
+
+              <td>{{element.StudentNumber}}</td>
+              <td>{{element.StudentStatusNameAr}}</td>
+              <td class="d-none-print" title="{{'TRANS.Delete'|translate}}" (click)="DeleteStudentEnrollment(element.Id)" ><i class="far fa-trash-alt fa-2x text-danger"></i></td>
+              
+              
+            </tr>
+        </tbody>
+      </table>
+    </div>
+  
+
+
+  
+
+
+
+</div>

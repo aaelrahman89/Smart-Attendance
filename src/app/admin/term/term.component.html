@@ -1,0 +1,119 @@
+<!-- إدارة  الترم -->
+
+<div class="container-fluid px-5">
+
+  <page-title>{{ 'TRANS.termTitle' | translate }} </page-title>
+
+  <div class="col-md-12 table-responsive mr-3">
+    <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover table table-striped excel-print">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>{{ 'TRANS.code' | translate }} </th>
+          <th>{{ 'TRANS.Name' | translate }} </th>
+          <th>{{ 'TRANS.StartDate' | translate }} </th>
+          <th>{{ 'TRANS.EndDate' | translate }} </th>
+          <th>{{ 'TRANS.Status' | translate }} </th>
+          <th>{{ 'TRANS.tablethActions' | translate }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let element of elements, index as i" >
+          <td>{{ i+1 }}</td>
+          <td>{{ element.TermCode }}</td>
+          <td *ngIf="pageLang === 'ar'">{{ element.NameAr }}</td>
+          <td *ngIf="pageLang === 'en'">{{ element.NameEn }}</td>
+          <td>{{ element.StartDate | date: "dd/MM/yyyy" }}</td>
+          <td>{{ element.EndDate | date: "dd/MM/yyyy" }}</td>
+          <td>
+            <div class="form-group" style="margin: -5px !important;">
+              <label class="switch">
+                <input type="checkbox" [checked]="element.IsCurrent" (change)="changeActive(element)"/>
+                <span class="slider round"></span>
+              </label>
+            </div>
+          </td>
+
+          <td>
+            <div (click)="showMod(element.Id)">
+              <a mdbBtn type="button" class="w-auto px-3 circle-btn"  mdbWavesEffect  (click)="basicModal.show()"><i class="far fa-edit"></i></a>
+            </div>
+
+            <div mdbModal #basicModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close pull-right" aria-label="Close" #closeModal (click)="basicModal.hide()">
+                      <span aria-hidden="true"><i class="far fa-times-circle"></i></span>
+                    </button>
+                    <h4 class="modal-title w-100" id="myModalLabel">{{ 'TRANS.termTitle' | translate }}</h4>
+                  </div>
+                  <div class="modal-body">
+                    <form [formGroup]="editForm" (ngSubmit)="edit(element)">
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group text-right">
+                            <b class="color-p mx-3 my-3 d-block text-right">{{ 'TRANS.TermNameAr' | translate }}  <span  class="text-danger">*</span></b>
+                            <input type="text" class="form-control" formControlName="nameAR" [ngClass]="{ 'is-invalid': submitted && editFormErrors.nameAR.errors }">
+
+
+              <div *ngIf="submitted && editFormErrors.nameAR.errors" class="invalid-feedback">
+                <h4 *ngIf="editFormErrors.nameAR.errors.required">{{'TRANS.validationReq'|translate}}</h4>
+                  </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group text-right">
+                            <b class="color-p mx-3 my-3 d-block text-right">{{ 'TRANS.TermNameEn' | translate }}  <span  class="text-danger">*</span></b>
+                            <input type="text" class="form-control" formControlName="nameEN" [ngClass]="{ 'is-invalid': submitted && editFormErrors.nameEN.errors }">
+                            <div *ngIf="submitted && editFormErrors.nameEN.errors" class="invalid-feedback">
+                              <h4 *ngIf="editFormErrors.nameEN.errors.required">{{'TRANS.validationReq'|translate}}</h4>
+                          </div>
+                        </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group text-right">
+                            <b class="color-p mx-3 my-3 d-block text-right">{{ 'TRANS.StartDate' | translate }}  <span  class="text-danger">*</span></b>
+                            <!-- (focus)="$event.target.type = 'date'" -->
+                            <!-- [ngModel]="endDate | date:'yyyy-MM-dd'" (ngModelChange)="endDate = $event" -->
+                            <input type="date" placeholder="DD/MM/YYYY" title="{{ 'TRANS.StartDate' | translate }}" class="form-control" required formControlName="startDate" [ngClass]="{ 'is-invalid': submitted && editFormErrors.startDate.errors }">
+                            <div *ngIf="submitted && editFormErrors.startDate.errors" class="invalid-feedback">
+                              <h4 *ngIf="editFormErrors.startDate.errors.required">{{'TRANS.validationReq'|translate}}</h4>
+                          </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group text-right">
+                            <b class="color-p mx-3 my-3 d-block text-right">{{ 'TRANS.EndDate' | translate }}  <span  class="text-danger">*</span></b>
+                            <!-- (focus)="$event.target.type = 'date'" -->
+                            <!-- [ngModel]="endDate | date:'yyyy-MM-dd'" (ngModelChange)="endDate = $event" -->
+                            <input type="text" title="{{ 'TRANS.EndDate' | translate }}" class="form-control" required formControlName="endDate"  [ngClass]="{ 'is-invalid': submitted && editFormErrors.endDate.errors }">
+                            <div *ngIf="submitted && editFormErrors.endDate.errors" class="invalid-feedback">
+                              <h4 *ngIf="editFormErrors.endDate.errors.required">{{'TRANS.validationReq'|translate}}</h4>
+                          </div>
+                          </div>
+                        </div>
+                      </div>
+
+                   <div class="text-center modal-footer w-100 d-table">
+
+        <!--  -->
+
+        <button type="submit" [disabled]="editForm.invalid"     mdbBtn  class="relative save btn btn-main px-5  py-2 mx-auto waves-light mx-3 shadow" mdbWavesEffect title="{{ 'TRANS.save' | translate }}">
+
+          {{ 'TRANS.save' | translate }}
+
+        </button>
+                   </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </td>
+
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

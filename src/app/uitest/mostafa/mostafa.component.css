@@ -1,0 +1,15 @@
+
+mat-form-field {
+    margin-right: 12px;
+  }
+
+
+/* 
+  .modal-dialog {
+    max-width: 500px !important;
+  
+  } */
+
+  .modal-dialog.modal-notify .modal-body{
+    padding:0px !important;
+  }

@@ -1,0 +1,4 @@
+.custom-control-label::before, .custom-control-label::after {
+  left: -1.2rem !important;
+  right: auto !important;
+}

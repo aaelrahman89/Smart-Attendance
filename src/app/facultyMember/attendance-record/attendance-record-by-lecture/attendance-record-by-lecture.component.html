@@ -1,0 +1,74 @@
+<div class="container-fluid mb-4">
+
+  <page-title> {{ 'TRANS.AttendanceAbsentregistrationtitle' | translate }} </page-title>
+
+  <!-- Horizontal Steppers -->
+<div class="row">
+  <div class="col-md-12">
+
+    <ul class="row w-100 color-p justify-content-center py-2" type="none">
+      <li class="col-md-2 text-center" >
+        <div class="info my-3"> <b> {{'TRANS.CourseSubject' | translate}}</b> </div>
+        <div class="head my-3"> <span class="badge badge-info">{{ CourseTitle }} - {{ Crn }}</span></div>
+      </li>
+      <li class="col-md-2 text-center" >
+        <div class="info my-3"> <b>{{'TRANS.lecTime' | translate}}</b> </div>
+        <div class="head my-3"> <span class="badge badge-info">{{StartTime | convertFrom24To12FormatAr}} الى {{EndTime | convertFrom24To12FormatAr}}</span></div>
+      </li>
+      <li class="col-md-2 text-center" >
+        <div class="info my-3"> <b>{{'TRANS.lecDate' | translate}}</b> </div>
+        <div class="head my-3"> <span class="badge badge-info">{{ Date | date: 'dd/MM/yyyy' }}</span></div>
+      </li>
+    </ul>
+
+
+  </div>
+</div>
+<!-- /.Horizontal Steppers -->
+
+ <!-- Cards Start -->
+ <attendance-record-cards [students]="students" [attendanceStatus]="attendanceStatus" [StudentsCount]="StudentsCount" [showCards]="showCards" [searchTerm]="searchTerm" [showStatusBar]="showStatusBar"></attendance-record-cards>
+  <!-- Cards End -->
+
+
+
+</div>
+
+<div>
+
+</div>
+
+
+
+<ng-container>
+  <div mdbModal #frame="mdbModal" class="modal fade" id="frameModalTop" tabindex="-1" role="dialog"
+  aria-labelledby="myModalLabel" aria-hidden="true">
+
+  <div class="modal-dialog modal-notify modal-success" role="document">
+    <!--Content-->
+    <div class="modal-content">
+      <!--Header-->
+      <div class="modal-header">
+
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="frame.hide()">
+          <span aria-hidden="true" class="white-text">&times;</span>
+        </button>
+      </div>
+
+      <!--Body-->
+      <div class="modal-body">
+        <div class="text-center">
+          <mdb-icon fas icon="check" size="4x" class="mb-3 animated rotateIn"></mdb-icon>
+          <!-- <p>{{updateMessage}}</p> -->
+          <p>تم تسجيل الحضور بنجاح</p>
+        </div>
+      </div>
+
+    </div>
+    <!--/.Content-->
+  </div>
+</div>
+</ng-container>
+
+
+

@@ -1,0 +1,38 @@
+:root {
+    --lightGrey: rgb(240, 240, 240);
+    --rightGrediant: linear-gradient(to right, #0f6d84, #70358d);
+    --topGrediant: linear-gradient(to top, #0f6d84, #70358d);
+    --purb: #653b8c;
+    --blue: #0f6d84;
+    --darkGrey: #686868;
+    --green: #2acf82;
+    --red: #e93737;
+    --orange: #e78931;
+  }
+.color-p.fa-search-plus{
+    font-size: 1.3em;
+}
+
+ 
+.modal-dialog{
+    min-width: 80% !important;
+}
+
+ .rowInfo{
+     justify-content: space-between;
+ }
+
+
+ .modal.fade {
+     overflow: auto;
+ }
+
+ .statusModal:lang(ar){
+     text-align: right;
+ }
+ .save{
+     font-size: 1em;
+ }
+ table tr th:last-child{
+     width: auto !important;
+ }

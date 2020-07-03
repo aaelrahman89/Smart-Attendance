@@ -1,0 +1,15 @@
+<div>
+    <div class="content-container">
+      <mat-icon class="text-danger" id="close-icon" (click)="closeDialog()" title="{{'TRANS.close'|translate}}"><i class="far fa-times-circle fa-1x "></i></mat-icon>
+     
+      <span class="content-span full-width text-danger">{{'TRANS.deleterecord'|translate}}</span>
+    </div>
+    <button mat-flat-button id="no-button" [mat-dialog-close]="false" title="{{'TRANS.no'|translate}}"> {{'TRANS.no'|translate}}</button>
+    <button mat-flat-button id="yes-button" [mat-dialog-close]="true" title="{{'TRANS.yes'|translate}}"> {{'TRANS.yes'|translate}}</button>
+  </div>
+
+
+
+
+
+

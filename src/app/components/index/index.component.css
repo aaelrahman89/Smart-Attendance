@@ -1,0 +1,73 @@
+ 
+ .color-p.fa-bookmark{
+    font-size: 2em;
+  }
+  
+  .circle-chart__circle {
+   animation: circle-chart-fill 2s reverse; /* 1 */ 
+   transform: rotate(-90deg); /* 2, 3 */
+   transform-origin: center; /* 4 */
+  }
+  
+  
+  .circle-chart__circle--negative {
+   transform: rotate(-90deg) scale(1,-1); /* 1, 2, 3 */
+  }
+  
+  .circle-chart__info {
+   animation: circle-chart-appear 2s forwards;
+   opacity: 0;
+   transform: translateY(0.3em);
+  }
+  
+  @keyframes circle-chart-fill {
+   to { stroke-dasharray: 0 100; }
+  }
+  
+  @keyframes circle-chart-appear {
+   to {
+     opacity: 1;
+     transform: translateY(0);
+   }
+  }
+  
+  
+  .grid {
+   display: grid;
+   grid-column-gap: 1em;
+   grid-row-gap: 1em;
+   grid-template-columns: repeat(1, 1fr);
+  }
+  
+  
+  .charts section, .circle-chart{
+   width: 100%;
+  }
+  .charts{
+   border-right:1px solid #ccc ;
+  }
+  .charts section{
+   height: 100%;
+  }
+  .staticts-list {
+   align-items: center;
+  }
+  .staticts-list  b{
+   font-size: 1.4em;
+  }
+  .staticts-list svg{
+   font-size: 0.8em;
+  }
+  .abs-chart-rate{
+   color: #acacac;
+  }
+  .abs-chart-rate{
+   color: #acacac;
+  }
+  
+  .dashCard{
+    height: auto;
+    border-radius: 20px;
+    background: white;
+    box-shadow: 5px 5px 5px #ccc;
+  }

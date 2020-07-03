@@ -1,0 +1,3 @@
+.modal-content:not(.card-image) .close {
+  top: 0px
+}

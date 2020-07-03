@@ -1,0 +1,20 @@
+.table-responsive {
+    overflow-x: initial !important;
+  }
+
+  .form-control {
+    height: calc(1.7em + 0.75rem + 3px) !important;
+  }
+  h2{
+    font: 500 16px/32px 'Cairo', "Helvetica Neue", sans-serif;
+    font-weight: bold;
+    margin: 0px;
+  }
+
+.modal-body{
+  overflow: auto;
+  height: 550px;
+}
+.invalid-feedback{
+  display: block !important;
+}

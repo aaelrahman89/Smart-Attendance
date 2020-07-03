@@ -1,0 +1,348 @@
+
+  <div class="alert alert-success text-center mb-4 mt-3" role="alert" *ngIf="showAlert">
+   <h3 class="m-0"><b>تم تخصيص نظام دراسى لكلية محددة بنجاح</b></h3>
+  </div>
+
+<form [formGroup]="educationForm" (ngSubmit)="onSubmitInit()">
+
+
+<div class="container px-3">
+
+  <div class="col-md-12" (click)="customizeBtn()">
+    <button type="button" mdbBtn color="primary" class="relative waves-light Customize-btn btn-sm p-2" (click)="basicModal.show()" mdbWavesEffect><b><i class="far fa-plus-square"></i> {{'TRANS.customize' | translate}}</b></button>
+  </div>
+
+  <div class=" col-md-4 mx-auto my-3 text-right ">
+    <select class="form-control py-0" formControlName="CollegeCode" (change)="onavailableCollegeChange($event.target.value)">
+        <option value="" selected>{{'TRANS.generalSettings' | translate}}</option>
+        <option [value]="availableCollege.CollegeCode" *ngFor="let availableCollege of availableColleges"> {{availableCollege.CollegeName}} </option>
+    </select>
+</div>
+
+  <ng-container *ngIf="showSettings">
+
+  <div class="row my-3 radiosDiv">
+      <label class="radioContainer d-block mx-3">{{'TRANS.CreditHourSystem' | translate}}
+          <input type="radio" checked="checked" name="LearningSystemTypeId" [value]="1" formControlName="LearningSystemTypeId">
+          <span class="checkmark"></span>
+      </label>
+      <label class="radioContainer d-block mx-3">{{'TRANS.Systemofectures' | translate}}
+          <input type="radio" name="LearningSystemTypeId" [value]="2" formControlName="LearningSystemTypeId">
+          <span class="checkmark"></span>
+      </label>
+      <div class="col-12 text-center my-3 info">
+          <i class="fas fa-info-circle"></i>
+          <span>
+            {{'TRANS.absenceRatioParagraph' | translate}}
+          </span>
+      </div>
+  </div>
+  <div class="statusChecks">
+      <div>
+          <b class="mx-5"> {{ 'TRANS.attendanceStatus' | translate }} </b>
+
+          <div class="px-3">
+
+
+             <ul type="none">
+                  <li class="row py-5">
+                      <div class="form-group mx-5">
+                          <label class="switch">
+                              <input type="checkbox" name="permission" formControlName="permission">
+                              <span class="slider round"></span>
+                          </label>
+                          <label>{{'TRANS.permission' | translate}}</label>
+                      </div>
+                      <div class="row col-12 px-3">
+                           <div class="col-md-6 permissionsDiv row">
+                               <span> {{'TRANS.allowed' | translate}}</span>
+                               <input class="form-control mx-2 col-md-2 col-3" type="number" placeholder="0" formControlName="permissionAllowedCount">
+                               <span>{{'TRANS.permissions' | translate}}</span>
+                           </div>
+                           <div class="col-md-6 permissionsDiv row" *ngIf="educationForm.get('LearningSystemTypeId').value == 1">
+                              <span> {{'TRANS.rate' | translate}} </span>
+                              <input class="form-control mx-2 col-md-2 col-3" type="number" placeholder="0" formControlName="permissionPrecentage">
+                              <span>{{'TRANS.permissionsAsAttendance' | translate}}</span>
+                           </div>
+                           <div class="col-12 px-3 my-3">
+                               <label for="note">
+                                  <input type="checkbox" name="note"  formControlName="permissionGrantAuthorityFacultyMember">
+                                  {{'TRANS.permissionPower' | translate}}
+                               </label>
+                           </div>
+                      </div>
+                  </li>
+                  <li class="row py-5" >
+                      <div class="form-group mx-5">
+                          <label class="switch">
+                              <input type="checkbox" name="execuse" formControlName="execuse">
+                              <span class="slider round"></span>
+                          </label>
+                          <label>{{'TRANS.medical' | translate}}</label>
+                      </div>
+                      <div class="row col-12 px-3">
+                          <div class="col-md-6 permissionsDiv row" *ngIf="educationForm.get('LearningSystemTypeId').value == 1">
+                             <span> {{'TRANS.rate' | translate}} </span>
+                             <input class="form-control mx-2 col-md-2 col-3" type="number" placeholder="0" formControlName="execusePrecentage">
+                             <span>{{'TRANS.execusesAsAttendance' | translate}}</span>
+                          </div>
+                          <div class="col-12 px-5 my-3">
+                              <label for="note">
+                                 <input type="checkbox" name="note"  formControlName="execuseGrantAuthorityFacultyMember">
+                                 {{'TRANS.execusePower' | translate}}
+                              </label>
+                          </div>
+                     </div>
+                  </li>
+                  <li class="row py-5" >
+                      <div class="form-group mx-5">
+                          <label class="switch">
+                              <input type="checkbox" name="late" formControlName="late">
+                              <span class="slider round"></span>
+                          </label>
+                          <label>{{'TRANS.late' | translate}}</label>
+                      </div>
+                      <div class="row col-12 px-3">
+                          <div class="col-md-6 permissionsDiv row" *ngIf="educationForm.get('LearningSystemTypeId').value == 1">
+                             <span> {{'TRANS.rate' | translate}} </span>
+                             <input class="form-control mx-2 col-md-2 col-3" type="number" placeholder="0" formControlName="latePrecentage">
+                             <span>{{'TRANS.lateAsAttendance' | translate}}</span>
+                          </div>
+                          <div class="col-md-6 permissionsDiv row" *ngIf="educationForm.get('LearningSystemTypeId').value == 2">
+                            <span> {{'TRANS.calculated' | translate}} </span>
+                           <select class="form-control mx-2 col-md-3 col-3" formControlName="lateCalculatedToStatusCode">
+                            <option [value]="1">{{'TRANS.atendant' | translate}}</option>
+                            <option [value]="2">{{'TRANS.absence' | translate}}</option>
+                           </select>
+                         </div>
+                          <div class="col-12 px-5 my-3">
+                              <label for="note">
+                                 <input type="checkbox" name="note"  formControlName="lateGrantAuthorityFacultyMember">
+                                 {{'TRANS.latePower' | translate}}
+                              </label>
+                          </div>
+                     </div>
+                  </li>
+              </ul>
+
+              <div class="d-block w-100 text-center">
+              <button class="  save btn btn-main px-5 py-2 mx-auto"  > {{'TRANS.save' | translate}} </button>
+              </div>
+          </div>
+      </div>
+  </div>
+  </ng-container>
+
+
+</div>
+
+<!-- <h3>{{educationForm.value | json}}</h3> -->
+
+
+</form>
+
+<!-- Add -->
+<div>
+  <div mdbModal #basicModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close pull-right" aria-label="Close" (click)="basicModal.hide()">
+            <span aria-hidden="true">×</span>
+          </button>
+          <h4 class="modal-title w-100 text-center" id="myModalLabel">{{'TRANS.customizeStudySystem' | translate}}</h4>
+        </div>
+        <div class="modal-body modal-body-custom">
+
+   <!--add form start-->
+
+   <form [formGroup]="educationForm" (ngSubmit)="onSubmitAddInit()">
+
+
+    <div class="container px-3">
+
+
+        <div class=" col-md-6 mx-auto my-3 text-right ">
+            <select class="form-control py-0" formControlName="CollegeCode">
+              <option value="" selected disabled>{{'TRANS.selectColleges' | translate}}</option>
+                <option [value]="college.CollegeCode" *ngFor="let college of collFilteredLast"> {{college.Name}} </option>
+            </select>
+        </div>
+
+
+        <div class="row my-3 radiosDiv">
+            <label class="radioContainer d-block mx-3">{{'TRANS.CreditHourSystem' | translate}}
+                <input type="radio" checked="checked" name="LearningSystemTypeId" [value]="1" formControlName="LearningSystemTypeId">
+                <span class="checkmark"></span>
+            </label>
+            <label class="radioContainer d-block mx-3">{{'TRANS.Systemofectures' | translate}}
+                <input type="radio" name="LearningSystemTypeId" [value]="2" formControlName="LearningSystemTypeId">
+                <span class="checkmark"></span>
+            </label>
+            <div class="col-12 text-center my-3 info">
+                <i class="fas fa-info-circle"></i>
+                <span>
+                  {{'TRANS.absenceRatioParagraph' | translate}}
+                </span>
+            </div>
+        </div>
+        <div class="statusChecks">
+            <div>
+                <b class="mx-5"> {{ 'TRANS.attendanceStatus' | translate }} </b>
+
+                <div class="px-3">
+
+
+                   <ul type="none">
+                        <li class="row py-5">
+                            <div class="form-group mx-5">
+                                <label class="switch">
+                                    <input type="checkbox" name="permission" formControlName="permission">
+                                    <span class="slider round"></span>
+                                </label>
+                                <label>{{ 'TRANS.permission' | translate }}</label>
+                            </div>
+                            <div class="row col-12 px-3">
+                                 <div class="col-md-6 permissionsDiv row">
+                                     <span> {{'TRANS.allowed' | translate}} </span>
+                                     <input class="form-control mx-2 col-md-3 col-3" type="number" placeholder="0" formControlName="permissionAllowedCount">
+                                     <span>{{'TRANS.permissions' | translate}}</span>
+                                 </div>
+                                 <div class="col-md-6 permissionsDiv row" *ngIf="educationForm.get('LearningSystemTypeId').value == 1">
+                                    <span> {{'TRANS.rate' | translate}} </span>
+                                    <input class="form-control mx-2 col-md-3 col-3" type="number" placeholder="0" formControlName="permissionPrecentage">
+                                    <span>{{'TRANS.permissionsAsAttendance' | translate}}</span>
+                                 </div>
+                                 <div class="col-md-6 permissionsDiv row" *ngIf="educationForm.get('LearningSystemTypeId').value == 2">
+                                  <span> {{'TRANS.calculated' | translate}} </span>
+                                 <select class="form-control mx-2 col-md-4 col-3" formControlName="permissionCalculatedToStatusCode">
+                                  <option [value]="1">{{'TRANS.atendant' | translate}}</option>
+                                  <option [value]="2">{{'TRANS.absence' | translate}}</option>
+                                 </select>
+                               </div>
+                                 <div class="col-12 px-3 my-3">
+                                     <label for="note">
+                                        <input type="checkbox" name="note" formControlName="permissionGrantAuthorityFacultyMember">
+                                        {{'TRANS.permissionPower' |translate}}
+                                     </label>
+                                 </div>
+                            </div>
+                        </li>
+                        <li class="row py-5" >
+                            <div class="form-group mx-5">
+                                <label class="switch">
+                                    <input type="checkbox" name="execuse" id="execuse" formControlName="execuse">
+                                    <span class="slider round"></span>
+                                </label>
+                                <label for="permission">{{'TRANS.medical' | translate}}</label>
+                            </div>
+                            <div class="row col-12 px-3">
+                                <div class="col-md-6 permissionsDiv row" *ngIf="educationForm.get('LearningSystemTypeId').value == 1">
+                                   <span> {{'TRANS.rate' | translate}} </span>
+                                   <input class="form-control mx-2 col-md-3 col-3" type="number" placeholder="0" formControlName="execusePrecentage">
+                                   <span>{{'TRANS.execusesAsAttendance' | translate}}</span>
+                                </div>
+                                <div class="col-md-6 permissionsDiv row" *ngIf="educationForm.get('LearningSystemTypeId').value == 2">
+                                  <span> {{'TRANS.calculated' | translate}} </span>
+                                 <select class="form-control mx-2 col-md-4 col-3" formControlName="execuseCalculatedToStatusCode">
+                                  <option [value]="1">{{'TRANS.atendant' | translate}}</option>
+                            <option [value]="2">{{'TRANS.absence' | translate}}</option>
+                                 </select>
+                               </div>
+                                <div class="col-12 px-5 my-3">
+                                    <label for="note">
+                                       <input type="checkbox" name="note" formControlName="execuseGrantAuthorityFacultyMember">
+                                       {{'TRANS.execusePower' | translate}}
+                                    </label>
+                                </div>
+                           </div>
+                        </li>
+                        <li class="row py-5" >
+                            <div class="form-group mx-5">
+                                <label class="switch">
+                                    <input type="checkbox" name="late" id="late" formControlName="late">
+                                    <span class="slider round"></span>
+                                </label>
+                                <label for="permission">{{'TRANS.late' | translate}}</label>
+                            </div>
+                            <div class="row col-12 px-3">
+                                <div class="col-md-6 permissionsDiv row" *ngIf="educationForm.get('LearningSystemTypeId').value == 1">
+                                   <span> {{'TRANS.rate' | translate}} </span>
+                                   <input class="form-control mx-2 col-md-3 col-3" type="number" placeholder="0" formControlName="latePrecentage">
+                                   <span>{{'TRANS.lateAsAttendance' | translate}}</span>
+                                </div>
+                                <div class="col-md-6 permissionsDiv row" *ngIf="educationForm.get('LearningSystemTypeId').value == 2">
+                                  <span> {{'TRANS.calculated' | translate}} </span>
+                                 <select class="form-control mx-2 col-md-4 col-3" formControlName="lateCalculatedToStatusCode">
+                                  <option [value]="1">{{'TRANS.atendant' | translate}}</option>
+                            <option [value]="2">{{'TRANS.absence' | translate}}</option>
+                                 </select>
+                               </div>
+                                <div class="col-12 px-5 my-3">
+                                    <label for="note">
+                                       <input type="checkbox" name="note" formControlName="lateGrantAuthorityFacultyMember">
+                                       {{'TRANS.latePower' | translate}}
+                                    </label>
+                                </div>
+                           </div>
+                        </li>
+                    </ul>
+
+                    <div class="d-block w-100 text-center">
+                    <button class="save btn btn-main px-5 py-2 mx-auto" (click)="basicModal.hide()"> {{'TRANS.save' |translate}} </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    </form>
+
+   <!--add form end-->
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<ng-container>
+  <div mdbModal #frame="mdbModal" class="modal fade" id="frameModalTop" tabindex="-1" role="dialog"
+  aria-labelledby="myModalLabel" aria-hidden="true">
+
+  <div class="modal-dialog modal-notify modal-success" role="document">
+    <!--Content-->
+    <div class="modal-content">
+      <!--Header-->
+      <div class="modal-header">
+
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="frame.hide()">
+          <span aria-hidden="true" class="white-text">&times;</span>
+        </button>
+      </div>
+
+      <!--Body-->
+      <div class="modal-body h-auto">
+        <div class="text-center">
+          <mdb-icon fas icon="check" size="4x" class="mb-3 animated rotateIn"></mdb-icon>
+          <!-- <p>{{updateMessage}}</p> -->
+          <h4>تم الحفظ بنجاح</h4>
+        </div>
+      </div>
+
+    </div>
+    <!--/.Content-->
+  </div>
+
+
+</div>
+</ng-container>
+
+
+
+

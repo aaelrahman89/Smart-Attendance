@@ -1,0 +1,32 @@
+<form [formGroup]="liftAbsence">
+
+
+  <div class="container px-3 mt-3">
+
+    <div class=" col-md-4 mx-auto  d-block my-3 text-right ">
+      <select class="form-control py-0">
+          <option > الكل </option>
+      </select>
+  </div>
+
+    <div class="row">
+      <div class="col-md-3 mt-1">
+        <span> إلغاء احتساب الغياب خلال</span>
+    </div>
+
+    <div class="col-md-4 permissionsDiv row">
+      <span> من تاريخ</span>
+      <input class="form-control mx-2 col-md-6 col-3" type="date" formControlName="fromDate">
+     </div>
+
+  <div class="col-md-4 permissionsDiv row">
+    <span> الى تاريخ</span>
+    <input class="form-control mx-2 col-md-6 col-3" type="date" formControlName="toDate" [min]="liftAbsence.get('fromDate').value">
+  </div>
+
+
+    </div>
+
+    </div>
+
+    </form>

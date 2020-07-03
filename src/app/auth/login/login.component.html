@@ -1,0 +1,60 @@
+
+<div class="row login-Page">
+  <div class="col-md-6 login-Side">
+    <div class="login-side-top">
+      <form [formGroup]="loginForm" (ngSubmit)="login()">
+        <div class="login-Card text-center mx-auto">
+
+          <div class="my-4 row" *ngIf="showAlert">
+            <div #alert class="alert alert-danger alert-dismissible fade show" role="alert">
+              <button type="button" class="close" aria-label="Close" (click)="closeAlert()">
+                <span aria-hidden="true">&times;</span>
+              </button>
+              {{errorMessage}}
+            </div>
+          </div>
+
+
+          <div class="username my-4 row ">
+            <div class="icon">
+              <i class="fas fa-user mx-2"></i>
+            </div>
+            <input type="text" placeholder="اسم المستخدم" class="form-control" formControlName="UserName">
+          </div>
+          <div class="password my-4 row ">
+            <div class="icon">
+              <i class="fas fa-unlock"></i>
+            </div>
+            <input type="password" placeholder="كلمة المرور" class="form-control" formControlName="Password">
+          </div>
+          <div class="loginDiv">
+            <button type="submit" class="main-btn d-block w-100 my-4" [disabled]="loginForm.invalid">تسجيل دخول</button>
+          </div>
+        </div>
+
+      </form>
+
+
+
+    </div>
+    <div class=" login-side-bottom ">
+      <a href="http://www.smartit-eg.com/" target="_blank" class="poweredby">
+        <img src="./../../../assets/imgs/smartIT.png" alt="powered By Smart It" class="w-100">
+      </a>
+    </div>
+  </div>
+  <div class="col-md-6 logoSide logo-side-top row">
+    <div>
+      <img src="./../../../assets/imgs/logo.png" alt="smart attendance icon">
+      <div class="systemName">
+        <h2><b>تسجيل</b> </h2>
+        <h3>الحضور والغياب</h3>
+      </div>
+      <hr class="w-50">
+      <div class="text-center">
+        <p>نظام أكاديمي متكامل</p>
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,110 @@
+#overlay {
+  position: fixed; /* Sit on top of the page content */
+  width: 100%; /* Full width (cover the whole page) */
+  height: 100%; /* Full height (cover the whole page) */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(235, 235, 235, 0.9); /* Black background with opacity */
+  z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+}
+
+.timer-container{
+  position: relative;
+  z-index: 3;
+}
+.timer {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 30em;
+  height: 18em;
+  margin-top: -9em;
+  margin-left: -15em;
+}
+  .timer-main{
+    width: 270px;
+    height: 270px;
+    border: 1px solid #CCC;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    border-radius: 50%;
+    background-color: #fff;
+    color: #513061;
+    position: relative;
+    text-align: center;
+    line-height: 270px;
+    font-size: 50px;
+
+}
+.timercircle{
+  width:20px;
+  height:20px;
+  background:#513061;
+  border-radius:50%;
+  position:absolute;
+  top:0; bottom:0; left:0;right:0;
+  overflow:hidden;
+  margin:auto;
+  animation: circle 6s linear infinite;
+
+      }
+      .invalid-feedback{
+        color: red;
+        font-size: 11px;
+        display: block;
+      }
+.input-style{
+    border: 1px solid #513061;
+    border-radius: 10px;
+    color: var(--main-color);
+    font-size: 18px;
+}
+#allowInput{
+  /* width: 12%; */
+  position: relative;
+    right: -60px;
+}
+progress {
+  border-radius: 10px;
+  width: 100%;
+  height: 15px;
+}
+progress::-webkit-progress-bar {
+ background-color: #dadada;
+  border-radius: 5px;
+}
+progress::-webkit-progress-value {
+   border-radius: 5px;
+   background-color: #653b8c;
+}
+
+
+@keyframes circle{
+  0%{
+    transform:rotate(0deg)
+              translate(-135px)
+              rotate(0deg);
+
+  }
+  100%{
+    transform:rotate(360deg)
+              translate(-135px)
+              rotate(-360deg);
+  }
+}
+
+
+@media screen and (max-width: 768px) {
+  #allowInput {
+    right: 0px;
+  }
+}
+
+
+
+

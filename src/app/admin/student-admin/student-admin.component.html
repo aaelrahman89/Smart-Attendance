@@ -1,0 +1,300 @@
+
+
+
+  <div class="container-fluid px-3 ">
+
+    <div class="page-title mt-3  text-center">
+      <div class="page-icon d-none">
+        <img src="imgs/Icon feather-settings.png" alt="">
+      </div>
+      <h1 class="color-p pageTitle  text-center">
+        <b> <i class="far fa-address-card"></i> {{ 'TRANS.menuManageStudentData' | translate }} </b>
+      </h1>
+    </div>
+    <hr class="shadow">
+    <div class="row">
+      <div class="col-md-12">
+  <form [formGroup]="srchForm" (ngSubmit)="submit()">
+    <div class="row ">
+      <div class="col-md-3 pr-0">
+        <div class="form-group">
+          <b class="color-p  my-1 d-block text-right">{{ 'TRANS.menuCollege' | translate }} <span  class="text-danger">*</span></b>
+          <select
+            class="form-control"
+            formControlName="college"
+            (change)="onChangeCollege($event.target.value)"
+          >
+            <option value="" selected>{{'TRANS.selectColleges'|translate}}</option>
+<option *ngFor="let college of colleges" [value]="college.CollegeCode" > <span *ngIf="pageLang === 'ar'">{{ college.NameAr }}</span> <span *ngIf="pageLang === 'en'">{{ college.NameEn }}</span> </option>
+          </select>
+        </div>
+      </div>
+
+      <div class="col-md-3 pr-0">
+        <div class="form-group">
+          <b class="color-p  my-1 d-block text-right">{{ 'TRANS.MajorsthDepartment' | translate }}</b>
+          <select class="form-control" formControlName="department">
+            <option value="" selected>{{'TRANS.selectDepartments'|translate}}</option>
+            <option *ngFor="let department of departments" [value]="department.DepartmentCode" ><span *ngIf="pageLang === 'ar'">{{ department.NameAr }}</span> <span *ngIf="pageLang === 'en'">{{ department.NameEn }}</span>  </option>
+          </select>
+        </div>
+      </div>
+
+      <div class="col-md-2">
+        <b class="color-p  d-block text-right"><br/></b>
+        <button type="submit" class="w-75 btn-main px-4 py-2 rounded-pill" [disabled]="srchForm.invalid">
+          {{ 'TRANS.search' | translate }}
+          <i class="fas fa-search pr-2"></i>
+        </button>
+      </div>
+
+    </div>
+  </form>
+    </div>
+  </div>
+
+
+  <div class="col-md-12 table-responsive">
+    <export></export>
+    <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover table table-striped excel-print" >
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>{{ 'TRANS.studentNumber' | translate }} </th>
+          <th>{{ 'TRANS.facultyMemberTHName' | translate }}</th>
+          <th>{{ 'TRANS.studentEmail' | translate }} </th>
+          <th>{{ 'TRANS.studentNationalId' | translate }}</th>
+         
+          <th class="d-none-print ">{{ 'TRANS.studentSystemStatus' | translate }}</th>
+          <th class="d-none-print">{{ 'TRANS.tablethActions' | translate }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let element of elements, let i = index">
+          <td>{{ i+1 }}</td>
+          <td>{{ element.StudentNumber }}</td>
+          <td>
+            <span *ngIf="pageLang === 'ar'">{{ element.NameAr }}</span>
+            <span *ngIf="pageLang === 'en'">{{ element.NameEn }}</span>
+          </td>
+          <td>{{ element.Email }}</td>
+          <td>{{ element.NationalId }}</td>
+        
+          <td class="d-none-print">
+             <div class="form-group">
+                <label class="switch">
+                   <input type="checkbox" [checked]="element.IsActive" (change)="changeActive(element)" />
+                    <span class="slider round"></span>
+                   </label>
+                   </div>
+                   </td>
+
+
+
+          <td class="d-none-print">
+            <div (click)="showMod(element.Id)">
+              <a mdbBtn type="button" class="w-auto px-3 circle-btn"  mdbWavesEffect  (click)="basicModal.show()"><i class="far fa-edit"></i></a>
+            </div>
+
+            <div mdbModal #basicModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-xl" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close pull-right" aria-label="Close" (click)="basicModal.hide()">
+                      <span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title w-100" id="myModalLabel">{{ 'TRANS.modalEditTitle' | translate }}</h4>
+                  </div>
+                  <div class="modal-body">
+                    <form [formGroup]="editForm" (ngSubmit)="edit(element)">
+                      <div class="row">
+
+                        <div class="col-md-12">
+                          <h2 class="text-right">{{ 'TRANS.studentDataTitle' | translate }}</h2>
+                        </div>
+
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <b class="color-p mx-3 my-3 d-block text-right">{{ 'TRANS.studentNameAr' | translate }} <sub>*</sub></b>
+                            <input type="text" class="form-control" formControlName="NameAr" [ngClass]="{'is-invalid': editForm.get('NameAr').invalid}">
+                            <div class="invalid-feedback mt-1" *ngIf="editForm.get('NameAr').invalid && (editForm.get('NameAr').touched || editForm.get('NameAr').dirty)">
+                              <p class="m-0 text-right" *ngIf="editForm.get('NameAr').errors.required">{{ 'TRANS.validationReq' | translate }}</p>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <b class="color-p mx-3 my-3 d-block text-right">{{ 'TRANS.studentNameEn' | translate }}</b>
+                            <input type="text" class="form-control" formControlName="NameEn">
+                          </div>
+                        </div>
+
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <b class="color-p mx-3 my-3 d-block text-right">{{ 'TRANS.facultyMemberTHEmail' | translate }} <sub>*</sub></b>
+                            <input type="text" class="form-control" formControlName="Email" [ngClass]="{'is-invalid': editForm.get('Email').invalid}">
+                            <div class="invalid-feedback mt-1" *ngIf="editForm.get('Email').invalid && (editForm.get('Email').touched || editForm.get('Email').dirty)">
+                              <p class="m-0 text-right" *ngIf="editForm.get('Email').errors.required">{{ 'TRANS.validationReq' | translate }}</p>
+                              <p class="m-0 text-right" *ngIf="editForm.get('Email').errors.email">{{ 'TRANS.validationEmail' | translate }}</p>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <b class="color-p mx-3 my-3 d-block text-right">{{ 'TRANS.facultyMemberTHId' | translate }} <sub>*</sub></b>
+                            <input type="number" class="form-control" formControlName="NationalId" [ngClass]="{'is-invalid': editForm.get('NationalId').invalid}">
+                            <div class="invalid-feedback mt-1" *ngIf="editForm.get('NationalId').invalid && (editForm.get('NationalId').touched || editForm.get('NationalId').dirty)">
+                              <p class="m-0 text-right" *ngIf="editForm.get('NationalId').errors.required">{{ 'TRANS.validationReq' | translate }}</p>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <b class="color-p mx-3 my-3 d-block text-right">{{ 'TRANS.studentNationality' | translate }} <sub>*</sub></b>
+                            <select class="form-control" formControlName="Nationality" [ngClass]="{'is-invalid': editForm.get('Nationality').invalid}">
+                              <option *ngFor="let nationality of nationalities"
+                               [value]="nationality.NationalityCode"
+                                [selected]="nationality.NationalityCode == element.NationalityCode">
+                                <span *ngIf="pageLang === 'ar'">
+                                  {{ nationality.NameAr }}
+                                </span>
+                                <span *ngIf="pageLang === 'en'">
+                                  {{ nationality.NameEn }}
+                                </span>
+                              </option>
+                            </select>
+                            <div class="invalid-feedback mt-1" *ngIf="editForm.get('Nationality').invalid && (editForm.get('Nationality').touched || editForm.get('Nationality').dirty)">
+                              <p class="m-0 text-right" *ngIf="editForm.get('Nationality').errors.required">{{ 'TRANS.validationReq' | translate }}</p>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <b class="color-p mx-3 my-3 d-block text-right">{{ 'TRANS.studentGender' | translate }}</b>
+                            <input type="text" class="form-control" formControlName="Gender">
+                          </div>
+                        </div>
+
+
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <b class="color-p mx-3 my-3 d-block text-right">{{ 'TRANS.studentBirthDate' | translate }}</b>
+                            <input type="text" class="form-control" formControlName="DateOfBirth" (focus)="$event.target.type = 'date'">
+                          </div>
+                        </div>
+
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <b class="color-p mx-3 my-3 d-block text-right">{{ 'TRANS.studentMobile' | translate }} <sub>*</sub></b>
+                            <input type="number" class="form-control" formControlName="MobileNumber" [ngClass]="{'is-invalid': editForm.get('MobileNumber').invalid}">
+                            <div class="invalid-feedback mt-1" *ngIf="editForm.get('MobileNumber').invalid && (editForm.get('MobileNumber').touched || editForm.get('MobileNumber').dirty)">
+                              <p class="m-0 text-right" *ngIf="editForm.get('MobileNumber').errors.required">{{ 'TRANS.validationReq' | translate }}</p>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <b class="color-p mx-3 my-3 d-block text-right">{{ 'TRANS.studentAltEmail' | translate }} <sub>*</sub></b>
+                            <input type="text" class="form-control" formControlName="AlternativeEmail" [ngClass]="{'is-invalid': editForm.get('AlternativeEmail').invalid}">
+                            <div class="invalid-feedback mt-1" *ngIf="editForm.get('AlternativeEmail').invalid && (editForm.get('AlternativeEmail').touched || editForm.get('AlternativeEmail').dirty)">
+                              <p class="m-0 text-right" *ngIf="editForm.get('AlternativeEmail').errors.required">{{ 'TRANS.validationReq' | translate }}</p>
+                              <p class="m-0 text-right" *ngIf="editForm.get('AlternativeEmail').errors.email">{{ 'TRANS.validationEmail' | translate }}</p>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <b class="color-p mx-3 my-3 d-block text-right">{{ 'TRANS.studentAcademicStatus' | translate }} <sub>*</sub></b>
+                            <input type="number" class="form-control" formControlName="AcademicStatus" [ngClass]="{'is-invalid': editForm.get('AcademicStatus').invalid}">
+                            <div class="invalid-feedback mt-1" *ngIf="editForm.get('AcademicStatus').invalid && (editForm.get('AcademicStatus').touched || editForm.get('AcademicStatus').dirty)">
+                              <p class="m-0 text-right" *ngIf="editForm.get('AcademicStatus').errors.required">{{ 'TRANS.validationReq' | translate }}</p>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-md-12">
+                          <h2 class="text-right">{{ 'TRANS.studentGuardianDataTitle' | translate }}</h2>
+                        </div>
+
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <b class="color-p mx-3 my-3 d-block text-right">{{ 'TRANS.studentGuardianName' | translate }}</b>
+                            <input type="text" class="form-control" formControlName="GuardianName">
+                          </div>
+                        </div>
+
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <b class="color-p mx-3 my-3 d-block text-right">{{ 'TRANS.studentGuardianRelation' | translate }}</b>
+                            <select class="form-control" formControlName="StudentRelativeRelation">
+                              <option *ngFor="let relation of relations"
+                               [value]="relation.Id"
+                                [selected]="relation.Id == element.RelativeRelationId">
+                                <span *ngIf="pageLang === 'ar'">
+                                  {{ relation.NameAr }}
+                                </span>
+                                <span *ngIf="pageLang === 'en'">
+                                  {{ relation.NameEn }}
+                                </span>
+                              </option>
+                            </select>
+                          </div>
+                        </div>
+
+
+
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <b class="color-p mx-3 my-3 d-block text-right">{{ 'TRANS.studentGuardianMobile' | translate }}</b>
+                            <input type="text" class="form-control" formControlName="GuardianMobileNumber">
+                          </div>
+                        </div>
+
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <b class="color-p mx-3 my-3 d-block text-right">{{ 'TRANS.studentGuardianEmail' | translate }}</b>
+                            <input type="text" class="form-control" formControlName="GuardianEmail">
+                          </div>
+                        </div>
+
+                      </div>
+
+
+                      
+            
+
+
+
+                     <div class="text-center modal-footer w-100">
+
+              
+
+                      <button type="submit" mdbBtn   [disabled]="editForm.invalid" class="relative save btn btn-main px-5 py-2 mx-auto waves-light shadow"  mdbWavesEffect  (click)="basicModal.hide()">
+
+                        {{ 'TRANS.save' | translate }}
+                        <i class="fas fa-search pr-2 d-none"></i>
+                      </button>
+
+                    </div>
+
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </td>
+
+
+
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>

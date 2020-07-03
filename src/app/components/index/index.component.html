@@ -1,0 +1,163 @@
+<div class="row">
+    <div class="item col-md-4" *ngFor="let i of charts">
+        <div class="w-100 row dashCard px-4">
+            <div class="title px-4 row">
+                <fa-icon [icon]="faBookmark" class="mx-3 fa-bookmark color-p "></fa-icon>
+                <h5 class="color-p my-2 ">
+                    <b> {{i.subject}} </b>
+                </h5>
+            </div>
+            <div class="charts my-3 col-md-6">
+                <svg class="circle-chart" viewBox="0 0 33.83098862 33.83098862">
+                    <circle class="circle-chart__background" stroke="#efefef" stroke-width="3" fill="none"
+                        cx="16.91549431" cy="16.91549431" r="14.91549431" />
+                    <circle class="circle-chart__circle" [attr.stroke]=" i.rate >= 60 ? '#2acf82' : '#e78931' "
+                        attr.stroke-dasharray="{{i.rate}}, 100" stroke-width="3" fill="none" cx="16.91549431"
+                        cy="16.91549431" r="14.91549431" />
+                    <g class="circle-chart__info">
+                        <text class="circle-chart__percent" x="16.91549431" y="15.5" alignment-baseline="central"
+                            text-anchor="middle" font-size="5">{{i.rate}}%</text>
+                    </g>
+                </svg>
+
+                <span class="d-block text-center my-3">
+                    Attendance Rate
+                </span>
+            </div>
+            <div class=" m  col-md-6">
+                <ul class="staticts-list row h-100" type="none">
+                    <li>
+                        <fa-icon [icon]="faCircle" [style.color]=" i.rate >= 60 ? '#2acf82' : '#e78931'"
+                            class=" mx-2 att-chart-rate"></fa-icon>
+                        <span> <b>{{i.attendance}}</b> Attendance </span>
+                    </li>
+                    <li>
+                        <fa-icon [icon]="faCircle" class=" mx-2 abs-chart-rate"></fa-icon>
+                        <span> <b>{{i.absence}}</b> Absence </span>
+
+                    </li>
+                    <li>
+                        <span class=" m-1 total-chart-rate material-icons">
+                            trip_origin
+                        </span>
+                        <span> <b>{{i.total}}</b> Total </span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div> 
+</div>
+<div class="row my-4">
+  <div class="col-md-6 p-3 ">
+    <div class="dashCard p-3">
+      <div class="cardTitle row">
+        <h5 class="color-p col-md-6 ">
+         <b> Highest Attendance Rates</b>
+        </h5>
+        <div class="col-md-6  row">
+          <div class="col-11">
+            <select name=""  id="" class="main-input form-control" #selectSub  (change)="changeSubject(selectSub, highstudentsCharts, 'high')">
+              <option class="my-3 d-block" value="sbuject1" disabled selected="">Select Subject</option>
+              <option class="my-3 d-block"  *ngFor="let item of selectSubject" value="{{item}}">{{item}} </option> 
+            </select>
+          </div>
+          <button class="clearFilter col-1 p-0" *ngIf="selectSub.selectedIndex != 0" (click)="resetFilter(selectSub, 'high')">
+            <span class="material-icons">
+              delete_outline
+              </span>
+          </button>
+        </div>
+      </div>
+      <!-- <a style="cursor: pointer" (click)="exportexcel()">
+        <mat-icon> cloud_download</mat-icon>
+      </a> -->
+      <table  id="excel-table" class="w-100 my-3 mx-0 dashboard-table">
+        <tbody>
+          <tr  *ngFor="let student of highstudentsCharts | slice: 0 : 6 ; index as i "  >
+           <!-- <a [routerLink]="['student', student.id]"> -->
+            <td  class="py-2">
+              <div class="my-1">
+                <span class="dash-student-name" >
+                  <b class="mx-2"> {{i + 1}} | </b> {{ student.name}}
+                </span>
+              </div>
+            </td>
+            <td  class="py-2">
+             <div class="my-1">
+               <span> {{student.subject}} </span>
+             </div>
+            </td>
+            <td  class="py-2">
+              <div class="bar-div text-center my-1">
+                <span class="bar-body">
+                  <span class="bar" [ngClass]="{'high': student.attendanceRate >= 60, 'mid': student.attendanceRate >= 30, 'low': student.attendanceRate <= 30}" [style.Width]=" student.attendanceRate + '%'" ></span>
+                  <span class="bar-text d-block text-right">
+                    {{student.attendanceRate}}%
+                  </span>
+                </span>
+              </div>
+            </td>
+           <!-- </a> -->
+          </tr>
+        </tbody>
+      </table>
+    </div>
+   
+  </div>
+  <div class="col-md-6 p-3 ">
+    <div class="dashCard p-3">
+      <div class="cardTitle row">
+        <h5 class="color-p col-md-6 ">
+         <b> Lowest Attendance s Rates</b>
+        </h5>
+        <div class="col-md-6  row">
+          <div class="col-11">
+            <select name=""  id="" class="main-input form-control"  #highSelectSub  (change)="changeSubject(highSelectSub, lowstudentsCharts, 'low' )"  >
+              <option class="my-3 d-block" value="sbuject1" disabled selected="">Select Subject</option>
+              <option class="my-3 d-block"  *ngFor="let item of selectSubject" value="{{item}}">{{item}} </option> 
+            </select>
+          </div>
+          <button class="clearFilter col-1 p-0" *ngIf="highSelectSub.selectedIndex != 0" (click)="resetFilter(highSelectSub, 'low')" >
+            <span class="material-icons">
+              delete_outline
+              </span>
+          </button>
+        </div>
+      </div>
+      <!-- <a style="cursor: pointer" (click)="exportexcel()">
+        <mat-icon> cloud_download</mat-icon>
+      </a> -->
+      <table id="excel-table" class="w-100 my-3 mx-0 dashboard-table">
+        <tbody>
+          <tr *ngFor="let student of lowstudentsCharts | slice: 0 : 6 ; index as i "  >
+           <!-- <a [routerLink]="['student', student.id]"> -->
+            <td  class="py-2">
+              <div class="my-1">
+                <span class="dash-student-name" >
+                  <b class="mx-2"> {{i + 1}} | </b> {{ student.name}}
+                </span>
+              </div>
+            </td>
+            <td  class="py-2">
+             <div class="my-1">
+               <span> {{student.subject}} </span>
+             </div>
+            </td>
+            <td  class="py-2">
+              <div class="bar-div text-center my-1">
+                <span class="bar-body">
+                  <span class="bar" [ngClass]="{'high': student.attendanceRate >= 60, 'mid': student.attendanceRate >= 30, 'low': student.attendanceRate <= 30}" [style.Width]=" student.attendanceRate + '%'" ></span>
+                  <span class="bar-text d-block text-right">
+                    {{student.attendanceRate}}%
+                  </span>
+                </span>
+              </div>
+            </td>
+           <!-- </a> -->
+          </tr>
+        </tbody>
+      </table>
+    </div> 
+  </div> 
+  </div> 
+ 

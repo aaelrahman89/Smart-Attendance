@@ -1,0 +1,161 @@
+:root {
+    --lightGrey: rgb(240, 240, 240);
+    --rightGrediant: linear-gradient(to right, #0f6d84, #70358d);
+    --topGrediant: linear-gradient(to top, #0f6d84, #70358d);
+    --purb: #653b8c;
+    --blue: #0f6d84;
+    --darkGrey: #686868;
+    --green: #2acf82;
+    --red: #e93737;
+    --orange: #e78931;
+  }
+
+
+.mat-tab-labels {
+    justify-content: space-around !important;
+}
+.mat-tab-label{
+    opacity: 1 !important;
+}
+.mat-tab-label-active{
+    font-weight: bold !important;
+    color: white;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+.mat-ink-bar, .mat-tab-label-active{
+    background-color: var(--purb) !important;
+
+}
+ .mat-tab-body-wrapper{
+     background: rgb(241, 241, 241);
+     border-radius: 20px;
+     padding: 1em;
+ }
+ .mat-tab-header{
+     border: none;
+ }
+
+
+ .radioContainer {
+    display: block;
+    position: relative;
+    padding-right: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
+  /* Hide the browser's default radio button */
+  .radioContainer input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+  }
+
+  /* Create a custom radio button */
+  .checkmark {
+    position: absolute;
+    top: 0;
+    right:  0;
+    height: 25px;
+    width: 25px;
+    background-color: white;
+    border: 1px solid #cecece;
+    box-shadow: 4px 4px 5px #ccc;
+    border-radius: 40%;
+    transition: all 0.5s;
+
+  }
+
+  /* On mouse-over, add a grey background color */
+  .radioContainer:hover input ~ .checkmark {
+    background-color: #ccc;
+    box-shadow: none !important;
+    transition: all 0.5s;
+  }
+
+  /* When the radio button is checked, add a blue background */
+  .radioContainer input:checked ~ .checkmark {
+    background-color: white;
+    border: 1px solid var(--purb);
+    box-shadow: none !important;
+    transition: all 0.5s;
+
+  }
+  .radioContainer input:checked ~ label{
+      font-weight: bold;
+  }
+  /* Create the indicator (the dot/circle - hidden when not checked) */
+  .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+
+  /* Show the indicator (dot/circle) when checked */
+  .radioContainer input:checked ~ .checkmark:after {
+    display: block;
+  }
+
+  /* Style the indicator (dot/circle) */
+  .radioContainer .checkmark:after {
+    top: 5px;
+    left: 5px;
+    width: 13px;
+    height: 13px;
+      border-radius: 40%;
+      background: var(--purb);
+  }
+  .radiosDiv{
+      justify-content: center   ;
+  }
+
+
+  .info .fas{
+      font-size: 1.5em;
+      color: var(--purb);
+  }
+  .statusChecks:lang(ar){
+    text-align: right;
+}
+.statusChecks:lang(en){
+    text-align: left;
+}
+.statusChecks b{
+    color: var(--purb);
+}
+.form-group label:last-child{
+    position: relative;
+    top: 9px;
+    margin: 0 5px;
+}
+.form-group{
+    display: flex;
+    cursor: pointer;
+    flex-direction: row;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
+.statusChecks ul li:not(:last-child){
+    border-bottom: 1px solid #acacac;
+    margin: 10px 0;
+}
+.permissionsDiv{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.mat-tab-body {
+  z-index: -1;
+}
+.mat-tab-label {
+  border: 1px solid #efefef;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}

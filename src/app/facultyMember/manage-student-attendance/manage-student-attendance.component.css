@@ -1,0 +1,54 @@
+
+  .cursor-pointer{
+      cursor: pointer;
+  }
+  .card-bggreen{
+      background-color: #23cd9e;
+      color: #23cd9e;
+  }
+  .card-textgreen{
+      color: #23cd9e;
+  
+  }
+  .card-bgred{
+      background-color: #fc5e5e;
+  
+  }
+  .card-textred{
+      color: #fc5e5e;
+  }
+  .Medical{
+      background-color: #167888;
+  
+  }
+  .Medicaltext{
+      color: #167888;
+  
+  }
+  .Permission{
+      background-color: #ffbb48;
+  
+  }
+  .Permissiontext{
+      color: #ffbb48;
+  }
+  .Late{
+      background-color: #00b9ce;
+  
+  }
+  .Latetext{
+      color: #00b9ce;
+  }
+  
+
+  .dropdown-menu{
+    min-width: 8rem;
+  }
+
+  .show>.dropdown-menu{
+    bottom: -124px !important
+  }
+
+  table.table a.btn.btn-primary{
+    padding: 7px 16px !important;
+  }

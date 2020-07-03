@@ -1,0 +1,850 @@
+<div class="container-fluid px-3 ">
+
+    <div class="page-title mt-3  text-center">
+      <div class="page-icon d-none">
+        <img src="imgs/Icon feather-settings.png" alt="">
+      </div>
+
+
+
+
+      <h1 class="color-p pageTitle  text-center">
+        <b> <i class="fas fa-university"></i> {{'TRANS.SessionTimemanagement'|translate}} </b>
+
+      </h1>
+
+
+    </div>
+
+    <hr class="shadow">
+          <div class="row">
+<div class="col-md-12">
+
+            <form [formGroup]="srchForm" (ngSubmit)="submit()">
+              <div class="row " >
+
+
+
+
+
+                <div class="col-md-3 mx-auto row rowInfo my-2">
+                  <div>
+                    <b for="" class="color-p mx-3 my-1 d-block">{{'TRANS.term-Semester'|translate}}  <span  class="text-danger">*</span> </b>
+                  </div>
+                  <div class=" col-md-12 text-right ">
+                    <select class="form-control py-0 " required formControlName="term"  title="{{'TRANS.term-Semester'|translate}}" [ngClass]="{ 'is-invalid': submitsearchError && searchErrors.term.errors }">
+
+                      <option value="" selected disabled >{{'TRANS.selectterm'|translate}}</option>
+
+                      <!-- <option *ngFor="let term of terms" [value]="term.TermCode" [selected]="term.IsActive == true"> -->
+
+                        <option *ngFor="let term of terms" [value]="term.TermCode" >
+                          <span *ngIf="pageLang === 'ar'">
+                          {{ term.NameAr }}
+                        </span>
+                        <span *ngIf="pageLang === 'en'">
+                          {{ term.NameEn }}
+
+                          </span>
+
+                        </option>
+
+
+
+
+
+                    </select>
+
+              <div *ngIf="submitsearchError && searchErrors.term.errors" class="invalid-feedback">
+                <h4 *ngIf="searchErrors.term.errors.required">{{'TRANS.validationReq'|translate}}</h4>
+                  </div>
+                </div>
+                </div>
+
+
+                <div class="col-md-3 mx-auto row rowInfo my-2">
+                  <div>
+                    <b for="" class="color-p mx-3 my-1 d-block">{{'TRANS.CollegeName'|translate}}  <span  class="text-danger">*</span> </b>
+                  </div>
+                  <div class=" col-md-12 text-right ">
+                    <select class="form-control py-0 " required  title="{{'TRANS.CollegeName'|translate}}"  formControlName="college" (change)="onChangeCollege($event.target.value)" [ngClass]="{ 'is-invalid': submitsearchError && searchErrors.college.errors }">
+                      <option value="" selected disabled>{{'TRANS.selectColleges'|translate}}</option>
+                      <option  *ngFor="let college of colleges" [value]="college.CollegeCode">
+
+
+                        <span *ngIf="pageLang === 'ar'">
+                          {{  college.NameAr }}
+                        </span>
+                        <span *ngIf="pageLang === 'en'">
+                          {{  college.NameEn }}
+
+                          </span>
+                      </option>
+                    </select>
+                    <div *ngIf="submitsearchError && searchErrors.college.errors" class="invalid-feedback">
+                      <h4 *ngIf="searchErrors.college.errors.required">{{'TRANS.validationReq'|translate}}</h4>
+                  </div>
+                </div>
+                </div>
+
+
+                <div class="col-md-3 mx-auto row rowInfo my-2">
+                  <div>
+                    <b for="" class="color-p mx-3 my-1 d-block">{{'TRANS.DepartmentName'|translate}} <span  class="text-danger">*</span></b>
+                  </div>
+                  <div class=" col-md-12 text-right ">
+                    <select class="form-control py-0 "  title="{{'TRANS.DepartmentName'|translate}} "  formControlName="department" (change)="onChangeDepartments($event.target.value)" [ngClass]="{ 'is-invalid': submitsearchError && searchErrors.department.errors }">
+                      <option value="" selected disabled>{{'TRANS.selectDepartments'|translate}} </option>
+
+                      <option *ngFor="let department of departments" [value]="department.DepartmentCode">
+
+
+
+                        <span *ngIf="pageLang === 'ar'">
+                          {{ department.NameAr   }}
+                        </span>
+                        <span *ngIf="pageLang === 'en'">
+                          {{ department.NameEn   }}
+
+                          </span>
+
+                      </option>
+                    </select>
+                    <div *ngIf="submitsearchError && searchErrors.department.errors" class="invalid-feedback">
+                      <h4 *ngIf="searchErrors.department.errors.required">{{'TRANS.validationReq'|translate}}</h4>
+                  </div>
+                  </div>
+                </div>
+
+
+                <div class="col-md-3 mx-auto row rowInfo my-2">
+                  <div>
+                    <b for="" class="color-p mx-3 my-1 d-block">{{'TRANS.namedivision'|translate}}  <span  class="text-danger">*</span></b>
+                  </div>
+                  <div class=" col-md-12 text-right ">
+                    <select class="form-control py-0 " required  formControlName="crnSection"  title="{{'TRANS.namedivision'|translate}}" [ngClass]="{ 'is-invalid': submitsearchError && searchErrors.crnSection.errors }">
+                      <option value="" selected disabled>{{'TRANS.Selet-namedivision'|translate}}</option>
+
+                      <option  *ngFor="let CrnSection of CrnSections" [value]="CrnSection.Crn">
+
+
+
+
+                    <span *ngIf="pageLang === 'ar'">
+                      {{CrnSection.CourseTitleAr  + " - "+ CrnSection.Crn}}
+                      <span    #SpanCourseNumber [innerHTML]="CrnSection.CourseNumber"> </span>
+                      <span  #SpanCourseSubject [innerHTML]="(CrnSection.CourseSubject)"></span>
+                    </span>
+                    <span *ngIf="pageLang === 'en'">
+                      {{CrnSection.CourseTitleEn  + " - "+ CrnSection.Crn}}
+                      <span    #SpanCourseNumber [innerHTML]="CrnSection.CourseNumber"> </span>
+                      <span  #SpanCourseSubject [innerHTML]="(CrnSection.CourseSubject)"></span>
+
+                      </span>
+
+                      </option>
+
+                      <label>{{CrnSection.Crn</label>
+                    </select>
+                    <div *ngIf="submitsearchError && searchErrors.crnSection.errors" class="invalid-feedback">
+                      <h4 *ngIf="searchErrors.crnSection.errors.required">{{'TRANS.validationReq'|translate}}</h4>
+                  </div>
+                  </div>
+                </div>
+
+
+
+
+
+
+
+
+
+
+              </div>
+
+              <div class="row justify-content-center my-3 ">
+
+                <div class="col-md-3 text-center">
+                  <button mdbWavesEffect type="submit" [disabled]="srchForm.invalid" class="w-50 btn-main px-4 py-2 rounded-pill shadow"  title="{{'TRANS.search'|translate}}">
+                    {{'TRANS.search'|translate}}
+
+                    <i class="fas fa-search"></i>
+                  </button>
+                </div>
+
+
+
+                </div>
+
+
+          </form>
+                <!-- {{srchForm.value|json}} -->
+
+        </div>
+
+
+            </div>
+
+            <hr class="shadow">
+            <div class="page-title ">
+              <h2 class="color-p    text-center">
+                <b><i class="fas fa-chalkboard-teacher"></i> {{'TRANS.facultyMembersDepartment'|translate}} </b>
+              </h2>
+            </div>
+
+
+      <!-- تحديد اعضاء هيئة تدريس الشعبة -->
+
+
+          <div class="row">
+
+      <!-- Material input -->
+
+      <!-- (ngSubmit)="submitFormFacultyMember(FacultyMemberId)" -->
+      <form class="example-form col-12 "  [formGroup]="FormFacultyMember">
+
+        <div class="row justify-content-center">
+
+
+
+
+          <div class="col-md-4 row ">
+            <div>
+              <b for="" class="color-p mx-3 my-1 d-block">{{'TRANS.ArticleConsultant'|translate}}     <span  class="text-danger">*</span> </b>
+
+            </div>
+            <div class=" col-md-12 text-right ">
+              <select class="form-control py-0 " (change)="onChange($event.target.value)" required title="{{'TRANS.ProfessorArticle'|translate}}"   formControlName="FacultyMemberId" [ngClass]="{ 'is-invalid': submitted && FacultyErrors.FacultyMemberId.errors }">
+                <option  value="" selected >{{'TRANS.ProfessorArticle'|translate}}</option>
+                <option  *ngFor="let FacultyMember of FacultyMembers" [value]="FacultyMember.Id">
+                  <span *ngIf="pageLang === 'ar'">
+                    {{FacultyMember.NameAr}}
+                  </span>
+                  <span *ngIf="pageLang === 'en'">
+                    {{FacultyMember.NameEn}}
+
+                    </span>
+
+
+
+
+                   </option>
+              </select>
+
+              <div *ngIf="submitted && FacultyErrors.FacultyMemberId.errors" class="invalid-feedback">
+                <h4 *ngIf="FacultyErrors.FacultyMemberId.errors.required">{{'TRANS.validationReq'|translate}}</h4>
+            </div>
+            </div>
+          </div>
+
+
+
+
+
+      <input type="hidden" formControlName="Crn" >
+      <input type="hidden" formControlName="TermCodes" >
+      <input type="hidden" formControlName="CourseSubject" >
+      <input type="hidden" formControlName="CourseNumber" >
+
+
+
+
+
+      <div class="col-md-2 botSerach">
+        <button mdbWavesEffect  (click)="submitFormFacultyMember()" [disabled]="FormFacultyMember.invalid"    class="w-75 btn-main px-4 py-2 rounded-pill shadow"   title="  {{ 'TRANS.Add' | translate }}"  >
+          {{ 'TRANS.Add' | translate }}
+        <i class="fas fa-user-plus"></i>
+        </button>
+      </div>
+      </div>
+
+
+      </form>
+      <!-- {{ FormFacultyMember.value | json }} -->
+
+            <div  class="table-responsive mr-3 content mt-3" >
+
+
+
+              <table   class="row-border hover table table-striped z-depth-1  text-center" >
+                <thead>
+                  <tr style="background-color:#E9E9E9 ;color: #653B8C;">
+                    <th width="2%">#</th>
+
+
+                    <th >   {{ 'TRANS.facultyMemberTHEmail' | translate }}</th>
+                    <th>{{ 'TRANS.ArticleConsultant' | translate }}</th>
+
+                    <th>  {{ 'TRANS.tablethActions' | translate }}</th>
+
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let facultyMemberEnrollment of facultyMemberEnrollments,index as i">
+                        <td>{{i+1}}</td>
+
+
+                        <td> {{facultyMemberEnrollment.UniversityEmail}}</td>
+
+                        <td *ngIf="pageLang === 'ar'">{{facultyMemberEnrollment.FacultyMemberNameAr}}</td>
+                        <td *ngIf="pageLang === 'en'">{{facultyMemberEnrollment.FacultyMemberNameEn}}</td>
+
+
+
+                        <td>
+
+                  <a title="{{ 'TRANS.Delete' | translate }}"><i class="far fa-trash-alt px-2 fa-2x text-danger"  (click)="DeletefacultyMemberEnrollment(facultyMemberEnrollment.Id)"  ></i></a>
+
+                        </td>
+
+
+                        </tr>
+                        </tbody>
+
+              </table>
+
+
+
+
+            </div>
+            </div>
+
+
+<hr>
+<!-- تحديد المقررات -->
+
+<div class="page-title ">
+  <h2 class="color-p    text-center">
+    <b><i class="far fa-calendar-alt"></i> {{'TRANS.Definedecisions'|translate}} </b>
+  </h2>
+</div>
+
+      <div class="row">
+
+
+        <div class="table-responsive mr-3 content" >
+
+
+  <a class="icon-add" title="{{ 'TRANS.Add' | translate }}" #modelLectureSchedule (click)="basicModal.show()"><i class="fas fa-plus fa-2x gree text-success"></i></a>
+
+
+  <table datatable [dtOptions]="dtOptions"  [dtTrigger]="dtTrigger"  class="row-border hover table table-striped z-depth-1  text-center" >
+
+        <thead>
+          <tr style="background-color:#E9E9E9 ;color: #653B8C;">
+            <th width="2%">#</th>
+
+            <th width="20%" >{{ 'TRANS.Today' | translate }}</th>
+
+            <th>{{ 'TRANS.Fromhour' | translate }}</th>
+            <th>{{ 'TRANS.tohour' | translate }}</th>
+            <th>{{ 'TRANS.ArticleConsultant' | translate }}</th>
+            <th>{{'TRANS.roomcode'|translate}}</th>
+            <th>{{ 'TRANS.Tabletype' | translate }}</th>
+            <th>{{ 'TRANS.Action' | translate }}</th>
+          </tr>
+        </thead>
+        <tbody>
+
+
+
+            <tr *ngFor="let element of elements,index as i">
+                <td >{{ i+1 }}</td>
+            <td >
+               <span *ngIf="element.Saturday"> {{ 'TRANS.Saturday' | translate }}</span>
+               <span *ngIf="element.Sunday"> {{ 'TRANS.Sunday' | translate }}</span>
+               <span *ngIf="element.Monday"> {{ 'TRANS.Monday' | translate }} </span>
+               <span *ngIf="element.Tuesday"> {{ 'TRANS.Tuesday' | translate }}</span>
+               <span *ngIf="element.Wensday"> {{ 'TRANS.Wednesday' | translate }}</span>
+               <span *ngIf="element.Thursday"> {{ 'TRANS.Thursday' | translate }}</span>
+            </td>
+
+
+            <td *ngIf="pageLang === 'ar'">{{element.StartTime  | convertFrom24To12FormatAr}}</td>
+            <td *ngIf="pageLang === 'en'">{{element.StartTime  | convertFrom24To12Format}}</td>
+
+            <td *ngIf="pageLang === 'ar'">{{element.EndTime  | convertFrom24To12FormatAr}}</td>
+            <td *ngIf="pageLang === 'en'">{{element.EndTime  | convertFrom24To12Format}}</td>
+
+
+
+
+            <td *ngIf="pageLang === 'ar'">{{element.FacultyMemberNameAr}}</td>
+            <td *ngIf="pageLang === 'en'">{{element.FacultyMemberNameEn}}</td>
+
+            <td>{{element.RoomCode}}</td>
+
+            <td *ngIf="pageLang === 'ar'">{{element.LectureType.NameAr}}</td>
+            <td *ngIf="pageLang === 'en'">{{element.LectureType.NameEn}}</td>
+
+
+            <td>
+
+              <span title="{{ 'TRANS.Edit' | translate }}" (click)="EditLectureSchedule(element.Id)">
+                <a  (click)="EditbasicModal.show()">  <i class="fas fa-edit fa-2x px-2 text-primary"></i>   </a>
+
+                </span>
+
+              <a title="{{ 'TRANS.Delete' | translate }}" (click)="DeleteLectureSchedule(element.Id)"><i class="far fa-trash-alt px-2 fa-2x text-danger" ></i></a>
+
+
+
+
+              <div mdbModal #EditbasicModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg " role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close pull-right" aria-label="Close" (click)="EditbasicModal.hide()">
+                        <span aria-hidden="true" class="text-danger"><i class="far fa-times-circle"></i></span>
+                      </button>
+                      <h3 class="modal-title text-center color-p w-100" id="myModalLabel">
+                        <i class="far fa-calendar-alt"></i> 
+                        {{'TRANS.Definedecisions'|translate}}
+                      </h3>
+
+
+                    </div>
+                    <div class="modal-body">
+                      <form class="example-form col-12 " (ngSubmit)="EditsubmitLectureSchedule(element)" [formGroup]="EDitFormLectureSchedule">
+              <div class="row">
+
+                <div class="col-md-6 mx-auto row rowInfo my-2">
+                  <div class="">
+                    <b for="" class="color-p mx-3 my-1 d-block"> {{'TRANS.ArticleConsultant'|translate}} <span  class="text-danger">*</span> </b>
+                  </div>
+                  <div class=" col-md-12 text-right ">
+                    <select class="form-control py-0 " required  formControlName="FacultyMemberIds" title="{{'TRANS.ArticleConsultant'|translate}}" [ngClass]="{ 'is-invalid': submitEditscheduleError && EditLectureScheduleErrors.FacultyMemberIds.errors }" >
+                       <option value="" selected >{{'TRANS.ProfessorArticle'|translate}}</option>
+                    <option *ngFor="let facultyMemberEnrollment of facultyMemberEnrollments" [value]="facultyMemberEnrollment.FacultyMemberId">
+                      {{facultyMemberEnrollment.FacultyMemberNameAr}}
+                    </option>
+                    </select>
+                    <div *ngIf="submitEditscheduleError && EditLectureScheduleErrors.FacultyMemberIds.errors" class="invalid-feedback">
+                      <h4 *ngIf="EditLectureScheduleErrors.FacultyMemberIds.errors.required">{{'TRANS.validationReq'|translate}}</h4>
+                  </div>
+                  </div>
+                </div>
+
+
+
+
+
+
+                <div class="col-md-6 mx-auto row rowInfo my-2">
+                  <div>
+                    <b for="" class="color-p mx-3 my-1 d-block">{{'TRANS.Tabletype'|translate}}  <span  class="text-danger">*</span></b>
+                  </div>
+                  <div class=" col-md-12 text-right ">
+                    <select class="form-control py-0 "  required formControlName="LectureTypeCodes" title="{{'TRANS.Tabletype'|translate}}" [ngClass]="{ 'is-invalid': submitEditscheduleError && EditLectureScheduleErrors.LectureTypeCodes.errors }" >
+                      <option value=""  >{{'TRANS.SelectTabletype'|translate}}</option>
+                        <option *ngFor="let lectureype of lectureypes" [value]="lectureype.Code">
+              {{lectureype.NameAr}}
+                       </option>
+                    </select>
+                    <div *ngIf="submitEditscheduleError && EditLectureScheduleErrors.LectureTypeCodes.errors" class="invalid-feedback">
+                      <h4 *ngIf="EditLectureScheduleErrors.LectureTypeCodes.errors.required">{{'TRANS.validationReq'|translate}}</h4>
+                  </div>
+                  </div>
+                </div>
+
+                <div class="col-md-6 mx-auto row rowInfo my-2">
+                  <div>
+                    <b for="" class="color-p mx-3 my-1 d-block">{{'TRANS.ScheduleType'|translate}}  <span  class="text-danger">*</span></b>
+                  </div>
+                  <div class=" col-md-12 text-right ">
+                    <select class="form-control py-0 "  required formControlName="ScheduleTypeCodes" title="{{'TRANS.ScheduleType'|translate}} "  [ngClass]="{ 'is-invalid': submitEditscheduleError && EditLectureScheduleErrors.ScheduleTypeCodes.errors }">
+                      <option value=""  >{{'TRANS.ScheduleTypeSelect'|translate}}</option>
+                        <option *ngFor="let ScheduleType of ScheduleTypes" [value]="ScheduleType.TypeCode">
+              {{ScheduleType.NameAr}}
+                       </option>
+                    </select>
+                    <div *ngIf="submitEditscheduleError && EditLectureScheduleErrors.ScheduleTypeCodes.errors" class="invalid-feedback">
+                      <h4 *ngIf="EditLectureScheduleErrors.ScheduleTypeCodes.errors.required">{{'TRANS.validationReq'|translate}}</h4>
+                  </div>
+                  </div>
+                </div>
+
+                <div class="col-md-6 mx-auto row rowInfo my-2">
+                  <div class="">
+                    <b for="" class="color-p mx-3 my-2 d-block">   {{'TRANS.roomcode'|translate}} <span  class="text-danger">*</span></b>
+                  </div>
+                  <div class=" col-md-12 text-right ">
+                    <input type="text" class="form-control py-0 " required formControlName="RoomCodes" title=" {{'TRANS.roomcode'|translate}}" placeholder=" {{'TRANS.roomcode'|translate}}"   [ngClass]="{ 'is-invalid': submitEditscheduleError && EditLectureScheduleErrors.RoomCodes.errors }">
+                    <div *ngIf="submitEditscheduleError && EditLectureScheduleErrors.RoomCodes.errors" class="invalid-feedback">
+                      <h4 *ngIf="EditLectureScheduleErrors.RoomCodes.errors.required">{{'TRANS.validationReq'|translate}}</h4>
+                  </div>
+                  </div>
+                </div>
+
+
+                <div class="col-md-6 mx-auto row rowInfo my-2">
+                  <div class="">
+                    <b for="" class="color-p mx-3 my-2 d-block">   {{'TRANS.Fromhour'|translate}} <span  class="text-danger">*</span></b>
+                  </div>
+                  <div class=" col-md-12 text-right ">
+                    <input type="time" class="form-control py-0 " required formControlName="StartTimes"  title="{{'TRANS.Fromhour'|translate}}"  [ngClass]="{ 'is-invalid': submitEditscheduleError && EditLectureScheduleErrors.StartTimes.errors }">
+                    <div *ngIf="submitEditscheduleError && EditLectureScheduleErrors.StartTimes.errors" class="invalid-feedback">
+                      <h4 *ngIf="EditLectureScheduleErrors.StartTimes.errors.required">{{'TRANS.validationReq'|translate}}</h4>
+                  </div>
+                  </div>
+                </div>
+
+
+
+                <div class="col-md-6 mx-auto row rowInfo my-2">
+                  <div class="">
+                    <b for="" class="color-p mx-3 my-2 d-block">   {{'TRANS.tohour'|translate}} <span  class="text-danger">*</span></b>
+                  </div>
+                  <div class=" col-md-12 text-right ">
+                    <input type="time" class="form-control py-0 " required formControlName="EndTimes" title=" {{'TRANS.tohour'|translate}}"   [ngClass]="{ 'is-invalid': submitEditscheduleError && EditLectureScheduleErrors.EndTimes.errors }">
+                    <div *ngIf="submitEditscheduleError && EditLectureScheduleErrors.EndTimes.errors" class="invalid-feedback">
+                      <h4 *ngIf="EditLectureScheduleErrors.EndTimes.errors.required">{{'TRANS.validationReq'|translate}}</h4>
+                  </div>
+                  </div>
+                </div>
+
+
+
+
+
+
+
+              <br>
+              <br>
+
+
+                <div class="col-md-12 pr-0 mb-4">
+                  <fieldset>
+                    <legend class="text-center color-p  py-3 ">
+                       {{'TRANS.days'|translate}}
+                       </legend>
+
+              <div class="row">
+              <div class="col-md-2 p-0 m-0 text-center">
+              <div class="custom-control custom-checkbox custom-control-inline ">
+                <input type="checkbox"  class="custom-control-input" name="Saturdays" formControlName="Saturdays" id="Saturdays">
+                <label class="custom-control-label" for="Saturday">{{ 'TRANS.Saturday' | translate }}</label>
+              </div>
+              </div>
+
+              <div class="col-md-2 p-0 m-0 text-center">
+
+              <div class="custom-control custom-checkbox custom-control-inline ">
+                <input type="checkbox"  class="custom-control-input" formControlName="Sundays" id="Sundays">
+                <label class="custom-control-label" for="Sunday">{{ 'TRANS.Sunday' | translate }}</label>
+              </div>
+              </div>
+              <div class="col-md-2 p-0 m-0 text-center">
+
+              <div class="custom-control custom-checkbox custom-control-inline  ">
+                <input type="checkbox" class="custom-control-input" formControlName="Mondays" id="Mondays" >
+                <label class="custom-control-label" for="Monday">{{ 'TRANS.Monday' | translate }}</label>
+              </div>
+              </div>
+              <div class="col-md-2 p-0 m-0 text-center">
+
+              <div class="custom-control custom-checkbox custom-control-inline  ">
+                <input type="checkbox" class="custom-control-input" id="Tuesdays" formControlName="Tuesdays">
+                <label class="custom-control-label" for="Tuesday">{{ 'TRANS.Tuesday' | translate }}</label>
+              </div>
+              </div>
+              <div class="col-md-2 p-0 m-0 text-center">
+
+              <div class="custom-control custom-checkbox custom-control-inline  ">
+                <input type="checkbox" class="custom-control-input" id="Wensdays" formControlName="Wensdays">
+                <label class="custom-control-label" for="Wensday">{{ 'TRANS.Wednesday' | translate }}</label>
+              </div>
+              </div>
+              <div class="col-md-2 p-0 m-0 text-center">
+
+              <div class="custom-control custom-checkbox custom-control-inline  ">
+                <input type="checkbox" class="custom-control-input" id="Thursdays" formControlName="Thursdays">
+                <label class="custom-control-label" for="Thursday">{{ 'TRANS.Thursday' | translate }}</label>
+              </div>
+              </div>
+
+              </div>
+              </fieldset>
+              </div>
+                    </div>
+                    <input type="hidden" formControlName="Crns" >
+                    <input type="hidden" formControlName="TermCodes" >
+
+
+                    <div class="text-center modal-footer w-100">
+
+              
+
+                      <button type="submit" mdbBtn   [disabled]="EDitFormLectureSchedule.invalid" class="relative save btn btn-main px-5 py-2 mx-auto waves-light shadow"  mdbWavesEffect  (click)="basicModal.hide()">
+
+                        {{ 'TRANS.save' | translate }}
+                        <i class="fas fa-search pr-2 d-none"></i>
+                      </button>
+                      <button type="button" mdbBtn  class="relative px-4 py-2 text-light low rounded d-none" aria-label="Close" (click)="basicModal.hide()" mdbWavesEffect>خروج</button>
+
+                    </div>
+                        </form>
+                  </div>
+
+
+
+
+
+
+                  </div>
+                </div>
+              </div>
+
+
+
+
+            </td>
+          </tr>
+
+
+
+
+
+        </tbody>
+
+      </table>
+
+
+        </div>
+
+        </div>
+
+
+
+
+</div>
+
+
+
+
+
+
+
+`
+
+
+<div mdbModal #basicModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg " role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close pull-right" aria-label="Close" #closeModal (click)="basicModal.hide()">
+          <span aria-hidden="true"><i class="far fa-times-circle"></i></span>
+        </button>
+        <h3 class="modal-title text-center color-p w-100" id="myModalLabel">
+         <i class="far fa-calendar-alt"></i> 
+          {{'TRANS.Definedecisions'|translate}}
+        </h3>
+
+
+      </div>
+      <div class="modal-body">
+        <form class="example-form col-12 " [formGroup]="LectureSchedule">
+<div class="row">
+
+  <div class="col-md-6 mx-auto row rowInfo my-2">
+    <div class="">
+      <b for="" class="color-p mx-3 my-1 d-block"> {{'TRANS.ArticleConsultant'|translate}} <span  class="text-danger">*</span> </b>
+    </div>
+    <div class=" col-md-12 text-right ">
+      <select class="form-control py-0 " required  formControlName="FacultyMemberId" title="{{'TRANS.ArticleConsultant'|translate}}" [ngClass]="{ 'is-invalid': submitscheduleError && LectureScheduleErrors.FacultyMemberId.errors }">
+         <option value="" selected >{{'TRANS.ProfessorArticle'|translate}}</option>
+      <option *ngFor="let facultyMemberEnrollment of facultyMemberEnrollments" [value]="facultyMemberEnrollment.FacultyMemberId">
+        {{facultyMemberEnrollment.FacultyMemberNameAr}}
+      </option>
+      </select>
+      <div *ngIf="submitscheduleError && LectureScheduleErrors.FacultyMemberId.errors" class="invalid-feedback">
+        <h4 *ngIf="LectureScheduleErrors.FacultyMemberId.errors.required">{{'TRANS.validationReq'|translate}}</h4>
+    </div>
+  </div>
+  </div>
+
+
+
+
+
+
+  <div class="col-md-6 mx-auto row rowInfo my-2">
+    <div>
+      <b for="" class="color-p mx-3 my-1 d-block">{{'TRANS.Tabletype'|translate}} <span  class="text-danger">*</span> </b>
+    </div>
+    <div class=" col-md-12 text-right ">
+      <select class="form-control py-0 "  required formControlName="LectureTypeCode" title="{{'TRANS.Tabletype'|translate}} "  [ngClass]="{ 'is-invalid': submitscheduleError && LectureScheduleErrors.LectureTypeCode.errors }">
+        <option value="" selected >{{'TRANS.SelectTabletype'|translate}}</option>
+          <option *ngFor="let lectureype of lectureypes" [value]="lectureype.Code">
+{{lectureype.NameAr}}
+         </option>
+      </select>
+      <div *ngIf="submitscheduleError && LectureScheduleErrors.LectureTypeCode.errors" class="invalid-feedback">
+        <h4 *ngIf="LectureScheduleErrors.LectureTypeCode.errors.required">{{'TRANS.validationReq'|translate}}</h4>
+    </div>
+    </div>
+  </div>
+
+  <div class="col-md-6 mx-auto row rowInfo my-2">
+    <div>
+      <b for="" class="color-p mx-3 my-1 d-block">{{'TRANS.ScheduleType'|translate}}  <span  class="text-danger">*</span></b>
+    </div>
+    <div class=" col-md-12 text-right ">
+      <select class="form-control py-0 "  required formControlName="ScheduleTypeCode" title="{{'TRANS.ScheduleType'|translate}} " [ngClass]="{ 'is-invalid': submitscheduleError && LectureScheduleErrors.ScheduleTypeCode.errors }">
+        <option value=""  >{{'TRANS.ScheduleTypeSelect'|translate}}</option>
+          <option *ngFor="let ScheduleType of ScheduleTypes" [value]="ScheduleType.TypeCode">
+{{ScheduleType.NameAr}}
+         </option>
+      </select>
+
+      <div *ngIf="submitscheduleError && LectureScheduleErrors.ScheduleTypeCode.errors" class="invalid-feedback">
+        <h4 *ngIf="LectureScheduleErrors.ScheduleTypeCode.errors.required">{{'TRANS.validationReq'|translate}}</h4>
+    </div>
+
+    </div>
+  </div>
+
+  <div class="col-md-6 mx-auto row rowInfo my-2">
+    <div class="">
+      <b for="" class="color-p mx-3 my-2 d-block">   {{'TRANS.roomcode'|translate}} <span  class="text-danger">*</span></b>
+    </div>
+    <div class=" col-md-12 text-right ">
+      <input type="text" class="form-control py-0 " placeholder=" {{'TRANS.roomcode'|translate}}" required formControlName="RoomCode" title="{{'TRANS.roomcode'|translate}}" [ngClass]="{ 'is-invalid': submitscheduleError && LectureScheduleErrors.RoomCode.errors }" >
+      <div *ngIf="submitscheduleError && LectureScheduleErrors.RoomCode.errors" class="invalid-feedback">
+        <h4 *ngIf="LectureScheduleErrors.RoomCode.errors.required">{{'TRANS.validationReq'|translate}}</h4>
+    </div>
+    </div>
+
+  </div>
+
+
+  <div class="col-md-6 mx-auto row rowInfo my-2">
+    <div class="">
+      <b for="" class="color-p mx-3 my-2 d-block">   {{'TRANS.Fromhour'|translate}} <span  class="text-danger">*</span> </b>
+    </div>
+    <div class=" col-md-12 text-right ">
+      <input type="time" class="form-control py-0 " required formControlName="StartTime"  title="{{'TRANS.Fromhour'|translate}}" [ngClass]="{ 'is-invalid': submitscheduleError && LectureScheduleErrors.StartTime.errors }" >
+      <div *ngIf="submitscheduleError && LectureScheduleErrors.StartTime.errors" class="invalid-feedback">
+        <h4 *ngIf="LectureScheduleErrors.StartTime.errors.required">{{'TRANS.validationReq'|translate}}</h4>
+    </div>
+    </div>
+
+  </div>
+
+
+
+  <div class="col-md-6 mx-auto row rowInfo my-2">
+    <div class="">
+      <b for="" class="color-p mx-3 my-2 d-block">   {{'TRANS.tohour'|translate}}  <span  class="text-danger">*</span></b>
+    </div>
+    <div class=" col-md-12 text-right ">
+      <input type="time" class="form-control py-0 " required formControlName="EndTime"  title="{{'TRANS.tohour'|translate}}" [ngClass]="{ 'is-invalid': submitscheduleError && LectureScheduleErrors.EndTime.errors }">
+      <div *ngIf="submitscheduleError && LectureScheduleErrors.EndTime.errors" class="invalid-feedback">
+        <h4 *ngIf="LectureScheduleErrors.EndTime.errors.required">{{'TRANS.validationReq'|translate}}</h4>
+    </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+<br>
+<br>
+
+
+  <div class="col-md-12 pr-0 mb-4">
+    <fieldset>
+      <legend class="text-center color-p  py-3 ">
+         {{'TRANS.days'|translate}}
+         </legend>
+
+<div class="row" >
+<div class="col-md-2 p-0 m-0 text-center">
+<div class="custom-control custom-checkbox custom-control-inline ">
+  <input type="checkbox" class="custom-control-input" name="Saturday" formControlName="Saturday" id="Saturday">
+  <label class="custom-control-label" for="Saturday">{{ 'TRANS.Saturday' | translate }}</label>
+</div>
+</div>
+
+<div class="col-md-2 p-0 m-0 text-center">
+
+<div class="custom-control custom-checkbox custom-control-inline ">
+  <input type="checkbox" class="custom-control-input" formControlName="Sunday" id="Sunday">
+  <label class="custom-control-label" for="Sunday">{{ 'TRANS.Sunday' | translate }}</label>
+</div>
+</div>
+<div class="col-md-2 p-0 m-0 text-center">
+
+<div class="custom-control custom-checkbox custom-control-inline  ">
+  <input type="checkbox" class="custom-control-input" formControlName="Monday" id="Monday" >
+  <label class="custom-control-label" for="Monday">{{ 'TRANS.Monday' | translate }}</label>
+</div>
+</div>
+<div class="col-md-2 p-0 m-0 text-center">
+
+<div class="custom-control custom-checkbox custom-control-inline  ">
+  <input type="checkbox" class="custom-control-input" id="Tuesday" formControlName="Tuesday">
+  <label class="custom-control-label" for="Tuesday">{{ 'TRANS.Tuesday' | translate }}</label>
+</div>
+</div>
+<div class="col-md-2 p-0 m-0 text-center">
+
+<div class="custom-control custom-checkbox custom-control-inline  ">
+  <input type="checkbox" class="custom-control-input" id="Wensday" formControlName="Wensday">
+  <label class="custom-control-label" for="Wensday">{{ 'TRANS.Wednesday' | translate }}</label>
+</div>
+</div>
+<div class="col-md-2 p-0 m-0 text-center">
+
+<div class="custom-control custom-checkbox custom-control-inline  ">
+  <input type="checkbox" class="custom-control-input" id="Thursday" formControlName="Thursday">
+  <label class="custom-control-label" for="Thursday">{{ 'TRANS.Thursday' | translate }}</label>
+</div>
+</div>
+
+</div>
+</fieldset>
+</div>
+      </div>
+      <input type="hidden" formControlName="Crn" >
+      <input type="hidden" formControlName="TermCode" >
+
+
+      <div class="text-center modal-footer w-100 d-table">
+
+
+
+        <button type="submit"  (click)="submitLectureSchedule()" [disabled]="LectureSchedule.invalid"  mdbBtn  class="relative save btn btn-main px-5 py-2 mx-auto waves-light mx-3 shadow" mdbWavesEffect>
+
+          {{ 'TRANS.save' | translate }}
+
+        </button>
+
+        <button type="button"  (click)="onClear()"  mdbBtn  class="d-none relative save btn btn-main px-5 py-2 mx-auto waves-light " mdbWavesEffect>
+
+          Clear
+          <i class="fas fa-search pr-2 "></i>
+        </button>
+
+
+        <button type="button" mdbBtn  class="relative px-4 py-2 text-light low rounded d-none " aria-label="Close" (click)="basicModal.hide()" mdbWavesEffect>خروج</button>
+
+      </div>
+          </form>
+    </div>
+
+
+
+
+
+
+    </div>
+  </div>
+</div>
+
+

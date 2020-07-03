@@ -1,0 +1,56 @@
+
+  <form [formGroup]="srchForm" (ngSubmit)="submitSrch()">
+    <div class="row my-4">
+      <div class="col-md-3 pr-0">
+        <div class="form-group">
+          <select
+            class="form-control"
+            formControlName="college"
+            (change)="onChangeCollege($event.target.value)"
+          >
+            <option value="" selected>{{'TRANS.selectColleges'|translate}}</option>
+            <option
+              *ngFor="let college of colleges"
+              [value]="college.CollegeCode"
+            >
+              {{ college.NameAr }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div class="col-md-3 pr-0">
+        <div class="form-group">
+          <select class="form-control" formControlName="department">
+            <option value="" selected>{{'TRANS.selectDepartments'|translate}}</option>
+            <option
+              *ngFor="let department of departments"
+              [value]="department.DepartmentCode"
+            >
+              {{ department.NameAr }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div class="col-md-2">
+        <button type="submit" class="btn w-100 btn-main px-4" [disabled]="srchForm.invalid">
+
+          {{ 'TRANS.search' | translate }}
+          <i class="fas fa-search pr-2"></i>
+        </button>
+      </div>
+    </div>
+  </form>
+
+  <p>{{srchForm.value | json}}</p>
+
+
+<ahmed-app [headElements]="headElements" [ajaxFunc]="ajaxFunc">
+  <tr *ngFor="let element of elements">
+    <td>{{ element.MajorCode }}</td>
+    <td>{{ element.Department.College.NameAr }}</td>
+    <td>{{ element.Department.NameAr }}</td>
+    <td>{{ element.NameAr }}</td>
+  </tr>
+</ahmed-app>

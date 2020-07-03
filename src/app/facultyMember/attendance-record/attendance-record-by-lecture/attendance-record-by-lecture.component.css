@@ -1,0 +1,245 @@
+
+    .switch {
+        position: relative;
+        display: inline-block;
+        width: 60px;
+        height: 34px;
+      }
+
+      .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+      }
+
+      .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        -webkit-transition: .4s;
+        transition: .4s;
+      }
+
+      .slider:before {
+        position: absolute;
+        content: "";
+        height: 26px;
+        width: 26px;
+        left: 4px;
+        bottom: 4px;
+        background-color: white;
+        -webkit-transition: .4s;
+        transition: .4s;
+      }
+
+      input:checked + .slider {
+        background-color: #2196F3;
+      }
+
+      input:focus + .slider {
+        box-shadow: 0 0 1px #2196F3;
+      }
+
+      input:checked + .slider:before {
+        -webkit-transform: translateX(26px);
+        -ms-transform: translateX(26px);
+        transform: translateX(26px);
+      }
+
+      /* Rounded sliders */
+      .slider.round {
+        border-radius: 34px;
+      }
+
+      .slider.round:before {
+        border-radius: 50%;
+      }
+      .invalid-feedback{
+        color: red;
+        font-size: 11px;
+        display: block;
+      }
+.input-style{
+    border: 1px solid #513061;
+    border-radius: 10px;
+    color: var(--main-color);
+    font-size: 18px;
+}
+#allowInput{
+  /* width: 12%; */
+  position: relative;
+    right: -60px;
+}
+
+.searchinput-style{
+    border: 1px solid #513061;
+    border-radius: 10px;
+    color: var(--main-color);
+    font-weight: bold;
+    font-size: 16px;
+}
+.srch-icon{
+    position: absolute;
+    right: 15px;
+    font-size: 24px;
+    right: 10p;
+    top: 9px;
+
+}
+.input-style::placeholder{
+    color: var(--main-color);
+    opacity: 0.6;
+}
+.manage-statusbar{
+border-top: 1px solid #707070;
+padding: 10px 0;
+/* }
+.row {
+  overflow-y: hidden;
+  overflow-x: hidden; */
+}
+.dropdown-menu {
+  left: 10px !important;
+  right: auto !important;
+  padding: 0 !important;
+  top: -15px !important;
+}
+.manage-card{
+    border-radius: 15px;
+    padding: 12px;
+}
+.cardtitle{
+    font-weight: bold;
+    font-size: 19px;
+    height: 58px;
+    width: 100%;
+    overflow: hidden;
+  }
+  .indexNumber{
+    position: absolute;
+    border-radius: 15px;
+  }
+  .badge {
+    font-size: 100% !important;
+
+}
+.cardnumber{
+    color: #F3F3F3;
+    font-size: 20px;
+}
+.modal-content:not(.card-image) .close {
+  top: 0px;
+}
+.cardmenu{
+    font-size: 23px;
+    position: absolute;
+    z-index: 999;
+    left: -13px;
+    top: 5px;
+
+}
+.cardicon{
+    font-size: 54px;
+}
+.clearfix{
+  clear: both;
+  width: 100%;
+}
+.cursor-pointer{
+    cursor: pointer;
+}
+.card-bggreen{
+    background-color: #23cd9e;
+    color: #23cd9e;
+}
+.card-textgreen{
+    color: #23cd9e;
+
+}
+.card-bgred{
+    background-color: #fc5e5e;
+
+}
+.card-textred{
+    color: #fc5e5e;
+}
+.Medical{
+    background-color: #167888;
+
+}
+.Medicaltext{
+    color: #167888;
+
+}
+.Permission{
+    background-color: #ffbb48;
+
+}
+.Permissiontext{
+    color: #ffbb48;
+}
+.Late{
+    background-color: #00b9ce;
+
+}
+.Latetext{
+    color: #00b9ce;
+}
+.dropdown-menu li:nth-child(1), .dropdown-menu li:nth-child(2){
+  display: none;
+}
+.main-btn{
+color: white;
+border: none;
+border-radius: 20px;
+text-align: center;
+padding: 5px 10px;
+font-weight: bold;
+}
+.dropdown-item {
+  padding: 5px !important;
+  text-align: center !important;
+  border-bottom: 1px solid #f6f6f6 !important;
+  cursor: pointer;
+}
+.dropdown-toggle::after {
+  display: none !important;
+  background-color: #fff !important;
+}
+.dropup, .dropright, .dropdown, .dropleft {
+  right: -25px !important;
+}
+progress {
+  border-radius: 10px;
+  width: 100%;
+  height: 15px;
+}
+progress::-webkit-progress-bar {
+ background-color: #dadada;
+  border-radius: 5px;
+}
+progress::-webkit-progress-value {
+   border-radius: 5px;
+   background-color: #653b8c;
+}
+.s11{
+  background-color: #22a783;
+}
+.s22{
+  background-color: #e94545;
+}
+.s33{
+  background-color: #f6af37;
+}
+.s44{
+  background-color: #03a5b8;
+}
+.s55{
+  background-color: #106674;
+}
+
+

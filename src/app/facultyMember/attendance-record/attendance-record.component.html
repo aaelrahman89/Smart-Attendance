@@ -1,0 +1,153 @@
+<div class="container-fluid mb-4">
+
+        <page-title> {{ 'TRANS.AttendanceAbsentregistrationtitle' | translate }} </page-title>
+
+        <!-- Search Start -->
+        <form [formGroup]="srchForm">
+       <div class="srchform mb-3">
+         <div class="row">
+
+
+            <div class="col-md-5 p-1">
+              <div class="form-group row">
+                <b class="col-md-2 color-p d-block text-right p-0 mt-1"> {{ 'TRANS.CourseSubject' | translate }} </b>
+                <div class="col-md-10">
+                  <select class="form-control" formControlName="sections" (change)="onChangeSection($event.target.value)">
+                    <option selected disabled [value]="null">{{ 'TRANS.CourseSubject' | translate }}</option>
+                    <option *ngFor="let section of sections" [ngValue]="section">
+                     <span *ngIf="pageLang === 'ar'">{{section.CourseTitleAr}} - {{section.Crn}}</span>
+                     <span *ngIf="pageLang === 'en'">{{section.CourseTitleEn}} - {{section.Crn}}</span>
+                    </option>
+                  </select>
+                </div>
+              </div>
+             </div>
+
+             <div class="col-md-1"></div>
+
+
+           <div class="col-md-5 p-1">
+            <div class="form-group row">
+              <b class="col-md-2 color-p d-block text-right p-0 mt-1"> {{ 'TRANS.lecTime' | translate }} </b>
+              <div class="col-md-10">
+                <select class="form-control" formControlName="lectures">
+                  <option selected disabled [value]="null">{{ 'TRANS.lecTime' | translate }}</option>
+                  <option *ngFor="let lecture of lectures" [ngValue]="lecture">
+                   <span *ngIf="pageLang === 'ar'">{{lecture.DayNameAr}} : {{lecture.StartTime | convertFrom24To12FormatAr}} الى {{lecture.EndTime | convertFrom24To12FormatAr}}</span>
+                   <span *ngIf="pageLang === 'en'">{{lecture.DayNameEn}} : {{lecture.StartTime | convertFrom24To12Format}} to {{lecture.EndTime | convertFrom24To12Format}}</span>
+                   </option>
+                </select>
+              </div>
+            </div>
+           </div>
+
+           <div class="clearfix"></div>
+
+           <div class="col-md-5 p-1 mt-3">
+            <div class="form-group row">
+              <b class="col-md-2 color-p d-block text-right p-0 mt-1"> {{ 'TRANS.lectureLocation' | translate }} </b>
+              <div class="col-md-10">
+               <select class="form-control" formControlName="location">
+                 <option disabled [value]="null">{{ 'TRANS.lectureLocation' | translate }}</option>
+                 <option value="1" [selected]="true">{{ 'TRANS.lectureLocationInside' | translate }}</option>
+                 <option value="2">{{ 'TRANS.lectureLocationOnline' | translate }}</option>
+               </select>
+              </div>
+            </div>
+           </div>
+
+           <div class="col-md-1"></div>
+
+           <div class="col-md-5 p-1 mt-3">
+            <div class="form-group row">
+              <b class="col-md-2 color-p d-block text-right p-0 mt-1"> {{ 'TRANS.lecDate' | translate }} </b>
+              <div class="col-md-10">
+                <!-- <mat-form-field color="accent">
+                  <input matInput class="form-control" [matDatepicker]="picker2" [startAt]="date" [max]="date | date:'yyyy-MM-dd'" formControlName="date">
+                  <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                  <mat-datepicker #picker2 color="primary"></mat-datepicker>
+                </mat-form-field> -->
+                <!-- <dp-date-picker formControlName="date"></dp-date-picker> -->
+               <input type="date" class="form-control text-right" [placeholder]="'TRANS.lecDate' | translate" formControlName="date" [max]="date | date:'yyyy-MM-dd'" onkeydown="return false">
+              </div>
+            </div>
+           </div>
+
+           <div class="clearfix"></div>
+
+           <div class="col-md-2 mt-3 text-right">
+              <mdb-checkbox [default]="true" formControlName="UseCodeGenerator"> <b class="color-p d-block text-right mr-1">{{ 'TRANS.registerIn' | translate }}</b></mdb-checkbox>
+           </div>
+
+  <div id="allowInput" class="mt-1">
+   <div class="row">
+    <div class="form-group row mt-2">
+      <div class="col-md-9">
+        <input id="form1" mdbInput type="number" class="form-control" formControlName="ExpirationSeconds" maxlength="3" minlength="1" min="1" max="900">
+        <div *ngIf="srchForm.get('ExpirationSeconds').dirty && srchForm.get('ExpirationSeconds').invalid">
+          <h6 class="invalid-feedback text-right" *ngIf="srchForm.get('ExpirationSeconds').errors.max || srchForm.get('ExpirationSeconds').errors.maxlength || srchForm.get('ExpirationSeconds').errors.min || srchForm.get('ExpirationSeconds').errors.minlength">{{ 'TRANS.secondsValidation' | translate }}</h6>
+        </div>
+      </div>
+      <div class="col-md-3 mt-2 p-0">
+        <b class="color-p d-block text-right mt-1"> {{'TRANS.seconds' | translate}} </b>
+      </div>
+
+    </div>
+
+
+       <!-- <input type="text" class="form-control" formControlName="ExpirationSeconds" maxlength="3" minlength="1" min="1" max="900" [placeholder]="'TRANS.seconds' | translate"> -->
+
+     <!-- <div class="col-md-2 col-6 p-1 mt-2">
+       <button type="button" class="btn btn-info btn-sm mt-1 startbutton" (click)="searchSubmit()">تسجيل</button>
+     </div> -->
+   </div>
+  </div>
+
+  <div class="col-md-12 text-center mb-4 mt-5">
+    <button type="button" class="btn-main px-4 py-2 rounded-pill" (click)="searchSubmit()" [disabled]="srchForm.invalid">
+      {{ 'TRANS.registerStudents' | translate }}
+    </button>
+  </div>
+         </div>
+       </div>
+
+       <!-- <p>{{ srchForm.value | json }}</p> -->
+
+        </form>
+        <!-- Search End -->
+
+
+       <!-- Cards Start -->
+        <attendance-record-cards [students]="students" [attendanceStatus]="attendanceStatus" [StudentsCount]="StudentsCount" [showCards]="showCards" [searchTerm]="searchTerm" [showStatusBar]="showStatusBar"></attendance-record-cards>
+        <!-- Cards End -->
+
+
+
+         <!-- Timer Start -->
+         <div class="timer" id="timer" *ngIf="showTimer">
+          <div id="overlay"></div>
+          <div class="timer-container">
+            <div class="timer-main">
+              <span>{{ mobCode }}</span>
+              <div class="timercircle">
+
+              </div>
+            </div>
+
+             <div class="timercount">
+              <h6 class="badge badge-warning">{{progVal}}</h6>
+              <progress [max]="progMax" [value]="progVal"></progress>
+
+             </div>
+          </div>
+        </div>
+        <!-- Timer End -->
+
+      </div>
+
+      <div>
+
+      </div>
+
+
+

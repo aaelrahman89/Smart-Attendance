@@ -1,0 +1,31 @@
+
+*:not(i){
+    font-family: cairo !important;
+}
+
+.icon-circle{
+    width: 150px;
+    height: 150px;
+    background: linear-gradient(to right, #0f6d84, #70358d);
+    border-radius: 50%;
+    font-size: 4em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.icon-link{
+    background-color: #653b8c;;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+}
+.dash-title{
+    font-weight: bold;
+    color: #653b8c;
+}
+.act-no{
+    font-size: 1.2em;
+}
+.dash-info a{
+    font-size: 1.1em;
+}
