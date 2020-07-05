@@ -1,14 +1,16 @@
 import { Injectable, Injector } from '@angular/core';
-import { HttpInterceptor, HttpErrorResponse, HttpEvent } from '@angular/common/http'
+import { HttpInterceptor, HttpErrorResponse, HttpEvent, HttpResponse } from '@angular/common/http'
 import { AuthService } from './auth.service';
 import { errorHandling } from '../globals';
 import { Router } from '@angular/router';
-import { catchError, finalize } from 'rxjs/operators';
+import { catchError, finalize, tap } from 'rxjs/operators';
 import { Observable, throwError } from 'rxjs';
+import { ModalService } from '../modal-service/modal-service.service';
+import { MyModalComponent } from '../my-modal.component';
 @Injectable()
 export class TokenInterceptorService implements HttpInterceptor {
 
-  constructor(private injector: Injector, public Router: Router ){}
+  constructor(private injector: Injector, public Router: Router, private modalService: ModalService){}
   intercept(req, next) {
     let authService = this.injector.get(AuthService)
     let tokenizedReq = req.clone(
@@ -17,13 +19,28 @@ export class TokenInterceptorService implements HttpInterceptor {
       }
     )
     return next.handle(tokenizedReq).pipe(
+      tap(res => {
+        if(res instanceof HttpResponse){
+          if(res.body && res.body.Success){
+            this.modalService.open(MyModalComponent, {icon: 'fa-check text-success', message: res.body.Message });
+          }
+        }
+
+      }),
       catchError(err => {
         if (err instanceof HttpErrorResponse) {
 
           if (err.status === 401 || err.status === 403) {
-              // Invalidate user session and redirect to login/home
               localStorage.clear();
               this.Router.navigate(['/login']);
+          }
+
+          if(err.status === 400 || err.status === 409){
+            this.modalService.open(MyModalComponent, {icon: 'fa-times text-danger', message: err.error.Message });
+          }
+
+          if(err.status === 404){
+            this.Router.navigate(['404']);
           }
 
           // return the error back to the caller

@@ -1,24 +1,44 @@
-<div class="container-fluid px-3">
-
-    <page-title> {{'TRANS.TaskUnderProcedure'|translate}} </page-title>
+<div class="container-fluid px-1">
 
 
-<div class="row mb-2">
-    <div class="col-md-6 d-flex ">
-        <h4 class="section-header py-3 d-inline-block my-2 shadow" >{{'TRANS.Applicationdata'|translate}}
-        </h4>
+
+
+
+    <div class="d-flex justify-content-center color-p h3 py-3">
+      <i class="fas fa-chalkboard-teacher"></i> {{'TRANS.TaskUnderProcedure'|translate}}
     </div>
 
+    <hr class="shadow">
 
-
+<div class="d-flex justify-content-center color-p h3">
+  <i class="fas fa-chalkboard-teacher"></i> {{'TRANS.Applicationdata'|translate}}
 </div>
 
 
-<div class="row">
-    <div class="control-group form-group col-md-6 d-flex">
+<div class="d-flex justify-content-end">
+
+  <span class="icon-details-span shadow">
+    <button class="iconDetails" (click)="infoModal.show()" mdbPopover="{{'TRANS.OrderDetails'|translate}}"  placement="top"  mdbWavesEffect triggers="hover">
+        <i class="fas fa-info "></i>
+    </button>
+</span>
+<span class="icon-details-span shadow">
+
+    <button class="iconDetails"  (click)="DetailscModal.show()"  mdbPopover="{{'TRANS.RecordOrder'|translate}}"  placement="top"  mdbWavesEffect triggers="hover">
+        <i class="far fa-list-alt"></i>
+    </button>
+</span>
+ </div>
+
+
+
+
+
+<div class="row h5 font-weight-bold">
+    <div class="control-group form-group col-md-6 d-flex font-weight-bold">
         <div class="controls">
-             <label class="mx-3 color-p"><b>  {{'TRANS.OrderNumber'|translate}}</b></label>
-            <span >{{TaskDetails.RequestNumber}}</span>
+             <label class="mx-3 color-p "><b>  {{'TRANS.OrderNumber'|translate}}</b></label>
+            <span>{{TaskDetails.RequestNumber}}</span>
         </div>
     </div>
     <div class="control-group form-group col-md-6 d-flex">
@@ -32,7 +52,7 @@
 
 </div>
 
-<div class="row ">
+<div class="row h5 font-weight-bold">
 
     <div class="control-group form-group col-md-6 d-flex">
         <div class="controls">
@@ -43,7 +63,7 @@
     <div class="control-group form-group col-md-6 d-flex">
         <div class="controls">
 
-            <label class="mx-3 color-p"><b> </b>{{'TRANS.collegesthCollegeName'|translate}}</label>
+            <label class="mx-3 color-p"><b> {{'TRANS.collegesthCollegeName'|translate}} </b></label>
             <span >{{TaskDetails.CollegeName}} </span>
         </div>
     </div>
@@ -54,7 +74,7 @@
 
 
 
-<div class="row">
+<div class="row h5 font-weight-bold">
     <div class="control-group form-group col-md-6 d-flex">
         <div class="controls">
 
@@ -62,6 +82,7 @@
             <span >{{TaskDetails.CourseName}}</span>
         </div>
     </div>
+
 
     <div class="control-group form-group col-md-6 d-flex">
         <div class="controls">
@@ -72,33 +93,51 @@
 </div>
 
 
+<div class="row h5 font-weight-bold">
 
-<div class="row">
-    <div class="col-md-6 d-flex">
-        <h4 class="section-header py-3 d-inline-block my-2 shadow" > {{'TRANS.thedecision'|translate}}
-        </h4>
+    <div class="control-group form-group col-md-6 d-flex">
+        <div class="controls">
+             <label class="mx-3 color-p"><b>   عرض الملف</b></label>
+
+             <a href="{{TaskDetails.FileURL}}"  target="_blank" download="">عرض الملف<i class="far fa-file-image c1 px-2"></i></a>
+            </div>
     </div>
-
 </div>
 
-<form [formGroup]="decisionForm" (ngSubmit)="submit()">
+
+<div class="page-title ">
+  <h2 class="color-p    text-center">
+    <b><i class="fas fa-chalkboard-teacher"></i> {{'TRANS.thedecision'|translate}} </b>
+  </h2>
+</div>
+
+<form [formGroup]="decisionForm">
 <div class="d-flex justify-content-center">
     <div class="custom-control custom-radio custom-control-inline ">
-        <input type="radio" class="custom-control-input shadow" (change)="onChangeApproved($event)"  required id="IsCompleted1" value="Approved" name="Decision" formControlName="Decision"   mdbInput [attr.enabled]="TaskDetails.TaskStatus === 'Pending'? true : null" [attr.disabled]="TaskDetails.TaskStatus === 'Rejected' ||  TaskDetails.TaskStatus === 'Approved'? true : null">
-        <label class="custom-control-label px-2 c1 font-Lable font-weight-bold "    for="IsCompleted1"> {{'TRANS.Acceptance'|translate}}  </label>
+        <input type="radio" class="custom-control-input shadow" id="IsCompleted1" value="Approved"  formControlName="Decision"   mdbInput [attr.disabled]="TaskDetails.TaskStatus === 'Rejected' ||  TaskDetails.TaskStatus === 'Approved'? true : null" [ngClass]="{ 'is-invalid': submitTasksProgresError && TasksProgresformErrors.Decision.errors }">
+        <label class="custom-control-label px-2 text-primary font-Lable font-weight-bold "    for="IsCompleted1"> {{'TRANS.Acceptance'|translate}}  </label>
       </div>
 
       <!-- Default inline 2-->
       <div class="custom-control custom-radio custom-control-inline">
-        <input type="radio" class="custom-control-input " (change)="onChangeRejected($event)" required  name="Decision" id="IsCompleted2" value="Rejected" formControlName="Decision"  mdbInput [attr.enabled]="TaskDetails.TaskStatus === 'Pending'? true : null" [attr.disabled]="TaskDetails.TaskStatus === 'Rejected' ||  TaskDetails.TaskStatus === 'Approved'? true : null">
-        <label class="custom-control-label px-2 p-color c2 font-weight-bold font-Lable "  for="IsCompleted2"> {{'TRANS.Rejection'|translate}} </label>
+        <input type="radio" class="custom-control-input" id="IsCompleted2" value="Rejected" formControlName="Decision"  mdbInput  [attr.disabled]="TaskDetails.TaskStatus === 'Rejected' ||  TaskDetails.TaskStatus === 'Approved'? true : null" [ngClass]="{ 'is-invalid': submitTasksProgresError && TasksProgresformErrors.Decision.errors }">
+        <label class="custom-control-label px-2 p-color text-danger font-weight-bold font-Lable "  for="IsCompleted2"> {{'TRANS.Rejection'|translate}} </label>
+      </div>
+
+      <div *ngIf="submitTasksProgresError && TasksProgresformErrors.Decision.errors" class="invalid-feedback">
+        <h4 *ngIf="TasksProgresformErrors.Decision.errors.required">{{'TRANS.validationReq'|translate}}</h4>
       </div>
 </div>
-<div class="row " *ngIf="show">
+<!-- <div class="row " *ngIf="show"> -->
+
+<div class="row " >
     <div class="form-group col-md-12">
       <b class="color-p mx-3 my-2 d-block text-right">{{ 'TRANS.Notes' | translate }}</b>
 
-      <textarea class="form-control " rows="4"   cols="50" formControlName="Notes"  required [attr.enabled]="TaskDetails.TaskStatus === 'Pending'? true : null" [attr.disabled]="TaskDetails.TaskStatus === 'Rejected' ||  TaskDetails.TaskStatus === 'Approved'? true : null">{{TaskDetails.Note}}</textarea>
+      <textarea class="form-control" rows="4" cols="50" formControlName="Notes" id="Notes">{{TaskDetails.Note}}</textarea>
+      <div *ngIf="submitTasksProgresError && TasksProgresformErrors.Notes.errors" class="invalid-feedback">
+        <h4 *ngIf="TasksProgresformErrors.Notes.errors.required">{{'TRANS.validationReq'|translate}}</h4>
+      </div>
     </div>
   </div>
 
@@ -108,13 +147,158 @@
   <div class="d-flex justify-content-center">
 
 
-    <button type="submit" *ngIf="TaskDetails.TaskStatus === 'تحت الاجراء' || TaskDetails.TaskStatus === 'Pending'" mdbBtn  class="relative waves-light s6 shadow text-white px-5" mdbWavesEffect>{{'TRANS.save'|translate}}</button>
+    <button type="submit" (click)="submit()" [disabled]="decisionForm.invalid || decisionForm.get('Decision').value === 'Pending'" *ngIf="TaskDetails.TaskStatus === 'تحت الاجراء' || TaskDetails.TaskStatus === 'Pending'" mdbBtn  class="relative waves-light s6 shadow text-white px-5" mdbWavesEffect>{{'TRANS.save'|translate}}</button>
 
-    <button type="button" (click)="close()" mdbBtn  class="waves-light s2 shadow text-white px-5" aria-label="Close"  mdbWavesEffect>{{'TRANS.close'|translate}}</button>
+    <button type="button" (click)="close()" mdbBtn  class="waves-light s2 shadow text-white px-5" aria-label="Close"  mdbWavesEffect>{{'TRANS.Cancel'|translate}}</button>
 </div>
 
 </form>
+
+{{decisionForm.value | json}}
 </div>
+
+
+
+
+<div mdbModal #infoModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-fluid" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close pull-right" aria-label="Close" (click)="infoModal.hide()">
+            <span aria-hidden="true"><i class="far fa-times-circle text-danger"></i></span>
+          </button>
+          <h4 class="modal-title w-100 text-center p-color" id="myModalLabel">Modal title</h4>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+              <div class="col-md-6 d-flex">
+                  <h4 class="section-header py-3 d-inline-block my-2 shadow" >بيانات الطلب
+                  </h4>
+              </div>
+
+          </div>
+
+          <div class="row">
+              <div class="control-group form-group col-md-6 d-flex">
+                  <div class="controls">
+
+                      <label class="mx-3"><b>كلية:</b></label>
+                      <span id="ctl00_PlaceHolderMain_faculty">الإقتصاد المنزلي</span>
+                  </div>
+              </div>
+
+              <div class="control-group form-group col-md-6 d-flex">
+                  <div class="controls">
+                      <label class="mx-3"><b>رقم الطلب:</b></label>
+                      <span id="ctl00_PlaceHolderMain_RequestNumber">R004-001-35</span>
+                  </div>
+              </div>
+          </div>
+          <div class="row">
+              <div class="control-group form-group col-md-6 d-flex">
+                  <div class="controls">
+
+                      <label class="mx-3"><b>كلية:</b></label>
+                      <span id="ctl00_PlaceHolderMain_faculty">الإقتصاد المنزلي</span>
+                  </div>
+              </div>
+
+              <div class="control-group form-group col-md-6 d-flex">
+                  <div class="controls">
+                      <label class="mx-3"><b>رقم الطلب:</b></label>
+                      <span id="ctl00_PlaceHolderMain_RequestNumber">R004-001-35</span>
+                  </div>
+              </div>
+          </div>
+          <div class="row">
+              <div class="col-md-6 d-flex">
+                  <h4 class="section-header py-3 d-inline-block my-2 shadow" >بيانات الطلب
+                  </h4>
+              </div>
+
+          </div>
+          <div class="row">
+              <div class="control-group form-group col-md-6 d-flex">
+                  <div class="controls">
+
+                      <label class="mx-3"><b>كلية:</b></label>
+                      <span id="ctl00_PlaceHolderMain_faculty">الإقتصاد المنزلي</span>
+                  </div>
+              </div>
+
+              <div class="control-group form-group col-md-6 d-flex">
+                  <div class="controls">
+                      <label class="mx-3"><b>رقم الطلب:</b></label>
+                      <span id="ctl00_PlaceHolderMain_RequestNumber">R004-001-35</span>
+                  </div>
+              </div>
+          </div>
+          <div class="row">
+
+        </div>
+        </div>
+        <div class="modal-footer justify-content-center">
+
+          <button type="button" mdbBtn  class="waves-light s2 shadow text-white px-5" aria-label="Close" (click)="DetailscModal.hide()" mdbWavesEffect>Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+  <div mdbModal #DetailscModal="mdbModal" class="modal fade " tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-fluid" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close pull-right" aria-label="Close" (click)="DetailscModal.hide()">
+            <span aria-hidden="true"><i class="far fa-times-circle text-danger"></i></span>
+          </button>
+          <h4 class="modal-title w-100 text-center p-color" id="myModalLabel">Modal title</h4>
+        </div>
+        <div class="modal-body">
+
+          <!-- [dtTrigger]="dtTrigger" -->
+          <div class="col-md-12 table-responsive ">
+              <table datatable [dtOptions]="dtOptions"  class="row-border hover table table-striped excel-print">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>الإجراء</th>
+                    <th>تاريخ الإجراء</th>
+                    <th>حالة الإجراء</th>
+                    <th> ملاحظات</th>
+
+
+
+                  </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1</td>
+
+                  <td>تقديم الطلب</td>
+                  <td>06:42 PM 22-01-2020</td>
+                  <td>تم اغلاق الطلب</td>
+                  <td>الطلب</td>
+
+                </tr>
+              </tbody>
+              </table>
+              <br>
+
+        <div class="modal-footer justify-content-center">
+
+          <button type="button" mdbBtn  class="waves-light s2 shadow text-white px-5" aria-label="Close" (click)="DetailscModal.hide()" mdbWavesEffect>Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
 
 
 

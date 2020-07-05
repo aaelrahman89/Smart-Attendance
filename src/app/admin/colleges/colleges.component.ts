@@ -11,6 +11,9 @@ import { DataTableDirective } from 'angular-datatables';
 import { errorHandling } from 'src/app/globals';
 import { DatatableOptionsClient } from 'src/app/models/commonModels/DatatableOptionsClient';
 
+import { MyModalComponent } from 'src/app/my-modal.component';
+
+
 @Component({
   selector: 'app-colleges',
   templateUrl: './colleges.component.html',
@@ -51,6 +54,7 @@ dtOptions: any = {};
   editForm: FormGroup;
 
   subscription: Subscription;
+  subscriptionb: Subscription;
 
   constructor( private myService: CollegeService, public  translate: TranslateService, public Router: Router ) { }
   ngOnInit(): void {
@@ -85,7 +89,7 @@ dtOptions: any = {};
 
   // get all data function
   getAllData(){
-    this.myService.GetAll().subscribe(res =>
+    this.subscriptionb = this.myService.GetAll().subscribe(res =>
       {
       this.elements = res.List;
       // Calling the DT trigger to manually render the table
@@ -110,6 +114,7 @@ dtOptions: any = {};
     // Do not forget to unsubscribe the event
     this.dtTrigger.unsubscribe();
     this.subscription.unsubscribe();
+    this.subscriptionb.unsubscribe();
   }
 
 
@@ -145,5 +150,6 @@ dtOptions: any = {};
         }
         );
     }
+
 
     }

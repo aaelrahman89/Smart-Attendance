@@ -6,6 +6,9 @@ import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
 import { AttendanceStudentsDataDTO } from 'src/app/models/AttendanceStudents/AttendanceStudentsUpdateDTO';
 import { ModalDirective } from 'angular-bootstrap-md';
 import { FilterAttendanceStudentsService } from 'src/app/services/FilterAttendanceStudents.service';
+import { ModalService } from 'src/app/modal-service/modal-service.service';
+import { MyModalComponent } from 'src/app/my-modal.component';
+
 
 @Component({
   selector: 'attendance-record-cards',
@@ -29,7 +32,7 @@ export class AttendanceRecordCardsComponent implements OnInit {
 
 
 
-  constructor(private FilterAttendanceStudentsService: FilterAttendanceStudentsService, private attendanceStatusService: attendanceStatusService, public Router: Router, public translate: TranslateService) { }
+  constructor(private FilterAttendanceStudentsService: FilterAttendanceStudentsService, private attendanceStatusService: attendanceStatusService, public Router: Router, public translate: TranslateService, private modalService: ModalService) { }
 
   ngOnInit(): void {
 
@@ -66,11 +69,7 @@ export class AttendanceRecordCardsComponent implements OnInit {
 
       // Update all student status
   updateAllStudents() {
-    this.FilterAttendanceStudentsService.UpdateAttendance(this.studentsFiltered).subscribe((res) => {
-      console.log('updated');
-      // Sucess alert popup here
-     this.frame.show();
-    });
+    this.FilterAttendanceStudentsService.UpdateAttendance(this.studentsFiltered).subscribe(res => console.log('updated'));
   }
 
   // Calculation of attend status

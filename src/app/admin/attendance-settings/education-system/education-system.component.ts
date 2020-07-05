@@ -223,6 +223,7 @@ export class EducationSystemComponent implements OnInit {
     //   break;
 
     this.AttendanceSettingService.save(this.AddCollegeCodeData).subscribe(res => {
+      console.log(res);
       this.showAlert = true;
     setTimeout(() => {
       this.showAlert = false;

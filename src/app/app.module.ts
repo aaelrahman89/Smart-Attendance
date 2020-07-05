@@ -96,6 +96,8 @@ import { GeneralAlertComponent } from './components/general-alert/general-alert.
 import { LiftTheAbsenceComponent } from './admin/attendance-settings/lift-the-absence/lift-the-absence.component';
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { MainIndexComponent } from './mainIndex/main-index/main-index.component';
+import { ModalServiceModule } from './modal-service/modal-service.module';
+import { MyModalComponent } from './my-modal.component';
 
 
 
@@ -149,7 +151,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     LectureScheduleViewComponent,
     ManageAttendanceAbsenceComponent,
     StudentEnrollmentComponent,
-    
+
     StudentEnrollmentViewComponent,
 
     RefreshComponent,
@@ -163,13 +165,14 @@ export function HttpLoaderFactory(http: HttpClient) {
     ProgressViewComponent,
     CompletedListComponent,
 
-    
+
     AlertComponent,
 
     LiftTheAbsenceComponent,
     GeneralAlertComponent,
     DashboardComponent,
     MainIndexComponent,
+    MyModalComponent
 
   ],
   imports: [
@@ -182,6 +185,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     MatSnackBarModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
+    NgxSpinnerModule,
     DataTablesModule.forRoot(),
     HttpClientModule,
     MatSelectModule,
@@ -200,6 +204,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     NgxSpinnerModule,
     MatButtonModule,
     MatInputModule,
+    ModalServiceModule.forRoot(),
     MDBBootstrapModule.forRoot(),
     TranslateModule.forRoot({
       defaultLanguage: 'ar',
@@ -226,7 +231,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     }
   ],
   bootstrap: [AppComponent],
-  entryComponents:[LectureScheduleComponent,AlertDeleteComponent]
+  entryComponents:[LectureScheduleComponent,AlertDeleteComponent,MyModalComponent]
 })
 export class AppModule {}
 

@@ -2,7 +2,7 @@ import { GetMyTasksservice } from './../../../../services/FacultyMember/RequestT
 import { Component, OnInit } from '@angular/core';
 import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
 import { Title } from '@angular/platform-browser';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormBuilder, NgForm } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import {Location} from '@angular/common';
 @Component({
@@ -18,7 +18,7 @@ export class ProgressViewComponent implements OnInit {
   isChecked:boolean=true;
   decisionForm:FormGroup;
 
-
+  submitTasksProgresError=false;
 
   // IsCompleted2 = document.getElementById('IsCompleted2');
 
@@ -29,20 +29,15 @@ export class ProgressViewComponent implements OnInit {
     private Router: Router,
     private Route: ActivatedRoute,
     private GetMyTasksservice:GetMyTasksservice,
-    private _location: Location
+    private _location: Location,
+private formBuilder: FormBuilder,
+
 
   ) { }
   Id = this.Route.snapshot.paramMap.get('Id');
+
+
   ngOnInit(): void {
-
-    // if(this.IsCompleted2.checked == true){
-    //    alert('ah')
-    // }
-
-
-    // if(this.TaskDetails.TaskStatus == 'Rejected'){
-
-    // }
 
     this.GetMyTasksservice.GetTaskDetailsByID(this.Id).subscribe(res => {
 
@@ -84,37 +79,49 @@ export class ProgressViewComponent implements OnInit {
 
 
                   // search form inputs
-    this.decisionForm = new FormGroup({
-      Decision: new FormControl(''),
-      Notes: new FormControl(''),
-      TaskId:new FormControl(this.Id),
-
+this.decisionForm = new FormGroup({
+      Decision: new FormControl('', Validators.required),
+      Notes: new FormControl('', Validators.required),
+      TaskId: new FormControl(this.Id, Validators.required)
     });
 
 
+    // Remove required when Decision === 'Approved'
+    this.decisionForm.get('Decision').valueChanges
+    .subscribe(value => {
+      console.log(value);
+      if (value === 'Approved'){
+        this.decisionForm.get('Notes').clearValidators();
+        this.decisionForm.get('Notes').updateValueAndValidity();
+      }else{
+        this.decisionForm.get('Notes').setValidators([Validators.required]);
+        this.decisionForm.get('Notes').updateValueAndValidity();
+      }
+    });
+
 
   }
-  onChangeRejected(event){
-if(event.target.checked){
-  this.show=true;
-}
-    //this.show=true;
- }
- onChangeApproved(event){
+//   onChangeRejected(event){
+//     if(this.decisionForm.get('Decision').value === 'Rejected'){
+//       this.decisionForm.get('Notes').setValidators([Validators.required]);
+//   }  //this.show=true;
+//  }
 
-  if(event.target.checked){
-    this.show=false;
-  }
-}
 
+get TasksProgresformErrors() { return this.decisionForm.controls; }
 submit(){
 
+  this.submitTasksProgresError=true;
+
+  if (this.decisionForm.invalid) {
+    return;
+  }else{
     this.GetMyTasksservice.PostTask(this.decisionForm.value).subscribe(res => {
       this._location.back();
       console.log();
     });
 
-
+  }
   }
 
 
