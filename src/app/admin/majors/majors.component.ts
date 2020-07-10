@@ -8,7 +8,7 @@ import { MajorFilterModel } from './../../models/Major/MajorFilterModel';
 import { MajorDTO } from './../../models/Major/MajorDTO';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Subject } from 'rxjs';
-import { FormGroup, FormControl, Validators} from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormGroupDirective} from '@angular/forms';
 
 import { DataTableDirective } from 'angular-datatables';
 import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
@@ -27,6 +27,14 @@ export class MajorsComponent implements OnInit {
   // isDtInitialized:boolean = false;
 
   editForm: FormGroup;
+
+    // confirmation modal
+    @ViewChild('mainForm') mainForm: FormGroupDirective;
+    @ViewChild('basicModal') basicModal;
+    openModal: boolean = false;
+    CustomModal(){
+      this.openModal = !this.openModal
+    }
 
   pageLang = document.documentElement.lang;
 
@@ -164,12 +172,15 @@ export class MajorsComponent implements OnInit {
 
   // Edit
   edit(element){
+    console.log('ele', element);
     element.NameAr = this.editForm.get('nameAR').value;
     element.NameEn = this.editForm.get('nameEN').value;
     this.myService.Update(element).subscribe(res =>
       {
 
         this.rerender();
+        this.openModal = !this.openModal;
+        this.basicModal.hide();
 
       }
       );

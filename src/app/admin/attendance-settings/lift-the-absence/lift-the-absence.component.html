@@ -3,30 +3,104 @@
 
   <div class="container px-3 mt-3">
 
-    <div class=" col-md-4 mx-auto  d-block my-3 text-right ">
-      <select class="form-control py-0">
-          <option > الكل </option>
-      </select>
-  </div>
+      <div class="col-md-12 text-center">
+        <button type="button" mdbBtn color="primary" class="relative waves-light Customize-btn btn-sm p-2" (click)="basicModal.show()" mdbWavesEffect><b><i class="far fa-plus-square"></i> اضافة</b></button>
+      </div>
 
-    <div class="row">
-      <div class="col-md-3 mt-1">
-        <span> إلغاء احتساب الغياب خلال</span>
+    <div class="col-md-12 table-responsive">
+      <table class="table table-striped table-bordered">
+        <thead>
+          <tr>
+            <th>الكلية</th>
+            <th>بداية</th>
+            <th>نهاية</th>
+            <th class="w-25">الاجراء</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let AvailableCollege of AvailableColleges">
+            <td>{{AvailableCollege.CollegeName}}</td>
+            <td>{{AvailableCollege.StartDate}}</td>
+            <td>{{AvailableCollege.EndDate}}</td>
+            <td>
+              <a mdbBtn class="w-auto px-3 circle-btn" mdbWavesEffect title="تفعيل الفترة" (click)="openModalActivate = !openModalActivate" [ngClass]="{'activate-period-none': AvailableCollege.IsActive == true}"><i class="fas fa-check"></i></a>
+              <dynamic-modal *ngIf="openModalActivate == true"  (closeModal)="openModalActivate = !openModalActivate" (submitParent)="activatePeriod(AvailableCollege.CollegeCode)">
+                هل انت متأكد من تفعيل هذه الفترة ؟
+              </dynamic-modal>
+              <a mdbBtn class="w-auto px-3 circle-btn bg-red" mdbWavesEffect title="حذف" (click)="openModalDelete = !openModalDelete" *ngIf="AvailableCollege.IsActive == false"><i class="fas fa-trash-alt"></i></a>
+              <dynamic-modal *ngIf="openModalDelete == true"  (closeModal)="openModalDelete = !openModalDelete" (submitParent)="deletePeriod(AvailableCollege.CollegeCode)">
+                هل انت متأكد من حذف هذه الفترة ؟
+              </dynamic-modal>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
     </div>
 
-    <div class="col-md-4 permissionsDiv row">
-      <span> من تاريخ</span>
-      <input class="form-control mx-2 col-md-6 col-3" type="date" formControlName="fromDate">
-     </div>
 
-  <div class="col-md-4 permissionsDiv row">
-    <span> الى تاريخ</span>
-    <input class="form-control mx-2 col-md-6 col-3" type="date" formControlName="toDate" [min]="liftAbsence.get('fromDate').value">
-  </div>
-
-
-    </div>
 
     </div>
 
     </form>
+
+
+
+    <div mdbModal #basicModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close pull-right" aria-label="Close" (click)="basicModal.hide()">
+              <span aria-hidden="true">×</span>
+            </button>
+            <h4 class="modal-title w-100 text-center" id="myModalLabel">اضافة</h4>
+          </div>
+          <div class="modal-body">
+
+            <!--add form start-->
+          <form [formGroup]="liftAbsence" #mainForm="ngForm" (ngSubmit)="add()">
+            <div class=" col-md-4 mx-auto  d-block my-3 text-right ">
+              <select class="form-control py-0" formControlName="CollegeCode">
+                  <option [value]="null" [selected]="true"> الكل </option>
+                  <option *ngFor="let college of colleges" [value]="college.CollegeCode">{{college.Name}}</option>
+              </select>
+          </div>
+
+            <div class="row">
+              <div class="col-md-3 mt-1">
+                <span> إلغاء احتساب الغياب خلال</span>
+            </div>
+
+            <div class="col-md-4 p-0 permissionsDiv row">
+              <span> من تاريخ</span>
+              <input class="form-control mx-2 col-md-6 col-3 p-0" type="date" formControlName="StartDate" style="direction: direction: ltr;">
+             </div>
+
+          <div class="col-md-4 p-0 permissionsDiv row">
+            <span> الى تاريخ</span>
+            <input class="form-control mx-2 col-md-6 col-3 p-0" type="date" formControlName="EndDate" [min]="liftAbsence.get('StartDate').value" style="direction: direction: ltr;">
+          </div>
+
+          <div class="d-block w-100 text-center mt-4">
+            <button type="button" class="save btn btn-main px-5 py-2 mx-auto" (click)="openModal = !openModal"> {{'TRANS.save' |translate}} </button>
+            </div>
+
+
+            </div>
+          </form>
+
+          <!-- {{liftAbsence.value | json}} -->
+
+            <!--add form end-->
+
+                 </div>
+        </div>
+      </div>
+    </div>
+
+
+    <dynamic-modal *ngIf="openModal == true"  (closeModal)="openModal = !openModal" (submitParent)="mainForm.ngSubmit.emit()">
+      هل انت متأكد من اضافة هذا السجل ؟
+    </dynamic-modal>
+
+

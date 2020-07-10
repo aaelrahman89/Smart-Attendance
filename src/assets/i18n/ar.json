@@ -136,7 +136,7 @@
      "Studentstatus":"حاله الطالب",
      "Managestudentdata":"اداره بيانات الطلاب",
      "code":"الكود",
-     "Educationsystem":"نظام الدراسة",
+     "Educationsystem":" قواعد الاعذار",
      "studentstatus":"وضع الطالب",
      "PauseAbsence":"رفع الغياب",
      "WarningsAndS":"الانذارات والحرمان",
@@ -185,8 +185,8 @@
 "studentGuardianRelation": "صلة القرابة",
 "studentGuardianMobile": "رقم جوال ولى الامر",
 "studentGuardianEmail": "بريد الكترونى ولى الامر",
-"facultyMembersDepartment":"  أساتذةالمقرر   ",
-"Definedecisions":"  الجدول الدراسي ",
+"facultyMembersDepartment":"  أستاذه المقرر   ",
+"Definedecisions":" جدول الدراسي ",
 "Filterresults":"تصفيه النتائج",
 "ClearFilter":"مسح المحددات ",
 "Delete":"حذف",
@@ -286,21 +286,43 @@
 "Systemofectures":"نظام المحاضرات",
 "absenceRatioParagraph":"نسبة الغياب =(( مجموع الساعات الكلي للمقرر - مجموع الساعات حضور الطالب / مجموع الساعات الكلي للمقرر )* 100)",
 "allowed":"مسموح بــ",
-"permissions":"أذونات",
+"permissions":"اذن للمقرر",
 "rate":"نسبة",
-"permissionsAsAttendance":"% من الاذونات يحسب حضور",
+"permissionsAsAttendance":"% من الحضور",
 "permissionPower":"منح صلاحية لاعضاء هيئة التدريس لتسجيل الاستئذان",
 "execusePower":"منح صلاحية لاعضاء هيئة التدريس لتسجيل العذر",
 "latePower":" منح صلاحية لاعضاء هيئة التدريس لتسجيل التأخير",
-"execusesAsAttendance":"% من الاعذار يحسب حضور",
-"lateAsAttendance":" % من التأخير يحسب حضور",
+"execusesAsAttendance":"% من الحضور",
+"lateAsAttendance":"% من الحضور",
 "calculated":" تحسب",
 "generalSettings":" اعدادات عامة ",
 "attendanceCalculated":" يحسب الحضور للطالب ذو الحالة ",
 "customizeStudySystem":"تخصيص نظام دراسى لكلية محددة",
 "excusesRequests":"طلبات الاعذار",
 "underTheProcedure":"تحت الاجراء ",
-"completed":"مكتملة"
+"completed":"مكتملة",
+"ChangeTerm":"تغيير الفصل الدراسي",
+"confirmMessage":"هل أنت متأكد من حفظ التعديلات الجديدة ؟",
+"previousexcuses":"سجل الاعذار السابقة",
+
+"Beginningperiod":"بدايه الفتره",
+"Endperiod":"نهايه الفتره",
+"Submissiondate":"تاريخ التقديم",
+"Askedpermission":"طلب استئذان",
+"Datelecture":"تاريخ المحاضرة",
+"appointmentlecture":"موعد المحاضرة",
+
+"reasonexcuse":"سبب العذر",
+"Recordpreviouspermission":"سجل  استئذان السابقة",
+"degree":"الدرجة العلمية",
+"memberNo":"رقم عضو هيئة تدريس",
+"uniEmail":"البريد الالكترونى الجامعى"
+
+
+
+
+
+
 
 
 

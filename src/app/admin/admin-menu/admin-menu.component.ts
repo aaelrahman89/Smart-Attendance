@@ -5,6 +5,7 @@ import { CollapseModule, WavesModule } from 'angular-bootstrap-md'
 import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
 import { Router } from '@angular/router';
 import { AuthService } from './../../services/auth.service';
+import { TermService } from 'src/app/services/admin/Term/term.service';
 @Component({
   selector: 'admin-menu',
   templateUrl: './admin-menu.component.html',
@@ -57,7 +58,9 @@ export class AdminMenuComponent implements OnInit {
     this.notification = !this.notification;
 
   }
-  constructor(private modalService: NgbModal, public  translate: TranslateService, public AuthService: AuthService, public Router: Router) {
+  constructor(private modalService: NgbModal, public  translate: TranslateService, 
+    private myService: TermService, 
+    public AuthService: AuthService, public Router: Router) {
     translate.addLangs(['ar', 'en']);
     translate.setDefaultLang('ar');
     // const browserLang = translate.getBrowserLang();
@@ -90,9 +93,11 @@ export class AdminMenuComponent implements OnInit {
     document.querySelector('body').style.fontSize = size;
   }
 
-
+  elements
   ngOnInit(){
 
-
+    // this.myService.GetAll().subscribe((res) => {
+    //   this.elements = res.List;
+    // } )
   }
 }

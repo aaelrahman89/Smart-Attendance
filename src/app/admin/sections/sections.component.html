@@ -13,11 +13,16 @@
 
 
 
-    <h2 class="color-p pageTitle  text-center">
+    <h1 class="color-p pageTitle mt-2 text-center">
       <b> <i class="fas fa-university"></i> {{ "TRANS.sectionsTitle" | translate }} </b>
 
-    </h2>
-
+    </h1>
+    <nav aria-label="breadcrumb" class="col-md-6 mx-auto text-center">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a routerLink="">{{ 'TRANS.menuHome' | translate }}</a></li>
+        <li class="breadcrumb-item"><a class="mx-2" >{{ 'TRANS.sectionsTitle' | translate }}</a></li>
+      </ol>
+    </nav>
 
   </div>
 <div class="row" >

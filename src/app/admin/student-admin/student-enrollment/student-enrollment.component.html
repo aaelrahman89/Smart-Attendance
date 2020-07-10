@@ -14,7 +14,12 @@
 
       </h1>
 
-
+      <nav aria-label="breadcrumb" class="col-md-6 mx-auto text-center">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a routerLink="">{{ 'TRANS.menuHome' | translate }}</a></li>
+          <li class="breadcrumb-item"><a class="mx-2" >{{ 'TRANS.StudentRegistration' | translate }}</a></li>
+        </ol>
+      </nav>
     </div>
 
     <hr class="shadow">
@@ -190,7 +195,7 @@
 
 
 
-      <div class="col-md-2  mt-4">
+      <div class="col-md-2  main-search">
         <button mdbWavesEffect type="submit" [disabled]="StudentEnrollment.invalid"  class="w-75 btn-main px-4 py-2 rounded-pill"  title="  {{ 'TRANS.Add' | translate }}">
 
           {{ 'TRANS.Add' | translate }}

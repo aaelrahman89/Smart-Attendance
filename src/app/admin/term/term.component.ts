@@ -116,6 +116,13 @@ export class TermComponent implements OnInit{
 
   }
 
+  // // date validation
+  // dateValidation(startDate: FormControl  ){
+  //   var start = new Date(startDate.value);
+  //   var end = new Date ;
+  //   if (  end > start ) console.log("");
+  //  return {wrongDuration : true}
+  // }
   get editFormErrors() { return this.editForm.controls; }
   // update active
   changeActive(element) {
@@ -154,7 +161,7 @@ export class TermComponent implements OnInit{
 
       );
       this.closeModal.nativeElement.click();
-      this.notificationService.success(this.updateSuccessfully);
+      // this.notificationService.success(this.updateSuccessfully);
     }
   }
 

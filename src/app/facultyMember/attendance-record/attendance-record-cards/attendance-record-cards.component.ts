@@ -69,7 +69,9 @@ export class AttendanceRecordCardsComponent implements OnInit {
 
       // Update all student status
   updateAllStudents() {
-    this.FilterAttendanceStudentsService.UpdateAttendance(this.studentsFiltered).subscribe(res => console.log('updated'));
+    this.FilterAttendanceStudentsService.UpdateAttendance(this.studentsFiltered).subscribe(res => {
+      console.log('updated');
+    });
   }
 
   // Calculation of attend status

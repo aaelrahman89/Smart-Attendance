@@ -12,4 +12,5 @@ export interface GetTaskDetailsDTO {
   DateTo: string;
   TaskStatus: string;
   Note: string;
+  Message:string;
   }

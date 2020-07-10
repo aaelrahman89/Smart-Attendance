@@ -1,3 +1,4 @@
+import { AskedpermissionComponent } from './facultyMember/MyTasks/askedpermission/askedpermission.component';
 import { ProgressViewComponent } from './facultyMember/MyTasks/Progress/progress-view/progress-view.component';
 import { ProgressListComponent } from './facultyMember/MyTasks/Progress/progress-list/progress-list.component';
 import { AttendanceRecordByLectureComponent } from './facultyMember/attendance-record/attendance-record-by-lecture/attendance-record-by-lecture.component';
@@ -44,6 +45,7 @@ import { AuthGuard } from './guards/auth.guard';
 import { AttendanceSettingsComponent } from './admin/attendance-settings/attendance-settings.component';
 import { AlertComponent } from './components/alert/alert.component';
 import { CompletedListComponent } from './facultyMember/MyTasks/Completed/completed-list/completed-list.component';
+
 
 import { DashboardComponent } from './admin/dashboard/dashboard.component'
 import { MainIndexComponent } from './mainIndex/main-index/main-index.component'; 
@@ -98,6 +100,8 @@ const routes: Routes = [
   { path: 'facultyMember/TasksProgrescompleted', component: CompletedListComponent, canActivate: [AuthGuard] },
 
   { path: 'facultyMember/TasksProgresView/:Id', component: ProgressViewComponent, canActivate: [AuthGuard] },
+  { path: 'facultyMember/AskedpermissionView/:Id', component: AskedpermissionComponent, canActivate: [AuthGuard] },
+
 
 
   

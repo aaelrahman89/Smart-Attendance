@@ -19,16 +19,17 @@ import { Modal } from './modal-service/models/modal.model';
   styles: [`
   .modal {
     position: fixed;
-    top: 20px;
-    left: 20px;
-    right: 20px;
     width: 30%;
-    margin: 0;
     z-index: 1050;
     background-color: #ffffff;
     display: unset;
-    height: auto;
+    height: 170px;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
     margin: auto;
+    border-radius: 8px;
 }
 .modal-backdrop {
     z-index: 0;
@@ -38,6 +39,7 @@ import { Modal } from './modal-service/models/modal.model';
     position: relative;
     top: 10px;
     z-index: 9999;
+    color: #5f5a5a !important;
 }
 b{
     display: block;

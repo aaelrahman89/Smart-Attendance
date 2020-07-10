@@ -8,7 +8,7 @@ import { DeptartmentService } from './../../services/deptartment.service';
 import { CollegeService } from './../../services/college.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Subject, forkJoin } from 'rxjs';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormGroupDirective } from '@angular/forms';
 
 import { DataTableDirective } from 'angular-datatables';
 import { DatatableOptions } from 'src/app/models/commonModels/DatatableOptions';
@@ -32,6 +32,11 @@ export class StudentAdminComponent implements OnInit {
  @ViewChild(DataTableDirective, {static: false})
  dtElement: DataTableDirective;
  isDtInitialized:boolean = false;
+
+   // confirmation modal
+   @ViewChild('mainForm') mainForm: FormGroupDirective;
+   @ViewChild('basicModal') basicModal;
+   openModal: boolean = false;
 
  // Must be declared as "any", not as "DataTables.Settings"
  dtOptions: any = {};

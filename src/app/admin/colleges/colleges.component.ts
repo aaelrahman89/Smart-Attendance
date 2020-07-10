@@ -73,12 +73,8 @@ dtOptions: any = {};
          }
         });
 
-
         // Get Data
         this.getAllData();
-
-
-
 
         this.editForm = new FormGroup({
           Name: new FormControl('', Validators.required),

@@ -1,9 +1,9 @@
 import { DepartmentFilterModel } from './../../models/Department/DepartmentFilterModel';
 import { DeptartmentDTO } from '../../models/Department/DeptartmentDTO';
 import { DeptartmentService } from './../../services/deptartment.service';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { Subject } from 'rxjs';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormGroupDirective } from '@angular/forms';
 import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
 import { errorHandling } from 'src/app/globals';
 import { Router } from '@angular/router';
@@ -19,6 +19,14 @@ export class DeptartmentsComponent implements OnDestroy, OnInit {
   pageTitle = 'Deptartment Administration';
 
   editForm: FormGroup;
+
+  // confirmation modal
+  @ViewChild('mainForm') mainForm: FormGroupDirective;
+  @ViewChild('basicModal') basicModal;
+  openModal: boolean = false;
+  CustomModal(){
+    this.openModal = !this.openModal
+  }
 
   headElements: string[] = ['Department Code', 'College', 'Department Name(AR)', 'Department Name(EN)', 'Status'];
 
@@ -101,6 +109,8 @@ dtOptions: any = {};
       this.myService.Update(element).subscribe(res =>
         {
         console.log('updated');
+        this.openModal = !this.openModal;
+        this.basicModal.hide();
         }
         );
     }

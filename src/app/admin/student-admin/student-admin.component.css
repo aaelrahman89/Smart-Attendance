@@ -18,3 +18,11 @@
 .invalid-feedback{
   display: block !important;
 }
+
+
+.main-search{
+  display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

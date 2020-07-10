@@ -1,0 +1,43 @@
+.mymodal-body{
+    position: fixed;
+    display: flex;
+    padding: 0;
+    right: 0;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    width: 100%;
+    top: 0; 
+    z-index: 99999999999999;
+}
+.mymodal-content{
+    min-width: 300px;
+    box-shadow: 0 5px 11px 0 rgba(0,0,0,.18), 0 4px 15px 0 rgba(0,0,0,.15);
+    border-radius: .125rem;
+    border: 0;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    pointer-events: auto;
+    background-color: #fff;
+}
+.save{
+    background-color: #2acf82;
+    color: white;
+}
+.cancel{
+    background-color: rgb(177, 62, 62);
+    color: white;
+}
+.mymodal-header{
+    font-size: 2em;
+}
+.mymodal-content span{
+    font-size: 1.3em;
+   
+}
+
+
+
+ 

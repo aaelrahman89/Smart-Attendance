@@ -1,13 +1,8 @@
 <header class="py-1  row">
   <div class="settingsBar d-flex col-md-4 ">
     <ul type="none" class="p-0 left-links row">
-      <!-- <li class="px-2">
-        <a routerLink="">
-          <i class="fas fa-power-off headerIcons"></i>
-          <span class="mx-1">{{ 'TRANS.signOut' | translate }}</span>
-        </a>
-      </li> -->
-      <li class="px-2" *ngFor="let lang of translate.getLangs()" [class.sactive]="lang === translate.currentLang" (click)="translateUse(lang)">
+      <li class="px-2" *ngFor="let lang of translate.getLangs()" [class.sactive]="lang === translate.currentLang"
+        (click)="translateUse(lang)">
         {{ lang }}
       </li>
       <li class="px-2">
@@ -18,11 +13,10 @@
       <li class="px-2" (click)="specialColors()">
         <span class="material-icons fas headerIcons fa-eye">
         </span> <span class="mx-1" [class.clicked]="blackAndWhite">{{ 'TRANS.specialColors' | translate }}</span>
-        <!-- <i class="fas headerIcons fa-eye-slash"></i>-->
       </li>
     </ul>
   </div>
-  <div class="col-md-4 logo text-center" >
+  <div class="col-md-4 logo text-center">
     <a routerLink="/">
       <img src="/assets/imgs/mainLogo.png" alt="">
     </a>
@@ -37,7 +31,7 @@
       <li class="px-2 notify userProfile ">
         <div class="col text-right">
           <div ngbDropdown class="d-inline-block">
-            <button   id="dropdownBasic2" ngbDropdownToggle>
+            <button id="dropdownBasic2" ngbDropdownToggle>
               <span class=" fas headerIcons fa-user material-icons"></span>
               <span class="mx-1">{{ getUserName() }}</span></button>
             <div ngbDropdownMenu aria-labelledby="dropdownBasic2">
@@ -47,7 +41,12 @@
           </div>
         </div>
       </li>
+      <li class="px-2 notify   ">
 
+        <button type="button" mdbBtn class="relative px-1 py-0" (click)="basicModal.show()">
+          الفصل الدراسي الاول 2020
+          <i class="fas fa-retweet"></i> </button>
+      </li>
       <li class="px-2 notify" (click)="notify()">
         <span class="material-icons far   fa-bell "></span>
         <span class="material-icons fas fa-circle"> </span>
@@ -143,7 +142,8 @@
             <ul type="none">
               <li class="d-block"> <a routerLinkActive="menuActive" (click)="close()" routerLink="admin/studentadmin"
                   class="py-3 px-2 d-block"> {{ 'TRANS.menuManageStudentData' | translate }} </a> </li>
-              <li class="d-block"> <a routerLinkActive="menuActive" (click)="close()" routerLink="admin/StudentEnrollment"
+              <li class="d-block"> <a routerLinkActive="menuActive" (click)="close()"
+                  routerLink="admin/StudentEnrollment"
                   class="py-3 px-2 d-block">{{ 'TRANS.menuRegisterStudent' | translate }} </a> </li>
             </ul>
           </div>
@@ -167,7 +167,8 @@
               <li class="d-block"> <a routerLinkActive="menuActive" (click)="close()" routerLink="admin/facultyMember"
                   class="py-3 px-2 d-block"> {{ 'TRANS.menuManageMemberData' | translate }} </a>
               </li>
-              <li class="d-block"> <a routerLinkActive="menuActive" (click)="close()" routerLink="admin/MemberEnrollment"
+              <li class="d-block"> <a routerLinkActive="menuActive" (click)="close()"
+                  routerLink="admin/MemberEnrollment"
                   class="py-3 px-2 d-block">{{ 'TRANS.menuRegisterMember' | translate }} </a>
               </li>
             </ul>
@@ -201,104 +202,164 @@
     <!--Admin Menu end-->
 
 
-        <!--faculty member Menu start-->
-        <ul type="none" class="p-0 text-white" *ngIf="getUserRoleCondition('StaffMember')">
-          <!-- home item  -->
-          <li class="py-3 homeIcon  ">
-            <a routerLinkActive="menuActive" (click)="close()" [routerLinkActiveOptions]="{exact : true}" routerLink=""
-              title="Home" class="px-3">
-              <span class="d-inline-block imgIcon text-center">
-                <img src="/assets/imgs/Icon feather-home.png" class="lightIcon" alt="home icon">
-                <div class="darkIcon ">
-                  <img src="/assets/imgs/Icon feather-home2.png" alt="home icon">
-                </div>
-              </span>
-              <span class="d-inline-block menuTxt"> {{ 'TRANS.menuHome' | translate }}</span>
-            </a>
-          </li>
-
-          <li class="py-3 homeIcon">
-            <a routerLinkActive="menuActive" (click)="close()" [routerLinkActiveOptions]="{exact : true}" routerLink="facultyMember/attendanceRecord"
-              title="Home" class="px-3">
-              <span class="d-inline-block imgIcon text-center">
-                <i class="far fa-file-alt fa-2x"></i>
-              </span>
-              <span class="d-inline-block menuTxt"> {{ 'TRANS.AttendanceAbsentregistrationtitle' | translate }}</span>
-            </a>
-          </li>
-
-          <li class="py-3 homeIcon">
-            <a routerLinkActive="menuActive" (click)="close()" [routerLinkActiveOptions]="{exact : true}" routerLink="facultyMember/StudentAttendanceForLecture"
-              title="Home" class="px-3">
-              <span class="d-inline-block imgIcon text-center">
-                <i class="fas fa-chalkboard-teacher fa-2x"></i>
-              </span>
-              <span class="d-inline-block menuTxt"> {{ 'TRANS.StudentAttendanceForLectureTitle' | translate }}</span>
-            </a>
-          </li>
-
-          <li class="py-3 homeIcon">
-            <a routerLinkActive="menuActive" (click)="close()" [routerLinkActiveOptions]="{exact : true}" routerLink="facultyMember/AttendanceAbsence"
-              title="Home" class="px-3">
-              <span class="d-inline-block imgIcon text-center">
-                <i class="fas fa-user-friends fa-2x"></i>
-              </span>
-              <span class="d-inline-block menuTxt"> {{ 'TRANS.AttendanceAbsence' | translate }}</span>
-            </a>
-          </li>
-
-
-          <li class="py-3">
-            <div class="adminMenuList row">
-              <div class="row dropDown">
-                <div class="menu-Icon  text-center ">
-                  <i class="fas fa-graduation-cap"></i>
-                </div>
-                <div class="clickable col-10" (click)="openDropDown($event)">
-                  <b class=" list-title text-center w-100 py-2">
-                    <span>{{'TRANS.excusesRequests' | translate}} </span>
-                    <i class="fas fa-chevron-down" *ngIf="expanded"></i> </b>
-                </div>
-                <ul type="none">
-                  <li class="d-block"> <a routerLinkActive="menuActive" (click)="close()" routerLink="facultyMember/TasksProgres"
-                      class="py-3 px-2 d-block"> {{'TRANS.underTheProcedure' | translate}}</a> </li>
-                  <li class="d-block"> <a routerLinkActive="menuActive" (click)="close()" routerLink="facultyMember/TasksProgrescompleted"
-                      class="py-3 px-2 d-block"> {{'TRANS.completed' | translate}} </a> </li>
-                </ul>
-              </div>
-
+    <!--faculty member Menu start-->
+    <ul type="none" class="p-0 text-white" *ngIf="getUserRoleCondition('StaffMember')">
+      <!-- home item  -->
+      <li class="py-3 homeIcon  ">
+        <a routerLinkActive="menuActive" (click)="close()" [routerLinkActiveOptions]="{exact : true}" routerLink=""
+          title="Home" class="px-3">
+          <span class="d-inline-block imgIcon text-center">
+            <img src="/assets/imgs/Icon feather-home.png" class="lightIcon" alt="home icon">
+            <div class="darkIcon ">
+              <img src="/assets/imgs/Icon feather-home2.png" alt="home icon">
             </div>
-          </li>
+          </span>
+          <span class="d-inline-block menuTxt"> {{ 'TRANS.menuHome' | translate }}</span>
+        </a>
+      </li>
+
+      <li class="py-3 homeIcon">
+        <a routerLinkActive="menuActive" (click)="close()" [routerLinkActiveOptions]="{exact : true}"
+          routerLink="facultyMember/attendanceRecord" title="Home" class="px-3">
+          <span class="d-inline-block imgIcon text-center">
+            <i class="far fa-file-alt fa-2x"></i>
+          </span>
+          <span class="d-inline-block menuTxt"> {{ 'TRANS.AttendanceAbsentregistrationtitle' | translate }}</span>
+        </a>
+      </li>
+
+      <li class="py-3 homeIcon">
+        <a routerLinkActive="menuActive" (click)="close()" [routerLinkActiveOptions]="{exact : true}"
+          routerLink="facultyMember/StudentAttendanceForLecture" title="Home" class="px-3">
+          <span class="d-inline-block imgIcon text-center">
+            <i class="fas fa-chalkboard-teacher fa-2x"></i>
+          </span>
+          <span class="d-inline-block menuTxt"> {{ 'TRANS.StudentAttendanceForLectureTitle' | translate }}</span>
+        </a>
+      </li>
+
+      <li class="py-3 homeIcon">
+        <a routerLinkActive="menuActive" (click)="close()" [routerLinkActiveOptions]="{exact : true}"
+          routerLink="facultyMember/AttendanceAbsence" title="Home" class="px-3">
+          <span class="d-inline-block imgIcon text-center">
+            <i class="fas fa-user-friends fa-2x"></i>
+          </span>
+          <span class="d-inline-block menuTxt"> {{ 'TRANS.AttendanceAbsence' | translate }}</span>
+        </a>
+      </li>
+
+
+      <li class="py-3">
+        <div class="adminMenuList row">
+          <div class="row dropDown">
+            <div class="menu-Icon  text-center ">
+              <i class="fas fa-graduation-cap"></i>
+            </div>
+            <div class="clickable col-10" (click)="openDropDown($event)">
+              <b class=" list-title text-center w-100 py-2">
+                <span>{{'TRANS.excusesRequests' | translate}} </span>
+                <i class="fas fa-chevron-down" *ngIf="expanded"></i> </b>
+            </div>
+            <ul type="none">
+              <li class="d-block"> <a routerLinkActive="menuActive" (click)="close()"
+                  routerLink="facultyMember/TasksProgres" class="py-3 px-2 d-block">
+                  {{'TRANS.underTheProcedure' | translate}}</a> </li>
+              <li class="d-block"> <a routerLinkActive="menuActive" (click)="close()"
+                  routerLink="facultyMember/TasksProgrescompleted" class="py-3 px-2 d-block">
+                  {{'TRANS.completed' | translate}} </a> </li>
+            </ul>
+          </div>
+
+        </div>
+      </li>
 
 
 
-        </ul>
-        <!--faculty member end-->
+    </ul>
+    <!--faculty member end-->
 
 
-                <!--student Menu start-->
-                <ul type="none" class="p-0 text-white" *ngIf="getUserRoleCondition('Student')">
-                  <!-- home item  -->
-                  <li class="py-3 homeIcon  ">
-                    <a routerLinkActive="menuActive" (click)="close()" [routerLinkActiveOptions]="{exact : true}" routerLink=""
-                      title="Home" class="px-3">
-                      <span class="d-inline-block imgIcon text-center">
-                        <img src="assets/imgs/Icon feather-home.png" class="lightIcon" alt="home icon">
-                        <div class="darkIcon ">
-                          <img src="assets/imgs/Icon feather-home2.png" alt="home icon">
-                        </div>
-                      </span>
-                      <span class="d-inline-block menuTxt"> {{ 'TRANS.menuHome' | translate }}</span>
-                    </a>
-                  </li>
+    <!--student Menu start-->
+    <ul type="none" class="p-0 text-white" *ngIf="getUserRoleCondition('Student')">
+      <!-- home item  -->
+      <li class="py-3 homeIcon  ">
+        <a routerLinkActive="menuActive" (click)="close()" [routerLinkActiveOptions]="{exact : true}" routerLink=""
+          title="Home" class="px-3">
+          <span class="d-inline-block imgIcon text-center">
+            <img src="assets/imgs/Icon feather-home.png" class="lightIcon" alt="home icon">
+            <div class="darkIcon ">
+              <img src="assets/imgs/Icon feather-home2.png" alt="home icon">
+            </div>
+          </span>
+          <span class="d-inline-block menuTxt"> {{ 'TRANS.menuHome' | translate }}</span>
+        </a>
+      </li>
 
 
 
-                </ul>
-                <!--student menu end-->
+    </ul>
+    <!--student menu end-->
 
 
   </div>
 </div>
 
 
+
+<div mdbModal #basicModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close pull-right" aria-label="Close" (click)="basicModal.hide()">
+          <span aria-hidden="true">×</span>
+        </button>
+        <h4 class="modal-title text-center w-100" id="myModalLabel"> {{ 'TRANS.ChangeTerm' | translate }} </h4>
+      </div>
+      <div class="modal-body termslist">
+        <ul class="p-0 m-0 text-right  w-100 " *ngFor="let element of elements" type="none">
+          <li class="py-4">
+            <label class="container">
+              <input type="radio" name="radio" [checked]="element.IsActive == true">
+              <span class="checkmark"></span>
+              {{ element.NameAr }}
+            </label>
+          </li> 
+        </ul>
+      </div>
+      <div class="modal-footer text-center ">
+        <button type="button" mdbBtn class="mx-auto relative save" (click)="secondModal.show()">
+          حفظ
+           </button>
+        <button type="button" mdbBtn class=" mx-auto cancel " aria-label="Close"
+          (click)="basicModal.hide()">الغاء</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div mdbModal #secondModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mysecondModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close pull-right" aria-label="Close" (click)="secondModal.hide()">
+          <span aria-hidden="true">×</span>
+        </button>
+        <h4 class="modal-title text-center w-100" id="myModalLabel"> {{ 'TRANS.ChangeTerm' | translate }} </h4>
+      </div>
+      <div class="modal-body termslist">
+        سيتم تعميم الفصل الدراسي على مستوى كل النظام.
+        هل أنت متأكد من تغيير الفصل الدراسي ؟ 
+      </div>
+      <div class="modal-footer text-center ">
+        <button type="button" mdbBtn class="mx-auto relative save"  (click)="secondModal.hide()">
+          نعم
+           </button>
+        <button type="button" mdbBtn class=" mx-auto cancel " aria-label="Close"
+          (click)="secondModal.hide()">لا</button>
+      </div>
+    </div>
+  </div>
+</div>

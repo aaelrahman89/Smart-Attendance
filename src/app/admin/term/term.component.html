@@ -3,7 +3,12 @@
 <div class="container-fluid px-5">
 
   <page-title>{{ 'TRANS.termTitle' | translate }} </page-title>
-
+  <nav aria-label="breadcrumb" class="col-md-6 mx-auto text-center">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a routerLink="">{{ 'TRANS.menuHome' | translate }}</a></li>
+      <li class="breadcrumb-item"><a class="mx-2" >{{ 'TRANS.termTitle' | translate }}</a></li>
+    </ol>
+  </nav>
   <div class="col-md-12 table-responsive mr-3">
     <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover table table-striped excel-print">
       <thead>
@@ -49,7 +54,7 @@
                     <h4 class="modal-title w-100" id="myModalLabel">{{ 'TRANS.termTitle' | translate }}</h4>
                   </div>
                   <div class="modal-body">
-                    <form [formGroup]="editForm" (ngSubmit)="edit(element)">
+                    <form [formGroup]="editForm"   (ngSubmit)="edit(element)">
                       <div class="row">
                         <div class="col-md-6">
                           <div class="form-group text-right">
@@ -76,7 +81,7 @@
                             <b class="color-p mx-3 my-3 d-block text-right">{{ 'TRANS.StartDate' | translate }}  <span  class="text-danger">*</span></b>
                             <!-- (focus)="$event.target.type = 'date'" -->
                             <!-- [ngModel]="endDate | date:'yyyy-MM-dd'" (ngModelChange)="endDate = $event" -->
-                            <input type="date" placeholder="DD/MM/YYYY" title="{{ 'TRANS.StartDate' | translate }}" class="form-control" required formControlName="startDate" [ngClass]="{ 'is-invalid': submitted && editFormErrors.startDate.errors }">
+                            <input type="date"  title="{{ 'TRANS.StartDate' | translate }}" class="text-right form-control" required formControlName="startDate" [ngClass]="{ 'is-invalid': submitted && editFormErrors.startDate.errors }">
                             <div *ngIf="submitted && editFormErrors.startDate.errors" class="invalid-feedback">
                               <h4 *ngIf="editFormErrors.startDate.errors.required">{{'TRANS.validationReq'|translate}}</h4>
                           </div>
@@ -87,7 +92,8 @@
                             <b class="color-p mx-3 my-3 d-block text-right">{{ 'TRANS.EndDate' | translate }}  <span  class="text-danger">*</span></b>
                             <!-- (focus)="$event.target.type = 'date'" -->
                             <!-- [ngModel]="endDate | date:'yyyy-MM-dd'" (ngModelChange)="endDate = $event" -->
-                            <input type="text" title="{{ 'TRANS.EndDate' | translate }}" class="form-control" required formControlName="endDate"  [ngClass]="{ 'is-invalid': submitted && editFormErrors.endDate.errors }">
+                            <input type="date" title="{{ 'TRANS.EndDate' | translate }}" 
+                            [min]="editForm.get('startDate').value" class="text-right form-control" required formControlName="endDate"  [ngClass]="{ 'is-invalid': submitted && editFormErrors.endDate.errors }">
                             <div *ngIf="submitted && editFormErrors.endDate.errors" class="invalid-feedback">
                               <h4 *ngIf="editFormErrors.endDate.errors.required">{{'TRANS.validationReq'|translate}}</h4>
                           </div>

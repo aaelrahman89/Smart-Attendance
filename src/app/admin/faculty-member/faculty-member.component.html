@@ -4,7 +4,13 @@
     <h2 class="color-p text-center ">
       <b> <i class="fas fa-university"></i> {{ 'TRANS.menuManageMemberData' | translate }} </b>
       <p *ngIf="loading" >Loading Data...</p>
-    </h2>
+    </h2> 
+    <nav aria-label="breadcrumb" class="col-md-6 mx-auto text-center">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a routerLink="">{{ 'TRANS.menuHome' | translate }}</a></li>
+        <li class="breadcrumb-item"><a class="mx-2" >{{ 'TRANS.menuManageMemberData' | translate }}</a></li>
+      </ol>
+    </nav>
   </div>
 
   <div class="col-md-12">
@@ -78,10 +84,10 @@
       </div>
       <div class="modal-body "> 
         <!-- // start of form  -->
-        <form  class="row"  [formGroup]="editForm" (ngSubmit)="submit(popupElements)"  >
+        <form  class="row"  [formGroup]="editForm" #mainForm="ngForm" (ngSubmit)="submit(popupElements)"  >
         <div class="col-md-6 mx-auto row rowInfo my-3">
           <div class="">
-            <b for="" class="color-p mx-3 my-3 d-block"> الأسم باللغة العربية </b>
+            <b for="" class="color-p mx-3 my-3 d-block">     {{ 'TRANS.studentNameAr' | translate }} </b>
           </div>
           <div class=" col-md-12 text-right " [class.valError]="editForm.get('nameAr').errors?.notArabic" >
             <input type="text" class="form-control py-0" formControlName="nameAr"   >
@@ -92,7 +98,7 @@
         </div> 
         <div class="col-md-6 mx-auto row rowInfo my-3">
           <div class="">
-            <b for="" class="color-p mx-3 my-3 d-block"> الأسم باللغة الأنجليزية </b>
+            <b for="" class="color-p mx-3 my-3 d-block">{{ 'TRANS.studentNameEn' | translate }} </b>
           </div>
           <div class=" col-md-12 text-right ">
             <input type="text" class="form-control py-0" formControlName="nameEn"  >
@@ -100,7 +106,7 @@
         </div> 
         <div class="col-md-6 mx-auto row rowInfo my-3">
           <div class="">
-            <b for="" class="color-p mx-3 my-3 d-block"> تاريخ الميلاد </b>
+            <b for="" class="color-p mx-3 my-3 d-block"> {{ 'TRANS.studentBirthDate' | translate }} </b>
           </div>
           <div class=" col-md-12 text-right ">
             <input type="text" class="form-control py-0" formControlName="birthDate"  >
@@ -108,7 +114,7 @@
         </div> 
        <div class="col-md-6 mx-auto row rowInfo my-3">
           <div class="">
-            <b for="" class="color-p mx-3 my-3 d-block"> القسم </b>
+            <b for="" class="color-p mx-3 my-3 d-block"> {{ 'TRANS.MajorsthDepartment' | translate }}  </b>
           </div>
           <div class=" col-md-12 text-right ">
             <select class="form-control py-0" formControlName="Departmentcode">
@@ -120,7 +126,7 @@
         </div>  
          <div class="col-md-6 mx-auto row rowInfo my-3">
           <div class="">
-            <b for="" class="color-p mx-3 my-3 d-block"> الكلية </b>
+            <b for="" class="color-p mx-3 my-3 d-block">  {{ 'TRANS.MajorsthCollege' | translate }}  </b>
           </div>
           <div class=" col-md-12 text-right ">
             <select class="form-control py-0"  formControlName="collegeCode">
@@ -131,7 +137,7 @@
         </div>   
         <div class="col-md-6 mx-auto row rowInfo my-3">
           <div class="">
-            <b for="" class="color-p mx-3 my-3 d-block"> البريد الالكترونى الجامعى </b>
+            <b for="" class="color-p mx-3 my-3 d-block"> {{ 'TRANS.uniEmail' | translate }}  </b>
           </div>
           <div class=" col-md-12 text-right ">
             <input type="text" class="form-control py-0" formControlName="uniEmail"  >
@@ -139,7 +145,7 @@
         </div> 
         <div class="col-md-6 mx-auto row rowInfo my-3">
           <div class="">
-            <b for="" class="color-p mx-3 my-3 d-block"> البريد الالكترونى البديل </b>
+            <b for="" class="color-p mx-3 my-3 d-block">{{ 'TRANS.studentAltEmail' | translate }} </b>
           </div>
           <div class=" col-md-12 text-right ">
             <input type="text" class="form-control py-0" formControlName="altEmail" >
@@ -147,7 +153,7 @@
         </div> 
        <div class="col-md-6 mx-auto row rowInfo my-3">
           <div class="">
-            <b for="" class="color-p mx-3 my-3 d-block">رقم عضو هيئة التدريس </b>
+            <b for="" class="color-p mx-3 my-3 d-block"> {{ 'TRANS.memberNo' | translate }}  </b>
           </div>
           <div class=" col-md-12 text-right ">
             <input type="text" class="form-control py-0" value="{{popupElements.FacultyMemberNumber}}">
@@ -155,7 +161,7 @@
         </div>   
         <div class="col-md-6 mx-auto row rowInfo my-3">
           <div class="">
-            <b for="" class="color-p mx-3 my-3 d-block"> رقم الهوية </b>
+            <b for="" class="color-p mx-3 my-3 d-block"> {{ 'TRANS.facultyMemberTHId' | translate }} </b>
           </div>
           <div class=" col-md-12 text-right ">
             <input type="text" class="form-control py-0" formControlName="idNum" >
@@ -163,7 +169,7 @@
         </div> 
          <div class="col-md-6 mx-auto row rowInfo my-3">
           <div class="">
-            <b for="" class="color-p mx-3 my-3 d-block"> الجنسية </b>
+            <b for="" class="color-p mx-3 my-3 d-block"> {{ 'TRANS.studentNationality' | translate }}  </b>
           </div>
           <div class=" col-md-12 text-right ">
             <select class="form-control py-0" formControlName="NationalityCode" >
@@ -177,7 +183,7 @@
         </div>  
         <div class="col-md-6 mx-auto row rowInfo my-3">
           <div class="">
-            <b for="" class="color-p mx-3 my-3 d-block"> الجنس </b>
+            <b for="" class="color-p mx-3 my-3 d-block">  {{ 'TRANS.studentGender' | translate }} </b>
           </div>
           <div class=" col-md-12 text-right ">
             <input type="text" class="form-control py-0" formControlName="gender"  >
@@ -185,7 +191,7 @@
         </div> 
           <div class="col-md-6 mx-auto row rowInfo my-3">
           <div class="">
-            <b for="" class="color-p mx-3 my-3 d-block"> رقم الجوال </b>
+            <b for="" class="color-p mx-3 my-3 d-block"> {{ 'TRANS.studentMobile' | translate }} </b>
           </div>
           <div class=" col-md-12 text-right ">
             <input type="text" class="form-control py-0" formControlName="TelephoneNumber">
@@ -193,20 +199,21 @@
         </div>  
         <div class="col-md-6  row rowInfo my-3">
           <div class="">
-            <b for="" class="color-p mx-3 my-3 d-block"> الدرجة العلمية </b>
+            <b for="" class="color-p mx-3 my-3 d-block">{{ 'TRANS.degree' | translate }}  </b>
           </div>
           <div class=" col-md-12 text-right ">
             <input type="text" class="form-control py-0" formControlName="degree"  >
           </div>
-        </div>  
-        <div class="modal-footer w-100">
-          <!-- <button type="button" mdbBtn   class="waves-light " aria-label="Close"
-            (click)="basicModal.hide()" mdbWavesEffect>Close</button> -->
-               <button type="submit" mdbBtn   [disabled]="editForm.invalid" aria-label="Close" (click)="basicModal.hide()" 
-                class="relative save btn btn-main px-5 py-2 mx-auto waves-light" mdbWavesEffect> 
-            حفظ  </button>
-        </div>
+        </div>   
       </form>
+      <div class="modal-footer w-100">
+        <!-- <button type="button" mdbBtn   class="waves-light " aria-label="Close"
+          (click)="basicModal.hide()" mdbWavesEffect>Close</button> -->
+             <button type="button"  mdbBtn   [disabled]="editForm.invalid" aria-label="Close" (click)="CustomModal()" 
+              class="relative save btn btn-main px-5 py-2 mx-auto waves-light" mdbWavesEffect> 
+          حفظ  </button>
+          
+      </div>
       </div>
      
     </div>
@@ -232,4 +239,9 @@
     </div>
   </div>
 </div>
+
+<dynamic-modal *ngIf="openModal == true"  (closeModal)="CustomModal()" (submitParent)="mainForm.ngSubmit.emit()">
+  {{ 'TRANS.confirmMessage' | translate }}
+</dynamic-modal>
+
 <router-outlet></router-outlet>

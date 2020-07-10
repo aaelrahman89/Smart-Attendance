@@ -203,3 +203,25 @@ text-align: left;
       display: none !important;
     }
   }
+  .btn:hover{
+    color: inherit !important ; 
+  }
+  .save{
+    background-color: #2acf82;
+    color: white;
+}
+.cancel{
+    background-color: rgb(177, 62, 62);
+    color: white;
+}
+.termslist li {
+    border-bottom: 1px solid #ccc;
+}
+ .modal{
+    overflow: auto !important;
+}
+input[name="radio"]{
+    width: 20px;
+    margin: 0 10px;
+    height: 20px;
+}

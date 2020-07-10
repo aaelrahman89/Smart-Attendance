@@ -3,7 +3,7 @@ import { DeptartmentService } from './../../services/deptartment.service';
 import { CollegeService } from './../../services/college.service';
 import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { Subject } from 'rxjs';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormGroupDirective } from '@angular/forms';
 
 import { DataTableDirective } from 'angular-datatables';
 import { CourseDTO } from 'src/app/models/Course/CourseDTO';
@@ -25,6 +25,14 @@ export class CoursesComponent implements OnInit {
  @ViewChild(DataTableDirective, {static: false})
  dtElement: DataTableDirective;
  isDtInitialized:boolean = false;
+
+   // confirmation modal
+   @ViewChild('mainForm') mainForm: FormGroupDirective;
+   @ViewChild('basicModal') basicModal;
+   openModal: boolean = false;
+   CustomModal(){
+     this.openModal = !this.openModal
+   }
 
  // Must be declared as "any", not as "DataTables.Settings"
  dtOptions: any = {};
@@ -138,6 +146,7 @@ export class CoursesComponent implements OnInit {
     this.myService.Update(element).subscribe(() => console.log('data updated'));
   }
 
+
   // onChangeCollege
   onChangeCollege(collegeCode) {
     this.departmentFilter.CollegeCode = collegeCode;
@@ -182,6 +191,8 @@ export class CoursesComponent implements OnInit {
     this.myService.Update(element).subscribe(res =>
       {
         this.rerender();
+        this.openModal = !this.openModal;
+        this.basicModal.hide();
       }
       );
   }

@@ -98,6 +98,8 @@ import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { MainIndexComponent } from './mainIndex/main-index/main-index.component';
 import { ModalServiceModule } from './modal-service/modal-service.module';
 import { MyModalComponent } from './my-modal.component';
+import { ModalComponent } from './modal/modal/modal.component';
+import { AskedpermissionComponent } from './facultyMember/MyTasks/askedpermission/askedpermission.component';
 
 
 
@@ -172,7 +174,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     GeneralAlertComponent,
     DashboardComponent,
     MainIndexComponent,
-    MyModalComponent
+    MyModalComponent,
+    ModalComponent,
+    AskedpermissionComponent
 
   ],
   imports: [

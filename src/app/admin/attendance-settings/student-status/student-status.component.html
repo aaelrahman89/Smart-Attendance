@@ -5,34 +5,89 @@
   </div>
 
 
-    <div class=" col-md-4 mx-auto  d-block my-3 text-right ">
-        <select class="form-control py-0" (change)="getByCollegeCode($event.target.value)">
-            <option [value]="availableCollege.CollegeCode" *ngFor="let availableCollege of availableColleges"> {{availableCollege.CollegeName}} </option>
-        </select>
+  <form [formGroup]="studentStatusFormAdd" (ngSubmit)="add()">
+
+
+    <div class="container px-3">
+
+
+
+<div class=" col-md-4 mx-auto  d-block my-3 text-right ">
+  <select class="form-control py-0" (change)="getByCollegeCode($event.target.value)" formControlName="CollageCode">
+      <option [value]="availableCollege.CollegeCode" *ngFor="let availableCollege of availableColleges"> {{availableCollege.CollegeName}} </option>
+  </select>
+</div>
+
+        <div class="statusChecks">
+         <div>
+             <b class="mx-5"> الحالات المستثناه من الحرمان</b>
+
+             <div class="px-3">
+                 <ul type="none">
+
+
+                     <li class="row py-5">
+                         <div class="form-group mx-5" *ngFor="let StudentStatus of StudentStatusListArray">
+                             <label class="switch">
+                                 <input type="checkbox" [checked]="StudentStatus?.IsActive" [value]="StudentStatus?.IsActive" (change)="onChange(StudentStatus)">
+                                 <span class="slider round"></span>
+                             </label>
+                             <label>{{StudentStatus?.StatusName}}</label>
+                         </div>
+                     </li>
+                     <!-- <select class="form-control" formControlName="StudentStatusList" multiple>
+     <option *ngFor="let StudentStatus of StudentStatusListArray" [ngValue]="StudentStatus">{{StudentStatus?.StatusName}}</option>
+                     </select> -->
+                 </ul>
+             </div>
+         </div>
+     </div>
+
+     <div class="statusChecks">
+      <b class="mx-5"> ادارة حالات الانذار والحرمان من الامتحان</b>
+     </div>
+
+     <div class="col-md-12 table-responsive mt-2">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>حالة الحرمان</th>
+            <th>اسم الانذار</th>
+            <th>وصف الانذار</th>
+            <th style="width: 18%;">اذا كانت نسبة الغياب</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td><input type="checkbox"></td>
+            <td>انذار اول</td>
+            <td>انذار تحذيرى</td>
+            <td class="d-flex">
+              <select class="form-control">
+                <option value="1"> < </option>
+                <option value="1"> = </option>
+                <option value="1"> =< </option>
+              </select>
+               <input type="text" class="form-control" value="10"> %
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
 
-    <div class="statusChecks">
-        <div>
-            <b class="mx-5"> {{'TRANS.attendanceCalculated' | translate}}</b>
 
-            <div class="px-3">
-                <ul type="none">
-                    <li class="row py-5 ">
-                        <div class="form-group mx-5" *ngFor="let StudentStatus of StudentStatusList?.StudentStatusList">
-                            <label class="switch">
-                                <input type="checkbox" [checked]="StudentStatus?.IsActive" [value]="StudentStatus?.StatusCode">
-                                <span class="slider round"></span>
-                            </label>
-                            <label>{{StudentStatus?.StatusName}}</label>
-                        </div>
-                    </li>
-                </ul>
-                <div class="d-block w-100 text-center">
-                <button class="save btn btn-main px-5 py-2 mx-auto"> {{'TRANS.save' | translate}} </button>
-                </div>
-            </div>
-        </div>
+        <div class="d-block w-100 text-center">
+         <button type="submit" class="save btn btn-main px-5 py-2 mx-auto" (click)="basicModal.hide()"> {{'TRANS.save' | translate}} </button>
+         </div>
+
     </div>
+
+
+
+    </form>
+
 </div>
 
 
@@ -52,21 +107,47 @@
 
           <!--add form start-->
 
-          <form [formGroup]="studentStatusForm">
+          <form [formGroup]="studentStatusFormAdd" (ngSubmit)="add()">
 
 
            <div class="container px-3">
 
 
                <div class=" col-md-6 mx-auto my-3 text-right ">
-                   <select class="form-control py-0" formControlName="CollegeCode">
+                   <select class="form-control py-0" formControlName="CollageCode" (change)="onChangeAllColleges()">
                      <option value="" selected disabled>{{'TRANS.selectColleges' | translate}}</option>
                        <option [value]="college.CollegeCode" *ngFor="let college of collFilteredLast"> {{college.Name}} </option>
                    </select>
                </div>
 
+               <div class="statusChecks">
+                <div>
+                  <b class="mx-5"> الحالات المستثناه من الحرمان</b>
+
+                    <div class="px-3">
+                        <ul type="none">
+
+
+                            <li class="row py-5">
+                                <div class="form-group mx-3" *ngFor="let StudentStatus of StudentStatusListArray">
+                                    <label class="switch">
+                                        <input type="checkbox" [checked]="StudentStatus?.IsActive" [value]="StudentStatus?.IsActive" (change)="onChange(StudentStatus)">
+                                        <span class="slider round"></span>
+                                    </label>
+                                    <label>{{StudentStatus?.StatusName}}</label>
+                                </div>
+                            </li>
+                            <!-- <select class="form-control" formControlName="StudentStatusList" multiple>
+            <option *ngFor="let StudentStatus of StudentStatusListArray" [ngValue]="StudentStatus">{{StudentStatus?.StatusName}}</option>
+                            </select> -->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+
                <div class="d-block w-100 text-center">
-                <button class="save btn btn-main px-5 py-2 mx-auto" (click)="basicModal.hide()"> {{'TRANS.save' | translate}} </button>
+                <button type="submit" class="save btn btn-main px-5 py-2 mx-auto" (click)="basicModal.hide()"> {{'TRANS.save' | translate}} </button>
                 </div>
 
            </div>
@@ -74,6 +155,7 @@
 
 
            </form>
+
 
           <!--add form end-->
 

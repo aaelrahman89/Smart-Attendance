@@ -60,8 +60,8 @@ interface Department {
 
 interface College {
   CollegeCode: string;
-  NameAr: string;
-  NameEn: string;
+  Name: string;
+  
   IsActive: boolean;
   Id: number;
 }

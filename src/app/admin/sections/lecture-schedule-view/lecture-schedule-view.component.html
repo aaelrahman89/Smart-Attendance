@@ -10,9 +10,13 @@
 
       <h1 class="color-p pageTitle  text-center">
         <b> <i class="fas fa-university"></i> {{'TRANS.SessionTimemanagement'|translate}} </b>
-
       </h1>
-
+      <nav aria-label="breadcrumb" class="col-md-6 mx-auto text-center">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a routerLink="">{{ 'TRANS.menuHome' | translate }}</a></li>
+          <li class="breadcrumb-item"><a class="mx-2" >{{ 'TRANS.SessionTimemanagement' | translate }}</a></li>
+        </ol>
+      </nav>
 
     </div>
 
@@ -72,13 +76,9 @@
                       <option  *ngFor="let college of colleges" [value]="college.CollegeCode">
 
 
-                        <span *ngIf="pageLang === 'ar'">
-                          {{  college.NameAr }}
-                        </span>
-                        <span *ngIf="pageLang === 'en'">
-                          {{  college.NameEn }}
-
-                          </span>
+                          {{  college.Name }}
+                   
+                    
                       </option>
                     </select>
                     <div *ngIf="submitsearchError && searchErrors.college.errors" class="invalid-feedback">
@@ -523,45 +523,45 @@
 
               <div class="row">
               <div class="col-md-2 p-0 m-0 text-center">
-              <div class="custom-control custom-checkbox custom-control-inline ">
-                <input type="checkbox"  class="custom-control-input" name="Saturdays" formControlName="Saturdays" id="Saturdays">
-                <label class="custom-control-label" for="Saturday">{{ 'TRANS.Saturday' | translate }}</label>
+              <div class="form-check form-check-inline ">
+                <input type="checkbox"  class="form-check-input" name="Saturdays" formControlName="Saturdays" id="Saturdays">
+                <label class="form-check-label px-1" for="Saturday">{{ 'TRANS.Saturday' | translate }}</label>
               </div>
               </div>
 
               <div class="col-md-2 p-0 m-0 text-center">
 
-              <div class="custom-control custom-checkbox custom-control-inline ">
-                <input type="checkbox"  class="custom-control-input" formControlName="Sundays" id="Sundays">
-                <label class="custom-control-label" for="Sunday">{{ 'TRANS.Sunday' | translate }}</label>
+              <div class="form-check form-check-inline ">
+                <input type="checkbox"  class="form-check-input" formControlName="Sundays" id="Sundays">
+                <label class="form-check-label px-1" for="Sunday">{{ 'TRANS.Sunday' | translate }}</label>
               </div>
               </div>
               <div class="col-md-2 p-0 m-0 text-center">
 
-              <div class="custom-control custom-checkbox custom-control-inline  ">
-                <input type="checkbox" class="custom-control-input" formControlName="Mondays" id="Mondays" >
-                <label class="custom-control-label" for="Monday">{{ 'TRANS.Monday' | translate }}</label>
+              <div class="form-check form-check-inline  ">
+                <input type="checkbox" class="form-check-input" formControlName="Mondays" id="Mondays" >
+                <label class="form-check-label px-1" for="Monday">{{ 'TRANS.Monday' | translate }}</label>
               </div>
               </div>
               <div class="col-md-2 p-0 m-0 text-center">
 
-              <div class="custom-control custom-checkbox custom-control-inline  ">
-                <input type="checkbox" class="custom-control-input" id="Tuesdays" formControlName="Tuesdays">
-                <label class="custom-control-label" for="Tuesday">{{ 'TRANS.Tuesday' | translate }}</label>
+              <div class="form-check form-check-inline  ">
+                <input type="checkbox" class="form-check-input" id="Tuesdays" formControlName="Tuesdays">
+                <label class="form-check-label px-1" for="Tuesday">{{ 'TRANS.Tuesday' | translate }}</label>
               </div>
               </div>
               <div class="col-md-2 p-0 m-0 text-center">
 
-              <div class="custom-control custom-checkbox custom-control-inline  ">
-                <input type="checkbox" class="custom-control-input" id="Wensdays" formControlName="Wensdays">
-                <label class="custom-control-label" for="Wensday">{{ 'TRANS.Wednesday' | translate }}</label>
+              <div class="form-check form-check-inline  ">
+                <input type="checkbox" class="form-check-input" id="Wensdays" formControlName="Wensdays">
+                <label class="form-check-label px-1" for="Wensday">{{ 'TRANS.Wednesday' | translate }}</label>
               </div>
               </div>
               <div class="col-md-2 p-0 m-0 text-center">
 
-              <div class="custom-control custom-checkbox custom-control-inline  ">
-                <input type="checkbox" class="custom-control-input" id="Thursdays" formControlName="Thursdays">
-                <label class="custom-control-label" for="Thursday">{{ 'TRANS.Thursday' | translate }}</label>
+              <div class="form-check form-check-inline  ">
+                <input type="checkbox" class="form-check-input" id="Thursdays" formControlName="Thursdays">
+                <label class="form-check-label px-1" for="Thursday">{{ 'TRANS.Thursday' | translate }}</label>
               </div>
               </div>
 
@@ -765,45 +765,45 @@
 
 <div class="row" >
 <div class="col-md-2 p-0 m-0 text-center">
-<div class="custom-control custom-checkbox custom-control-inline ">
-  <input type="checkbox" class="custom-control-input" name="Saturday" formControlName="Saturday" id="Saturday">
-  <label class="custom-control-label" for="Saturday">{{ 'TRANS.Saturday' | translate }}</label>
+<div class="form-check form-check-inline ">
+  <input type="checkbox" class="form-check-input" name="Saturday" formControlName="Saturday" id="Saturday">
+  <label class="form-check-label px-1" for="Saturday">{{ 'TRANS.Saturday' | translate }}</label>
 </div>
 </div>
 
 <div class="col-md-2 p-0 m-0 text-center">
 
-<div class="custom-control custom-checkbox custom-control-inline ">
-  <input type="checkbox" class="custom-control-input" formControlName="Sunday" id="Sunday">
-  <label class="custom-control-label" for="Sunday">{{ 'TRANS.Sunday' | translate }}</label>
+<div class="form-check form-check-inline ">
+  <input type="checkbox" class="form-check-input" formControlName="Sunday" id="Sunday">
+  <label class="form-check-label px-1" for="Sunday">{{ 'TRANS.Sunday' | translate }}</label>
 </div>
 </div>
 <div class="col-md-2 p-0 m-0 text-center">
 
-<div class="custom-control custom-checkbox custom-control-inline  ">
-  <input type="checkbox" class="custom-control-input" formControlName="Monday" id="Monday" >
-  <label class="custom-control-label" for="Monday">{{ 'TRANS.Monday' | translate }}</label>
+<div class="form-check form-check-inline  ">
+  <input type="checkbox" class="form-check-input" formControlName="Monday" id="Monday" >
+  <label class="form-check-label px-1" for="Monday">{{ 'TRANS.Monday' | translate }}</label>
 </div>
 </div>
 <div class="col-md-2 p-0 m-0 text-center">
 
-<div class="custom-control custom-checkbox custom-control-inline  ">
-  <input type="checkbox" class="custom-control-input" id="Tuesday" formControlName="Tuesday">
-  <label class="custom-control-label" for="Tuesday">{{ 'TRANS.Tuesday' | translate }}</label>
+<div class="form-check form-check-inline  ">
+  <input type="checkbox" class="form-check-input" id="Tuesday" formControlName="Tuesday">
+  <label class="form-check-label px-1" for="Tuesday">{{ 'TRANS.Tuesday' | translate }}</label>
 </div>
 </div>
 <div class="col-md-2 p-0 m-0 text-center">
 
-<div class="custom-control custom-checkbox custom-control-inline  ">
-  <input type="checkbox" class="custom-control-input" id="Wensday" formControlName="Wensday">
-  <label class="custom-control-label" for="Wensday">{{ 'TRANS.Wednesday' | translate }}</label>
+<div class="form-check form-check-inline  ">
+  <input type="checkbox" class="form-check-input" id="Wensday" formControlName="Wensday">
+  <label class="form-check-label px-1" for="Wensday">{{ 'TRANS.Wednesday' | translate }}</label>
 </div>
 </div>
 <div class="col-md-2 p-0 m-0 text-center">
 
-<div class="custom-control custom-checkbox custom-control-inline  ">
-  <input type="checkbox" class="custom-control-input" id="Thursday" formControlName="Thursday">
-  <label class="custom-control-label" for="Thursday">{{ 'TRANS.Thursday' | translate }}</label>
+<div class="form-check form-check-inline  ">
+  <input type="checkbox" class="form-check-input" id="Thursday" formControlName="Thursday">
+  <label class="form-check-label px-1" for="Thursday">{{ 'TRANS.Thursday' | translate }}</label>
 </div>
 </div>
 

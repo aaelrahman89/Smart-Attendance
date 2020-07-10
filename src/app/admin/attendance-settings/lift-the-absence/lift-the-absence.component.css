@@ -1,0 +1,14 @@
+.table th, .table td {
+  text-align: center;
+}
+.bg-red{
+  background: red;
+}
+.Customize-btn {
+  position: relative;
+  margin: auto !important;
+}
+.activate-period-none{
+    opacity: 0.5;
+    pointer-events: none;
+}

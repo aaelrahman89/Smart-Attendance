@@ -1,14 +1,15 @@
-<div class="row mt-5 py-5">
-    <div class="col-md-4 row mx-auto my-4">
-        <div class="col-4" >
-            <div class="icon-circle text-white text-center ">
+<div class="row mt-2">
+    <div class="col-md-2 col-6 row mx-auto p-0 my-4">
+        <div class="col-12 text-center" >
+            <div class="icon-circle mx-auto text-white text-center ">
                 <i class="fas fa-landmark"></i>
             </div>
+            <h3 class="dash-title m-0"> <span>{{dashboard.CollegesTotalCount}}</span> {{ 'TRANS.collegesTitle' | translate }} </h3>
         </div>
-        <div class="col-7 text-right dash-info">
-            <h1 class="dash-title"> <span>{{dashboard.CollegesTotalCount}}</span> {{ 'TRANS.collegesTitle' | translate }} </h1>
-            <span class="mx-3 act-no " > {{dashboard.CollegesActiveCount}} فعال  </span>
-            <span class="mx-3 act-no " > {{dashboard.CollegesInActiveCount}} غير فعال  </span>
+        <div class="col-12 text-right dash-info">
+            
+            <span class="w-100 col-12 my-2 act-no " > <span>{{dashboard.CollegesActiveCount}}</span> فعال  </span>
+            <span class="w-100 col-12 my-2 act-no " > <span>{{dashboard.CollegesInActiveCount}}</span> غير فعال  </span>
             <hr class="w-100" >
             <a class="row py-1"  routerLink="admin/colleges"> 
                 <div class="icon-link text-white text-center py-1 mx-3"><i class="fas fa-cog "></i></div>    
@@ -16,16 +17,17 @@
             </a>
         </div>
     </div> 
-    <div class="col-md-4 row mx-auto my-4">
-        <div class="col-4" >
-            <div class="icon-circle text-white">
+    <div class="col-md-2 col-6 row mx-auto p-0 my-4">
+        <div class="col-12 text-center" >
+            <div class="icon-circle mx-auto text-white">
                 <i class="fas fa-graduation-cap"></i>
             </div>
+            <h3 class="dash-title m-0"> <span> {{dashboard.StudentsTotalCount}} </span>  {{ 'TRANS.studentsLength' | translate }} </h3>
+
         </div>
-        <div class="col-7 text-right dash-info">
-            <h1 class="dash-title"> <span> {{dashboard.StudentsTotalCount}} </span>  {{ 'TRANS.studentsLength' | translate }} </h1>
-            <span class="mx-3 act-no " > {{dashboard.StudentsActiveCount}} فعال  </span>
-            <span class="mx-3 act-no " > {{dashboard.StudentsInActiveCount}} غير فعال  </span>
+        <div class="col-12 text-right dash-info">
+            <span class="w-100 col-12 my-2 act-no " > <span>{{dashboard.StudentsActiveCount}}</span> فعال  </span>
+            <span class="w-100 col-12 my-2 act-no " > <span>{{dashboard.StudentsInActiveCount}}</span> غير فعال  </span>
             <hr class="w-100" >
             <a class="row py-1" routerLink="admin/studentadmin"> 
                 <div class="icon-link text-white text-center py-1 mx-3"><i class="fas fa-cog "></i></div>    
@@ -33,16 +35,16 @@
             </a>
         </div>
     </div> 
-    <div class="col-md-4 row mx-auto my-4">
-        <div class="col-4" >
-            <div class="icon-circle text-white">
+    <div class="col-md-2 col-6 row mx-auto p-0 my-4">
+        <div class="col-12 text-center" >
+            <div class="icon-circle mx-auto text-white">
                 <i class="fas fa-briefcase"></i>
             </div>
+            <h3 class="dash-title m-0"> <span> {{dashboard.StaffMembersTotalCount}} </span>   {{ 'TRANS.FacultyMemberName' | translate }} </h3>
         </div>
-        <div class="col-7 text-right dash-info">
-            <h1 class="dash-title"> <span> {{dashboard.StaffMembersTotalCount}} </span>   {{ 'TRANS.FacultyMemberName' | translate }} </h1>
-            <span class="mx-3 act-no " > {{dashboard.StaffMembersActiveCount}} فعال  </span>
-            <span class="mx-3 act-no " > {{dashboard.StaffMembersInActiveCount}} غير فعال  </span>
+        <div class="col-12 text-right dash-info">
+            <span class="w-100 col-12 my-2 act-no " > <span>{{dashboard.StaffMembersActiveCount}}</span> فعال  </span>
+            <span class="w-100 col-12 my-2 act-no " > <span>{{dashboard.StaffMembersInActiveCount}}</span> غير فعال  </span>
             <hr class="w-100" >
             <a class="row py-1" routerLink="admin/facultyMember"> 
                 <div class="icon-link text-white text-center py-1 mx-3"><i class="fas fa-cog "></i></div>    
@@ -50,17 +52,16 @@
             </a>
         </div>
     </div> 
-    <hr class="w-100 my-5 " >
-    <div class="col-md-4 row mx-auto my-4">
-        <div class="col-4" >
-            <div class="icon-circle text-white">
+    <div class="col-md-2 col-6 row mx-auto p-0 my-4">
+        <div class="col-12 text-center" >
+            <div class="icon-circle mx-auto text-white">
                 <i class="fas fa-book"></i>
             </div>
+            <h3 class="dash-title m-0"> <span> {{dashboard.CoursesTotalCount}} </span>  {{ 'TRANS.coursesTitle' | translate }} </h3>
         </div>
-        <div class="col-7 text-right dash-info">
-            <h1 class="dash-title"> <span> {{dashboard.CoursesTotalCount}} </span>  {{ 'TRANS.coursesTitle' | translate }} </h1>
-            <span class="mx-3 act-no " > {{dashboard.CoursesActiveCount}} فعال  </span>
-            <span class="mx-3 act-no " > {{dashboard.CoursesInActiveCount}} غير فعال  </span>
+        <div class="col-12 text-right dash-info">
+            <span class="w-100 col-12 my-2 act-no " > <span>{{dashboard.CoursesActiveCount}}</span> فعال  </span>
+            <span class="w-100 col-12 my-2 act-no " > <span>{{dashboard.CoursesInActiveCount}}</span> غير فعال  </span>
             <hr class="w-100" >
             <a class="row py-1"  routerLink="admin/courses"> 
                 <div class="icon-link text-white text-center py-1 mx-3"><i class="fas fa-cog "></i></div>    
@@ -68,16 +69,17 @@
             </a>
         </div>
     </div> 
-    <div class="col-md-4 row mx-auto my-4">
-        <div class="col-4" >
-            <div class="icon-circle text-white">
+    <div class="col-md-2 col-6 row mx-auto p-0 my-4">
+        <div class="col-12 text-center" >
+            <div class="icon-circle mx-auto text-white">
                 <i class="fas fa-bookmark"></i>
             </div>
+            <h3 class="dash-title m-0"> <span> {{dashboard.SectionsTotalCount}} </span>   {{ 'TRANS.menuSections' | translate }} </h3>
+
         </div>
-        <div class="col-7 text-right dash-info">
-            <h1 class="dash-title"> <span> {{dashboard.SectionsTotalCount}} </span>   {{ 'TRANS.menuSections' | translate }} </h1>
-            <span class="mx-3 act-no " > {{dashboard.SectionsActiveCount}} فعال  </span>
-            <span class="mx-3 act-no " > {{dashboard.SectionsInActiveCount}} غير فعال  </span>
+        <div class="col-12 text-right dash-info">
+            <span class="w-100 col-12 my-2 act-no " > <span>{{dashboard.SectionsActiveCount}}</span> فعال  </span>
+            <span class="w-100 col-12 my-2 act-no " > <span>{{dashboard.SectionsInActiveCount}}</span> غير فعال  </span>
             <hr class="w-100" >
             <a class="row py-1" routerLink="admin/sections"> 
                 <div class="icon-link text-white text-center py-1 mx-3"><i class="fas fa-cog "></i></div>    

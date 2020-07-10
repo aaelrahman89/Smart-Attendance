@@ -4,11 +4,11 @@
 }
 
 .icon-circle{
-    width: 150px;
-    height: 150px;
+    width: 60px;
+    height: 60px;
     background: linear-gradient(to right, #0f6d84, #70358d);
     border-radius: 50%;
-    font-size: 4em;
+    font-size: 1.5em;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -25,6 +25,8 @@
 }
 .act-no{
     font-size: 1.2em;
+    display: flex;
+    justify-content: space-between;
 }
 .dash-info a{
     font-size: 1.1em;

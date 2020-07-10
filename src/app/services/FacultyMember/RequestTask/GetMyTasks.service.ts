@@ -32,6 +32,13 @@ export class GetMyTasksservice extends baseService<GetMyTasksDTO, number,GetMyTa
   
 }
 
+MedicalExcuseDetails(Id): Observable<GetTaskDetailsDTO> {
+  // console.log(`hi you are now in way to Delete for ${this.myURL}`);
+  return this.httpClient.get<GetTaskDetailsDTO>(`${this.myURL}${'GetPreviousMedicalExcuses'}?CurrentTaskId=${Id}`);
+
+}
+
+
  
 
 GetTaskAll(isCompleted): Observable<GetMyTasksDTO> {

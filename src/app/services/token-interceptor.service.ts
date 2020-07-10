@@ -21,7 +21,7 @@ export class TokenInterceptorService implements HttpInterceptor {
     return next.handle(tokenizedReq).pipe(
       tap(res => {
         if(res instanceof HttpResponse){
-          if(res.body && res.body.Success){
+          if(res.body && res.body.Success || res.body.Message){
             this.modalService.open(MyModalComponent, {icon: 'fa-check text-success', message: res.body.Message });
           }
         }
@@ -35,12 +35,8 @@ export class TokenInterceptorService implements HttpInterceptor {
               this.Router.navigate(['/login']);
           }
 
-          if(err.status === 400 || err.status === 409){
+          if(err.status === 400 || err.status === 409 || err.status === 500){
             this.modalService.open(MyModalComponent, {icon: 'fa-times text-danger', message: err.error.Message });
-          }
-
-          if(err.status === 404){
-            this.Router.navigate(['404']);
           }
 
           // return the error back to the caller
@@ -48,7 +44,7 @@ export class TokenInterceptorService implements HttpInterceptor {
         }
       }),
       finalize(() => {
-        // any cleanup or final activities
+        // any cleanup or final activities.
       })
     );
 

@@ -578,10 +578,10 @@ select.main-input {
 .rightLinks li {
   cursor: pointer;
 }
-.rightLinks li:lang(ar):last-child{
+.rightLinks li:lang(ar):not(.userProfile){
   border-right: 1px solid #ccc;
 }
-.rightLinks li:lang(en):first-child{
+.rightLinks li:lang(en):not(.userProfile){
   border-right: 1px solid #ccc;
 }
 .clicked {
@@ -770,7 +770,7 @@ table.dataTable tbody th, table.dataTable tbody td{
 .form-control {
   border: 1px solid #653b8c75;
   border-radius: 20px;
-  padding: 0.30rem .75rem !important;
+  padding:-0.75rem .75rem !important;
   font-family: 'cairo';
 }
 html, body { height: 100%; }
@@ -902,3 +902,13 @@ border-radius: 0px;
 }
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+.modal-content:not(.card-image) .close {
+  top: 20px !important;
+
+}
+
+.close{
+  color: red !important;
+}

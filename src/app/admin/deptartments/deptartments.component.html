@@ -1,10 +1,15 @@
 <div class="container-fluid mb-4">
 
   <page-title>{{ 'TRANS.deptartmentsTitle' | translate }}</page-title>
-
+  <nav aria-label="breadcrumb" class="col-md-6 mx-auto text-center">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a routerLink="">{{ 'TRANS.menuHome' | translate }}</a></li>
+      <li class="breadcrumb-item"><a class="mx-2" >{{ 'TRANS.deptartmentsTitle' | translate }}</a></li>
+    </ol>
+  </nav>
   <div class="col-md-12">
 
-    <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover table table-striped z-depth-1 excel-print">
+    <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover table table-striped   excel-print">
       <thead>
         <tr>
           <th>#</th>
@@ -46,7 +51,7 @@
                     <h4 class="modal-title w-100" id="myModalLabel">{{ 'TRANS.modalEditTitle' | translate }}</h4>
                   </div>
                   <div class="modal-body">
-                    <form [formGroup]="editForm" (ngSubmit)="submit(element)">
+                    <form [formGroup]="editForm" #mainForm="ngForm"   (ngSubmit)="submit(element)">
                       <div class="form-group">
                         <b class="color-p mx-3 my-3 d-block text-right">{{ 'TRANS.DepartmentsthDepartmentNameAr' | translate }}</b>
                         <input type="text" class="form-control" formControlName="nameAR">
@@ -57,9 +62,12 @@
                       </div>
                      <div class="row">
                       <div class="col-md-4 mx-auto">
-                        <button type="submit" class="w-75 btn-main px-4 py-2 rounded-pill" aria-label="Close" (click)="basicModal.hide()" [disabled]="editForm.invalid">{{ 'TRANS.save' | translate }}</button>
+                        <button type="button" class="w-75 btn-main px-4 py-2 rounded-pill" aria-label="Close" [disabled]="editForm.invalid" (click)="CustomModal()">{{ 'TRANS.save' | translate }}</button>
                       </div>
                      </div>
+                     <dynamic-modal *ngIf="openModal == true"  (closeModal)="CustomModal()" (submitParent)="mainForm.ngSubmit.emit()">
+                      هل انت متأكد من تعديل هذا السجل ؟
+                    </dynamic-modal>
                     </form>
                   </div>
                 </div>
@@ -74,4 +82,8 @@
 
     </div>
 </div>
+
+
+
+
 

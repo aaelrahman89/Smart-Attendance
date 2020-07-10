@@ -32,11 +32,11 @@ export class StudentStatusSettingService extends baseService<AttendanceSettingDT
     return this.httpClient.get<GetByCollegeCodeForStudentStatusSettingDTO>(`${this.myURL}GetByCollegeCode?collegeCode=${collegeCode}`);
   }
 
-  // save(model: GetByCollegeCodeDTO): Observable<GetByCollegeCodeDTO> {
-  //   console.log(`hi you are now in way to Insert to ${this.myURL}`, model);
-  //   return this.httpClient.post<GetByCollegeCodeDTO>
-  //       (`${this.myURL}Save`, model);
-  // }
+  save(model: GetByCollegeCodeForStudentStatusSettingDTO): Observable<any> {
+    console.log(`hi you are now in way to Insert to ${this.myURL}`, model);
+    return this.httpClient.post<any>
+        (`${this.myURL}Save`, model);
+  }
 
 
 

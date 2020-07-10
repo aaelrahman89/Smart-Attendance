@@ -4,7 +4,7 @@ import { Subject, forkJoin } from 'rxjs';
 import { languageForDataTable } from '../../models/CommonModels/LanguageForDataTable';
 import { Router } from '@angular/router';
 import { MajorFilterModel } from 'src/app/models/Major/MajorFilterModel';
-import { FormGroup, FormsModule, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormsModule, FormControl, Validators, FormGroupDirective } from '@angular/forms';
 import { facultyFilterModel } from 'src/app/models/facultymember/faculty-filter-model.service';
 import { DataTableDirective } from 'angular-datatables';
 import { DeptartmentService } from './../../services/deptartment.service';
@@ -22,7 +22,11 @@ import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
 
 })
 export class FacultyMemberComponent implements OnInit, OnDestroy {
-
+  
+  @ViewChild('mainForm') mainForm: FormGroupDirective; 
+  @ViewChild('basicModal') basicModal; 
+  
+  
   // Rerender Table
   rerender(): void {
     this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
@@ -32,6 +36,8 @@ export class FacultyMemberComponent implements OnInit, OnDestroy {
       this.dtTrigger.next();
     });
   }
+  openModal: boolean = false
+
   // Must be declared as "any", not as "DataTables.Settings"
   dtOptions: any = {};
   // We use this trigger because fetching the list can be quite long,
@@ -203,7 +209,9 @@ export class FacultyMemberComponent implements OnInit, OnDestroy {
   }
 
   submit(object) {
-    console.log(this.editForm )
+    this.basicModal.hide();
+    this.openModal = !this.openModal
+
     object.nameAr = this.editForm.get('nameAr').value;
     object.nameEn = this.editForm.get('nameEn').value;
     object.birthDate = this.editForm.get('birthDate').value;
@@ -226,6 +234,7 @@ export class FacultyMemberComponent implements OnInit, OnDestroy {
     if (  isArabic.test(control.value)) return null;
     return {notArabic : true} 
   }
-
-
+ CustomModal(){
+    this.openModal = !this.openModal
+  }
 }

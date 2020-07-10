@@ -1,0 +1,21 @@
+<div class="mymodal-body">
+    <div class="mymodal-dialog col-7">
+        <div class="mymodal-content text-center">
+            <div class="mymodal-header py-4 text-center">
+                <p class="w-100 text-center color-p">
+                    <i class="fas fa-info-circle "></i>
+                    رسالة تأكيد
+                </p>
+            </div>
+            <span class="my-2" >
+                <ng-content></ng-content>
+            </span>
+            <div class="mymodal-footer py-4"> 
+             
+                <button class="mx-auto relative save btn" mdbbtn="" (click)="saveToParent()"  type="button"> حفظ </button>
+                <button aria-label="Close" class="mx-auto cancel btn" mdbbtn="" (click)="close()" type="button">الغاء</button>
+            </div>
+        </div>
+        
+    </div>
+</div>
