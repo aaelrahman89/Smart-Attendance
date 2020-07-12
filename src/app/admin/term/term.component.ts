@@ -8,6 +8,7 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
 import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
 import { NotificationService } from 'src/app/services/genericService/notification.service';
 import { errorHandling } from 'src/app/globals';
+import { DatatableOptionsClient } from 'src/app/models/commonModels/DatatableOptionsClient';
 
 @Component({
   selector: 'term',
@@ -42,38 +43,7 @@ export class TermComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    this.dtOptions = {
-      pagingType: 'full_numbers',
-      pageLength: 10,
-      dom: 'Bfrtip',
-
-      //  destroy: true,
-      // Configure the buttons
-      retrieve: true,
-      // Configure the buttons
-      language: {
-        url: `/assets/i18n/Arabic.json`
-      },
-
-
-      buttons: [
-        {
-          extend: 'print',
-          text: '<i class="fas fa-print"></i>',
-          titleAttr: 'print',
-        },
-        {
-          extend: 'copyHtml5',
-          text: '<i class="far fa-copy"></i>',
-          titleAttr: 'Copy',
-        },
-        {
-          extend: 'excelHtml5',
-          text: '<i class="far fa-file-excel"></i>',
-          titleAttr: 'Excel',
-        },
-      ],
-    };
+    this.dtOptions =  DatatableOptionsClient;
 
     // Get Data
     this.myService.GetAll().subscribe((res) => {

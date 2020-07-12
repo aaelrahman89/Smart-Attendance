@@ -111,7 +111,7 @@
 
   <div class=" table-responsive mr-3 content" #content>
 
-    <export></export>
+    <export [elements]="elementsFiltered"></export>
 
     <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover table table-striped z-depth-1 excel-print" >
       <thead>
@@ -174,7 +174,7 @@
 
              <!-- (click)="selectMember(element.Crn)" -->
       <!-- <span> -->
-     
+
 
         <a mdbBtn title="{{ 'TRANS.Viewregisteredstudents' | translate }}"   (click)="StudentEnrollmentView(element.Crn,element.College.CollegeCode,element.Department.DepartmentCode,element.Term.TermCode)" target="_blank"  class="w-auto px-3 circle-btn"  mdbWavesEffect >
           <i class="fas fa-users"></i>

@@ -4,7 +4,7 @@
     <h2 class="color-p text-center ">
       <b> <i class="fas fa-university"></i> {{ 'TRANS.menuManageMemberData' | translate }} </b>
       <p *ngIf="loading" >Loading Data...</p>
-    </h2> 
+    </h2>
     <nav aria-label="breadcrumb" class="col-md-6 mx-auto text-center">
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a routerLink="">{{ 'TRANS.menuHome' | translate }}</a></li>
@@ -14,7 +14,7 @@
   </div>
 
   <div class="col-md-12">
-    <export></export>
+    <export [elements]="elements"></export>
     <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover table table-striped">
       <thead>
         <tr>
@@ -48,13 +48,13 @@
               <button type="button" mdbBtn class="w-auto px-3 circle-btn btn waves-effect" (click)="basicModal.show()"
               mdbWavesEffect>
               <i class="far fa-edit"></i>
-            </button>  
+            </button>
           </td>
           <td (click)="showTimeTable(element.FacultyMemberId, element.NameAr)">
             <button type="button" mdbBtn class="w-auto px-3 circle-btn  btn waves-effect" (click)="basicModal.show()"
             mdbWavesEffect>
             <i class="fas fa-table"></i>
-          </button> 
+          </button>
           </td>
         </tr>
       </tbody>
@@ -82,7 +82,7 @@
           {{ 'TRANS.modalEditTitle' | translate }}
         </h3>
       </div>
-      <div class="modal-body "> 
+      <div class="modal-body ">
         <!-- // start of form  -->
         <form  class="row"  [formGroup]="editForm" #mainForm="ngForm" (ngSubmit)="submit(popupElements)"  >
         <div class="col-md-6 mx-auto row rowInfo my-3">
@@ -95,7 +95,7 @@
               {{ 'TRANS.arabicError' | translate }}
             </span>
           </div>
-        </div> 
+        </div>
         <div class="col-md-6 mx-auto row rowInfo my-3">
           <div class="">
             <b for="" class="color-p mx-3 my-3 d-block">{{ 'TRANS.studentNameEn' | translate }} </b>
@@ -103,7 +103,7 @@
           <div class=" col-md-12 text-right ">
             <input type="text" class="form-control py-0" formControlName="nameEn"  >
           </div>
-        </div> 
+        </div>
         <div class="col-md-6 mx-auto row rowInfo my-3">
           <div class="">
             <b for="" class="color-p mx-3 my-3 d-block"> {{ 'TRANS.studentBirthDate' | translate }} </b>
@@ -111,7 +111,7 @@
           <div class=" col-md-12 text-right ">
             <input type="text" class="form-control py-0" formControlName="birthDate"  >
           </div>
-        </div> 
+        </div>
        <div class="col-md-6 mx-auto row rowInfo my-3">
           <div class="">
             <b for="" class="color-p mx-3 my-3 d-block"> {{ 'TRANS.MajorsthDepartment' | translate }}  </b>
@@ -119,11 +119,11 @@
           <div class=" col-md-12 text-right ">
             <select class="form-control py-0" formControlName="Departmentcode">
               <option [value]="dep.DepartmentCode"  [selected]="dep.DepartmentCode == selectedDepartment"
-              *ngFor="let dep of departments"> {{dep.NameAr}} 
+              *ngFor="let dep of departments"> {{dep.NameAr}}
               </option>
             </select>
           </div>
-        </div>  
+        </div>
          <div class="col-md-6 mx-auto row rowInfo my-3">
           <div class="">
             <b for="" class="color-p mx-3 my-3 d-block">  {{ 'TRANS.MajorsthCollege' | translate }}  </b>
@@ -134,7 +134,7 @@
               *ngFor="let College of CollegeDTO"> {{College.NameAr}} </option>
             </select>
           </div>
-        </div>   
+        </div>
         <div class="col-md-6 mx-auto row rowInfo my-3">
           <div class="">
             <b for="" class="color-p mx-3 my-3 d-block"> {{ 'TRANS.uniEmail' | translate }}  </b>
@@ -142,7 +142,7 @@
           <div class=" col-md-12 text-right ">
             <input type="text" class="form-control py-0" formControlName="uniEmail"  >
           </div>
-        </div> 
+        </div>
         <div class="col-md-6 mx-auto row rowInfo my-3">
           <div class="">
             <b for="" class="color-p mx-3 my-3 d-block">{{ 'TRANS.studentAltEmail' | translate }} </b>
@@ -150,7 +150,7 @@
           <div class=" col-md-12 text-right ">
             <input type="text" class="form-control py-0" formControlName="altEmail" >
           </div>
-        </div> 
+        </div>
        <div class="col-md-6 mx-auto row rowInfo my-3">
           <div class="">
             <b for="" class="color-p mx-3 my-3 d-block"> {{ 'TRANS.memberNo' | translate }}  </b>
@@ -158,7 +158,7 @@
           <div class=" col-md-12 text-right ">
             <input type="text" class="form-control py-0" value="{{popupElements.FacultyMemberNumber}}">
           </div>
-        </div>   
+        </div>
         <div class="col-md-6 mx-auto row rowInfo my-3">
           <div class="">
             <b for="" class="color-p mx-3 my-3 d-block"> {{ 'TRANS.facultyMemberTHId' | translate }} </b>
@@ -166,21 +166,21 @@
           <div class=" col-md-12 text-right ">
             <input type="text" class="form-control py-0" formControlName="idNum" >
           </div>
-        </div> 
+        </div>
          <div class="col-md-6 mx-auto row rowInfo my-3">
           <div class="">
             <b for="" class="color-p mx-3 my-3 d-block"> {{ 'TRANS.studentNationality' | translate }}  </b>
           </div>
           <div class=" col-md-12 text-right ">
             <select class="form-control py-0" formControlName="NationalityCode" >
-              <option value="{{nat.NationalityCode}}"  [selected]="nat.NationalityCode == selectednatio" 
-              *ngFor=" let nat of nationalties " > 
-              <span *ngIf="pageLang === 'ar'" > {{nat.NameAr}} </span>   
-              <span *ngIf="pageLang === 'en'" > {{nat.NameEn}} </span>   
+              <option value="{{nat.NationalityCode}}"  [selected]="nat.NationalityCode == selectednatio"
+              *ngFor=" let nat of nationalties " >
+              <span *ngIf="pageLang === 'ar'" > {{nat.NameAr}} </span>
+              <span *ngIf="pageLang === 'en'" > {{nat.NameEn}} </span>
             </option>
             </select>
           </div>
-        </div>  
+        </div>
         <div class="col-md-6 mx-auto row rowInfo my-3">
           <div class="">
             <b for="" class="color-p mx-3 my-3 d-block">  {{ 'TRANS.studentGender' | translate }} </b>
@@ -188,7 +188,7 @@
           <div class=" col-md-12 text-right ">
             <input type="text" class="form-control py-0" formControlName="gender"  >
           </div>
-        </div> 
+        </div>
           <div class="col-md-6 mx-auto row rowInfo my-3">
           <div class="">
             <b for="" class="color-p mx-3 my-3 d-block"> {{ 'TRANS.studentMobile' | translate }} </b>
@@ -196,7 +196,7 @@
           <div class=" col-md-12 text-right ">
             <input type="text" class="form-control py-0" formControlName="TelephoneNumber">
           </div>
-        </div>  
+        </div>
         <div class="col-md-6  row rowInfo my-3">
           <div class="">
             <b for="" class="color-p mx-3 my-3 d-block">{{ 'TRANS.degree' | translate }}  </b>
@@ -204,18 +204,18 @@
           <div class=" col-md-12 text-right ">
             <input type="text" class="form-control py-0" formControlName="degree"  >
           </div>
-        </div>   
+        </div>
       </form>
       <div class="modal-footer w-100">
         <!-- <button type="button" mdbBtn   class="waves-light " aria-label="Close"
           (click)="basicModal.hide()" mdbWavesEffect>Close</button> -->
-             <button type="button"  mdbBtn   [disabled]="editForm.invalid" aria-label="Close" (click)="CustomModal()" 
-              class="relative save btn btn-main px-5 py-2 mx-auto waves-light" mdbWavesEffect> 
+             <button type="button"  mdbBtn   [disabled]="editForm.invalid" aria-label="Close" (click)="CustomModal()"
+              class="relative save btn btn-main px-5 py-2 mx-auto waves-light" mdbWavesEffect>
           حفظ  </button>
-          
+
       </div>
       </div>
-     
+
     </div>
     <div class="modal-content" *ngIf="table">
       <div class="modal-header">
@@ -226,16 +226,16 @@
           <i class="fas fa-university"></i>
           التفاصيل
         </h3>
-        
+
       </div>
-      <div class="modal-body "> 
+      <div class="modal-body ">
         <b class="d-block text-center color-p w-100">
           <i class="fas fa-user"></i>
           {{memberName}}</b>
-        <!-- // start of form  --> 
+        <!-- // start of form  -->
         <member-table [memberIdForFilter]="memberIdForFilter" ></member-table>
       </div>
-     
+
     </div>
   </div>
 </div>

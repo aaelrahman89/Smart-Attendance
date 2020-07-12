@@ -21,7 +21,7 @@
           <th>  {{'TRANS.Introductionapplication'|translate}} </th>
           <th>  {{'TRANS.Orderstatus'|translate}} </th>
           <th>  {{'TRANS.dateapplication'|translate}} </th>
-          <th>  {{'TRANS.details'|translate}} </th>
+          <th class="d-none-print noExport">  {{'TRANS.details'|translate}} </th>
         </tr>
     </thead>
     <tbody>
@@ -39,8 +39,8 @@
 
 
 
-        <td *ngIf="MyTask.RequestTypeCode === 'Med' "><a (click)="TasksProgresView(MyTask.Id)" target="_blank"> <i class="fas fa-chalkboard-teacher fa-2x c6" title="{{'TRANS.nameservice'|translate}}"></i></a></td>
-        <td *ngIf="MyTask.RequestTypeCode === 'Perm' " ><a (click)="AskedpermissionView(MyTask.Id)" target="_blank"> <i class="fas fa-chalkboard-teacher fa-2x c6" title="{{'TRANS.nameservice'|translate}}"></i></a></td>
+        <td *ngIf="MyTask.RequestTypeCode === 'Med' " class="d-none-print noExport"><a (click)="TasksProgresView(MyTask.Id)" target="_blank"> <i class="fas fa-chalkboard-teacher fa-2x c6" title="{{'TRANS.nameservice'|translate}}"></i></a></td>
+        <td *ngIf="MyTask.RequestTypeCode === 'Perm' "  class="d-none-print noExport"><a (click)="AskedpermissionView(MyTask.Id)" target="_blank"> <i class="fas fa-chalkboard-teacher fa-2x c6" title="{{'TRANS.nameservice'|translate}}"></i></a></td>
 
 
 

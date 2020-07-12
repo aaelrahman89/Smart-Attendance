@@ -23,6 +23,9 @@ export const DatatableOptionsClient = {
       extend: 'excelHtml5',
       text: '<i class="far fa-file-excel"></i>',
       titleAttr: 'Excel',
+      exportOptions: {
+        columns: "thead th:not(.noExport)"
+    }
     },
   ],
 };

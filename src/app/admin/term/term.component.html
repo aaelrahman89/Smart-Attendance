@@ -18,8 +18,8 @@
           <th>{{ 'TRANS.Name' | translate }} </th>
           <th>{{ 'TRANS.StartDate' | translate }} </th>
           <th>{{ 'TRANS.EndDate' | translate }} </th>
-          <th>{{ 'TRANS.Status' | translate }} </th>
-          <th>{{ 'TRANS.tablethActions' | translate }}</th>
+          <th class="d-none-print noExport">{{ 'TRANS.Status' | translate }} </th>
+          <th class="d-none-print noExport">{{ 'TRANS.tablethActions' | translate }}</th>
         </tr>
       </thead>
       <tbody>
@@ -30,7 +30,7 @@
           <td *ngIf="pageLang === 'en'">{{ element.NameEn }}</td>
           <td>{{ element.StartDate | date: "dd/MM/yyyy" }}</td>
           <td>{{ element.EndDate | date: "dd/MM/yyyy" }}</td>
-          <td>
+          <td class="d-none-print noExport">
             <div class="form-group" style="margin: -5px !important;">
               <label class="switch">
                 <input type="checkbox" [checked]="element.IsCurrent" (change)="changeActive(element)"/>
@@ -39,7 +39,7 @@
             </div>
           </td>
 
-          <td>
+          <td class="d-none-print noExport">
             <div (click)="showMod(element.Id)">
               <a mdbBtn type="button" class="w-auto px-3 circle-btn"  mdbWavesEffect  (click)="basicModal.show()"><i class="far fa-edit"></i></a>
             </div>
@@ -92,7 +92,7 @@
                             <b class="color-p mx-3 my-3 d-block text-right">{{ 'TRANS.EndDate' | translate }}  <span  class="text-danger">*</span></b>
                             <!-- (focus)="$event.target.type = 'date'" -->
                             <!-- [ngModel]="endDate | date:'yyyy-MM-dd'" (ngModelChange)="endDate = $event" -->
-                            <input type="date" title="{{ 'TRANS.EndDate' | translate }}" 
+                            <input type="date" title="{{ 'TRANS.EndDate' | translate }}"
                             [min]="editForm.get('startDate').value" class="text-right form-control" required formControlName="endDate"  [ngClass]="{ 'is-invalid': submitted && editFormErrors.endDate.errors }">
                             <div *ngIf="submitted && editFormErrors.endDate.errors" class="invalid-feedback">
                               <h4 *ngIf="editFormErrors.endDate.errors.required">{{'TRANS.validationReq'|translate}}</h4>

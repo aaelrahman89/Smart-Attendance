@@ -80,7 +80,7 @@
         <th>{{'TRANS.medical' | translate}}</th>
         <th>{{'TRANS.late' | translate}}</th>
         <th>{{'TRANS.AttendancePercent' | translate}}</th>
-        <th>{{'TRANS.tablethActions' | translate}}</th>
+        <th class="d-none-print noExport">{{'TRANS.tablethActions' | translate}}</th>
           </tr>
         </thead>
         <tbody>
@@ -98,7 +98,7 @@
               's1' : lecture.AttendanceRate >= 70,
               's2' : lecture.AttendanceRate < 70
               }">{{lecture.AttendanceRate}}%</span></td>
-             <td>
+             <td class="d-none-print noExport">
               <a mdbBtn type="button" class="w-auto px-3 circle-btn"  mdbWavesEffect
               [routerLink]="['/facultyMember/attendanceRecordByLecture', lectures.CRN, lectures.TermCode, lecture.Date, lecture.Day, lecture.AttendanceLocationCode, lecture.StartTime, lecture.EndTime, lectures.CourseNumber, lectures.CourseSubject, CourseTitle]">
               <i class="far fa-edit"></i></a>

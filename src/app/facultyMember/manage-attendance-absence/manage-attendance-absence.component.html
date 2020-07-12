@@ -75,7 +75,7 @@
                     <th>{{ 'TRANS.medical' | translate }} </th>
                     <th>{{ 'TRANS.attendrate' | translate }} </th>
 
-                    <th width="10%">{{ 'TRANS.studentDataTitle' | translate }} </th>
+                    <th width="10%" class="d-none-print noExport">{{ 'TRANS.studentDataTitle' | translate }} </th>
                   </tr>
                 </thead>
                 <tbody>
@@ -103,7 +103,7 @@
 
 
 
-                     <td><a title="{{ 'TRANS.Reviewstudentinformation' | translate }} "><i class="fas fa-user-clock fa-2x color-p" (click)="StudentAttendance(Student.StudentId)"></i></a></td>
+                     <td class="d-none-print noExport"><a title="{{ 'TRANS.Reviewstudentinformation' | translate }} "><i class="fas fa-user-clock fa-2x color-p" (click)="StudentAttendance(Student.StudentId)"></i></a></td>
                   </tr>
 
                 </tbody>
