@@ -100,6 +100,7 @@ import { ModalServiceModule } from './modal-service/modal-service.module';
 import { MyModalComponent } from './my-modal.component';
 import { ModalComponent } from './modal/modal/modal.component';
 import { AskedpermissionComponent } from './facultyMember/MyTasks/askedpermission/askedpermission.component';
+import { QRCodeModule } from 'angular2-qrcode';
 
 
 
@@ -208,6 +209,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     NgxSpinnerModule,
     MatButtonModule,
     MatInputModule,
+    QRCodeModule,
     ModalServiceModule.forRoot(),
     MDBBootstrapModule.forRoot(),
     TranslateModule.forRoot({

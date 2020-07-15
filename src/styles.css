@@ -688,6 +688,12 @@ input:checked + .slider:before {
 .s6{
   background-color: #653b8c;
 }
+.s7{
+  background-color: red;
+}
+.s8{
+  background-color: blue;
+}
 
 
 .c1{
@@ -824,7 +830,7 @@ color: #000 !important;
     top: 0;
   }
   .d-none-print{
-      display: none;
+      display: none !important;
   }
   .page-title , form{
     display: none;

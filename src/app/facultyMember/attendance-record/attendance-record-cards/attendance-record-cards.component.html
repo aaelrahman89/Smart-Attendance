@@ -11,12 +11,12 @@
    </div>
 
     <div class="col-md-4 mt-2 d-none d-sm-block">
-         <ul class="list-unstyled d-flex justify-content-between">
+         <ul class="list-unstyled d-flex">
           <li class="border-0 card-textgreen pr-3"><b class="d-flex"><div class="circle-number s11">{{ getAttendStatusLength(1) }}</div> {{ 'TRANS.atendant' | translate }}</b> </li>
           <li class="border-0 card-textred pr-3"><b class="d-flex"><div class="circle-number s22">{{ getAttendStatusLength(2) }}</div> {{ 'TRANS.absence' | translate }}</b> </li>
-          <li class="border-0 Permissiontext pr-3"><b class="d-flex"><div class="circle-number s33">{{ getAttendStatusLength(3) }}</div> {{ 'TRANS.permission' | translate }}</b> </li>
-          <li class="border-0 Medicaltext pr-3"><b class="d-flex"><div class="circle-number s44">{{ getAttendStatusLength(4) }}</div> {{ 'TRANS.medical' | translate }}</b> </li>
-          <li class="border-0 Latetext pr-3"><b class="d-flex"><div class="circle-number s55">{{ getAttendStatusLength(5) }}</div> {{ 'TRANS.late' | translate }}</b> </li>
+          <li class="border-0 Permissiontext pr-3" *ngIf="checkexecuse()"><b class="d-flex"><div class="circle-number s33">{{ getAttendStatusLength(3) }}</div> {{ 'TRANS.permission' | translate }}</b> </li>
+          <li class="border-0 Medicaltext pr-3" *ngIf="checkPermission()"><b class="d-flex"><div class="circle-number s44">{{ getAttendStatusLength(4) }}</div> {{ 'TRANS.medical' | translate }}</b> </li>
+          <li class="border-0 Latetext pr-3" *ngIf="checkLate()"><b class="d-flex"><div class="circle-number s55">{{ getAttendStatusLength(5) }}</div> {{ 'TRANS.late' | translate }}</b> </li>
          </ul>
     </div>
 
@@ -35,7 +35,7 @@
       <div class="col-md-3 mb-2 p-1" *ngFor="let student of students | studentsFilter: {StudentId: searchTerm, StudentNameAr:searchTerm, StudentNameEn: searchTerm}: false; let i = index;">
         <div class="cardmenu text-white text-right">
            <div class="btn-group" mdbDropdown>
-             <button mdbDropdownToggle type="button" mdbBtn class="dropdown-toggle waves-light"
+             <button *ngIf="checkexecuse() || checkPermission() || checkLate()" mdbDropdownToggle type="button" mdbBtn class="dropdown-toggle waves-light"
                mdbWavesEffect>
                <i class="fas fa-ellipsis-v"></i>
              </button>

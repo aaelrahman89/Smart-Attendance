@@ -12,3 +12,8 @@
     opacity: 0.5;
     pointer-events: none;
 }
+small{
+  font-size: 14px;
+  font-family: 'CAIRO';
+  display: block;
+}

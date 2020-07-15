@@ -1,7 +1,14 @@
+<ngx-spinner bdColor="#fff"> <img src='/assets/imgs/loader.gif' /> </ngx-spinner>
+
 <div class="container-fluid px-3 ">
 
     <page-title> {{'TRANS.AttendanceAbsence'|translate}} </page-title>
-
+    <nav aria-label="breadcrumb" class="col-md-6 mx-auto text-center">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a routerLink="">{{ 'TRANS.menuHome' | translate }}</a></li>
+        <li class="breadcrumb-item"><a class="mx-2" >{{ 'TRANS.AttendanceAbsence' | translate }}</a></li>
+      </ol>
+    </nav>
        <!-- Search Start -->
   <form [formGroup]="srchForm">
     <div class="srchform ">
@@ -37,18 +44,29 @@
  <br>
 
             <ul class="row w-100 color-p justify-content-center py-2  " type="none">
+
               <li class="col-md-2 text-center font-weight-bold" >
-                <div class="info my-3"> <b> {{'TRANS.Numberlectures'|translate}}</b> </div>
-                <div class="head my-3"> <span><ng-container *ngIf="show0">0</ng-container>{{AppoitmentsCount}}</span></div>
+                <div class="info my-3"> <b> عدد ساعات المقرر</b> </div>
+                <div class="head my-3"> <span class="badge badge-info s2"><ng-container *ngIf="show0">0</ng-container>{{TotalCreditHours}}</span></div>
+              </li>
+
+
+
+              <li class="col-md-2 text-center font-weight-bold" >
+                <div class="info my-3"> <b> عدد الساعات المسجله</b> </div>
+                <div class="head my-3"> <span class="badge badge-info s2"><ng-container *ngIf="show0">0</ng-container>{{RecordedHours}}</span></div>
               </li>
               <li class="col-md-2 text-center font-weight-bold" >
-                <div class="info my-3"> <b>{{'TRANS.attendrate'|translate}}</b> </div>
-                <div class="head my-3"> <span><ng-container *ngIf="show0">0</ng-container>{{ AttendanceTotalRate }}%</span></div>
+                <div class="info my-3"> <b>عدد المحاضرات المسجله</b> </div>
+                <div class="head my-3"> <span class="badge badge-info s2"><ng-container *ngIf="show0">0</ng-container>{{ RecordedLecturesCount }}</span></div>
               </li>
               <li class="col-md-2 text-center font-weight-bold" >
-                <div class="info my-3"> <b>{{'TRANS.menuStudents'|translate}}</b> </div>
-                <div class="head my-3"> <span><ng-container *ngIf="show0">0</ng-container>{{studentsCount}}</span></div>
+                <div class="info my-3"> <b>عدد الطلاب</b> </div>
+                <div class="head my-3"> <span class="badge badge-info s2"><ng-container *ngIf="show0">0</ng-container>{{StudentsCount}}</span></div>
               </li>
+
+
+
 
             </ul>
 
@@ -73,7 +91,7 @@
                     <th>{{ 'TRANS.permission' | translate }} </th>
                     <th>{{ 'TRANS.late' | translate }} </th>
                     <th>{{ 'TRANS.medical' | translate }} </th>
-                    <th>{{ 'TRANS.attendrate' | translate }} </th>
+                    <th>نسبة الغياب</th>
 
                     <th width="10%" class="d-none-print noExport">{{ 'TRANS.studentDataTitle' | translate }} </th>
                   </tr>
@@ -90,14 +108,11 @@
                     <td><span class="s3 px-3 shadow rounded text-white font-weight-bold">{{Student.PremissionCount}}</span></td>
 
                     <td><span class="s4 px-3 shadow rounded text-white font-weight-bold">{{Student.LateCount}}</span></td>
-                    <td><span class="s5 px-3 shadow rounded text-white font-weight-bold">{{Student.ExcuseCount}}</span></td>
+                    <td><span class="s5 px-3 shadow rounded text-white font-weight-bold ">{{Student.ExcuseCount}}</span></td>
 
 
                    <td>
-                    <mdb-badge class="shadow rounded px-3 text-white font-weight-bold"  [ngClass]="{
-                      's1' : Student.AttendanceRate >= 70,
-                      's2' : Student.AttendanceRate < 70
-                      }">{{Student.AttendanceRate}}%</mdb-badge>
+                    <mdb-badge class="shadow rounded px-3 text-white font-weight-bold s7">{{Student.AttendanceRate}}<b class="px-1">%</b></mdb-badge>
                    </td>
 
 

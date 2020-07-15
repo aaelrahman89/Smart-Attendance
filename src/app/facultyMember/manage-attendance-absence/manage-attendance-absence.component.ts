@@ -35,6 +35,12 @@ export class ManageAttendanceAbsenceComponent implements OnDestroy, OnInit {
   TermCode:string;
   show0: boolean = true;
 
+  // new variables
+  TotalCreditHours:number;
+  RecordedHours: number;
+  RecordedLecturesCount: number;
+  StudentsCount: number;
+
 
   studentsData: boolean = true;
   searched: boolean = true;
@@ -82,7 +88,7 @@ export class ManageAttendanceAbsenceComponent implements OnDestroy, OnInit {
          if(event.lang == 'ar'){
           this.pageLang = event.lang;
           this.titleService.setTitle("   إدارة الحضور والغياب");
-          
+
           this.dtOptions.language.url = `/assets/i18n/Arabic.json`;
           // this.getAllData();
          }if (event.lang == 'en'){
@@ -116,6 +122,10 @@ export class ManageAttendanceAbsenceComponent implements OnDestroy, OnInit {
         this.AttendanceTotalRate = res.AttendanceTotalRate;
         this.CRN = res.CRN;
         this.TermCode = res.TermCode;
+        this.TotalCreditHours = res.TotalCreditHours;
+        this.RecordedHours = res.RecordedHours;
+        this.RecordedLecturesCount = res.RecordedLecturesCount;
+        this.StudentsCount = res.StudentsCount;
 
    if (this.isDtInitialized) {
     this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {

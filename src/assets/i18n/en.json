@@ -233,7 +233,7 @@
 "no":"No",
 "deleterecord":"Are you sure to delete this record ?",
 "Reviewstudentinformation":"Review Student Information",
-"TaskUnderProcedure":"Request a medical excuse",
+"TaskUnderProcedure":"Request  Medical Excuse",
 
 "RecordOrder":"Record the order ",
 "OrderDetails":"Order details",
@@ -241,7 +241,7 @@
 "OrderNumber":" Order Number",
 "DateOfApplication":" Date Of Application",
 "Durationofexcuse":"Duration Of Excuse ",
-"thedecision":"the Decision",
+"thedecision":"Decision",
 "Rejection":"Rejection",
 "Acceptance":"Acceptance",
 "Notes":"Notes",
@@ -286,8 +286,20 @@
 "Recordpreviouspermission":"Record previous permission",
 "degree":"Scientific Degree",
 "memberNo":"Faculty Member Number",
-"uniEmail": "Academic Email"
+"uniEmail": "Academic Email",
+"Viewpermissionrequest":"View Permission Request",
+"viewmedicalexcuse":"View Medical Excuse",
+"ViewFile":"View File",
+"Areyousuredecision":"Are You Sure You Want To Make This Decision?",
 
+"Completedexcuses":"Completed Excuses",
+
+"Recordedlectures":"Recorded lectures",
+"Studentsdeprivedexam":"Students Deprived Of Exam",
+"ProspectivestudentsHoly":"Prospective students of the Two Holy",
+"Numberofstudents":"Number of students",
+"Recordrequests":"Record requests",
+"Areyousureaddstudent":"Are you sure you want to add the student?"
 
 
   }

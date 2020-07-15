@@ -18,7 +18,7 @@ import { DataTableDirective } from 'angular-datatables';
 import { DatatableOptions } from 'src/app/models/commonModels/DatatableOptions';
 import { StudentEnrollmentDTO } from './../../../models/admin/StudentEnrollment/StudentEnrollmentDTO';
 import { StudentEnrollmentFilterModel } from './../../../models/admin/StudentEnrollment/StudentEnrollmentFilterModel';
-import { Subject } from 'rxjs';
+import { Subject, Subscription } from 'rxjs';
 
 import { AlertDeleteService } from './../../../services/genericService/AlertDelete.service';
 
@@ -79,7 +79,10 @@ StudentAdminFilter:StudentAdminFilterModel=new StudentAdminFilterModel();
 
 filter: StudentEnrollmentFilterModel =new StudentEnrollmentFilterModel();
 
-
+openModal: boolean = false;
+CustomModal(){
+  this.openModal = !this.openModal
+}
 constructor(
 private DeptartmentService: DeptartmentService,
 private TermService: TermService,
@@ -100,23 +103,19 @@ private SectionsService:SectionsService,
 
 
 
+subscription: Subscription;
+subscriptionb: Subscription;
 ngOnInit(): void {
 
-  this.translate.onLangChange
-.subscribe((event: LangChangeEvent) => {
+  this.subscription = this.translate.onLangChange
+  .subscribe((event: LangChangeEvent) => {
 if(event.lang == 'ar'){
 this.titleService.setTitle("  تسجيل الطالب");
-this.AddSuccessfully="تم الاضافة بنجاح";
-this.DeleteSuccessfully="تم الحذف بنجاح";
-this.updateSuccessfully="تم التحديث بنجاح";
-this.MsgDelete=" :هل أنت متأكد من حذف هذا السجل؟ رقم";
+
 this.dtOptions.language.url = `/assets/i18n/Arabic.json`;
 }if (event.lang == 'en'){
 this.titleService.setTitle(" Student Registration");
-this.AddSuccessfully="The Added Was Successfully";
-this.DeleteSuccessfully="The Deletion Was Successful";
-this.updateSuccessfully="The Spdate was Successful";
-this.MsgDelete="Are you sure to delete this record ? Number: ";
+
 this.dtOptions.language.url = `/assets/i18n/English.json`;
 
 }
@@ -253,7 +252,23 @@ this.filter.Crn = this.srchForm.get('crnSection').value;
 
 
 
-this.myService.Filter(this.filter)
+
+
+this.initializeFormGroup();
+
+this.rerender();
+  }
+  this.getallDate();
+
+}
+
+
+
+
+getallDate(){
+
+
+  this.myService.Filter(this.filter)
   .subscribe(resp => {
     this.elements = resp.List;
     // this.sessionService.Set(resp.List[0]);
@@ -263,13 +278,9 @@ this.myService.Filter(this.filter)
     
   });
 
-
-
-this.initializeFormGroup();
-
-this.rerender();
-  }
 }
+
+
   submitStudentEnrollment(){
     this.btnAddStudent=true;
 
@@ -281,9 +292,10 @@ this.rerender();
 
     this.myService.Insert(this.StudentEnrollment.value)
     .subscribe(res => {
-
-      this.notificationService.success(this.AddSuccessfully);
-      this.rerender();
+      //this.openModal = !this.openModal;
+     // this.notificationService.success(this.AddSuccessfully);
+      //this.rerender();
+      this.getallDate();
 
     });
 
@@ -300,7 +312,7 @@ this.rerender();
     .afterClosed().subscribe(res =>{
       if(res){
       this.myService.Delete(ID).subscribe(res=>console.log(res));
-      this.notificationService.warn(this.DeleteSuccessfully);
+      //this.notificationService.warn(this.DeleteSuccessfully);
       }
       this.rerender();
     });
@@ -312,6 +324,12 @@ this.rerender();
 
     this.initializeFormGroup();
   }
-  
+    
+
+  ngOnDestroy(): void {
+    // Do not forget to unsubscribe the event
+    this.dtTrigger.unsubscribe();
+    this.subscription.unsubscribe();
+  }
 
 }

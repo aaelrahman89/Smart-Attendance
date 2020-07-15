@@ -1,4 +1,7 @@
   export interface AttendanceForStudentsDTO {
+    TotalCreditHours: number;
+    RecordedHours: number;
+    RecordedLecturesCount: number;
     StudentsCount: number;
     AppoitmentsCount: number;
     AttendanceTotalRate: number;
@@ -20,6 +23,6 @@
     LateCount: number;
     Day: number;
     AttendanceLocationCode: number;
- 
-    
+
+
   }

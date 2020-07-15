@@ -1,6 +1,22 @@
-<div class="container-fluid mb-4">
 
-        <page-title> {{ 'TRANS.AttendanceAbsentregistrationtitle' | translate }} </page-title>
+
+        <ngx-spinner bdColor="#fff"> <img src='/assets/imgs/loader.gif' /> </ngx-spinner>
+
+        <div class="container-fluid px-3 ">
+
+            <page-title> {{'TRANS.AttendanceAbsentregistrationtitle'|translate}} </page-title>
+
+
+            <nav aria-label="breadcrumb" class="col-md-6 mx-auto text-center">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a routerLink="">{{ 'TRANS.menuHome' | translate }}</a></li>
+                <li class="breadcrumb-item"><a class="mx-2" >{{ 'TRANS.AttendanceAbsentregistrationtitle' | translate }}</a></li>
+              </ol>
+            </nav>
+
+
+
+
 
         <!-- Search Start -->
         <form [formGroup]="srchForm">
@@ -128,10 +144,9 @@
           <div id="overlay"></div>
           <div class="timer-container">
             <div class="timer-main">
-              <span>{{ mobCode }}</span>
-              <div class="timercircle">
-
-              </div>
+            <qr-code [value]="mobCode" [size]="300" *ngIf="showqrCode"></qr-code>
+              <!-- <span>{{ mobCode }}</span> -->
+              <!-- <div class="timercircle"></div> -->
             </div>
 
              <div class="timercount">

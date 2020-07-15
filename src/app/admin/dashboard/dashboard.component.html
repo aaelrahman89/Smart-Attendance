@@ -1,90 +1,148 @@
 <div class="row mt-2">
     <div class="col-md-2 col-6 row mx-auto p-0 my-4">
-        <div class="col-12 text-center" >
+        <div class="col-12 text-center">
             <div class="icon-circle mx-auto text-white text-center ">
                 <i class="fas fa-landmark"></i>
             </div>
-            <h3 class="dash-title m-0"> <span>{{dashboard.CollegesTotalCount}}</span> {{ 'TRANS.collegesTitle' | translate }} </h3>
-        </div>
-        <div class="col-12 text-right dash-info">
-            
-            <span class="w-100 col-12 my-2 act-no " > <span>{{dashboard.CollegesActiveCount}}</span> فعال  </span>
-            <span class="w-100 col-12 my-2 act-no " > <span>{{dashboard.CollegesInActiveCount}}</span> غير فعال  </span>
-            <hr class="w-100" >
-            <a class="row py-1"  routerLink="admin/colleges"> 
-                <div class="icon-link text-white text-center py-1 mx-3"><i class="fas fa-cog "></i></div>    
-                {{ 'TRANS.menuManageColleges' | translate }}
+            <a class="row py-1" routerLink="admin/colleges">
+
+                <h3 class="dash-title m-0"> <i class="fas fa-cog  color-p mx-1 icon-link "></i>
+                    {{ 'TRANS.collegesTitle' | translate }} </h3>
             </a>
         </div>
-    </div> 
+        <!-- <span>{{dashboard.CollegesTotalCount}}</span> -->
+    </div>
     <div class="col-md-2 col-6 row mx-auto p-0 my-4">
-        <div class="col-12 text-center" >
+        <div class="col-12 text-center">
             <div class="icon-circle mx-auto text-white">
                 <i class="fas fa-graduation-cap"></i>
             </div>
-            <h3 class="dash-title m-0"> <span> {{dashboard.StudentsTotalCount}} </span>  {{ 'TRANS.studentsLength' | translate }} </h3>
+            <a class="row py-1" routerLink="admin/studentadmin">
+
+                <h3 class="dash-title m-0"> <i class="fas fa-cog  color-p mx-1 icon-link "></i>
+                    {{ 'TRANS.studentsLength' | translate }} </h3>
+            </a>
 
         </div>
-        <div class="col-12 text-right dash-info">
-            <span class="w-100 col-12 my-2 act-no " > <span>{{dashboard.StudentsActiveCount}}</span> فعال  </span>
-            <span class="w-100 col-12 my-2 act-no " > <span>{{dashboard.StudentsInActiveCount}}</span> غير فعال  </span>
-            <hr class="w-100" >
-            <a class="row py-1" routerLink="admin/studentadmin"> 
-                <div class="icon-link text-white text-center py-1 mx-3"><i class="fas fa-cog "></i></div>    
-                {{ 'TRANS.menuManageStudentData' | translate }}
-            </a>
-        </div>
-    </div> 
+    </div>
     <div class="col-md-2 col-6 row mx-auto p-0 my-4">
-        <div class="col-12 text-center" >
+        <div class="col-12 text-center">
             <div class="icon-circle mx-auto text-white">
                 <i class="fas fa-briefcase"></i>
             </div>
-            <h3 class="dash-title m-0"> <span> {{dashboard.StaffMembersTotalCount}} </span>   {{ 'TRANS.FacultyMemberName' | translate }} </h3>
-        </div>
-        <div class="col-12 text-right dash-info">
-            <span class="w-100 col-12 my-2 act-no " > <span>{{dashboard.StaffMembersActiveCount}}</span> فعال  </span>
-            <span class="w-100 col-12 my-2 act-no " > <span>{{dashboard.StaffMembersInActiveCount}}</span> غير فعال  </span>
-            <hr class="w-100" >
-            <a class="row py-1" routerLink="admin/facultyMember"> 
-                <div class="icon-link text-white text-center py-1 mx-3"><i class="fas fa-cog "></i></div>    
-                {{ 'TRANS.menuManageMemberData' | translate }}
+            <a class="row py-1" routerLink="admin/facultyMember">
+                <h3 class="dash-title m-0">
+                    <i class="fas fa-cog  color-p mx-1 icon-link "></i>
+                    {{ 'TRANS.FacultyMemberName' | translate }} </h3>
             </a>
         </div>
-    </div> 
+    </div>
     <div class="col-md-2 col-6 row mx-auto p-0 my-4">
-        <div class="col-12 text-center" >
+        <div class="col-12 text-center">
             <div class="icon-circle mx-auto text-white">
                 <i class="fas fa-book"></i>
             </div>
-            <h3 class="dash-title m-0"> <span> {{dashboard.CoursesTotalCount}} </span>  {{ 'TRANS.coursesTitle' | translate }} </h3>
-        </div>
-        <div class="col-12 text-right dash-info">
-            <span class="w-100 col-12 my-2 act-no " > <span>{{dashboard.CoursesActiveCount}}</span> فعال  </span>
-            <span class="w-100 col-12 my-2 act-no " > <span>{{dashboard.CoursesInActiveCount}}</span> غير فعال  </span>
-            <hr class="w-100" >
-            <a class="row py-1"  routerLink="admin/courses"> 
-                <div class="icon-link text-white text-center py-1 mx-3"><i class="fas fa-cog "></i></div>    
-                {{ 'TRANS.coursesTitle' | translate }}
+            <a class="row py-1" routerLink="admin/courses">
+
+                <h3 class="dash-title m-0"> <i class="fas fa-cog  color-p mx-1 icon-link "></i>
+                    {{ 'TRANS.coursesTitle' | translate }} </h3>
             </a>
         </div>
-    </div> 
+    </div>
     <div class="col-md-2 col-6 row mx-auto p-0 my-4">
-        <div class="col-12 text-center" >
+        <div class="col-12 text-center">
             <div class="icon-circle mx-auto text-white">
                 <i class="fas fa-bookmark"></i>
             </div>
-            <h3 class="dash-title m-0"> <span> {{dashboard.SectionsTotalCount}} </span>   {{ 'TRANS.menuSections' | translate }} </h3>
+            <a class="row py-1" routerLink="admin/sections">
 
-        </div>
-        <div class="col-12 text-right dash-info">
-            <span class="w-100 col-12 my-2 act-no " > <span>{{dashboard.SectionsActiveCount}}</span> فعال  </span>
-            <span class="w-100 col-12 my-2 act-no " > <span>{{dashboard.SectionsInActiveCount}}</span> غير فعال  </span>
-            <hr class="w-100" >
-            <a class="row py-1" routerLink="admin/sections"> 
-                <div class="icon-link text-white text-center py-1 mx-3"><i class="fas fa-cog "></i></div>    
-                {{ 'TRANS.menuSections' | translate }}
+                <h3 class="dash-title m-0"> <i class="fas fa-cog  color-p mx-1 icon-link "></i>
+                    {{ 'TRANS.menuSections' | translate }} </h3>
             </a>
         </div>
-    </div> 
+
+    </div>
+</div>
+<hr class="col-12 p-0 my-5">
+
+<div class="row charts-row">
+    <div class="col-12">
+        <div class="col-4 text-right mb-3 mx-auto">
+            <b class="my-3 d-block"> الجهة </b>
+        <select class="form-control py-0 px-2"  >
+            <option value="" selected>{{'TRANS.selectColleges'|translate}}</option>
+            <option>
+                <span>
+                   كلية
+                </span>
+            </option>
+            <option>
+                <span>
+                   كلية
+                </span>
+            </option>
+            <option>
+                <span>
+                   كلية
+                </span>
+            </option>
+        </select>
+        </div>
+    </div>
+    <div class="col-md-3 text-center">
+        <svg class="circle-chart" viewBox="0 0 33.83098862 33.83098862">
+            <circle class="circle-chart__background" stroke="#efefef" stroke-width="3" fill="none" cx="16.91549431"
+                cy="16.91549431" r="14.91549431" />
+            <circle class="circle-chart__circle" stroke="#2acf82" stroke-dasharray="50, 100" stroke-width="3"
+                fill="none" cx="16.91549431" cy="16.91549431" r="14.91549431" />
+            <g class="circle-chart__info">
+                <text class="circle-chart__percent text-success" x="16.91549431" y="15.5" alignment-baseline="central"
+                    text-anchor="middle" font-size="5">50%</text>
+            </g>
+        </svg>
+        <h3 class="w-100 text-center color-p my-3">
+            متوسط نسب الاعذار
+        </h3>
+    </div>
+    <div class="col-md-3 text-center">
+        <svg class="circle-chart" viewBox="0 0 33.83098862 33.83098862">
+            <circle class="circle-chart__background" stroke="#efefef" stroke-width="3" fill="none" cx="16.91549431"
+                cy="16.91549431" r="14.91549431" />
+            <circle class="circle-chart__circle" stroke="#2acf82" stroke-dasharray="50, 100" stroke-width="3"
+                fill="none" cx="16.91549431" cy="16.91549431" r="14.91549431" />
+            <g class="circle-chart__info">
+                <text class="circle-chart__percent text-success" x="16.91549431" y="15.5" alignment-baseline="central"
+                    text-anchor="middle" font-size="5">50%</text>
+            </g>
+        </svg>
+        <h3 class="w-100 text-center color-p my-3">
+            متوسط نسب الاعذار
+        </h3>
+    </div>
+    <div class="col-md-3 text-center">
+        <svg class="circle-chart" viewBox="0 0 33.83098862 33.83098862">
+            <circle class="circle-chart__background" stroke="#efefef" stroke-width="3" fill="none" cx="16.91549431"
+                cy="16.91549431" r="14.91549431" />
+            <circle class="circle-chart__circle" stroke="#2acf82" stroke-dasharray="50, 100" stroke-width="3"
+                fill="none" cx="16.91549431" cy="16.91549431" r="14.91549431" />
+            <g class="circle-chart__info">
+                <text class="circle-chart__percent text-success" x="16.91549431" y="15.5" alignment-baseline="central"
+                    text-anchor="middle" font-size="5">50%</text>
+            </g>
+        </svg>
+        <h3 class="w-100 text-center color-p my-3">
+            متوسط نسب الاعذار
+        </h3>
+    </div>
+</div>
+
+<div class="row bottom py-5 mt-5">
+    <div class="col-md-6">
+        <div class="white-circ">
+            <i class="far fa-list-alt"></i>
+        </div>
+        <h3>
+            <b> الاعذار الطبية </b>
+        </h3>
+    </div>
 </div>

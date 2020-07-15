@@ -1,20 +1,35 @@
+<ngx-spinner bdColor="#fff"> <img src='/assets/imgs/loader.gif' /> </ngx-spinner>
+
 <div class="container-fluid px-1">
 
 
+  <page-title>{{ 'TRANS.TaskUnderProcedure' | translate }}</page-title>
+
+
+    
+
+  <nav aria-label="breadcrumb" class="col-md-6 mx-auto text-center font-weight-bold">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a class="mx-2" routerLink="">{{ 'TRANS.menuHome' | translate }}</a></li>
+
+      <li class="breadcrumb-item"><a class="mx-2" routerLink="" (click)="close()" >{{ 'TRANS.Recordrequests' | translate }}</a></li>
 
 
 
-    <div class="d-flex justify-content-center color-p h3 py-3">
-      <i class="fas fa-chalkboard-teacher"></i> {{'TRANS.TaskUnderProcedure'|translate}}
-    </div>
+      <li class="breadcrumb-item"><a class="mx-2" >{{ 'TRANS.TaskUnderProcedure' | translate }}</a></li>
+    </ol>
+  </nav>
 
-    <hr class="shadow">
+
+
+
+
 
 <!-- <div class=" color-p h3">
   <i class="fas fa-chalkboard-teacher"></i> {{'TRANS.Applicationdata'|translate}}
 </div> -->
 
-<span class="color-p h3 d-flex px-3 font-weight-bold">
+<span class="color-p h3 d-flex px-3 font-weight-bold font-20">
   <i class="far fa-list-alt px-2 pb-3"></i> {{'TRANS.Applicationdata'|translate}}
 </span>
 
@@ -27,7 +42,7 @@
 
 
 
-<div class="row h5 font-weight-bold">
+<div class="row h5 font-weight-bold font-18">
     <div class="control-group form-group col-md-6 d-flex font-weight-bold">
         <div class="controls">
              <label class="mx-3 color-p "><b>  {{'TRANS.OrderNumber'|translate}}</b></label>
@@ -45,7 +60,7 @@
 
 </div>
 
-<div class="row h5 font-weight-bold">
+<div class="row h5 font-weight-bold font-18">
 
     <div class="control-group form-group col-md-6 d-flex">
         <div class="controls">
@@ -67,7 +82,7 @@
 
 
 
-<div class="row h5 font-weight-bold">
+<div class="row h5 font-weight-bold font-18">
     <div class="control-group form-group col-md-6 d-flex">
         <div class="controls">
 
@@ -77,32 +92,31 @@
     </div>
 
 
-    <div class="control-group form-group col-md-6 d-flex">
-        <div class="controls">
+    <div class="control-group form-group col-md-6 d-flex">        <div class="controls">
              <label class="mx-3 color-p"><b>   {{'TRANS.Durationofexcuse'|translate}}</b></label>
-            <span >{{TaskDetails.DateFrom}} الي {{TaskDetails.DateTo}}   </span>
+            <span >{{TaskDetails.DateFrom}} <b class="c1 px-1">{{'TRANS.to'|translate}}</b> {{TaskDetails.DateTo}}   </span>
         </div>
     </div>
 </div>
 
 
-<div class="row h5 font-weight-bold">
+<div class="row h5 font-weight-bold font-18">
 
     <div class="control-group form-group col-md-6 d-flex">
         <div class="controls">
-             <label class="mx-3 color-p"><b>   عرض الملف</b></label>
+             <label class="mx-3 color-p"><b>  {{'TRANS.ViewFile'|translate}}  </b></label>
 
-             <a href="{{TaskDetails.FileURL}}"  target="_blank" download="">عرض الملف<i class="far fa-file-image c1 px-2"></i></a>
+             <a href="{{TaskDetails.FileURL}}"  target="_blank" download="">{{'TRANS.ViewFile'|translate}} <i class="far fa-file-image c1 px-2"></i></a>
             </div>
     </div>
 </div>
-<hr class="shadow">
-<span class="color-p h3 d-flex px-3 font-weight-bold">
+
+<span class="color-p h3 d-flex px-3 font-weight-bold font-20">
   <i class="fas fa-list-ul px-2 pb-3"></i>
   {{'TRANS.previousexcuses'|translate}}
 </span>
 <div class="col-md-12 table-responsive ">
-  <table    class="row-border hover table table-striped  text-center">
+  <table    class="row-border hover table table-striped  text-center" title="{{'TRANS.previousexcuses'|translate}}">
     <thead>
       <tr style="background-color: #E9E9E9;">
         <th>#</th>
@@ -125,29 +139,28 @@
 
     </tr>
 
-    <tr *ngIf="MyDetails?.empty > 0">
-      dsad
-      <td>{{Message}}</td> 
+    <tr class="text-center h4 text-danger font-weight-bold">
+      <td colspan="6">{{Message}}</td> 
     </tr>
   </tbody>
   </table>
 
-<hr class="shadow">
+<!-- <hr class="shadow"> -->
 
-<span class="color-p h3 d-flex px-3 font-weight-bold">
+<span class="color-p h3 d-flex px-3 font-weight-bold font-20">
   <i class="fas fa-user-check px-2 pb-3"></i> {{'TRANS.thedecision'|translate}}
 </span>
 
 <form [formGroup]="decisionForm"  #mainForm="ngForm" (ngSubmit)="submit()">
 <div class="d-flex justify-content-center">
-    <div class="custom-control custom-radio custom-control-inline ">
+    <div class="custom-control custom-radio custom-control-inline " title="{{'TRANS.Acceptance'|translate}}">
         <input type="radio" class="custom-control-input shadow" id="IsCompleted1" value="Approved"  formControlName="Decision"   mdbInput [attr.disabled]="TaskDetails.TaskStatus === 'Rejected' ||  TaskDetails.TaskStatus === 'Approved'? true : null" [ngClass]="{ 'is-invalid': submitTasksProgresError && TasksProgresformErrors.Decision.errors }">
         <label class="custom-control-label px-2 text-primary font-Lable font-weight-bold "    for="IsCompleted1"> {{'TRANS.Acceptance'|translate}}  </label>
       </div>
 
       <!-- Default inline 2-->
-      <div class="custom-control custom-radio custom-control-inline">
-        <input type="radio" class="custom-control-input" id="IsCompleted2" value="Rejected" formControlName="Decision"  mdbInput  [attr.disabled]="TaskDetails.TaskStatus === 'Rejected' ||  TaskDetails.TaskStatus === 'Approved'? true : null" [ngClass]="{ 'is-invalid': submitTasksProgresError && TasksProgresformErrors.Decision.errors }">
+      <div class="custom-control custom-radio custom-control-inline" title="{{'TRANS.Rejection'|translate}} ">
+        <input type="radio" class="custom-control-input text-danger" id="IsCompleted2" value="Rejected" formControlName="Decision"  mdbInput  [attr.disabled]="TaskDetails.TaskStatus === 'Rejected' ||  TaskDetails.TaskStatus === 'Approved'? true : null" [ngClass]="{ 'is-invalid': submitTasksProgresError && TasksProgresformErrors.Decision.errors }">
         <label class="custom-control-label px-2 p-color text-danger font-weight-bold font-Lable "  for="IsCompleted2"> {{'TRANS.Rejection'|translate}} </label>
       </div>
 
@@ -158,10 +171,10 @@
 <!-- <div class="row " *ngIf="show"> -->
 
 <div class="row " >
-    <div class="form-group col-md-12">
+    <div class="form-group col-md-12" title="{{ 'TRANS.Notes' | translate }}">
       <b class="color-p mx-3 my-2 d-block text-right h5 font-weight-bold">{{ 'TRANS.Notes' | translate }}</b>
 
-      <textarea class="form-control" rows="4" cols="50" formControlName="Notes" id="Notes">{{TaskDetails.Note}}</textarea>
+      <textarea class="form-control" rows="4" cols="50" formControlName="Notes" id="Notes" [attr.disabled]="TaskDetails.TaskStatus === 'Rejected' ||  TaskDetails.TaskStatus === 'Approved'? true : null">{{TaskDetails.Note}}</textarea>
       <div *ngIf="submitTasksProgresError && TasksProgresformErrors.Notes.errors" class="invalid-feedback">
         <h4 *ngIf="TasksProgresformErrors.Notes.errors.required">{{'TRANS.validationReq'|translate}}</h4>
       </div>
@@ -174,23 +187,23 @@
   <div class="d-flex justify-content-center">
 
 
-    <button type="button"  (click)="CustomModal()"  [disabled]="decisionForm.invalid || decisionForm.get('Decision').value === 'Pending'" *ngIf="TaskDetails.TaskStatus === 'تحت الاجراء' || TaskDetails.TaskStatus === 'Pending'" mdbBtn  class="relative waves-light s6 shadow text-white px-5" mdbWavesEffect>{{'TRANS.save'|translate}}</button>
+    <button type="button"  (click)="CustomModal()"  [disabled]="decisionForm.invalid || decisionForm.get('Decision').value === 'Pending'" *ngIf="TaskDetails.TaskStatus === 'تحت الاجراء' || TaskDetails.TaskStatus === 'Pending'" mdbBtn  class="relative waves-light s6 shadow text-white px-5" mdbWavesEffect title="{{'TRANS.save'|translate}}">{{'TRANS.save'|translate}}</button>
 
-    <button type="button" (click)="close()" mdbBtn  class="waves-light s2 shadow text-white px-5" aria-label="Close"  mdbWavesEffect>{{'TRANS.Cancel'|translate}}</button>
+    <button type="button" (click)="close()" mdbBtn  class="waves-light s2 shadow text-white px-5" aria-label="Close"  mdbWavesEffect title="{{'TRANS.Cancel'|translate}}">{{'TRANS.Cancel'|translate}}</button>
 </div>
 
 </form>
 
-{{decisionForm.value | json}}
+<!-- {{decisionForm.value | json}} -->
 </div>
 
 
 
 
   <dynamic-modal *ngIf="openModal == true"  (closeModal)="CustomModal()" (submitParent)="mainForm.ngSubmit.emit()">
-    هل انت متأكد من اتجاذ هذا القرار ؟
+    {{'TRANS.Areyousuredecision'|translate}}
   </dynamic-modal>
+<br>
 
-
-
+  
 

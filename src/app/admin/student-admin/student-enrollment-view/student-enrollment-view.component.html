@@ -1,22 +1,19 @@
 <div class="container-fluid px-3 ">
 
-    <div class="page-title mt-3  text-center">
-      <div class="page-icon d-none">
-        <img src="imgs/Icon feather-settings.png" alt="">
-      </div>
+
+
+    <!-- <page-title> {{'TRANS.TaskUnderProcedure'|translate}} </page-title> -->
+    <page-title> {{'TRANS.StudentRegistration'|translate}}</page-title>
+
+    <nav aria-label="breadcrumb" class="col-md-6 mx-auto text-center font-weight-bold">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a routerLink="">{{ 'TRANS.menuHome' | translate }}</a></li>
+        <li class="breadcrumb-item"><a class="mx-2" >{{ 'TRANS.StudentRegistration' | translate }}</a></li>
+      </ol>
+    </nav>
 
 
 
-
-      <h1 class="color-p pageTitle  text-center">
-        <b> <i class="far fa-address-card"></i> {{'TRANS.StudentRegistration'|translate}} </b>
-
-      </h1>
-
-
-    </div>
-
-<hr class="shadow">
 
           <div class="row">
 <div class="col-md-12">
@@ -113,7 +110,7 @@
           <div class="row">
       <!-- Material input -->
 
-      <form class="example-form col-12 " (ngSubmit)="submitStudentEnrollment()" [formGroup]="StudentEnrollment">
+      <form class="example-form col-12 " #mainForm="ngForm" (ngSubmit)="submitStudentEnrollment()" [formGroup]="StudentEnrollment">
 
         <div class="row justify-content-center">
 
@@ -139,7 +136,7 @@
 
 
       <div class="col-md-2 botSerach">
-        <button mdbWavesEffect type="submit"  [disabled]="StudentEnrollment.invalid"  class="w-75 btn-main px-4 py-2 rounded-pill"   title="  {{ 'TRANS.Add' | translate }}">
+        <button mdbWavesEffect type="submit"    [disabled]="StudentEnrollment.invalid"  class="w-75 btn-main px-4 py-2 rounded-pill"   title="  {{ 'TRANS.Add' | translate }}">
 
           {{ 'TRANS.Add' | translate }}
         <i class="fas fa-user-plus"></i>
@@ -191,3 +188,7 @@
 
 
 </div>
+
+<dynamic-modal *ngIf="openModal == true"  (closeModal)="CustomModal()" (submitParent)="mainForm.ngSubmit.emit()">
+  {{'TRANS.Areyousureaddstudent'|translate}}
+</dynamic-modal>

@@ -42,11 +42,11 @@ export class ProgressListComponent implements OnInit {
         .subscribe((event: LangChangeEvent) => {
          if(event.lang == 'ar'){
           this.dtOptions.language.url = `/assets/i18n/Arabic.json`;
-          this.titleService.setTitle(" اعذار تحت الاجراء");
+          this.titleService.setTitle(" تحت الاجراء ");
           this.getAllData();
          }if (event.lang == 'en'){
           this.dtOptions.language.url = `/assets/i18n/English.json`;
-          this.titleService.setTitle("Excuses under Procedure");
+          this.titleService.setTitle("Under The Procedure");
           this.getAllData();
          }
         });
@@ -93,9 +93,9 @@ export class ProgressListComponent implements OnInit {
 
   ngOnDestroy(): void {
     // Do not forget to unsubscribe the event
-   // this.dtTrigger.unsubscribe();
-    //this.subscription.unsubscribe();
-    //this.subscriptionb.unsubscribe();
+    this.dtTrigger.unsubscribe();
+    this.subscription.unsubscribe();
+ 
   }
 
 

@@ -281,6 +281,13 @@ export class LectureScheduleComponent implements OnInit {
 
     //#endregion Definition input Form Insert FormFacultyMember
 
+this.GetAllLectureSchedule();
+
+  }
+
+
+  GetAllLectureSchedule(){
+
     this.filter.TermCode = this.Route.snapshot.paramMap.get('Term');
     this.filter.Crn = this.Route.snapshot.paramMap.get('Crn');
     this.myservice.Filter(this.filter)
@@ -288,7 +295,6 @@ export class LectureScheduleComponent implements OnInit {
         this.elements = resp.List;
         console.log("view-Table-LectureSchedule", resp)
       });
-
   }
 
   get FacultyErrors() { return this.FormFacultyMember.controls; }
@@ -303,13 +309,15 @@ export class LectureScheduleComponent implements OnInit {
       this.FacultyMemberEnrollmentService.Insert(this.FormFacultyMember.value)
         .subscribe(
           res => {
-            this.notificationService.success(this.AddSuccessfully);
+            //this.notificationService.success(this.AddSuccessfully);
             //updata table FormFacultyMember
             this.facultyMemberEnrollmentfilter.Crn = this.sectionCrn;
             this.FacultyMemberEnrollmentService.Filter(this.facultyMemberEnrollmentfilter)
               .subscribe(resp => {
                 this.facultyMemberEnrollments = resp.List;
                 console.log('resp after enrolment: ', resp.List);
+  this.getallfacultyMember();
+
               });
           });
     } else {
@@ -328,13 +336,15 @@ export class LectureScheduleComponent implements OnInit {
 
           this.FacultyMemberEnrollmentService.Delete(facultyMemberEnrollmentID).subscribe(res => console.log("Delete-facultyMember ", res));
 
-          this.notificationService.warn(this.DeleteSuccessfully);
+          //this.notificationService.warn(this.DeleteSuccessfully);
         }
         //updata table FacultyMember
         this.FacultyMemberEnrollmentService.Filter(this.facultyMemberEnrollmentfilter)
           .subscribe(resp => {
             this.facultyMemberEnrollments = resp.List;
-            console.log("Updata-Table-FacultyMember", resp)
+            console.log("Updata-Table-FacultyMember", resp);
+  this.getallfacultyMember();
+
           });
       });
 
@@ -354,7 +364,7 @@ export class LectureScheduleComponent implements OnInit {
       this.myservice.Insert(this.LectureSchedule.value)
         .subscribe(res => console.log("Insert-LectureSchedule", res));
       this.closeModal.nativeElement.click();
-      this.notificationService.success(this.AddSuccessfully);
+      //this.notificationService.success(this.AddSuccessfully);
 
       //updata table LectureSchedule
       this.filter.TermCode = this.srchForm.get('term').value;
@@ -363,6 +373,8 @@ export class LectureScheduleComponent implements OnInit {
         .subscribe(resp => {
           this.elements = resp.List;
           console.log("Updata-Table-LectureSchedule", resp)
+this.GetAllLectureSchedule();
+
         });
 
       //this.formValues.resetForm();
@@ -435,11 +447,13 @@ export class LectureScheduleComponent implements OnInit {
 
       this.myservice.Update(element).subscribe(res => {
         console.log('update data: ', res);
+this.GetAllLectureSchedule();
+
 
       }
 
       );
-      this.notificationService.success(this.updateSuccessfully);
+      //this.notificationService.success(this.updateSuccessfully);
 
       this.filter.TermCode = this.EDitFormLectureSchedule.get('TermCodes').value;
       this.filter.Crn = this.EDitFormLectureSchedule.get('Crns').value;
@@ -463,7 +477,7 @@ export class LectureScheduleComponent implements OnInit {
       .afterClosed().subscribe(res => {
         if (res) {
           this.myservice.Delete(LectureScheduleID).subscribe(res => console.log(res));
-          this.notificationService.warn(this.DeleteSuccessfully);
+          //this.notificationService.warn(this.DeleteSuccessfully);
         }
         this.filter.TermCode = this.srchForm.get('term').value;
         this.filter.Crn = this.Route.snapshot.paramMap.get('Crn');
@@ -476,7 +490,9 @@ export class LectureScheduleComponent implements OnInit {
           .subscribe(resp => {
             this.elements = resp.List;
             // this.sessionService.Set(resp.List[0]);
-            console.log(" before call ", resp)
+            console.log(" before call ", resp);
+this.GetAllLectureSchedule();
+
           });
       })
 
@@ -496,9 +512,14 @@ export class LectureScheduleComponent implements OnInit {
     })
 
 
+  this.getallfacultyMember();
+
+
+  }
+
+  getallfacultyMember(){
+
     this.facultyMemberEnrollmentfilter.Crn = this.sectionCrn;
-
-
     this.FacultyMemberEnrollmentService.Filter(this.facultyMemberEnrollmentfilter)
       .subscribe(resp => {
         this.facultyMemberEnrollments = resp.List;
@@ -506,8 +527,6 @@ export class LectureScheduleComponent implements OnInit {
         console.log(" before call ", resp)
 
       });
-
-
   }
 
   ngOnDestroy(): void {
@@ -554,7 +573,9 @@ export class LectureScheduleComponent implements OnInit {
       .subscribe(resp => {
         this.elements = resp.List;
         // this.sessionService.Set(resp.List[0]);
-        console.log(" before call ", resp)
+        console.log(" before call ", resp);
+this.GetAllLectureSchedule();
+
 
 
 

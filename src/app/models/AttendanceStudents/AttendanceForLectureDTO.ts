@@ -1,4 +1,5 @@
 export interface AttendanceForLectureDTO {
+  AbsecnceAverageRate: number;
   AttendanceTotalRate: number;
   StudentsCount: number;
   AppoitmentsCount: number;
@@ -18,6 +19,7 @@ interface Group {
   AbsenceCount: number;
   PremissionCount: number;
   ExcuseCount: number;
+  AbsenceRate: number;
   LateCount: number;
   Day: number;
   AttendanceLocationCode: number;

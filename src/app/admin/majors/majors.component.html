@@ -44,11 +44,8 @@
               *ngFor="let college of colleges"
               [value]="college.CollegeCode"
             >
-            <span *ngIf="pageLang === 'ar'">
-              {{ college.NameAr }}
-            </span>
-            <span *ngIf="pageLang === 'en'">
-              {{ college.NameEn }}
+            <span>
+              {{ college.Name }}
             </span>
             </option>
           </select>

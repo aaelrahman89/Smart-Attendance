@@ -336,7 +336,7 @@ initializeFormGroup() {
       if(res){
 
     this.FacultyMemberEnrollmentService.Delete(facultyMemberEnrollmentID).subscribe(res=>console.log(res));
-    this.notificationService.warn(this.DeleteSuccessfully);
+    //this.notificationService.warn(this.DeleteSuccessfully);
 
   }
     this.FacultyMemberEnrollmentService.Filter(this.facultyMemberEnrollmentfilter)
@@ -429,7 +429,7 @@ console.log(" before call ", resp)
       this.FacultyMemberEnrollmentService.Insert(this.FormFacultyMember.value)
       .subscribe(
         res => {
-          this.notificationService.success(this.AddSuccessfully);
+         // this.notificationService.success(this.AddSuccessfully);
 
           
           //updata table FormFacultyMember
@@ -463,7 +463,7 @@ DeleteLectureSchedule(LectureScheduleID){
   .afterClosed().subscribe(res =>{
     if(res){
     this.myservice.Delete(LectureScheduleID).subscribe(res=>console.log(res));
-    this.notificationService.warn(this.DeleteSuccessfully);
+    //this.notificationService.warn(this.DeleteSuccessfully);
     }
 
 
@@ -490,7 +490,7 @@ submitLectureSchedule(){
   }else{
 
     this.myservice.Insert(this.LectureSchedule.value).subscribe(res=>console.log("Insert-LectureSchedule",res));
-  this.notificationService.success(this.AddSuccessfully);
+  //this.notificationService.success(this.AddSuccessfully);
 
   this.onClear();
   this.closeModal.nativeElement.click();
@@ -568,7 +568,7 @@ EditsubmitLectureSchedule(element){
     }
 
     );
-    this.notificationService.success(this.updateSuccessfully);
+    //this.notificationService.success(this.updateSuccessfully);
 
     this.filter.TermCode =this.srchForm.get('term').value;
 this.filter.Crn = this.srchForm.get('crnSection').value;

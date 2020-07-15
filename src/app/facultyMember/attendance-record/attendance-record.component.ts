@@ -62,11 +62,16 @@ export class AttendanceRecordComponent implements OnInit {
 
   date;
 
+  showqrCode: boolean = false;
+  qrCode: string;
+
   constructor(private CurrentTermService: CurrentTermService, private SectionsService: SectionsService, private LectureScheduleService: LectureScheduleService, private FilterAttendanceStudentsService: FilterAttendanceStudentsService, private attendanceStatusService: attendanceStatusService, public Router: Router, public translate: TranslateService, public location: Location) { }
 
   ngOnInit(): void {
 
     this.date = new Date();
+
+    console.log('qr code is:', this.qrCode);
 
     // init search form
     this.srchForm = new FormGroup({
@@ -130,6 +135,7 @@ export class AttendanceRecordComponent implements OnInit {
       if (this.progVal <= 0) {
         clearInterval(interv);
         this.showTimer = false;
+        this.showqrCode = false;
         this.studentFilter();
         this.CodeGenerator.UseCodeGenerator = false;
         this.filter.CodeGenerator = this.CodeGenerator;
@@ -178,6 +184,7 @@ export class AttendanceRecordComponent implements OnInit {
         //start timer here
 
         this.showTimer = true;
+        this.showqrCode = true;
         this.showCards = true;
         this.startProg();
       }else{
@@ -199,6 +206,7 @@ export class AttendanceRecordComponent implements OnInit {
   searchSubmit() {
     if (this.srchForm.get('UseCodeGenerator').value == false) {
       this.showTimer = false;
+      this.showqrCode = false;
       // this.attendanceStatus.filter(data => data.AttendanceStatusCode > 2);
     }
     this.studentFilter();

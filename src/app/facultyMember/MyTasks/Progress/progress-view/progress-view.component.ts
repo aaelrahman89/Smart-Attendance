@@ -70,6 +70,8 @@ private formBuilder: FormBuilder,
                });
 
                this.GetMyTasks();
+               this.MedicalExcuseDetails();
+
 
                   // search form inputs
 this.decisionForm = new FormGroup({
@@ -124,9 +126,12 @@ this.decisionForm = new FormGroup({
   MedicalExcuseDetails(){
     this.GetMyTasksservice.MedicalExcuseDetails(this.Id).subscribe(res => {
       this.MyDetails = res;
-     this.Message= res.Message;
+    
       console.log(res);
-    });
+    },
+    err=>this.Message=err.error.Message
+    
+    );
 
   }
 //   onChangeRejected(event){
@@ -146,9 +151,8 @@ submit(){
   }else{
     this.GetMyTasksservice.PostTask(this.decisionForm.value).subscribe(res => {
       this.openModal = !this.openModal;
-      this.DetailscModalsss.hide();
       this._location.back();
-      console.log();
+      console.log("msg",res);
     });
 
   }

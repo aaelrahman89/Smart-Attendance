@@ -96,8 +96,8 @@ export class AdminMenuComponent implements OnInit {
   elements
   ngOnInit(){
 
-    // this.myService.GetAll().subscribe((res) => {
-    //   this.elements = res.List;
-    // } )
+     this.myService.GetAll().subscribe((res) => {
+      this.elements = res.List;
+     } )
   }
 }

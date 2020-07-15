@@ -37,8 +37,6 @@ export class AttendanceRecordCardsComponent implements OnInit {
   ngOnInit(): void {
 
 
-
-
     // Translate Table (Ar & En)
     this.translate.onLangChange
       .subscribe((event: LangChangeEvent) => {
@@ -77,6 +75,17 @@ export class AttendanceRecordCardsComponent implements OnInit {
   // Calculation of attend status
   getAttendStatusLength(statusCode){
     return this.students.filter(x => x.AttendanceStatusCode == statusCode).length;
+  }
+
+  // Permission checks
+  checkexecuse(){
+    return this.attendanceStatus.some(x => x.AttendanceStatusCode == 3);
+  }
+  checkPermission(){
+    return this.attendanceStatus.some(x => x.AttendanceStatusCode == 4);
+  }
+  checkLate(){
+    return this.attendanceStatus.some(x => x.AttendanceStatusCode == 5);
   }
 
 

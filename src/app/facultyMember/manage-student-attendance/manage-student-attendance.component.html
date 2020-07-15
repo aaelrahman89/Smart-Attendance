@@ -1,7 +1,16 @@
+<ngx-spinner bdColor="#fff"> <img src='/assets/imgs/loader.gif' /> </ngx-spinner>
+
 <div class="container-fluid px-3 ">
 
     <page-title> {{'TRANS.Managestudenattendance'|translate}} </page-title>
 
+
+    <nav aria-label="breadcrumb" class="col-md-6 mx-auto text-center">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a routerLink="">{{ 'TRANS.menuHome' | translate }}</a></li>
+        <li class="breadcrumb-item"><a class="mx-2" >{{ 'TRANS.Managestudenattendance' | translate }}</a></li>
+      </ol>
+    </nav>
 
     <h3 class="  text-center ">
         <b *ngIf="pageLang == 'ar'" class="text-info"> <i class="fas fa-user text-warning"></i>  {{StudentNameAr}}   </b>

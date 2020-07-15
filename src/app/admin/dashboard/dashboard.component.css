@@ -13,11 +13,11 @@
     justify-content: center;
     align-items: center;
 }
+.icon-circle + a {
+    justify-content: center;
+}
 .icon-link{
-    background-color: #653b8c;;
-    border-radius: 50%;
-    width: 30px;
-    height: 30px;
+   font-size: 1.3em;
 }
 .dash-title{
     font-weight: bold;
@@ -31,3 +31,50 @@
 .dash-info a{
     font-size: 1.1em;
 }
+
+
+
+.circle-chart__circle {
+    animation: circle-chart-fill 2s reverse; /* 1 */ 
+    transform: rotate(-90deg); /* 2, 3 */
+    transform-origin: center; /* 4 */
+   }
+   
+   
+   .circle-chart__circle--negative {
+    transform: rotate(-90deg) scale(1,-1); /* 1, 2, 3 */
+   }
+   
+   .circle-chart__info {
+    animation: circle-chart-appear 2s forwards;
+    opacity: 0;
+    transform: translateY(0.3em);
+   }
+   
+   @keyframes circle-chart-fill {
+    to { stroke-dasharray: 0 100; }
+   }
+   
+   @keyframes circle-chart-appear {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+   }
+  .charts-row{
+      justify-content: space-between;
+  }
+   
+   .circle-chart{
+    width: 70%;
+    margin: auto;
+   }
+   .abs-chart-rate{
+    color: #acacac;
+   }
+   .abs-chart-rate{
+    color: #acacac;
+   }
+   .bottom{
+       background-color: #F5F5F5;
+   }

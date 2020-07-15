@@ -14,9 +14,12 @@
   position: relative;
   z-index: 3;
 }
+.timercount{
+  margin-top: 20px;
+}
 .timer {
   position: fixed;
-  top: 50%;
+  top: 30%;
   left: 50%;
   width: 30em;
   height: 18em;
@@ -24,20 +27,20 @@
   margin-left: -15em;
 }
   .timer-main{
-    width: 270px;
-    height: 270px;
+    width: 350px;
+    height: 350px;
     border: 1px solid #CCC;
     top: 0;
     bottom: 0;
     left: 0;
     right: 0;
     margin: auto;
-    border-radius: 50%;
+    border-radius: 10px;
     background-color: #fff;
     color: #513061;
     position: relative;
     text-align: center;
-    line-height: 270px;
+    line-height: 340px;
     font-size: 50px;
 
 }

@@ -1,7 +1,14 @@
+<ngx-spinner bdColor="#fff"> <img src='/assets/imgs/loader.gif' /> </ngx-spinner>
+
 <div class="container-fluid mb-4">
   <page-title> {{ 'TRANS.StudentAttendanceForLectureTitle' | translate }} </page-title>
 
-
+  <nav aria-label="breadcrumb" class="col-md-6 mx-auto text-center">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a routerLink="">{{ 'TRANS.menuHome' | translate }}</a></li>
+      <li class="breadcrumb-item"><a class="mx-2" >{{ 'TRANS.StudentAttendanceForLectureTitle' | translate }}</a></li>
+    </ol>
+  </nav>
   <!-- Search Start -->
   <form [formGroup]="srchForm">
   <div class="srchform mb-3">
@@ -49,8 +56,8 @@
             <div class="head my-3"> <span class="badge badge-info"><ng-container *ngIf="show0">0</ng-container>{{lectures?.StudentsCount}}</span></div>
           </li>
           <li class="col-md-2 text-center" >
-            <div class="info my-3"> <b>{{ 'TRANS.AbsencePercent' | translate }}</b> </div>
-            <div class="head my-3"> <span class="badge badge-info s2"><ng-container *ngIf="show0">0</ng-container>{{ lectures?.AttendanceTotalRate }}%</span></div>
+            <div class="info my-3"> <b>متوسط نسبة الغياب</b> </div>
+            <div class="head my-3"> <span class="badge badge-info s2"><ng-container *ngIf="show0">0</ng-container>{{ lectures?.AbsecnceAverageRate }}%</span></div>
           </li>
         </ul>
 
@@ -79,7 +86,7 @@
         <th>{{'TRANS.permission' | translate}}</th>
         <th>{{'TRANS.medical' | translate}}</th>
         <th>{{'TRANS.late' | translate}}</th>
-        <th>{{'TRANS.AttendancePercent' | translate}}</th>
+        <th>نسبة الغياب</th>
         <th class="d-none-print noExport">{{'TRANS.tablethActions' | translate}}</th>
           </tr>
         </thead>
@@ -94,10 +101,7 @@
              <td><span class="badge s3 text-white">{{lecture.PremissionCount}}</span></td>
              <td><span class="badge s4 text-white">{{lecture.ExcuseCount}}</span></td>
              <td><span class="badge s5 text-white">{{lecture.LateCount}}</span></td>
-             <td><span class="badge text-white" [ngClass]="{
-              's1' : lecture.AttendanceRate >= 70,
-              's2' : lecture.AttendanceRate < 70
-              }">{{lecture.AttendanceRate}}%</span></td>
+             <td><mdb-badge class="shadow rounded px-3 text-white font-weight-bold s7">{{lecture.AbsenceRate}}%</mdb-badge></td>
              <td class="d-none-print noExport">
               <a mdbBtn type="button" class="w-auto px-3 circle-btn"  mdbWavesEffect
               [routerLink]="['/facultyMember/attendanceRecordByLecture', lectures.CRN, lectures.TermCode, lecture.Date, lecture.Day, lecture.AttendanceLocationCode, lecture.StartTime, lecture.EndTime, lectures.CourseNumber, lectures.CourseSubject, CourseTitle]">

@@ -1,16 +1,21 @@
 <div class="container-fluid px-3 ">
 
     <!-- <page-title> {{'TRANS.TaskUnderProcedure'|translate}} </page-title> -->
-    <page-title> اعذار تحت الاجراء </page-title>
+    <page-title> {{'TRANS.underTheProcedure'|translate}}</page-title>
 
+    <nav aria-label="breadcrumb" class="col-md-6 mx-auto text-center font-weight-bold">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a routerLink="">{{ 'TRANS.menuHome' | translate }}</a></li>
+        <li class="breadcrumb-item"><a class="mx-2" >{{ 'TRANS.underTheProcedure' | translate }}</a></li>
+      </ol>
+    </nav>
 
-</div>
 
 
 
 
 <div class="col-md-12 table-responsive ">
-    <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover table table-striped excel-print">
+    <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover table table-striped z-depth-1 excel-print">
       <thead>
         <tr>
           <th>#</th>
@@ -21,7 +26,7 @@
           <th>  {{'TRANS.Introductionapplication'|translate}} </th>
           <th>  {{'TRANS.Orderstatus'|translate}} </th>
           <th>  {{'TRANS.dateapplication'|translate}} </th>
-          <th class="d-none-print noExport">  {{'TRANS.details'|translate}} </th>
+          <th class="d-none-print">  {{'TRANS.details'|translate}} </th>
         </tr>
     </thead>
     <tbody>
@@ -39,8 +44,8 @@
 
 
 
-        <td *ngIf="MyTask.RequestTypeCode === 'Med' " class="d-none-print noExport"><a (click)="TasksProgresView(MyTask.Id)" target="_blank"> <i class="fas fa-chalkboard-teacher fa-2x c6" title="{{'TRANS.nameservice'|translate}}"></i></a></td>
-        <td *ngIf="MyTask.RequestTypeCode === 'Perm' "  class="d-none-print noExport"><a (click)="AskedpermissionView(MyTask.Id)" target="_blank"> <i class="fas fa-chalkboard-teacher fa-2x c6" title="{{'TRANS.nameservice'|translate}}"></i></a></td>
+        <td *ngIf="MyTask.RequestTypeCode === 'Med' "><a (click)="TasksProgresView(MyTask.Id)" target="_blank"> <i class="fas fa-chalkboard-teacher fa-2x c5" title="{{'TRANS.viewmedicalexcuse'|translate}}"></i></a></td>
+        <td *ngIf="MyTask.RequestTypeCode === 'Perm' " ><a (click)="AskedpermissionView(MyTask.Id)" target="_blank"> <i class="fas fa-chalkboard-teacher fa-2x c3" title="{{'TRANS.Viewpermissionrequest'|translate}}"></i></a></td>
 
 
 
@@ -50,4 +55,5 @@
     </tbody>
     </table>
 
+</div>
 </div>

@@ -74,10 +74,10 @@
      "save":"حفظ",
      "Scholasticdivision":"الشعب الدراسية",
      "namedivision":"   الشعبه",
-     "namedivisionAr":" اسم الشعبه بالعربى",
-     "namedivisionEn":" اسم الشعبه بالانجليزى",
+     "namedivisionAr":" اسم الشعبة بالعربى",
+     "namedivisionEn":" اسم الشعبة بالانجليزى",
      "CodeDivision":"كود ",
-     "CollegeName":" الكليه ",
+     "CollegeName":" الكلية ",
      "DepartmentName":"  القسم",
      "term-Semester":"الفصل الدراسي",
 
@@ -91,10 +91,10 @@
      "selectDepartments":"-- اخترالقسم  --",
      "selectterm":"--  اختر الفصل الدراسي  --",
 
-     "select-Division-Code":" --اختر كوده الشعبة --",
+     "select-Division-Code":" --اختر كودة الشعبة --",
 
-     "Selet-namedivision":"-- اختر  الشعبه --",
-     "Division-Code":"كوده الشعبة",
+     "Selet-namedivision":"-- اختر  الشعبة --",
+     "Division-Code":"كودة الشعبة",
 
      "Term":"الفصل الدراسي",
      "Termcode":" ترم كود",
@@ -119,7 +119,7 @@
 
      "Fromhour":"من الساعة ",
      "tohour":"الى الساعة ",
-     "time":"المده ",
+     "time":"المدة ",
      "basicinformation":"البيانات الاساسية",
      "CollegeDetails":" تفاصيل الكلية ",
      "MemberDetails":" عرض تسجيل الاعضاء ",
@@ -127,14 +127,14 @@
      "Action":"اجراء",
      "ArticleConsultant":"استاذ المادة",
      "Viewstudentregis":"عرض تسجيل الطلاب",
-     "StudentID":"رقم الهويه ",
+     "StudentID":"رقم الهوية ",
      "name":"الاسم",
      "E-mail":"البريد الالكتروني ",
      "college":"الكليه",
      "Department":"القسم",
      "Specialization":"التخصص",
-     "Studentstatus":"حاله الطالب",
-     "Managestudentdata":"اداره بيانات الطلاب",
+     "Studentstatus":"حالة الطالب",
+     "Managestudentdata":"ادارة بيانات الطلاب",
      "code":"الكود",
      "Educationsystem":" قواعد الاعذار",
      "studentstatus":"وضع الطالب",
@@ -185,9 +185,9 @@
 "studentGuardianRelation": "صلة القرابة",
 "studentGuardianMobile": "رقم جوال ولى الامر",
 "studentGuardianEmail": "بريد الكترونى ولى الامر",
-"facultyMembersDepartment":"  أستاذه المقرر   ",
+"facultyMembersDepartment":"  أستاذة المقرر   ",
 "Definedecisions":" جدول الدراسي ",
-"Filterresults":"تصفيه النتائج",
+"Filterresults":"تصفية النتائج",
 "ClearFilter":"مسح المحددات ",
 "Delete":"حذف",
 "Edit":"تعديل",
@@ -305,8 +305,8 @@
 "confirmMessage":"هل أنت متأكد من حفظ التعديلات الجديدة ؟",
 "previousexcuses":"سجل الاعذار السابقة",
 
-"Beginningperiod":"بدايه الفتره",
-"Endperiod":"نهايه الفتره",
+"Beginningperiod":"بدايةالفتره",
+"Endperiod":"نهايةالفتره",
 "Submissiondate":"تاريخ التقديم",
 "Askedpermission":"طلب استئذان",
 "Datelecture":"تاريخ المحاضرة",
@@ -316,7 +316,24 @@
 "Recordpreviouspermission":"سجل  استئذان السابقة",
 "degree":"الدرجة العلمية",
 "memberNo":"رقم عضو هيئة تدريس",
-"uniEmail":"البريد الالكترونى الجامعى"
+"uniEmail":"البريد الالكترونى الجامعى",
+
+"Viewpermissionrequest":"عرض طلب استئذان",
+"viewmedicalexcuse":"عرض عذر طبى",
+
+"ViewFile":"عرض الملف",
+"Areyousuredecision":"هل انت متأكد من اتخاذ هذا القرار ؟",
+"Completedexcuses":"اعذار مكتملة",
+
+
+"Recordedlectures":"المحاضرات المسجلة",
+"Studentsdeprivedexam":"الطلاب المحرومين من الامتحان",
+"ProspectivestudentsHoly":"الطلاب المرتقبين من الحرمين",
+"Numberofstudents":"عدد الطلاب",
+"Recordrequests":"سجل الطلبات",
+"Areyousureaddstudent":"هل متاكد من اضافة الطالب?"
+
+
 
 
 

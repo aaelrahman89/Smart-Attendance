@@ -18,7 +18,7 @@ import { DataTableDirective } from 'angular-datatables';
 import { DatatableOptions } from 'src/app/models/commonModels/DatatableOptions';
 import { StudentEnrollmentDTO } from './../../../models/admin/StudentEnrollment/StudentEnrollmentDTO';
 import { StudentEnrollmentFilterModel } from './../../../models/admin/StudentEnrollment/StudentEnrollmentFilterModel';
-import { Subject } from 'rxjs';
+import { Subject, Subscription } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { AlertDeleteService } from './../../../services/genericService/AlertDelete.service';
 
@@ -72,7 +72,10 @@ departmentFilter: DepartmentFilterModel = new DepartmentFilterModel();
 StudentAdminFilter:StudentAdminFilterModel=new StudentAdminFilterModel();
 
 filter: StudentEnrollmentFilterModel =new StudentEnrollmentFilterModel();
-
+openModal: boolean = false;
+CustomModal(){
+  this.openModal = !this.openModal
+}
 constructor(
 private DeptartmentService: DeptartmentService,
 private TermService: TermService,
@@ -99,25 +102,20 @@ Term = this.Route.snapshot.paramMap.get('Term');
 
 //#endregion Get info From url 
 
-
+subscription: Subscription;
+subscriptionb: Subscription;
 ngOnInit(): void {
-  this.translate.onLangChange
-.subscribe((event: LangChangeEvent) => {
+  this.subscription = this.translate.onLangChange
+  .subscribe((event: LangChangeEvent) => {
 if(event.lang == 'ar'){
 this.titleService.setTitle("  تسجيل الطالب");
-this.AddSuccessfully="تم الاضافة بنجاح";
-this.DeleteSuccessfully="تم الحذف بنجاح";
-this.updateSuccessfully="تم التحديث بنجاح";
-this.MsgDelete=" :هل أنت متأكد من حذف هذا السجل؟ رقم";
+
 this.dtOptions.language.url = `/assets/i18n/Arabic.json`;
 
 
 }if (event.lang == 'en'){
 this.titleService.setTitle(" Student Registration");
-this.AddSuccessfully="The Added Was Successfully";
-this.DeleteSuccessfully="The Deletion Was Successful";
-this.updateSuccessfully="The Spdate was Successful";
-this.MsgDelete="Are you sure to delete this record ? Number: ";
+
 this.dtOptions.language.url = `/assets/i18n/English.json`;
 
 }
@@ -253,9 +251,11 @@ submitStudentEnrollment(){
     if(!this.elements.some((fac) => fac.StudentId == this.StudentEnrollment.get('StudentId').value)){
 
   this.myService.Insert(this.StudentEnrollment.value)
-  .subscribe(res=> this.generalAlertservice.openAlertSuccess() );
+  .subscribe(res=> {
+    this.openModal = !this.openModal;
+  });
  
-  this.AlertDeleteService.openConfirmDialog()
+  //this.AlertDeleteService.openConfirmDialog()
   
   this.rerender();
 }else{
@@ -272,18 +272,17 @@ DeleteStudentEnrollment(ID){
   .afterClosed().subscribe(res =>{
     if(res){
     this.myService.Delete(ID).subscribe(res=>console.log(res));
-    this.notificationService.warn(this.DeleteSuccessfully);
+    //this.notificationService.warn(this.DeleteSuccessfully);
     }
     this.rerender();
   });
 }
 
-ngOnDestroy(): void {
-  // Do not forget to unsubscribe the event
-  this.dtTrigger.unsubscribe();
-
-
-  }
   
 
+  ngOnDestroy(): void {
+    // Do not forget to unsubscribe the event
+    this.dtTrigger.unsubscribe();
+    this.subscription.unsubscribe();
+  }
 }

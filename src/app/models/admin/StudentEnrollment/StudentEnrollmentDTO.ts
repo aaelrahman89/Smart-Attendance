@@ -15,8 +15,8 @@ export interface StudentEnrollmentDTO {
     DepartmentCode: string,
     CollegeCode: string,
     DepartmentNameAR: string,
-    CollegeNameAR: string,
+    
     DepartmentNameEn: string,
-    CollegeNameEn: string
+    CollegeName: string
 
 }

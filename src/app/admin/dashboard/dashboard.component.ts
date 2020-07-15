@@ -11,13 +11,13 @@ export class DashboardComponent implements OnInit {
 
   constructor( public  AdminDashboardService: AdminDashboardService) { }
 
-  dashboard
+  // dashboard
 
   ngOnInit(): void {
 
-this.AdminDashboardService.GetAll().subscribe( res => {
-this.dashboard = res
-})
+// this.AdminDashboardService.GetAll().subscribe( res => {
+// this.dashboard = res
+// })
 
   }
 
