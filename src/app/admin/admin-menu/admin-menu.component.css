@@ -20,7 +20,7 @@
   header{
       /* background:linear-gradient(to left, #653b8c, #124e93, #005685, #00586b, #0c5652); */
       align-items: center;
-      background-color: #1d1c39;
+      background-color: var(--mainColor);
       flex-direction: row-reverse;
       /* font-size: 0.9em; */
   }
@@ -197,14 +197,14 @@ text-align: left;
 }
 
 
-@media print { 
+@media print {
 
     header{
       display: none !important;
     }
   }
   .btn:hover{
-    color: inherit !important ; 
+    color: inherit !important ;
   }
   .save{
     background-color: #2acf82;

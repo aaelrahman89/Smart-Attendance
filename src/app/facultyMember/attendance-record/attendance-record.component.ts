@@ -80,7 +80,8 @@ export class AttendanceRecordComponent implements OnInit {
       location: new FormControl(1, Validators.required),
       date: new FormControl(null, Validators.required),
       UseCodeGenerator: new FormControl(false),
-      ExpirationSeconds: new FormControl(0)
+      ExpirationSeconds: new FormControl(0),
+      registerUsing: new FormControl(0)
     })
 
     // Get Current Term
@@ -217,6 +218,12 @@ export class AttendanceRecordComponent implements OnInit {
   refresh(): void {
     this.Router.navigateByUrl("admin/facultyMember", { skipLocationChange: true }).then(() => {
       this.Router.navigate([decodeURI(this.location.path())]);
+    })
+  }
+
+  onChangeRegisterUsing(value){
+    this.srchForm.patchValue({
+      registerUsing: value
     })
   }
 

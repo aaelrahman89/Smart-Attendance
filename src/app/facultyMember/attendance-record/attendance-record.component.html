@@ -111,13 +111,24 @@
     </div>
 
 
-       <!-- <input type="text" class="form-control" formControlName="ExpirationSeconds" maxlength="3" minlength="1" min="1" max="900" [placeholder]="'TRANS.seconds' | translate"> -->
-
-     <!-- <div class="col-md-2 col-6 p-1 mt-2">
-       <button type="button" class="btn btn-info btn-sm mt-1 startbutton" (click)="searchSubmit()">تسجيل</button>
-     </div> -->
    </div>
+
+
   </div>
+
+
+  <div class="col-md-3 p-1 mt-3">
+    <div class="form-group row">
+      <b class="col-md-4 color-p d-block text-right p-0 mt-1"> تسجيل باستخدام </b>
+      <div class="col-md-8">
+       <select class="form-control" formControlName="registerUsing">
+         <option value="0" [selected]="true">QRCODE</option>
+         <option value="1">رقم</option>
+         <option value="2">QRCODE + رقم</option>
+       </select>
+      </div>
+    </div>
+   </div>
 
   <div class="col-md-12 text-center mb-4 mt-5">
     <button type="button" class="btn-main px-4 py-2 rounded-pill" (click)="searchSubmit()" [disabled]="srchForm.invalid">
@@ -143,9 +154,23 @@
          <div class="timer" id="timer" *ngIf="showTimer">
           <div id="overlay"></div>
           <div class="timer-container">
+
+            <div class="col-md-12 p-1 mt-3">
+              <div class="form-group row">
+                <b class="col-md-3 color-p d-block text-right p-0 mt-1"> تسجيل باستخدام </b>
+                <div class="col-md-8">
+                 <select class="form-control" formControlName="registerUsing" (change)="onChangeRegisterUsing($event.target.value)">
+                   <option value="0">QRCODE</option>
+                   <option value="1">رقم</option>
+                   <option value="2">QRCODE + رقم</option>
+                 </select>
+                </div>
+              </div>
+             </div>
+
             <div class="timer-main">
-            <qr-code [value]="mobCode" [size]="300" *ngIf="showqrCode"></qr-code>
-              <!-- <span>{{ mobCode }}</span> -->
+            <qr-code [value]="mobCode" [size]="300" *ngIf="srchForm.get('registerUsing').value == 0 || srchForm.get('registerUsing').value == 2"></qr-code>
+            <span *ngIf="srchForm.get('registerUsing').value == 1 || srchForm.get('registerUsing').value == 2">{{ mobCode }}</span>
               <!-- <div class="timercircle"></div> -->
             </div>
 
