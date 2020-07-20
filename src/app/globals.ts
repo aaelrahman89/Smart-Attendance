@@ -15,3 +15,6 @@ export const errorHandling = (error, navigate, showMessage?) => {
 }
 
 
+export let headerStyle = 'red';
+
+

@@ -1,7 +1,7 @@
-<header class="py-1  row">
+<header class="py-1 row">
   <div class="settingsBar d-flex col-md-4 ">
     <ul type="none" class="p-0 left-links row">
-      <li class="px-2" *ngFor="let lang of translate.getLangs()" [class.sactive]="lang === translate.currentLang"
+      <li #test class="px-2" *ngFor="let lang of translate.getLangs()" [class.sactive]="lang === translate.currentLang"
         (click)="translateUse(lang)">
         {{ lang }}
       </li>
@@ -14,7 +14,10 @@
         <span class="material-icons fas headerIcons fa-eye">
         </span> <span class="mx-1" [class.clicked]="blackAndWhite">{{ 'TRANS.specialColors' | translate }}</span>
       </li>
+
     </ul>
+
+
   </div>
   <div class="col-md-4 logo text-center">
     <a routerLink="/">
@@ -61,7 +64,7 @@
 
 <div class="bg-menu closed" [class.notifyBg]="notification" (click)="close()" *ngIf="blurBg"></div>
 <div class="menu-parent">
-  <div class="main-menu " [class.menuOpened]="expanded">
+  <div class="main-menu MainBackgorundColor" [class.menuOpened]="expanded">
 
     <!--Admin Menu start-->
     <ul type="none" class="p-0 text-white" *ngIf="getUserRoleCondition('Admin')">
@@ -173,7 +176,7 @@
         </div>
       </li>
       <!-- attendance managment -->
-      <li class="py-3">
+      <li class="py-3 d-none">
         <div class="adminMenuList row">
           <div class="row dropDown">
             <div class="menu-Icon  text-center ">
@@ -313,15 +316,9 @@
         <h4 class="modal-title text-center w-100" id="myModalLabel"> {{ 'TRANS.ChangeTerm' | translate }} </h4>
       </div>
       <div class="modal-body termslist">
-        <ul class="p-0 m-0 text-right  w-100 " *ngFor="let element of elements" type="none">
-          <li class="py-4">
-            <label class="container">
-              <input type="radio" name="radio" [checked]="element.IsActive == true">
-              <span class="checkmark"></span>
-              {{ element.NameAr }}
-            </label>
-          </li>
-        </ul>
+        <select name=""  class="form-control py-0 px-3" id="">
+          <option value="" *ngFor="let element of elements" [selected]="element.IsActive == true" >{{ element.NameAr }}   </option>
+        </select>
       </div>
       <div class="modal-footer text-center ">
         <button type="button" mdbBtn class="mx-auto relative save" (click)="secondModal.show()">
@@ -345,7 +342,7 @@
         </button>
         <h4 class="modal-title text-center w-100" id="myModalLabel"> {{ 'TRANS.ChangeTerm' | translate }} </h4>
       </div>
-      <div class="modal-body termslist">
+      <div class="modal-body termslist text-right">
         سيتم تعميم الفصل الدراسي على مستوى كل النظام.
         هل أنت متأكد من تغيير الفصل الدراسي ؟
       </div>

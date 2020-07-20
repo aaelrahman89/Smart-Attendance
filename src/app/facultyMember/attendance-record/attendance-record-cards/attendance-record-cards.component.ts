@@ -78,10 +78,10 @@ export class AttendanceRecordCardsComponent implements OnInit {
   }
 
   // Permission checks
-  checkexecuse(){
+  checkPermission(){
     return this.attendanceStatus.some(x => x.AttendanceStatusCode == 3);
   }
-  checkPermission(){
+  checkexecuse(){
     return this.attendanceStatus.some(x => x.AttendanceStatusCode == 4);
   }
   checkLate(){

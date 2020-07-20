@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+
+import { ThemeSettingDTO } from 'src/app/models/admin/ThemeSetting/ThemeSettingDTO';
+import { Component, OnInit,Renderer2 } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 // For MDB Angular Free
 import { CollapseModule, WavesModule } from 'angular-bootstrap-md'
@@ -6,6 +8,8 @@ import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
 import { Router } from '@angular/router';
 import { AuthService } from './../../services/auth.service';
 import { TermService } from 'src/app/services/admin/Term/term.service';
+import { ThemeSettingservice } from 'src/app/services/admin/ThemeSetting/ThemeSetting.service';
+
 @Component({
   selector: 'admin-menu',
   templateUrl: './admin-menu.component.html',
@@ -20,6 +24,10 @@ export class AdminMenuComponent implements OnInit {
   blackAndWhite = false;
   localStorage: any;
   langCss = document.getElementById('langCss');
+
+  ThemeSettingDTO: ThemeSettingDTO = new ThemeSettingDTO();
+
+  
 
 
   close(){
@@ -58,8 +66,9 @@ export class AdminMenuComponent implements OnInit {
     this.notification = !this.notification;
 
   }
-  constructor(private modalService: NgbModal, public  translate: TranslateService, 
-    private myService: TermService, 
+  constructor(private modalService: NgbModal, public  translate: TranslateService,
+    private myService: TermService,
+    private ThemeSettingservice:ThemeSettingservice,
     public AuthService: AuthService, public Router: Router) {
     translate.addLangs(['ar', 'en']);
     translate.setDefaultLang('ar');
@@ -99,5 +108,17 @@ export class AdminMenuComponent implements OnInit {
      this.myService.GetAll().subscribe((res) => {
       this.elements = res.List;
      } )
+
+
+    // Get Theme Settings
+    this.ThemeSettingservice.GetTheme().subscribe(res => {
+      document.querySelector("body").style.cssText = `--MainBackgorundColor:${res.MainBackgorundColor}`;
+ });
+
+
   }
+
+
+  
+
 }

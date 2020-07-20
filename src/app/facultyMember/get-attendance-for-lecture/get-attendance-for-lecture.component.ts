@@ -12,6 +12,8 @@ import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
 import { FilterAttendanceStudentsService } from './../../services/FilterAttendanceStudents.service';
 import { AttendanceStudentsFilterModel } from 'src/app/models/AttendanceStudents/AttendanceStudentsFilterModel';
 import { AttendanceForLectureDTO } from 'src/app/models/AttendanceStudents/AttendanceForLectureDTO';
+import { AttendanceStatusDTO } from 'src/app/models/AttendanceStudents/AttendanceStatusDTO';
+import { attendanceStatusService } from 'src/app/services/attendanceStatus.service';
 
 import { Subject } from 'rxjs';
 import { DataTableDirective } from 'angular-datatables';
@@ -32,6 +34,8 @@ export class GetAttendanceForLectureComponent implements OnDestroy, OnInit {
   pageLang = document.documentElement.lang;
   searched: boolean = false;
   CourseTitle: string;
+
+  attendanceStatus: AttendanceStatusDTO[];
 
   show0: boolean = true;
 
@@ -59,10 +63,16 @@ dtOptions: any = {};
                 private LectureScheduleService: LectureScheduleService,
                 private FilterAttendanceStudentsService: FilterAttendanceStudentsService,
                 public  translate: TranslateService,
-                private AlertDeleteService: AlertDeleteService
+                private AlertDeleteService: AlertDeleteService,
+                private attendanceStatusService: attendanceStatusService
                 ) { }
+                
+
+
 
   ngOnInit(): void {
+
+    this.attendanceStatusService.GetAll().subscribe(res => this.attendanceStatus = res.List);
 
     this.dtOptions = DatatableOptionsClient;
 
@@ -143,6 +153,18 @@ deleteLecture(lecture, lectures){
 
 
 }
+
+
+  // Permission checks
+  checkPermission(){
+    return this.attendanceStatus.some(x => x.AttendanceStatusCode == 3);
+  }
+  checkexecuse(){
+    return this.attendanceStatus.some(x => x.AttendanceStatusCode == 4);
+  }
+  checkLate(){
+    return this.attendanceStatus.some(x => x.AttendanceStatusCode == 5);
+  }
 
 
 

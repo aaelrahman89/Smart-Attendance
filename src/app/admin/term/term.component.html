@@ -19,7 +19,7 @@
           <th>{{ 'TRANS.StartDate' | translate }} </th>
           <th>{{ 'TRANS.EndDate' | translate }} </th>
           <th class="d-none-print noExport">{{ 'TRANS.Status' | translate }} </th>
-          <th class="d-none-print noExport">{{ 'TRANS.tablethActions' | translate }}</th>
+          <th class="d-none-print noExport d-none">{{ 'TRANS.tablethActions' | translate }}</th>
         </tr>
       </thead>
       <tbody>
@@ -39,7 +39,7 @@
             </div>
           </td>
 
-          <td class="d-none-print noExport">
+          <td class="d-none-print noExport d-none">
             <div (click)="showMod(element.Id)">
               <a mdbBtn type="button" class="w-auto px-3 circle-btn"  mdbWavesEffect  (click)="basicModal.show()"><i class="far fa-edit"></i></a>
             </div>

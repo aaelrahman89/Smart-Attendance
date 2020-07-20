@@ -335,17 +335,15 @@ initializeFormGroup() {
     .afterClosed().subscribe(res =>{
       if(res){
 
-    this.FacultyMemberEnrollmentService.Delete(facultyMemberEnrollmentID).subscribe(res=>console.log(res));
+    this.FacultyMemberEnrollmentService.Delete(facultyMemberEnrollmentID).subscribe(res=>
+      {
+        console.log(res)
+      this.GetAllfacultyMember();
+      });
     //this.notificationService.warn(this.DeleteSuccessfully);
 
   }
-    this.FacultyMemberEnrollmentService.Filter(this.facultyMemberEnrollmentfilter)
-    .subscribe(resp => {
-    this.facultyMemberEnrollments = resp.List;
-    // this.sessionService.Set(resp.List[0]);
-    console.log(" before call ", resp)
-
-    });
+  
   })
 
 
@@ -384,32 +382,8 @@ CourseSubject: new FormControl(this.CourseSubject.nativeElement.innerHTML),
   }
 
   );
-
-
-
-
-  this.facultyMemberEnrollmentfilter.Crn=this.srchForm.get('crnSection').value;
-
-
-  this.FacultyMemberEnrollmentService.Filter(this.facultyMemberEnrollmentfilter)
-  .subscribe(resp => {
-  this.facultyMemberEnrollments = resp.List;
-  console.log(" before call ", resp)
-
-    //this.FormFacultyMember.reset(this.FormFacultyMember.value);
-  });
-
-
-
-  this.filter.TermCode =this.srchForm.get('term').value;
-this.filter.Crn = this.srchForm.get('crnSection').value;
-this.myservice.Filter(this.filter)
-.subscribe(resp => {
-this.elements = resp.List;
-// this.sessionService.Set(resp.List[0]);
-console.log(" before call ", resp)
-});
-
+this.GetallLectureSchedule();
+this.GetAllfacultyMember();
   }
 
   onChange(value){
@@ -462,24 +436,40 @@ DeleteLectureSchedule(LectureScheduleID){
   this.AlertDeleteService.openConfirmDialog()
   .afterClosed().subscribe(res =>{
     if(res){
-    this.myservice.Delete(LectureScheduleID).subscribe(res=>console.log(res));
+    this.myservice.Delete(LectureScheduleID).subscribe(res=>this.GetallLectureSchedule());
     //this.notificationService.warn(this.DeleteSuccessfully);
     }
 
+});
+
+}
 
 
-
+GetallLectureSchedule(){
   this.filter.TermCode =this.srchForm.get('term').value;
-this.filter.Crn = this.srchForm.get('crnSection').value;
+  this.filter.Crn = this.srchForm.get('crnSection').value;
+  
+  this.myservice.Filter(this.filter)
+  .subscribe(resp => {
+  this.elements = resp.List;
+  // this.sessionService.Set(resp.List[0]);
+  console.log(" before call ", resp)
+  });
+}
 
-this.myservice.Filter(this.filter)
-.subscribe(resp => {
-this.elements = resp.List;
-// this.sessionService.Set(resp.List[0]);
-console.log(" before call ", resp)
-});
-});
 
+GetAllfacultyMember(){
+
+  this.facultyMemberEnrollmentfilter.Crn=this.srchForm.get('crnSection').value;
+
+
+  this.FacultyMemberEnrollmentService.Filter(this.facultyMemberEnrollmentfilter)
+  .subscribe(resp => {
+  this.facultyMemberEnrollments = resp.List;
+  console.log(" before call ", resp)
+
+    //this.FormFacultyMember.reset(this.FormFacultyMember.value);
+  });
 }
 
 submitLectureSchedule(){
@@ -489,21 +479,17 @@ submitLectureSchedule(){
     return;
   }else{
 
-    this.myservice.Insert(this.LectureSchedule.value).subscribe(res=>console.log("Insert-LectureSchedule",res));
+    this.myservice.Insert(this.LectureSchedule.value).subscribe(res=>{
+
+      console.log("Insert-LectureSchedule",res),
+      this.GetallLectureSchedule();
+    });
   //this.notificationService.success(this.AddSuccessfully);
 
   this.onClear();
   this.closeModal.nativeElement.click();
 
-this.filter.TermCode =this.srchForm.get('term').value;
-this.filter.Crn = this.srchForm.get('crnSection').value;
 
-this.myservice.Filter(this.filter)
-.subscribe(resp => {
-this.elements = resp.List;
-// this.sessionService.Set(resp.List[0]);
-console.log(" before call ", resp)
-});
   }
 
 }
@@ -564,7 +550,7 @@ EditsubmitLectureSchedule(element){
   this.myservice.Update(element).subscribe(res =>
     {
       console.log('update data: ', res);
-
+this.GetallLectureSchedule();
     }
 
     );

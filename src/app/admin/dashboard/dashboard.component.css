@@ -66,7 +66,7 @@
   }
    
    .circle-chart{
-    width: 70%;
+    width: 50%;
     margin: auto;
    }
    .abs-chart-rate{
@@ -77,4 +77,22 @@
    }
    .bottom{
        background-color: #F5F5F5;
+   }
+   .white-circ{
+       background-color: white;
+       border-radius: 50%;
+       width: 60px;
+       height: 60px;
+       display: flex;
+       justify-content: center;
+       align-items: center;
+       font-size: 1.7em;
+       color: #653b8c;
+   }
+   .bottom .row{
+    justify-content: center;
+    align-items: center;
+   }
+   .fa-circle{
+       color:#35E0F3 ;
    }

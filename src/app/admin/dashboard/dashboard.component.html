@@ -1,10 +1,10 @@
-<div class="row mt-2">
-    <div class="col-md-2 col-6 row mx-auto p-0 my-4">
+<div class="row  ">
+    <div class="col-md-2 col-6 row mx-auto p-0 my-3">
         <div class="col-12 text-center">
             <div class="icon-circle mx-auto text-white text-center ">
                 <i class="fas fa-landmark"></i>
             </div>
-            <a class="row py-1" routerLink="admin/colleges">
+            <a class="row py-2" routerLink="admin/colleges">
 
                 <h3 class="dash-title m-0"> <i class="fas fa-cog  color-p mx-1 icon-link "></i>
                     {{ 'TRANS.collegesTitle' | translate }} </h3>
@@ -12,12 +12,12 @@
         </div>
         <!-- <span>{{dashboard.CollegesTotalCount}}</span> -->
     </div>
-    <div class="col-md-2 col-6 row mx-auto p-0 my-4">
+    <div class="col-md-2 col-6 row mx-auto p-0 my-3">
         <div class="col-12 text-center">
             <div class="icon-circle mx-auto text-white">
                 <i class="fas fa-graduation-cap"></i>
             </div>
-            <a class="row py-1" routerLink="admin/studentadmin">
+            <a class="row py-2" routerLink="admin/studentadmin">
 
                 <h3 class="dash-title m-0"> <i class="fas fa-cog  color-p mx-1 icon-link "></i>
                     {{ 'TRANS.studentsLength' | translate }} </h3>
@@ -25,36 +25,36 @@
 
         </div>
     </div>
-    <div class="col-md-2 col-6 row mx-auto p-0 my-4">
+    <div class="col-md-2 col-6 row mx-auto p-0 my-3">
         <div class="col-12 text-center">
             <div class="icon-circle mx-auto text-white">
                 <i class="fas fa-briefcase"></i>
             </div>
-            <a class="row py-1" routerLink="admin/facultyMember">
+            <a class="row py-2" routerLink="admin/facultyMember">
                 <h3 class="dash-title m-0">
                     <i class="fas fa-cog  color-p mx-1 icon-link "></i>
                     {{ 'TRANS.FacultyMemberName' | translate }} </h3>
             </a>
         </div>
     </div>
-    <div class="col-md-2 col-6 row mx-auto p-0 my-4">
+    <div class="col-md-2 col-6 row mx-auto p-0 my-3">
         <div class="col-12 text-center">
             <div class="icon-circle mx-auto text-white">
                 <i class="fas fa-book"></i>
             </div>
-            <a class="row py-1" routerLink="admin/courses">
+            <a class="row py-2" routerLink="admin/courses">
 
                 <h3 class="dash-title m-0"> <i class="fas fa-cog  color-p mx-1 icon-link "></i>
                     {{ 'TRANS.coursesTitle' | translate }} </h3>
             </a>
         </div>
     </div>
-    <div class="col-md-2 col-6 row mx-auto p-0 my-4">
+    <div class="col-md-2 col-6 row mx-auto p-0 my-3">
         <div class="col-12 text-center">
             <div class="icon-circle mx-auto text-white">
                 <i class="fas fa-bookmark"></i>
             </div>
-            <a class="row py-1" routerLink="admin/sections">
+            <a class="row py-2" routerLink="admin/sections">
 
                 <h3 class="dash-title m-0"> <i class="fas fa-cog  color-p mx-1 icon-link "></i>
                     {{ 'TRANS.menuSections' | translate }} </h3>
@@ -63,11 +63,11 @@
 
     </div>
 </div>
-<hr class="col-12 p-0 my-5">
+<hr class="col-12 p-0 my-3">
 
 <div class="row charts-row">
     <div class="col-12">
-        <div class="col-4 text-right mb-3 mx-auto">
+        <div class="col-4 text-right mb-1 mx-auto">
             <b class="my-3 d-block"> الجهة </b>
         <select class="form-control py-0 px-2"  >
             <option value="" selected>{{'TRANS.selectColleges'|translate}}</option>
@@ -136,13 +136,57 @@
     </div>
 </div>
 
-<div class="row bottom py-5 mt-5">
-    <div class="col-md-6">
-        <div class="white-circ">
+<div class="row bottom py-2 mt-1">
+    <div class="col-md-6 color-p row">
+        <div class="white-circ mx-4">
             <i class="far fa-list-alt"></i>
         </div>
-        <h3>
+        <h2 class="my-3">
             <b> الاعذار الطبية </b>
-        </h3>
+        </h2>
+        <div class="row col-12 my-4">
+            <div class="col-md-4 row">
+                <i class="fas fa-circle mx-1"></i>
+                <b class=" mx-1" > المقدم </b>
+                <span class=" mx-1"> 3546 </span>
+            </div>
+            <div class="col-md-4 row">
+                <i class="fas fa-circle mx-1"></i>
+                <b class=" mx-1" > المكتمل </b>
+                <span class=" mx-1"> 3546 </span>
+            </div>
+            <div class="col-md-4 row">
+                <i class="fas fa-circle mx-1"></i>
+                <b class=" mx-1" > تحت الاجراء </b>
+                <span class=" mx-1"> 3546 </span>
+            </div>
+    
+        </div>
+    </div>
+    <div class="col-md-6 color-p row">
+        <div class="white-circ mx-4">
+            <i class="far fa-list-alt"></i>
+        </div>
+        <h2 class="my-3">
+            <b> الاستئذان </b>
+        </h2>
+        <div class="row col-12 my-4">
+            <div class="col-md-4 row">
+                <i class="fas fa-circle mx-1"></i>
+                <b class=" mx-1" > المقدم </b>
+                <span class=" mx-1"> 3546 </span>
+            </div>
+            <div class="col-md-4 row">
+                <i class="fas fa-circle mx-1"></i>
+                <b class=" mx-1" > المكتمل </b>
+                <span class=" mx-1"> 3546 </span>
+            </div>
+            <div class="col-md-4 row">
+                <i class="fas fa-circle mx-1"></i>
+                <b class=" mx-1" > تحت الاجراء </b>
+                <span class=" mx-1"> 3546 </span>
+            </div>
+    
+        </div>
     </div>
 </div>

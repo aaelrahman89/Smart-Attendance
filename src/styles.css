@@ -16,6 +16,7 @@
   --red: #e93737;
   --orange: #e78931;
   --mainColor: #1d1c39;
+  
 }
 button{
   border: none !important ;
@@ -29,6 +30,7 @@ body {
   height: 100%;
   font-family: 'Cairo' !important;
   background: var(--lightGrey);
+  --MainBackgorundColor: #1d1c39;
 }
 .mat-h4, .mat-subheading-1, .mat-typography h4 {
   font: 400 23px/24px 'Cairo' !important;
@@ -154,6 +156,9 @@ table.dataTable thead td {
 }
 .container-fluid-custom {
   width: 86% !important;
+}
+.MainBackgorundColor{
+  background-color: var(--MainBackgorundColor);
 }
 .dataTables_wrapper .dataTables_filter input {
   border: 1px solid var(--purb) !important;
@@ -360,6 +365,7 @@ input:focus,
 /* ===== end of general Style =====  */
 header {
   min-height: 10%;
+  background-color: var(--MainBackgorundColor) !important;
 }
 header.row,
 header.row a {
@@ -431,7 +437,7 @@ header.row .headerIcons {
   height: 100%;
   transition: all 0.5s;
   top: 0;
-  background-color: #1d1c39;
+  background-color: var(--MainBackgorundColor) !important;
 }
 .bg-menu + .menu-parent .main-menu{
   overflow: auto;

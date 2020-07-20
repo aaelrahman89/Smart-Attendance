@@ -69,7 +69,7 @@
           <th>{{ 'TRANS.studentNationalId' | translate }}</th>
 
           <th class="d-none-print ">{{ 'TRANS.studentSystemStatus' | translate }}</th>
-          <th class="d-none-print">{{ 'TRANS.tablethActions' | translate }}</th>
+          <th class="d-none-print d-none">{{ 'TRANS.tablethActions' | translate }}</th>
         </tr>
       </thead>
       <tbody>
@@ -94,7 +94,7 @@
 
 
 
-          <td class="d-none-print">
+          <td class="d-none-print d-none">
             <div (click)="showMod(element.Id)">
               <a mdbBtn type="button" class="w-auto px-3 circle-btn" mdbWavesEffect (click)="basicModal.show()"><i
                   class="far fa-edit"></i></a>

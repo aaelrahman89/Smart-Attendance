@@ -100,5 +100,12 @@ submitSearch(){
   this.rerender();
 }
 
+name: string;
+
+onChangeFile(e){
+   console.log(e.target.files[0]);
+   this.name = e.target.files[0].name;
+}
+
 
 }

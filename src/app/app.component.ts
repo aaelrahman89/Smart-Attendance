@@ -35,7 +35,7 @@ export class AppComponent implements OnInit  {
   }
 
   ngOnInit(){
-
+ 
     this.spinner.show();
     
     setTimeout(() => {
@@ -43,7 +43,6 @@ export class AppComponent implements OnInit  {
       this.spinner.hide();
     }, 500);
   }
-
 
 
 

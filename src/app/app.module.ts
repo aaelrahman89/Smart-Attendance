@@ -100,7 +100,14 @@ import { ModalServiceModule } from './modal-service/modal-service.module';
 import { MyModalComponent } from './my-modal.component';
 import { ModalComponent } from './modal/modal/modal.component';
 import { AskedpermissionComponent } from './facultyMember/MyTasks/askedpermission/askedpermission.component';
-import { QRCodeModule } from 'angular2-qrcode';
+import { ProfileComponent } from './components/profile/profile.component';
+import { ThemeComponent } from './admin/theme/theme.component';
+import { ProfileAdminComponent } from './admin/profile-admin/profile-admin.component';
+//import { QRCodeModule } from 'angular2-qrcode';
+
+//import { QRCodeModule } from 'angular2-qrcode';
+import { TermInterceptorService } from './services/term-interceptor.service';
+
 
 
 
@@ -177,7 +184,10 @@ export function HttpLoaderFactory(http: HttpClient) {
     MainIndexComponent,
     MyModalComponent,
     ModalComponent,
-    AskedpermissionComponent
+    AskedpermissionComponent,
+    ProfileComponent,
+    ThemeComponent,
+    ProfileAdminComponent
 
   ],
   imports: [
@@ -209,7 +219,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     NgxSpinnerModule,
     MatButtonModule,
     MatInputModule,
-    QRCodeModule,
+    //QRCodeModule,
     ModalServiceModule.forRoot(),
     MDBBootstrapModule.forRoot(),
     TranslateModule.forRoot({

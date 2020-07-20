@@ -1,6 +1,6 @@
 <div class="container-fluid mb-4">
 
-  <div class="page-title my-5 pb-3 text-center">
+  <div class="page-title  text-center">
     <h2 class="color-p text-center ">
       <b> <i class="fas fa-university"></i> {{ 'TRANS.menuManageMemberData' | translate }} </b>
       <p *ngIf="loading" >Loading Data...</p>
@@ -23,7 +23,7 @@
           <th>{{ 'TRANS.facultyMemberTHCollege' | translate }}</th>
           <th>{{ 'TRANS.facultyMemberTHDepartment' | translate }}</th>
           <th>{{ 'TRANS.facultyMemberTHStatus' | translate }}</th>
-          <th>{{ 'TRANS.modalEditTitle' | translate }}</th>
+          <th class="d-none">{{ 'TRANS.modalEditTitle' | translate }}</th>
           <th>{{ 'TRANS.table' | translate }}</th>
         </tr>
       </thead>
@@ -44,8 +44,8 @@
               </label>
             </div>
           </td>
-          <td   (click)="showUp(element.Id, element.DepartmentCode,  element.NationalityCode, element.CollegeCode)">
-              <button type="button" mdbBtn class="w-auto px-3 circle-btn btn waves-effect" (click)="basicModal.show()"
+          <td  class="d-none" (click)="showUp(element.Id, element.DepartmentCode,  element.NationalityCode, element.CollegeCode)">
+              <button type="button" mdbBtn class="w-auto px-3 circle-btn btn waves-effect " (click)="basicModal.show()"
               mdbWavesEffect>
               <i class="far fa-edit"></i>
             </button>

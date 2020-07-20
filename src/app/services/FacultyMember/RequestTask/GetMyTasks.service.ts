@@ -14,6 +14,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { PostTaskDTO } from 'src/app/models/FacultyMemberModal/RequestTask/PostTaskDTO';
 import { GetTaskDetailsDTO } from 'src/app/models/FacultyMemberModal/RequestTask/GetTaskDetailsDTO';
+import { GetPermissionDTO } from 'src/app/models/FacultyMemberModal/RequestTask/GetPermissionDTO';
 
 
 
@@ -38,13 +39,26 @@ MedicalExcuseDetails(Id): Observable<GetTaskDetailsDTO> {
 
 }
 
+GetPermissionTaskDetails(Id): Observable<GetPermissionDTO> {
+  // console.log(`hi you are now in way to Delete for ${this.myURL}`);
+  return this.httpClient.get<GetPermissionDTO>(`${this.myURL}${'GetPermissionTaskDetails'}?TaskId=${Id}`);
 
+}
+
+GetPreviousPermission(Id): Observable<GetPermissionDTO> {
+  // console.log(`hi you are now in way to Delete for ${this.myURL}`);
+  return this.httpClient.get<GetPermissionDTO>(`${this.myURL}${'GetPreviousPermission'}?CurrentTaskId=${Id}`);
+
+}
  
 
 GetTaskAll(isCompleted): Observable<GetMyTasksDTO> {
   console.log(`hi you are now in way to GetAll for ${this.myURL}`);
   return this.httpClient.get<GetMyTasksDTO>(`${this.myURL}${'GetMyTasks'}?isCompleted=${isCompleted}`);
 }
+
+
+
 
 
 PostTask(model: PostTaskDTO[]): Observable<PostTaskDTO> {

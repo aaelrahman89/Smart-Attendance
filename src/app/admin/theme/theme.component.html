@@ -1,0 +1,57 @@
+<div class="container-fluid px-3 ">
+
+    <!-- <page-title> {{'TRANS.TaskUnderProcedure'|translate}} </page-title> -->
+    <page-title> {{'TRANS.underTheProcedure'|translate}}</page-title>
+
+    <nav aria-label="breadcrumb" class="col-md-6 mx-auto text-center font-weight-bold">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a routerLink="">{{ 'TRANS.menuHome' | translate }}</a></li>
+        <li class="breadcrumb-item"><a class="mx-2" >{{ 'TRANS.underTheProcedure' | translate }}</a></li>
+      </ol>
+    </nav>
+
+
+    <form [formGroup]="themeForm" (ngSubmit)="saveTheme()">
+  <div class=" justify-content-center ">
+      <div class="row">
+    <div class="col-4 ">
+        MainBackgorundColor
+    </div>
+    <div class="col-4">
+        <input type="color" id="favcolor" name="favcolor" [value]="MainBackgorundColor" formControlName="MainBackgorundColor">
+
+    </div>
+</div>
+<div class="row">
+
+    <div class="col-4">
+        MainTextColor
+    </div>
+    <div class="col-4">
+        <input type="color" id="favcolor" name="favcolor" [value]="MainTextColor" formControlName="MainTextColor">
+
+    </div>
+</div>
+
+    <div class="row">
+
+    <div class="col-4">
+        MainLabel
+    </div>
+    <div class="col-4">
+        <input type="color" id="favcolor" name="favcolor" [value]="MainLabel" formControlName="MainLabel">
+
+    </div>
+
+</div>
+
+
+
+  </div>
+
+ <button type="submit">SAVE</button>
+
+</form>
+
+  </div>
+

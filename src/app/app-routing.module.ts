@@ -1,3 +1,7 @@
+import { ProfileAdminComponent } from './admin/profile-admin/profile-admin.component';
+
+import { ThemeComponent } from './admin/theme/theme.component';
+import { ProfileComponent } from './components/profile/profile.component';
 import { AskedpermissionComponent } from './facultyMember/MyTasks/askedpermission/askedpermission.component';
 import { ProgressViewComponent } from './facultyMember/MyTasks/Progress/progress-view/progress-view.component';
 import { ProgressListComponent } from './facultyMember/MyTasks/Progress/progress-list/progress-list.component';
@@ -48,7 +52,7 @@ import { CompletedListComponent } from './facultyMember/MyTasks/Completed/comple
 
 
 import { DashboardComponent } from './admin/dashboard/dashboard.component'
-import { MainIndexComponent } from './mainIndex/main-index/main-index.component'; 
+import { MainIndexComponent } from './mainIndex/main-index/main-index.component';
 
 const routes: Routes = [
   { path: '', component: MainIndexComponent, canActivate: [AuthGuard] },
@@ -73,6 +77,8 @@ const routes: Routes = [
   { path: 'admin/settings', component: AttendanceSettingsComponent, canActivate: [AuthGuard] },
   { path: 'admin/StudentEnrollment', component: StudentEnrollmentComponent, canActivate: [AuthGuard] },
   { path: 'admin/StudentEnrollment/:Crn/:College/:Department/:Term', component: StudentEnrollmentViewComponent, canActivate: [AuthGuard] },
+  { path: 'admin/Profileadmin', component: ProfileAdminComponent, canActivate: [AuthGuard] },
+  { path: 'admin/theme', component: ThemeComponent, canActivate: [AuthGuard] },
 
 
   { path: 'refresh', component: RefreshComponent },
@@ -88,7 +94,7 @@ const routes: Routes = [
   { path: 'test', component: TestComponent },
   { path: 'mostafa', component: MostafaComponent },
   { path: 'alert', component: AlertComponent },
-  
+
   { path: 'facultyMember/attendanceRecord', component: AttendanceRecordComponent, canActivate: [AuthGuard] },
   { path: 'facultyMember/AttendanceAbsence', component: ManageAttendanceAbsenceComponent, canActivate: [AuthGuard] },
   { path: 'facultyMember/StudentAttendance/:Crn/:TermCode/:StudentId', component: ManageStudentAttendanceComponent, canActivate: [AuthGuard] },
@@ -104,7 +110,7 @@ const routes: Routes = [
 
 
 
-  
+
 
   // Must be last route
   { path: '**', component: NotFoundComponent, canActivate: [AuthGuard], data: { showMenu: false } }

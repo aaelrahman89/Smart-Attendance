@@ -87,9 +87,9 @@
                     <th>{{ 'TRANS.studentname' | translate }} </th>
                     <th>{{ 'TRANS.atendant' | translate }} </th>
                     <th>{{ 'TRANS.absence' | translate }} </th>
-                    <th>{{ 'TRANS.permission' | translate }} </th>
-                    <th>{{ 'TRANS.late' | translate }} </th>
-                    <th>{{ 'TRANS.medical' | translate }} </th>
+                    <th *ngIf="checkPermission()">{{ 'TRANS.permission' | translate }} </th>
+                    <th *ngIf="checkLate()">{{ 'TRANS.late' | translate }} </th>
+                    <th *ngIf="checkexecuse()">{{ 'TRANS.medical' | translate }} </th>
                     <th>نسبة الغياب</th>
 
                     <th width="10%" class="d-none-print noExport">{{ 'TRANS.studentDataTitle' | translate }} </th>
@@ -104,10 +104,10 @@
 
                     <td><span class="s1 px-3 shadow rounded text-white font-weight-bold">{{Student.AttendanceCount}}</span></td>
                     <td><span class="s2 px-3 shadow rounded text-white font-weight-bold">{{Student.AbsenceCount}}</span></td>
-                    <td><span class="s3 px-3 shadow rounded text-white font-weight-bold">{{Student.PremissionCount}}</span></td>
+                    <td *ngIf="checkPermission()"><span class="s3 px-3 shadow rounded text-white font-weight-bold">{{Student.PremissionCount}}</span></td>
 
-                    <td><span class="s4 px-3 shadow rounded text-white font-weight-bold">{{Student.LateCount}}</span></td>
-                    <td><span class="s5 px-3 shadow rounded text-white font-weight-bold ">{{Student.ExcuseCount}}</span></td>
+                    <td *ngIf="checkLate()"><span class="s4 px-3 shadow rounded text-white font-weight-bold">{{Student.LateCount}}</span></td>
+                    <td *ngIf="checkexecuse()"><span class="s5 px-3 shadow rounded text-white font-weight-bold ">{{Student.ExcuseCount}}</span></td>
 
 
                    <td>

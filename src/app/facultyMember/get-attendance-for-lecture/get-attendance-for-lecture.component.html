@@ -83,9 +83,9 @@
         <th>{{'TRANS.lectureTime' | translate}}</th>
         <th>{{'TRANS.atendant' | translate}}</th>
         <th>{{'TRANS.absence' | translate}}</th>
-        <th>{{'TRANS.permission' | translate}}</th>
-        <th>{{'TRANS.medical' | translate}}</th>
-        <th>{{'TRANS.late' | translate}}</th>
+        <th *ngIf="checkPermission()">{{'TRANS.permission' | translate}}</th>
+        <th *ngIf="checkexecuse()">{{'TRANS.medical' | translate}}</th>
+        <th *ngIf="checkLate()">{{'TRANS.late' | translate}}</th>
         <th>نسبة الغياب</th>
         <th class="d-none-print noExport">{{'TRANS.tablethActions' | translate}}</th>
           </tr>
@@ -98,9 +98,9 @@
              <td *ngIf="pageLang == 'en'">{{lecture.StartTime | convertFrom24To12Format}} الى {{lecture.EndTime | convertFrom24To12Format}}</td>
              <td><span class="badge s1 text-white">{{lecture.AttendanceCount}}</span></td>
              <td><span class="badge s2 text-white">{{lecture.AbsenceCount}}</span></td>
-             <td><span class="badge s3 text-white">{{lecture.PremissionCount}}</span></td>
-             <td><span class="badge s4 text-white">{{lecture.ExcuseCount}}</span></td>
-             <td><span class="badge s5 text-white">{{lecture.LateCount}}</span></td>
+             <td *ngIf="checkPermission()"><span class="badge s3 text-white">{{lecture.PremissionCount}}</span></td>
+             <td *ngIf="checkexecuse()"><span class="badge s4 text-white">{{lecture.ExcuseCount}}</span></td>
+             <td *ngIf="checkLate()"><span class="badge s5 text-white">{{lecture.LateCount}}</span></td>
              <td><mdb-badge class="shadow rounded px-3 text-white font-weight-bold s7">{{lecture.AbsenceRate}}%</mdb-badge></td>
              <td class="d-none-print noExport">
               <a mdbBtn type="button" class="w-auto px-3 circle-btn"  mdbWavesEffect

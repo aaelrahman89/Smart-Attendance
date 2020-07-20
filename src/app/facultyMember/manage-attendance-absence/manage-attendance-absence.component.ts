@@ -3,7 +3,6 @@ import { FilterAttendanceStudentsService } from './../../services/FilterAttendan
 import { AttendanceForStudentsDTO } from './../../models/AttendanceStudents/AttendanceForStudentsDTO';
 import { FilterAttendanceForStudentsDTO } from './../../models/AttendanceStudents/FilterAttendanceForStudentsDTO';
 import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
-import { attendanceStatusService } from './../../services/attendanceStatus.service';
 
 import { CurrentTermService } from './../../services/admin/Term/current-term.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
@@ -14,6 +13,10 @@ import { DatatableOptionsClient } from 'src/app/models/commonModels/DatatableOpt
 import { LectureScheduleFilterModelForAttendance } from 'src/app/models/admin/LectureSchedule/LectureScheduleFilterModelForAttendance';
 import { Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
+
+import { AttendanceStatusDTO } from 'src/app/models/AttendanceStudents/AttendanceStatusDTO';
+import { attendanceStatusService } from 'src/app/services/attendanceStatus.service';
+
 @Component({
   selector: 'manage-attendance-absence',
   templateUrl: './manage-attendance-absence.component.html',
@@ -24,7 +27,6 @@ export class ManageAttendanceAbsenceComponent implements OnDestroy, OnInit {
   currentTerm: any;
   pageLang = document.documentElement.lang;
   sections:any=[];
-  attendanceStatus:any=[];
   srchForm:FormGroup;
   Students:AttendanceForStudentsDTO;
   StudentsGroupLength:number;
@@ -34,6 +36,7 @@ export class ManageAttendanceAbsenceComponent implements OnDestroy, OnInit {
   CRN:string;
   TermCode:string;
   show0: boolean = true;
+  attendanceStatus: AttendanceStatusDTO[];
 
   // new variables
   TotalCreditHours:number;
@@ -58,14 +61,14 @@ export class ManageAttendanceAbsenceComponent implements OnDestroy, OnInit {
     // Initialized Table
 
   constructor(
-    private attendanceStatusService: attendanceStatusService,
     private AttendanceForStudentsservice:FilterAttendanceStudentsService,
     private CurrentTermService:CurrentTermService,
     private LectureScheduleService: LectureScheduleService,
     public  translate: TranslateService,
     private titleService: Title,
     private Router: Router,
-    private FilterAttendanceStudentsService: FilterAttendanceStudentsService
+    private FilterAttendanceStudentsService: FilterAttendanceStudentsService,
+    private attendanceStatusService: attendanceStatusService
   ) { }
 
   LectureScheduleFilterModelForAttendance: LectureScheduleFilterModelForAttendance = new LectureScheduleFilterModelForAttendance();
@@ -74,6 +77,7 @@ export class ManageAttendanceAbsenceComponent implements OnDestroy, OnInit {
 
   ngOnInit(): void {
 
+ this.attendanceStatusService.GetAll().subscribe(res => this.attendanceStatus = res.List);
 
     this.dtOptions = DatatableOptionsClient;
 
@@ -165,6 +169,20 @@ console.log(res);
     this.Router.navigate(['/facultyMember/StudentAttendance', this.CRN,this.TermCode,StudentId ])
 
   }
+
+
+  // Permission checks
+  checkPermission(){
+    return this.attendanceStatus.some(x => x.AttendanceStatusCode == 3);
+  }
+  checkexecuse(){
+    return this.attendanceStatus.some(x => x.AttendanceStatusCode == 4);
+  }
+  checkLate(){
+    return this.attendanceStatus.some(x => x.AttendanceStatusCode == 5);
+  }
+
+
 
   }
    // Calculations End

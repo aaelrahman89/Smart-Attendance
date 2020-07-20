@@ -1,15 +1,8 @@
-<a class="btn btn-success text-white" (click)="exportexcel()"><i class="far fa-file-excel"></i> </a>
+<input class="d-none" type="file" (change)="onChangeFile($event)" #input>
 
-  <div class="col-md-12">
-    <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover table table-striped excel-table" >
-      <thead>
-        <tr>
-          <th *ngFor="let headElement of headElements">{{ headElement }}</th>
-        </tr>
-      </thead>
-      <tbody>
-        <ng-content></ng-content>
-      </tbody>
-    </table>
-  </div>
+<img src="">
+
+<button class="btn btn-warning" (click)="input.click()">UPLOAD FILE</button>
+
+<h3>{{name}}</h3>
 
