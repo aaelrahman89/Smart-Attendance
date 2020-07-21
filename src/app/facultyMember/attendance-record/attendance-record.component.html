@@ -158,21 +158,24 @@
             <div class="col-md-12 p-1 mt-3">
               <div class="form-group row">
                 <b class="col-md-3 color-p d-block text-right p-0 mt-1"> تسجيل باستخدام </b>
-                <div class="col-md-8">
-                 <select class="form-control" formControlName="registerUsing" (change)="onChangeRegisterUsing($event.target.value)">
-                   <option value="0">QRCODE</option>
-                   <option value="1">رقم</option>
-                   <option value="2">QRCODE + رقم</option>
-                 </select>
-                </div>
+                <form [formGroup]="registerUsingForm" style="width: 70%;">
+                  <div class="col-md-8">
+                    <select class="form-control" formControlName="registerUsing" (change)="onChangeRegisterUsing($event.target.value)">
+                      <option value="0">QRCODE</option>
+                      <option value="1">رقم</option>
+                      <option value="2">QRCODE + رقم</option>
+                    </select>
+                   </div>
+                </form>
               </div>
              </div>
 
             <div class="timer-main">
-            <qr-code [value]="mobCode" [size]="300" *ngIf="srchForm.get('registerUsing').value == 0 || srchForm.get('registerUsing').value == 2"></qr-code>
-            <span *ngIf="srchForm.get('registerUsing').value == 1 || srchForm.get('registerUsing').value == 2">{{ mobCode }}</span>
+            <qr-code [value]="mobCode" [size]="300" *ngIf="registerUsingForm.get('registerUsing').value == 0 || registerUsingForm.get('registerUsing').value == 2"></qr-code>
+            <span *ngIf="registerUsingForm.get('registerUsing').value == 1"><b>{{ mobCode }}</b></span>
               <!-- <div class="timercircle"></div> -->
             </div>
+            <h3 class="text-center mt-4 f-50" *ngIf="registerUsingForm.get('registerUsing').value == 2"><b>{{ mobCode }}</b></h3>
 
              <div class="timercount">
               <h6 class="badge badge-warning">{{progVal}}</h6>

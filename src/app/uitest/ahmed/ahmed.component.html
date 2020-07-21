@@ -1,8 +1,24 @@
-<input class="d-none" type="file" (change)="onChangeFile($event)" #input>
+<!-- <input class="d-none" type="file" (change)="onChangeFile($event)" #input>
 
 <img src="">
 
 <button class="btn btn-warning" (click)="input.click()">UPLOAD FILE</button>
 
-<h3>{{name}}</h3>
+<h3>{{name}}</h3> -->
+
+
+
+<div class="container">
+  <button class="btn btn-success" (click)="getLocation()">CURRENT LOCATION</button>
+
+  <h3>latitude   {{latitude}}</h3>
+  <h3>longitude   {{longitude}}</h3>
+
+  <agm-map [latitude]="latitude" [longitude]="longitude" *ngIf="showMap">
+    <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>
+  </agm-map>
+
+</div>
+
+
 

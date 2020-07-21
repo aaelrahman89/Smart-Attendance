@@ -28,6 +28,7 @@ export class AttendanceRecordComponent implements OnInit {
 
   // Variables
   srchForm: FormGroup;
+  registerUsingForm: FormGroup;
   showReg: boolean = false;
   showTimer: boolean = false;
   pageLang = document.documentElement.lang;
@@ -80,9 +81,13 @@ export class AttendanceRecordComponent implements OnInit {
       location: new FormControl(1, Validators.required),
       date: new FormControl(null, Validators.required),
       UseCodeGenerator: new FormControl(false),
-      ExpirationSeconds: new FormControl(0),
+      ExpirationSeconds: new FormControl(0)
+    });
+
+    this.registerUsingForm = new FormGroup({
       registerUsing: new FormControl(0)
-    })
+    });
+
 
     // Get Current Term
     this.CurrentTermService.GetAll().subscribe(res => {
@@ -222,7 +227,7 @@ export class AttendanceRecordComponent implements OnInit {
   }
 
   onChangeRegisterUsing(value){
-    this.srchForm.patchValue({
+    this.registerUsingForm.patchValue({
       registerUsing: value
     })
   }

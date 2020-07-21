@@ -103,10 +103,10 @@ import { AskedpermissionComponent } from './facultyMember/MyTasks/askedpermissio
 import { ProfileComponent } from './components/profile/profile.component';
 import { ThemeComponent } from './admin/theme/theme.component';
 import { ProfileAdminComponent } from './admin/profile-admin/profile-admin.component';
-//import { QRCodeModule } from 'angular2-qrcode';
+import { QRCodeModule } from 'angular2-qrcode';
 
-//import { QRCodeModule } from 'angular2-qrcode';
 import { TermInterceptorService } from './services/term-interceptor.service';
+import { AgmCoreModule } from '@agm/core';
 
 
 
@@ -219,7 +219,10 @@ export function HttpLoaderFactory(http: HttpClient) {
     NgxSpinnerModule,
     MatButtonModule,
     MatInputModule,
-    //QRCodeModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyBAljfWKvuWFTyieuyK3-vfbnSrrx9tLCg'
+    }),
+    QRCodeModule,
     ModalServiceModule.forRoot(),
     MDBBootstrapModule.forRoot(),
     TranslateModule.forRoot({

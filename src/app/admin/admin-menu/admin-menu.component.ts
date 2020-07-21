@@ -27,7 +27,7 @@ export class AdminMenuComponent implements OnInit {
 
   ThemeSettingDTO: ThemeSettingDTO = new ThemeSettingDTO();
 
-  
+
 
 
   close(){
@@ -111,14 +111,14 @@ export class AdminMenuComponent implements OnInit {
 
 
     // Get Theme Settings
-    this.ThemeSettingservice.GetTheme().subscribe(res => {
-      document.querySelector("body").style.cssText = `--MainBackgorundColor:${res.MainBackgorundColor}`;
- });
+//     this.ThemeSettingservice.GetTheme().subscribe(res => {
+//       document.querySelector("body").style.cssText = `--MainBackgorundColor:${res.MainBackgorundColor}`;
+//  });
 
 
   }
 
 
-  
+
 
 }
