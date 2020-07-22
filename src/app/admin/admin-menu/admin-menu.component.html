@@ -64,7 +64,7 @@
 
 <div class="bg-menu closed" [class.notifyBg]="notification" (click)="close()" *ngIf="blurBg"></div>
 <div class="menu-parent">
-  <div class="main-menu MainBackgorundColor" [class.menuOpened]="expanded">
+  <div class="main-menu MainBackgorundColor " [class.menuOpened]="expanded">
 
     <!--Admin Menu start-->
     <ul type="none" class="p-0 text-white" *ngIf="getUserRoleCondition('Admin')">

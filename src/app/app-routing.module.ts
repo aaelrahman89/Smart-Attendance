@@ -1,3 +1,4 @@
+import { SystemConfigurationComponent } from './admin/system-configuration/system-configuration.component';
 import { ProfileAdminComponent } from './admin/profile-admin/profile-admin.component';
 
 import { ThemeComponent } from './admin/theme/theme.component';
@@ -107,6 +108,8 @@ const routes: Routes = [
 
   { path: 'facultyMember/TasksProgresView/:Id', component: ProgressViewComponent, canActivate: [AuthGuard] },
   { path: 'facultyMember/AskedpermissionView/:Id', component: AskedpermissionComponent, canActivate: [AuthGuard] },
+
+  { path: 'admin/system-configuration', component: SystemConfigurationComponent, canActivate: [AuthGuard] },
 
 
 

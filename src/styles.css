@@ -31,6 +31,8 @@ body {
   font-family: 'Cairo' !important;
   background: var(--lightGrey);
   --MainBackgorundColor: #1d1c39;
+  --MainTextColor:#167888;
+  --MainLabel:#2196f3;
 }
 .mat-h4, .mat-subheading-1, .mat-typography h4 {
   font: 400 23px/24px 'Cairo' !important;
@@ -159,6 +161,16 @@ table.dataTable thead td {
 }
 .MainBackgorundColor{
   background-color: var(--MainBackgorundColor);
+  
+}
+
+.MainTextColor{
+  color: var(--MainTextColor);
+}
+
+.MainLabel{
+  color: var(--MainLabel);
+
 }
 .dataTables_wrapper .dataTables_filter input {
   border: 1px solid var(--purb) !important;
@@ -366,11 +378,16 @@ input:focus,
 header {
   min-height: 10%;
   background-color: var(--MainBackgorundColor) !important;
+  
+
+
+
 }
 header.row,
 header.row a {
   justify-content: space-between;
-  color: white;
+  /* color: white; */
+  color: var(--MainTextColor) !important;
 }
 
 header.row .headerIcons {
@@ -438,6 +455,8 @@ header.row .headerIcons {
   transition: all 0.5s;
   top: 0;
   background-color: var(--MainBackgorundColor) !important;
+  /* color: var(--MainTextColor) !important; */
+
 }
 .bg-menu + .menu-parent .main-menu{
   overflow: auto;

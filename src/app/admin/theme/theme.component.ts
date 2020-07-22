@@ -42,7 +42,7 @@ export class ThemeComponent implements OnInit {
 
     this.themeForm = new FormGroup({
       MainBackgorundColor: new FormControl(''),
-      MainTextColor: new FormControl(''),
+      MainTextColor: new FormControl(),
       MainLabel: new FormControl('')
     });
 
@@ -52,27 +52,46 @@ export class ThemeComponent implements OnInit {
         if(event.lang == 'ar'){
          this.pageLang = event.lang;
          this.titleService.setTitle("   تغير الالون");
-         // this.getAllData();
+         this.getcolor();
         }if (event.lang == 'en'){
          this.pageLang = event.lang;
          this.titleService.setTitle("Theme Setting ");
 
-         // this.getAllData();
+         this.getcolor();
+
         }
        });
 
 
-       this.ThemeSettingservice.GetTheme().subscribe(res => {
+       this.getcolor();
 
-this.MainBackgorundColor=res.MainBackgorundColor;
-this.MainTextColor=res.MainTextColor;
-this.MainLabel=res.MainLabel;
-console.log(res,"color");
-(this.el.nativeElement as HTMLElement).style.setProperty('--mainColor', res.MainBackgorundColor);
-       })
 
   }
 
+getcolor(){
+
+  this.ThemeSettingservice.GetTheme().subscribe(res => {
+
+    this.MainBackgorundColor=res.MainBackgorundColor;
+    this.MainTextColor=res.MainTextColor;
+    this.MainLabel=res.MainLabel;
+
+    this.themeForm.patchValue({
+      MainBackgorundColor: res.MainBackgorundColor,
+      MainTextColor: res.MainTextColor,
+      MainLabel: res.MainLabel
+    });
+
+    console.log(res,"color");
+    // alert(this.MainLabel);
+    //  (this.el.nativeElement as HTMLElement).style.setProperty('--MainBackgorundColor', res.MainBackgorundColor);
+    //   (this.el.nativeElement as HTMLElement).style.setProperty('--MainTextColor', res.MainTextColor);
+    //  (this.el.nativeElement as HTMLElement).style.setProperty('--MainLabel', res.MainLabel);
+
+
+           })
+
+}
 
   ngOnDestroy(): void {
     // Do not forget to unsubscribe the event
@@ -82,7 +101,15 @@ console.log(res,"color");
 
   saveTheme(){
     document.querySelector("body").style.cssText = `--MainBackgorundColor:${this.themeForm.get('MainBackgorundColor').value}`;
-    this.ThemeSettingservice.PostTheme(this.themeForm.value).subscribe(res => console.log(res));
+     document.querySelector("body").style.cssText += `--MainTextColor:${this.themeForm.get('MainTextColor').value}`;
+    document.querySelector("body").style.cssText += `--MainLabel:${this.themeForm.get('MainLabel').value}`;
+
+
+
+
+    this.ThemeSettingservice.PostTheme(this.themeForm.value).subscribe(res => {
+      this.getcolor();
+    });
   }
 
   // saveTheme(){
