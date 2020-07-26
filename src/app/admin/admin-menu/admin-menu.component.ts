@@ -1,13 +1,14 @@
-
-import { ThemeSettingDTO } from 'src/app/models/admin/ThemeSetting/ThemeSettingDTO';
-import { Component, OnInit,Renderer2 } from '@angular/core';
+import { Component, OnInit, ViewChild, Renderer2 } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ThemeSettingDTO } from 'src/app/models/admin/ThemeSetting/ThemeSettingDTO';
 // For MDB Angular Free
 import { CollapseModule, WavesModule } from 'angular-bootstrap-md'
 import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
 import { Router } from '@angular/router';
 import { AuthService } from './../../services/auth.service';
 import { TermService } from 'src/app/services/admin/Term/term.service';
+import { CurrentTermService } from 'src/app/services/admin/Term/current-term.service';
+import { Subscription } from 'rxjs';
 import { ThemeSettingservice } from 'src/app/services/admin/ThemeSetting/ThemeSetting.service';
 
 @Component({
@@ -16,6 +17,8 @@ import { ThemeSettingservice } from 'src/app/services/admin/ThemeSetting/ThemeSe
   styleUrls: ['./admin-menu.component.css']
 })
 export class AdminMenuComponent implements OnInit {
+  @ViewChild('basicModal') basicModal;
+  @ViewChild('secondModal') secondModal;
 
   dtOptions: any = {};
   expanded= false;
@@ -24,9 +27,9 @@ export class AdminMenuComponent implements OnInit {
   blackAndWhite = false;
   localStorage: any;
   langCss = document.getElementById('langCss');
-
   ThemeSettingDTO: ThemeSettingDTO = new ThemeSettingDTO();
-
+  logoSrc: any;
+  favIcon: any = document.getElementById('favIcon');
 
 
 
@@ -67,9 +70,9 @@ export class AdminMenuComponent implements OnInit {
 
   }
   constructor(private modalService: NgbModal, public  translate: TranslateService,
-    private myService: TermService,
-    private ThemeSettingservice:ThemeSettingservice,
-    public AuthService: AuthService, public Router: Router) {
+    private myService: TermService,  private CurrentTermService: CurrentTermService ,
+    public AuthService: AuthService, public Router: Router,
+    private ThemeSettingservice:ThemeSettingservice) {
     translate.addLangs(['ar', 'en']);
     translate.setDefaultLang('ar');
     // const browserLang = translate.getBrowserLang();
@@ -103,25 +106,54 @@ export class AdminMenuComponent implements OnInit {
   }
 
   elements
+  currentTerm
+  currentTermSelected
+  currentTermCode
   ngOnInit(){
 
-     this.myService.GetAll().subscribe((res) => {
+    this.myService.GetAll().subscribe((res) => {
       this.elements = res.List;
      } )
 
 
     // Get Theme Settings
     this.ThemeSettingservice.GetTheme().subscribe(res => {
-      document.querySelector("body").style.cssText = `--MainBackgorundColor:${res.MainBackgorundColor}`;
+      document.querySelector("body").style.cssText += `--MainBackgorundColor:${res.MainBackgorundColor}`;
       document.querySelector("body").style.cssText += `--MainTextColor:${res.MainTextColor}`;
       document.querySelector("body").style.cssText += `--MainLabel:${res.MainLabel}`;
+      console.log('logo is', res.Logo);
+      this.logoSrc = res.Logo;
+      document.getElementById('favIcon').setAttribute('href', res.Favicon);
+
 
  });
+
+    this.CurrentTermService.GetAll().subscribe((res) =>{
+      this.currentTerm = res.Name;
+      this.currentTermSelected = res.Name;
+      this.currentTermCode = res.TermCode;
+
+    })
 
 
   }
 
+  getTerms(){
+    this.myService.GetAll().subscribe((res) => {
+      this.elements = res.List;
+     } )
 
+  }
+  newSelectedTerm
+  changeTerm(e){
+    this.newSelectedTerm = e.target.value ;
+    console.log(this.newSelectedTerm)
 
-
+  }
+  saveTerm(){
+    localStorage.setItem("dynamicTermCode", this.newSelectedTerm)
+    console.log(this.newSelectedTerm)
+    this.basicModal.hide();
+    this.secondModal.hide();
+   }
 }

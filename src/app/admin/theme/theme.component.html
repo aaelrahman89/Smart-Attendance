@@ -56,16 +56,26 @@
 <form [formGroup]="themeForm" (ngSubmit)="saveTheme()">
 
 <div class="card shadow text-center rounded" >
-   
+
     <div class="card-body ">
      <div class="row">
          <div class="col-md-6 border-left">
              <h2 class="color-p font-weight-bold">شعار النظام</h2>
-             <input type="file"><br> <span >Logo.Png</span>
+             <input type="file"  (change)="handleFileInput($event)">
+
+
+    <div>
+
+
+      <input type="text" formControlName="LogoFileContent" >
+
+  </div>
+             <!-- <br>  -->
+             <!-- <span >Logo.Png</span> -->
          </div>
 
          <div class="col-md-6">
-<img  src="/assets/imgs/mainLogo.png"  width="25%">
+<img width="150px" height="150px" src="data:image/png;base64,{{base64textString}}">
         </div>
 
      </div>
@@ -73,14 +83,20 @@
     </div>
   </div>
 
+
+
+
+
 <br>
   <div class="card shadow text-center rounded" >
-   
+
     <div class="card-body ">
      <div class="row">
          <div class="col-md-6 border-left">
              <h2 class="color-p font-weight-bold"> الرمز المفضل</h2>
-             <input type="file"><br> <span >Icon.icon</span>
+             <input type="file">
+             <!-- <br>  -->
+             <!-- <span >Icon.icon</span> -->
          </div>
 
          <div class="col-md-6">
@@ -95,7 +111,7 @@
 <br>
 
   <div class="card shadow  rounded text-right" >
-   
+
     <div class="card-body ">
 <h2 class="color-p font-weight-bold">الالون</h2>
 <div class="row">
@@ -104,18 +120,18 @@
         <label for="exampleInputEmail1 " class="color-p font-weight-bold">لون الخلفية الرئيسي </label>
         <input type="color" id="favcolor" class="form-control" name="favcolor"  formControlName="MainBackgorundColor">
 
-      
+
       </div>
 
       <div class="form-group">
         <label for="exampleInputEmail1 " class="color-p font-weight-bold">لون الخط الرئيسي </label>
-       
+
         <input type="color" class="form-control" id="favcolor" name="favcolor"  formControlName="MainTextColor">
       </div>
-      
+
       <div class="form-group">
         <label for="exampleInputEmail1 " class="color-p font-weight-bold">لون العنوان الرئيسي </label>
-        
+
         <input type="color" id="favcolor" class="form-control" name="favcolor" formControlName="MainLabel">
       </div>
 
@@ -126,12 +142,12 @@
   </div>
 
   <div class="row justify-content-center my-3 ">
-                
+
     <div class="col-md-3 text-center">
-    <button mdbWavesEffect type="submit"   class="w-50 px-4 py-2 rounded-pill"  title="{{'TRANS.save'|translate}}" [style.color]="'red'" >
+    <button mdbWavesEffect type="submit"   class="w-50 px-4 py-2 rounded-pill btn-main"  title="{{'TRANS.save'|translate}}" [style.color]="'red'" >
         {{'TRANS.save'|translate}}
 
-     
+
       </button>
     </div>
 
@@ -144,5 +160,5 @@
 
 
 
-  
+
 

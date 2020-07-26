@@ -32,7 +32,7 @@ body {
   background: var(--lightGrey);
   --MainBackgorundColor: #1d1c39;
   --MainTextColor:#167888;
-  --MainLabel:#2196f3;
+  --MainLabel:#653b8c;
 }
 .mat-h4, .mat-subheading-1, .mat-typography h4 {
   font: 400 23px/24px 'Cairo' !important;
@@ -368,7 +368,9 @@ input:focus,
 }
 
 .color-p {
-  color: var(--purb);
+  /* color: var(--purb); */
+  color: var(--MainLabel) !important;
+
 }
 
 .bk-p {
@@ -793,11 +795,19 @@ table.dataTable tbody th, table.dataTable tbody td{
   border-bottom: 1px solid var(--purb);
 }
 .btn-main{
-  background: var(--rightGrediant);
+  background-color: var(--MainBackgorundColor) !important;
   border-radius: 20px !important;
-  color: white !important;
+  color: var(--MainTextColor) !important;
   font-size: 16px !important;
     font-weight: bold;
+
+    
+}
+
+.menu-btn{
+  background: var(--purb);
+  color: var(--MainTextColor) !important;
+  font-size: 1.2em;
 }
 .form-control {
   border: 1px solid #653b8c75;

@@ -21,7 +21,8 @@
   </div>
   <div class="col-md-4 logo text-center">
     <a routerLink="/">
-      <img src="/assets/imgs/mainLogo.png" alt="">
+      <!-- <img src="/assets/imgs/mainLogo.png" alt="" id="mainLogo"> -->
+      <img [src]="logoSrc" alt="" id="mainLogo">
     </a>
   </div>
   <div class="row col-md-4 userBar">
@@ -44,14 +45,13 @@
           </div>
         </div>
       </li>
-      <li class="px-2 notify   ">
-
+      <li class="px-2 notify" (click)="getTerms()">
         <button type="button" mdbBtn class="relative px-1 py-0" (click)="basicModal.show()">
-          الفصل الدراسي الاول 2020
+         {{currentTerm}}
           <i class="fas fa-retweet"></i> </button>
       </li>
       <li class="px-2 notify" (click)="notify()">
-        <span class="material-icons far   fa-bell "></span>
+        <span class="material-icons far fa-bell "></span>
         <span class="material-icons fas fa-circle"> </span>
       </li>
     </ul>
@@ -316,8 +316,8 @@
         <h4 class="modal-title text-center w-100" id="myModalLabel"> {{ 'TRANS.ChangeTerm' | translate }} </h4>
       </div>
       <div class="modal-body termslist">
-        <select name=""  class="form-control py-0 px-3" id="">
-          <option value="" *ngFor="let element of elements" [selected]="element.IsActive == true" >{{ element.NameAr }}   </option>
+        <select name="" (change)="changeTerm($event)" class="form-control py-0 px-3" id="">
+          <option  [attr.value]="element.TermCode" *ngFor="let element of elements" [selected]="element.IsActive == true" >{{ element.Name }}   </option>
         </select>
       </div>
       <div class="modal-footer text-center ">
@@ -347,9 +347,9 @@
         هل أنت متأكد من تغيير الفصل الدراسي ؟
       </div>
       <div class="modal-footer text-center ">
-        <button type="button" mdbBtn class="mx-auto relative save"  (click)="secondModal.hide()">
+        <button type="button" mdbBtn class="mx-auto relative save"  (click)="saveTerm()">
           نعم
-           </button>
+       </button>
         <button type="button" mdbBtn class=" mx-auto cancel " aria-label="Close"
           (click)="secondModal.hide()">لا</button>
       </div>

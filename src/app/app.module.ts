@@ -249,6 +249,11 @@ export function HttpLoaderFactory(http: HttpClient) {
       provide: HTTP_INTERCEPTORS,
       useClass: LangInterceptorService,
       multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TermInterceptorService,
+      multi: true
     }
   ],
   bootstrap: [AppComponent],

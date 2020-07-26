@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { headerStyle } from './../../globals';
 import { ThemeSettingservice } from './../../services/admin/ThemeSetting/ThemeSetting.service';
 import { ThemeSettingDTO } from './../../models/admin/ThemeSetting/ThemeSettingDTO';
@@ -7,8 +8,10 @@ import { FormBuilder } from '@angular/forms';
 import { NotificationService } from 'src/app/services/genericService/notification.service';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { Title } from '@angular/platform-browser';
+import { Title, DomSanitizer } from '@angular/platform-browser';
 import { FormGroup, FormControl } from '@angular/forms';
+import { env } from 'process';
+
 
 @Component({
   selector: 'theme',
@@ -20,8 +23,12 @@ export class ThemeComponent implements OnInit {
   MainBackgorundColor: string;
   MainTextColor: string;
   MainLabel: string;
+  Logo:string;
   themeForm: FormGroup;
-
+  fileToUpload:File=null;
+imagesUrl:string="/assets/imgs/mainLogo.png";
+base64textString:string;
+image;
 
   constructor(
     private ThemeSettingservice:ThemeSettingservice,
@@ -30,7 +37,9 @@ export class ThemeComponent implements OnInit {
     private el: ElementRef,
     private formBuilder: FormBuilder,
     private notificationService: NotificationService,
-    public Router: Router
+    public Router: Router,
+    private _sanitizer: DomSanitizer,
+    private Location: Location
   ) { }
 
   subscription: Subscription;
@@ -41,8 +50,10 @@ export class ThemeComponent implements OnInit {
    ngOnInit(): void {
 
     this.themeForm = new FormGroup({
+      LogoFileContent: new FormControl(''),
       MainBackgorundColor: new FormControl(''),
-      MainTextColor: new FormControl(),
+      MainTextColor: new FormControl(''),
+
       MainLabel: new FormControl('')
     });
 
@@ -68,6 +79,45 @@ export class ThemeComponent implements OnInit {
 
   }
 
+  // handleFileInput(file:FileList){
+  //   this.fileToUpload=file.item(0);
+
+  //   var reader=new FileReader();
+  //   reader.onload=(event:any)=>{
+  //     this.imagesUrl=event.target.result;
+  //   }
+
+  //   reader.readAsDataURL(this.fileToUpload);
+
+
+
+  // }
+
+
+
+
+  handleFileInput(evt){
+      var files = evt.target.files;
+      var file = files[0];
+
+    if (files && file) {
+        var reader = new FileReader();
+
+        reader.onload =this._handleReaderLoaded.bind(this);
+
+        reader.readAsBinaryString(file);
+    }
+  }
+
+  _handleReaderLoaded(readerEvt) {
+     var binaryString = readerEvt.target.result;
+            this.base64textString= btoa(binaryString);
+            this.themeForm.patchValue({
+              LogoFileContent: btoa(binaryString)
+            })
+            console.log(btoa(binaryString));
+    }
+
 getcolor(){
 
   this.ThemeSettingservice.GetTheme().subscribe(res => {
@@ -75,11 +125,15 @@ getcolor(){
     this.MainBackgorundColor=res.MainBackgorundColor;
     this.MainTextColor=res.MainTextColor;
     this.MainLabel=res.MainLabel;
+    this.Logo=res.Logo;
+
 
     this.themeForm.patchValue({
       MainBackgorundColor: res.MainBackgorundColor,
       MainTextColor: res.MainTextColor,
-      MainLabel: res.MainLabel
+      MainLabel: res.MainLabel,
+      Logo:res.Logo,
+
     });
 
     console.log(res,"color");
@@ -100,15 +154,21 @@ getcolor(){
   }
 
   saveTheme(){
-    document.querySelector("body").style.cssText = `--MainBackgorundColor:${this.themeForm.get('MainBackgorundColor').value}`;
+    document.querySelector("body").style.cssText += `--MainBackgorundColor:${this.themeForm.get('MainBackgorundColor').value}`;
      document.querySelector("body").style.cssText += `--MainTextColor:${this.themeForm.get('MainTextColor').value}`;
     document.querySelector("body").style.cssText += `--MainLabel:${this.themeForm.get('MainLabel').value}`;
-
-
-
-
+// this.themeForm.patchValue({
+//   Logo:this.base64textString
+// })
+console.log('form value is', this.themeForm.value);
     this.ThemeSettingservice.PostTheme(this.themeForm.value).subscribe(res => {
       this.getcolor();
+      console.log('save res', res);
+
+
+    });
+    this.Router.navigateByUrl("admin/theme", {skipLocationChange:true}).then(() => {
+      this.Router.navigate([decodeURI(this.Location.path())]);
     });
   }
 
