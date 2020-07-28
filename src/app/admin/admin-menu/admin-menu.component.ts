@@ -109,11 +109,8 @@ export class AdminMenuComponent implements OnInit {
   currentTerm
   currentTermSelected
   currentTermCode
-  ngOnInit(){
-
-    this.myService.GetAll().subscribe((res) => {
-      this.elements = res.List;
-     } )
+  isCurrentTerm: Boolean
+  ngOnInit(){ 
 
 
     // Get Theme Settings
@@ -132,8 +129,8 @@ export class AdminMenuComponent implements OnInit {
       this.currentTerm = res.Name;
       this.currentTermSelected = res.Name;
       this.currentTermCode = res.TermCode;
-
-    })
+      
+    })  
 
 
   }
@@ -147,13 +144,26 @@ export class AdminMenuComponent implements OnInit {
   newSelectedTerm
   changeTerm(e){
     this.newSelectedTerm = e.target.value ;
-    console.log(this.newSelectedTerm)
 
   }
   saveTerm(){
     localStorage.setItem("dynamicTermCode", this.newSelectedTerm)
-    console.log(this.newSelectedTerm)
+  
     this.basicModal.hide();
     this.secondModal.hide();
+    var i;
+    for(i = 0; i < this.elements.length; i++){
+      if(this.elements[i].TermCode == this.newSelectedTerm){
+        this.currentTerm =  this.elements[i].Name
+      } 
+    }
+
+    if(this.currentTermCode == this.newSelectedTerm){
+      this.isCurrentTerm = true;
+    }else{
+      this.isCurrentTerm = false;
+    } 
+    localStorage.setItem("isCurrentTerm", this.isCurrentTerm.toString())
+
    }
 }

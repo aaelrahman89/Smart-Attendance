@@ -28,6 +28,11 @@ export class ThemeComponent implements OnInit {
   fileToUpload:File=null;
 imagesUrl:string="/assets/imgs/mainLogo.png";
 base64textString:string;
+base64textStringicon:string;
+Favicon:string;
+showicon:boolean=true;
+showFavicon:boolean=true;
+
 image;
 
   constructor(
@@ -51,6 +56,8 @@ image;
 
     this.themeForm = new FormGroup({
       LogoFileContent: new FormControl(''),
+      FaviconFileContent: new FormControl(''),
+
       MainBackgorundColor: new FormControl(''),
       MainTextColor: new FormControl(''),
 
@@ -104,7 +111,6 @@ image;
         var reader = new FileReader();
 
         reader.onload =this._handleReaderLoaded.bind(this);
-
         reader.readAsBinaryString(file);
     }
   }
@@ -112,12 +118,36 @@ image;
   _handleReaderLoaded(readerEvt) {
      var binaryString = readerEvt.target.result;
             this.base64textString= btoa(binaryString);
+        //this.imagesUrl=readerEvt.target.result;
+
             this.themeForm.patchValue({
               LogoFileContent: btoa(binaryString)
             })
             console.log(btoa(binaryString));
     }
+    faviconFileInput(evt){
+      var files = evt.target.files;
+      var file = files[0];
 
+    if (files && file) {
+        var reader = new FileReader();
+
+        reader.onload =this._faviconFileInput.bind(this);
+        reader.readAsBinaryString(file);
+    }
+  }
+
+
+  _faviconFileInput(readerEvt) {
+    var binaryString = readerEvt.target.result;
+           this.base64textStringicon= btoa(binaryString);
+       //this.imagesUrl=readerEvt.target.result;
+
+           this.themeForm.patchValue({
+            FaviconFileContent: btoa(binaryString)
+           })
+           console.log(btoa(binaryString));
+   }
 getcolor(){
 
   this.ThemeSettingservice.GetTheme().subscribe(res => {
@@ -126,6 +156,8 @@ getcolor(){
     this.MainTextColor=res.MainTextColor;
     this.MainLabel=res.MainLabel;
     this.Logo=res.Logo;
+    this.Favicon=res.Favicon;
+
 
 
     this.themeForm.patchValue({
@@ -133,6 +165,7 @@ getcolor(){
       MainTextColor: res.MainTextColor,
       MainLabel: res.MainLabel,
       Logo:res.Logo,
+      Favicon:res.Favicon,
 
     });
 

@@ -1,0 +1,23 @@
+<div class="container-fluid py-4">
+    <div class="page-title  text-center">
+        <h2 class="color-p text-center ">
+          <b> <i class="fas fa-university"></i> {{ 'TRANS.sisManagment' | translate }} </b>
+        </h2>
+        <nav aria-label="breadcrumb" class="col-md-6 mx-auto text-center">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a routerLink="">{{ 'TRANS.menuHome' | translate }}</a></li>
+            <li class="breadcrumb-item"><a class="mx-2" >{{ 'TRANS.sisManagment' | translate }}</a></li>
+          </ol>
+        </nav>
+      </div>
+
+      <div class="container mt-5">
+        <mat-tab-group>
+            <mat-tab label="{{ 'TRANS.integrationWay' | translate }}"> <integration-way></integration-way> </mat-tab>
+            <mat-tab label="{{ 'TRANS.integrationprocess' | translate }}"> <integration-pro></integration-pro> </mat-tab>
+           
+          </mat-tab-group>
+    </div>
+    
+</div>
+

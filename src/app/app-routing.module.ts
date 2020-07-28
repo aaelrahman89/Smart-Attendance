@@ -51,9 +51,9 @@ import { AttendanceSettingsComponent } from './admin/attendance-settings/attenda
 import { AlertComponent } from './components/alert/alert.component';
 import { CompletedListComponent } from './facultyMember/MyTasks/Completed/completed-list/completed-list.component';
 
-
 import { DashboardComponent } from './admin/dashboard/dashboard.component'
 import { MainIndexComponent } from './mainIndex/main-index/main-index.component';
+import { SisComponent } from './admin/sis/sis.component';
 
 const routes: Routes = [
   { path: '', component: MainIndexComponent, canActivate: [AuthGuard] },
@@ -80,6 +80,7 @@ const routes: Routes = [
   { path: 'admin/StudentEnrollment/:Crn/:College/:Department/:Term', component: StudentEnrollmentViewComponent, canActivate: [AuthGuard] },
   { path: 'admin/Profileadmin', component: ProfileAdminComponent, canActivate: [AuthGuard] },
   { path: 'admin/theme', component: ThemeComponent, canActivate: [AuthGuard] },
+  { path: 'admin/sis', component: SisComponent, canActivate: [AuthGuard] },
 
 
   { path: 'refresh', component: RefreshComponent },

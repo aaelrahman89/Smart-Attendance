@@ -108,6 +108,9 @@ import { QRCodeModule } from 'angular2-qrcode';
 import { TermInterceptorService } from './services/term-interceptor.service';
 import { AgmCoreModule } from '@agm/core';
 import { SystemConfigurationComponent } from './admin/system-configuration/system-configuration.component';
+import { SisComponent } from './admin/sis/sis.component';
+import { IntegrationWayComponent } from './admin/sis/integration-way/integration-way.component';
+import { IntegrationProComponent } from './admin/sis/integration-pro/integration-pro.component';
 
 
 
@@ -189,7 +192,10 @@ export function HttpLoaderFactory(http: HttpClient) {
     ProfileComponent,
     ThemeComponent,
     ProfileAdminComponent,
-    SystemConfigurationComponent
+    SystemConfigurationComponent,
+    SisComponent,
+    IntegrationWayComponent,
+    IntegrationProComponent
 
   ],
   imports: [

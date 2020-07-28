@@ -804,6 +804,12 @@ table.dataTable tbody th, table.dataTable tbody td{
     
 }
 
+.userProfile button{
+  background: transparent;
+  border: none;
+  color: var(--MainTextColor) !important;
+
+}
 .menu-btn{
   background: var(--purb);
   color: var(--MainTextColor) !important;

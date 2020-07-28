@@ -11,7 +11,7 @@
   }
   .logo img{
       width: 200px;
-      filter: brightness(0) invert(1);
+      /* filter: brightness(0) invert(1); */
   }
   .userBar{
     /* justify-content: flex-end; */
@@ -181,11 +181,7 @@ text-align: left;
 .dropDown {
     justify-content: space-between;
 }
-.userProfile button{
-    background: transparent;
-    border: none;
-  
-}
+
 
 .settingsBar{
     display: flex;

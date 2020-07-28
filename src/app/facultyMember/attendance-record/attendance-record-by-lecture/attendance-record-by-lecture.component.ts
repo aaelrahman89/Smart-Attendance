@@ -80,7 +80,7 @@ export class AttendanceRecordByLectureComponent implements OnInit {
     this.filter.CourseNumber = this.CourseNumber;
     this.filter.CourseSubject = this.CourseSubject;
     this.CodeGenerator.UseCodeGenerator = false;
-    this.CodeGenerator.ExpirationSeconds = 0;
+    this.filter.ExpirationSeconds = 0;
     this.filter.CodeGenerator = this.CodeGenerator;
 
     this.FilterAttendanceStudentsService.FilterAttendance(this.filter).subscribe(res => {

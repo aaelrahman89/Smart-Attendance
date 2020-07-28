@@ -31,7 +31,6 @@ export class AttendanceRecordComponent implements OnInit {
   registerUsingForm: FormGroup;
   showReg: boolean = false;
   showTimer: boolean = false;
-  pageLang = document.documentElement.lang;
   currentTerm: any;
   sections: any = [];
   lectures: any = [];
@@ -45,6 +44,8 @@ export class AttendanceRecordComponent implements OnInit {
   showModal: boolean = false;
   showAlert: boolean = false;
   showStatusBar: boolean = false;
+  regstrationMethods: any = [];
+  rooms: any = [];
 
 
 
@@ -70,22 +71,24 @@ export class AttendanceRecordComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.date = new Date();
+    // GetAllRegstrationMethods
+    this.FilterAttendanceStudentsService.GetAllRegstrationMethods().subscribe(res => this.regstrationMethods = res);
 
-    console.log('qr code is:', this.qrCode);
+    // GetAllRooms
+    this.FilterAttendanceStudentsService.GetAllRooms().subscribe(res => this.rooms = res);
+
+    this.date = new Date();
 
     // init search form
     this.srchForm = new FormGroup({
-      sections: new FormControl(null, Validators.required),
-      lectures: new FormControl(null, Validators.required),
-      location: new FormControl(1, Validators.required),
-      date: new FormControl(null, Validators.required),
-      UseCodeGenerator: new FormControl(false),
-      ExpirationSeconds: new FormControl(0)
-    });
-
-    this.registerUsingForm = new FormGroup({
-      registerUsing: new FormControl(0)
+      RegistrationMethodID: new FormControl(1),
+      sections: new FormControl(null),
+      lectures: new FormControl(null),
+      location: new FormControl(null),
+      date: new FormControl(null),
+      ExpirationSeconds: new FormControl(0),
+      registerUsingQRCODE: new FormControl(true),
+      registerUsingNUMBER: new FormControl(false)
     });
 
 
@@ -98,30 +101,21 @@ export class AttendanceRecordComponent implements OnInit {
 
     // Get Sections By TermCode
 
-    // Translate Table (Ar & En)
-    this.translate.onLangChange
-      .subscribe((event: LangChangeEvent) => {
-        if (event.lang == 'ar') {
-          this.pageLang = event.lang;
-        } if (event.lang == 'en') {
-          this.pageLang = event.lang;
-        }
-      });
 
     // seconds validator & disabled
-    this.srchForm.get('ExpirationSeconds').disable();
-    this.srchForm.get('UseCodeGenerator').valueChanges.subscribe(v => {
-      if (v) {
-        this.srchForm.get('ExpirationSeconds').enable();
-        this.srchForm.get('ExpirationSeconds').setValidators([Validators.required, Validators.min(1), Validators.max(900), Validators.maxLength(3), Validators.minLength(1)]);
-      } else {
-        this.srchForm.get('ExpirationSeconds').disable();
-        this.srchForm.get('ExpirationSeconds').clearValidators();
-        this.srchForm.patchValue({
-          ExpirationSeconds: ''
-        });
-      }
-    })
+    // this.srchForm.get('ExpirationSeconds').disable();
+    // this.srchForm.get('UseCodeGenerator').valueChanges.subscribe(v => {
+    //   if (v) {
+    //     this.srchForm.get('ExpirationSeconds').enable();
+    //     this.srchForm.get('ExpirationSeconds').setValidators([Validators.required, Validators.min(1), Validators.max(900), Validators.maxLength(3), Validators.minLength(1)]);
+    //   } else {
+    //     this.srchForm.get('ExpirationSeconds').disable();
+    //     this.srchForm.get('ExpirationSeconds').clearValidators();
+    //     this.srchForm.patchValue({
+    //       ExpirationSeconds: ''
+    //     });
+    //   }
+    // })
 
   }
 
@@ -143,13 +137,11 @@ export class AttendanceRecordComponent implements OnInit {
         this.showTimer = false;
         this.showqrCode = false;
         this.studentFilter();
-        this.CodeGenerator.UseCodeGenerator = false;
-        this.filter.CodeGenerator = this.CodeGenerator;
         this.attendanceStatusService.GetAll().subscribe(res => this.attendanceStatus = res.List);
-        // this.FilterAttendanceFunctionAfterTimer();
         this.srchForm.patchValue({
           UseCodeGenerator: false,
-          ExpirationSeconds: 0
+          ExpirationSeconds: 0,
+          RegistrationMethodID: 2
         });
         this.FilterAttendanceFunction();
         this.showReg = false;
@@ -164,45 +156,40 @@ export class AttendanceRecordComponent implements OnInit {
     this.filter.TermCode = this.currentTerm.TermCode;
     this.filter.Date = this.srchForm.get('date').value;
     this.filter.Day = this.srchForm.get('lectures').value.Day;
-    this.filter.AttendanceLocationCode = this.srchForm.get('location').value;
+    this.filter.RegistrationMethodID = this.srchForm.get('RegistrationMethodID').value;
+    this.filter.RoomID = this.srchForm.get('location').value;
+    // this.filter.AttendanceLocationCode = this.srchForm.get('location').value;
     this.filter.StartTime = this.srchForm.get('lectures').value.StartTime;
     this.filter.EndTime = this.srchForm.get('lectures').value.EndTime;
     this.filter.CourseNumber = this.srchForm.get('sections').value.CourseNumber;
     this.filter.CourseSubject = this.srchForm.get('sections').value.CourseSubject;
-    this.CodeGenerator.UseCodeGenerator = this.srchForm.get('UseCodeGenerator').value;
-    this.CodeGenerator.ExpirationSeconds = this.srchForm.get('ExpirationSeconds').value;
-    this.filter.CodeGenerator = this.CodeGenerator;
+    this.filter.ExpirationSeconds = this.srchForm.get('ExpirationSeconds').value
   }
 
-  // Filter Attendance Function (post from api)
+  // Filter Attendance ThroughFacultyMemberendance Function (post from api)
   FilterAttendanceFunction() {
-    this.FilterAttendanceStudentsService.FilterAttendance(this.filter).subscribe(res => {
+    this.FilterAttendanceStudentsService.FilterAttRegistrationAttendanceThroughFacultyMemberendance(this.filter).subscribe(res => {
       this.showCards = true;
       // Get Attendance Status
       this.attendanceStatusService.GetAll().subscribe(res => this.attendanceStatus = res.List);
       this.showStatusBar = true;
       this.students = res.StudentData;
       this.StudentsCount = res.StudentsCount;
-
-      if (this.filter.CodeGenerator.UseCodeGenerator) {
-        this.showStatusBar = false;
-        this.mobCode = res.MobileCode;
-        //start timer here
-
-        this.showTimer = true;
-        this.showqrCode = true;
-        this.showCards = true;
-        this.startProg();
-      }else{
-        this.CodeGenerator.ExpirationSeconds = 0;
-      }
     });
   }
 
-  // Filter Attendance After Timer Function (post from api)
-  FilterAttendanceFunctionAfterTimer() {
-    this.FilterAttendanceStudentsService.FilterAfterTimer(this.filter).subscribe(res => {
-      this.students = res.List;
+
+  // Filter Attendance ThroughFacultyMemberendance Function (post from api)
+  RegistrationAttendanceThroughStudentDeviceFunction() {
+    this.FilterAttendanceStudentsService.RegistrationAttendanceThroughStudentDevice(this.filter).subscribe(res => {
+        this.showStatusBar = false;
+        this.mobCode = res.MobileCode;
+        this.showCards = false;
+        //start timer here
+        this.showTimer = true;
+        this.showqrCode = true;
+        this.startProg();
+
     });
   }
 
@@ -210,13 +197,20 @@ export class AttendanceRecordComponent implements OnInit {
 
   // Search Filter
   searchSubmit() {
-    if (this.srchForm.get('UseCodeGenerator').value == false) {
-      this.showTimer = false;
-      this.showqrCode = false;
-      // this.attendanceStatus.filter(data => data.AttendanceStatusCode > 2);
+    if (this.srchForm.get('RegistrationMethodID').value == 1) {
+      this.studentFilter();
+      this.FilterAttendanceFunction();
     }
-    this.studentFilter();
-    this.FilterAttendanceFunction();
+
+    if (this.srchForm.get('RegistrationMethodID').value == 2) {
+      this.studentFilter();
+       this.RegistrationAttendanceThroughStudentDeviceFunction();
+    }
+
+    if (this.srchForm.get('RegistrationMethodID').value == 3) {
+       // CODE HERE
+    }
+
   }
 
 
@@ -226,11 +220,8 @@ export class AttendanceRecordComponent implements OnInit {
     })
   }
 
-  onChangeRegisterUsing(value){
-    this.registerUsingForm.patchValue({
-      registerUsing: value
-    })
-  }
+
+
 
 
 }

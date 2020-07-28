@@ -25,7 +25,8 @@ export class AuthService {
   }
 
   logoutUser() {
-    localStorage.clear();
+    let keys = ["Token", "UserName", "UserRole"];
+    keys.forEach(key => localStorage.removeItem(key));
     this._router.navigate(['login']);
   }
 

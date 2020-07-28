@@ -67,7 +67,7 @@
     <div>
 
 
-      <input type="text" formControlName="LogoFileContent" >
+      <input type="hidden" formControlName="LogoFileContent" >
 
   </div>
              <!-- <br>  -->
@@ -76,6 +76,9 @@
 
          <div class="col-md-6">
 <img width="150px" height="150px" src="data:image/png;base64,{{base64textString}}">
+<img width="150px" height="150px" [src]="Logo" >
+
+
         </div>
 
      </div>
@@ -94,13 +97,19 @@
      <div class="row">
          <div class="col-md-6 border-left">
              <h2 class="color-p font-weight-bold"> الرمز المفضل</h2>
-             <input type="file">
+             <input type="file" (change)="faviconFileInput($event)">
              <!-- <br>  -->
              <!-- <span >Icon.icon</span> -->
          </div>
 
          <div class="col-md-6">
-<img  src="favicon.ico"  >
+          <img width="150px" height="150px" src="data:image/png;base64,{{base64textStringicon}}">
+          <img width="150px" height="150px" [src]="Favicon">
+    <link rel="icon" type="image/png" href="favicon.png" id="favIcon"/>
+
+
+          <input type="hidden" formControlName="FaviconFileContent" >
+
         </div>
 
      </div>

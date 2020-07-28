@@ -31,6 +31,16 @@ FilterAttendance(filter:AttendanceStudentsFilterModel): Observable<AttendanceStu
   return this.httpClient.post<AttendanceStudentsDTO>(`${this.myURL}${'FilterAttendanceStudents'}`,filter);
 }
 
+FilterAttRegistrationAttendanceThroughFacultyMemberendance(filter:AttendanceStudentsFilterModel): Observable<AttendanceStudentsDTO> {
+  console.log(`hi you are now in way to GetAll for ${this.myURL}`);
+  return this.httpClient.post<AttendanceStudentsDTO>(`${this.myURL}${'RegistrationAttendanceThroughFacultyMember'}`,filter);
+}
+
+RegistrationAttendanceThroughStudentDevice(filter:AttendanceStudentsFilterModel): Observable<any> {
+  console.log(`hi you are now in way to GetAll for ${this.myURL}`);
+  return this.httpClient.post<any>(`${this.myURL}${'RegistrationAttendanceThroughStudentDevice'}`,filter);
+}
+
 FilterAfterTimer(filter:AttendanceStudentsFilterModel): Observable<IResultForDatatTableDTO<any>> {
   console.log(`hi you are now in way to GetAll for ${this.myURL}`);
   return this.httpClient.post<IResultForDatatTableDTO<any>>(`${this.myURL}${'Filter'}`,filter);
@@ -70,6 +80,16 @@ UpdateAttendance(model: AttendStudentsByFaculityMemberDTO[]): Observable<ResultS
   console.log(`hi you are now in way to Update to ${this.myURL}`);
   return this.httpClient.put<ResultSaveGeneric<AttendanceStudentsDataDTO>>
       (`${this.myURL}${'AttendStudentsByFaculityMember'}`, model);
+}
+
+GetAllRegstrationMethods(): Observable<any> {
+  console.log(`hi you are now in way to GetAll for ${this.myURL}`);
+  return this.httpClient.get<any>(`${this.myURL}GetAllRegstrationMethods`);
+}
+
+GetAllRooms(): Observable<any> {
+  console.log(`hi you are now in way to GetAll for ${this.myURL}`);
+  return this.httpClient.get<any>(`${this.myURL}GetAllRooms`);
 }
 
 

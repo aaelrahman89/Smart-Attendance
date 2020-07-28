@@ -35,7 +35,7 @@ export class TokenInterceptorService implements HttpInterceptor {
               this.Router.navigate(['/login']);
           }
 
-          if(err.status === 400 || err.status === 409 || err.status === 500){
+          if(err.status === 400 || err.status === 409 || err.status === 500 || err.status === 422){
             this.modalService.open(MyModalComponent, {icon: 'fa-times text-danger', message: err.error.Message });
           }
 

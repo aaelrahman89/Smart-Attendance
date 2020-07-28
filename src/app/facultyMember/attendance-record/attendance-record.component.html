@@ -23,16 +23,31 @@
        <div class="srchform mb-3">
          <div class="row">
 
+          <div class="col-md-5 p-1 mb-3">
+            <div class="form-group row">
+              <b class="col-md-2 color-p d-block text-right p-0 mt-1"> طريقة التسجيل </b>
+              <div class="col-md-10">
+                <select class="form-control" formControlName="RegistrationMethodID">
+                  <option selected disabled [value]="null">طريقة التسجيل</option>
+                  <option *ngFor="let regstrationMethod of regstrationMethods" [value]="regstrationMethod.Id">
+                   <span>{{regstrationMethod.Name}}</span>
+                  </option>
+                </select>
+              </div>
+            </div>
+           </div>
 
-            <div class="col-md-5 p-1">
+           <div class="clearfix"></div>
+
+
+            <div class="col-md-5 p-1" *ngIf="srchForm.get('RegistrationMethodID').value == 1 || srchForm.get('RegistrationMethodID').value == 2">
               <div class="form-group row">
                 <b class="col-md-2 color-p d-block text-right p-0 mt-1"> {{ 'TRANS.CourseSubject' | translate }} </b>
                 <div class="col-md-10">
                   <select class="form-control" formControlName="sections" (change)="onChangeSection($event.target.value)">
                     <option selected disabled [value]="null">{{ 'TRANS.CourseSubject' | translate }}</option>
                     <option *ngFor="let section of sections" [ngValue]="section">
-                     <span *ngIf="pageLang === 'ar'">{{section.CourseTitleAr}} - {{section.Crn}}</span>
-                     <span *ngIf="pageLang === 'en'">{{section.CourseTitleEn}} - {{section.Crn}}</span>
+                     <span>{{section.CourseTitle}} - {{section.Crn}}</span>
                     </option>
                   </select>
                 </div>
@@ -42,15 +57,14 @@
              <div class="col-md-1"></div>
 
 
-           <div class="col-md-5 p-1">
+           <div class="col-md-5 p-1" *ngIf="srchForm.get('RegistrationMethodID').value == 1 || srchForm.get('RegistrationMethodID').value == 2">
             <div class="form-group row">
               <b class="col-md-2 color-p d-block text-right p-0 mt-1"> {{ 'TRANS.lecTime' | translate }} </b>
               <div class="col-md-10">
                 <select class="form-control" formControlName="lectures">
                   <option selected disabled [value]="null">{{ 'TRANS.lecTime' | translate }}</option>
                   <option *ngFor="let lecture of lectures" [ngValue]="lecture">
-                   <span *ngIf="pageLang === 'ar'">{{lecture.DayNameAr}} : {{lecture.StartTime | convertFrom24To12FormatAr}} الى {{lecture.EndTime | convertFrom24To12FormatAr}}</span>
-                   <span *ngIf="pageLang === 'en'">{{lecture.DayNameEn}} : {{lecture.StartTime | convertFrom24To12Format}} to {{lecture.EndTime | convertFrom24To12Format}}</span>
+                   <span>{{lecture.Name}} : {{lecture.StartTime | convertFrom24To12FormatAr}} الى {{lecture.EndTime | convertFrom24To12FormatAr}}</span>
                    </option>
                 </select>
               </div>
@@ -59,43 +73,36 @@
 
            <div class="clearfix"></div>
 
-           <div class="col-md-5 p-1 mt-3">
+           <div class="col-md-5 p-1 mt-3" *ngIf="srchForm.get('RegistrationMethodID').value == 1 || srchForm.get('RegistrationMethodID').value == 2 || srchForm.get('RegistrationMethodID').value == 3">
             <div class="form-group row">
-              <b class="col-md-2 color-p d-block text-right p-0 mt-1"> {{ 'TRANS.lectureLocation' | translate }} </b>
+              <b class="col-md-2 color-p d-block text-right p-0 mt-1"> {{ 'TRANS.lecDate' | translate }} </b>
               <div class="col-md-10">
-               <select class="form-control" formControlName="location">
-                 <option disabled [value]="null">{{ 'TRANS.lectureLocation' | translate }}</option>
-                 <option value="1" [selected]="true">{{ 'TRANS.lectureLocationInside' | translate }}</option>
-                 <option value="2">{{ 'TRANS.lectureLocationOnline' | translate }}</option>
-               </select>
+               <input type="date" class="form-control text-right" [placeholder]="'TRANS.lecDate' | translate" formControlName="date" [max]="date | date:'yyyy-MM-dd'" onkeydown="return false">
               </div>
             </div>
            </div>
 
            <div class="col-md-1"></div>
 
-           <div class="col-md-5 p-1 mt-3">
+           <div class="col-md-5 p-1 mt-3" *ngIf="srchForm.get('RegistrationMethodID').value == 1 || srchForm.get('RegistrationMethodID').value == 2">
             <div class="form-group row">
-              <b class="col-md-2 color-p d-block text-right p-0 mt-1"> {{ 'TRANS.lecDate' | translate }} </b>
+              <b class="col-md-2 color-p d-block text-right p-0 mt-1"> {{ 'TRANS.lectureLocation' | translate }} </b>
               <div class="col-md-10">
-                <!-- <mat-form-field color="accent">
-                  <input matInput class="form-control" [matDatepicker]="picker2" [startAt]="date" [max]="date | date:'yyyy-MM-dd'" formControlName="date">
-                  <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-                  <mat-datepicker #picker2 color="primary"></mat-datepicker>
-                </mat-form-field> -->
-                <!-- <dp-date-picker formControlName="date"></dp-date-picker> -->
-               <input type="date" class="form-control text-right" [placeholder]="'TRANS.lecDate' | translate" formControlName="date" [max]="date | date:'yyyy-MM-dd'" onkeydown="return false">
+               <select class="form-control" formControlName="location">
+                 <option disabled [value]="null" selected>{{ 'TRANS.lectureLocation' | translate }}</option>
+                 <option *ngFor="let room of rooms" [value]="room.Id">{{ room.RoomCode }}</option>
+               </select>
               </div>
             </div>
            </div>
 
            <div class="clearfix"></div>
 
-           <div class="col-md-2 mt-3 text-right">
-              <mdb-checkbox [default]="true" formControlName="UseCodeGenerator"> <b class="color-p d-block text-right mr-1">{{ 'TRANS.registerIn' | translate }}</b></mdb-checkbox>
-           </div>
+           <!-- <div class="col-md-2 mt-3 text-right">
+             <input type="hidden" formControlName="UseCodeGenerator">
+           </div> -->
 
-  <div id="allowInput" class="mt-1">
+  <!-- <div id="allowInput" class="mt-1">
    <div class="row">
     <div class="form-group row mt-2">
       <div class="col-md-9">
@@ -107,38 +114,49 @@
       <div class="col-md-3 mt-2 p-0">
         <b class="color-p d-block text-right mt-1"> {{'TRANS.seconds' | translate}} </b>
       </div>
-
     </div>
-
-
    </div>
+  </div> -->
 
-
-  </div>
-
-
-  <div class="col-md-3 p-1 mt-3">
+  <div class="col-md-5 p-1 mt-3" *ngIf="srchForm.get('RegistrationMethodID').value == 2">
     <div class="form-group row">
-      <b class="col-md-4 color-p d-block text-right p-0 mt-1"> تسجيل باستخدام </b>
-      <div class="col-md-8">
-       <select class="form-control" formControlName="registerUsing">
-         <option value="0" [selected]="true">QRCODE</option>
-         <option value="1">رقم</option>
-         <option value="2">QRCODE + رقم</option>
-       </select>
+      <b class="col-md-2 color-p d-block text-right p-0 mt-1"> عدد الثوانى </b>
+      <div class="col-md-10">
+       <input type="text" class="form-control text-right" formControlName="ExpirationSeconds">
       </div>
     </div>
    </div>
 
+   <div class="col-md-1"></div>
+
+   <div class="col-md-5 p-1 mt-3" *ngIf="srchForm.get('RegistrationMethodID').value == 2">
+    <div class="form-group row">
+      <b class="col-md-2 color-p d-block text-right p-0 mt-1"> تسجيل باستخدام </b>
+      <div class="col-md-10">
+        <div class="col-md-12 text-right">
+          <label for="note" class="ml-5 mt-1">
+            <input type="checkbox" formControlName="registerUsingQRCODE">
+            QR CODE
+         </label>
+         <label for="note">
+          <input type="checkbox" formControlName="registerUsingNUMBER">
+          كلمة المرور
+       </label>
+        </div>
+      </div>
+    </div>
+   </div>
+
+
   <div class="col-md-12 text-center mb-4 mt-5">
-    <button type="button" class="btn-main px-4 py-2 rounded-pill" (click)="searchSubmit()" [disabled]="srchForm.invalid">
+    <button type="button" class="btn-main px-4 py-2 rounded-pill" (click)="searchSubmit()">
       {{ 'TRANS.registerStudents' | translate }}
     </button>
   </div>
          </div>
        </div>
 
-       <!-- <p>{{ srchForm.value | json }}</p> -->
+       <!-- <p>{{ srchForm.get('registerUsing').value | json }}</p> -->
 
         </form>
         <!-- Search End -->
@@ -153,29 +171,33 @@
          <!-- Timer Start -->
          <div class="timer" id="timer" *ngIf="showTimer">
           <div id="overlay"></div>
+
           <div class="timer-container">
 
-            <div class="col-md-12 p-1 mt-3">
-              <div class="form-group row">
-                <b class="col-md-3 color-p d-block text-right p-0 mt-1"> تسجيل باستخدام </b>
-                <form [formGroup]="registerUsingForm" style="width: 70%;">
-                  <div class="col-md-8">
-                    <select class="form-control" formControlName="registerUsing" (change)="onChangeRegisterUsing($event.target.value)">
-                      <option value="0">QRCODE</option>
-                      <option value="1">رقم</option>
-                      <option value="2">QRCODE + رقم</option>
-                    </select>
-                   </div>
-                </form>
-              </div>
-             </div>
+            <form [formGroup]="srchForm">
+              <div class="col-md-12 p-1 mt-3">
+                <div class="col-md-12 text-center">
+                  <label for="note" class="ml-5 mt-1">
+                    <input type="checkbox" formControlName="registerUsingQRCODE">
+                    QR CODE
+                 </label>
+                 <label for="note">
+                  <input type="checkbox" formControlName="registerUsingNUMBER">
+                  كلمة المرور
+               </label>
+                </div>
+               </div>
+            </form>
 
-            <div class="timer-main">
-            <qr-code [value]="mobCode" [size]="300" *ngIf="registerUsingForm.get('registerUsing').value == 0 || registerUsingForm.get('registerUsing').value == 2"></qr-code>
-            <span *ngIf="registerUsingForm.get('registerUsing').value == 1"><b>{{ mobCode }}</b></span>
+
+            <div class="timer-main" *ngIf="srchForm.get('registerUsingQRCODE').value == true && srchForm.get('registerUsingNUMBER').value == false || srchForm.get('registerUsingQRCODE').value == true && srchForm.get('registerUsingNUMBER').value == true">
+            <qr-code [value]="mobCode" [size]="300"></qr-code>
               <!-- <div class="timercircle"></div> -->
             </div>
-            <h3 class="text-center mt-4 f-50" *ngIf="registerUsingForm.get('registerUsing').value == 2"><b>{{ mobCode }}</b></h3>
+
+            <h3 class="timer-mainb mt-2 f-50" *ngIf="srchForm.get('registerUsingNUMBER').value == true && srchForm.get('registerUsingQRCODE').value == false || srchForm.get('registerUsingQRCODE').value == true && srchForm.get('registerUsingNUMBER').value == true">
+              <b>{{ mobCode }}</b>
+            </h3>
 
              <div class="timercount">
               <h6 class="badge badge-warning">{{progVal}}</h6>

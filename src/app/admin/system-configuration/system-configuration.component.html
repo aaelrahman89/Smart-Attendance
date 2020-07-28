@@ -10,112 +10,115 @@
 
 
 
+<form [formGroup]="systemForm" (ngSubmit)="submit()">
 
-  <section class="mb-4">
+  <fieldset class="mb-4" formGroupName="GeoLocationSetting">
     <div class="row">
       <div class="col-md-12 text-right">
         <label for="note">
-           <input type="checkbox">
+           <input type="checkbox" formControlName="IsActive">
            اعدادات GEOLOCATION
         </label>
       </div>
       <div class="col-md-3 text-right">
-        <select class="form-control">
-          <option>المسافة</option>
-        </select>
+        <input type="text" class="form-control" placeholder="المسافة" formControlName="SystemSettingValue">
       </div>
     </div>
-   </section>
+   </fieldset>
 
-   <section class="mb-4">
+   <fieldset class="mb-4" formGroupName="IPsRangeSetting">
     <div class="row">
       <div class="col-md-12 text-right">
         <label for="note">
-           <input type="checkbox">
+           <input type="checkbox" formControlName="IsActive">
            اعدادات IPs RANGE
         </label>
       </div>
       <div class="col-md-3 text-right">
-        <input type="text" class="form-control" placeholder="192.51.100.0/24">
+        <input type="text" class="form-control" placeholder="192.51.100.0/24" formControlName="SystemSettingValue">
       </div>
     </div>
-   </section>
+   </fieldset>
 
-   <section class="mb-4">
+   <fieldset class="mb-4" formGroupName="blackBoardSettings">
     <div class="row">
       <div class="col-md-12 text-right">
         <label for="note">
-           <input type="checkbox">
+           <input type="checkbox" formControlName="IsActive">
            اعدادات التكامل BLACKBOARD COLLABORATE
         </label>
       </div>
       <div class="col-md-3 text-right mb-3">
-        <input type="text" class="form-control" placeholder="URL">
+        <input type="text" class="form-control" placeholder="URL" formControlName="ServerURL">
       </div>
       <div class="col-md-3 text-right mb-3">
-        <input type="text" class="form-control" placeholder="ID">
+        <input type="text" class="form-control" placeholder="ID" formControlName="ID">
       </div>
       <div class="clearfix"></div>
       <div class="col-md-3 text-md-right">
-        <input type="text" class="form-control" placeholder="KEY">
+        <input type="text" class="form-control" placeholder="KEY" formControlName="Key">
       </div>
       <div class="col-md-3 text-right">
-        <input type="text" class="form-control" placeholder="SECRET KEY">
+        <input type="text" class="form-control" placeholder="SECRET KEY" formControlName="SecretKey">
       </div>
     </div>
-   </section>
+   </fieldset>
 
-   <section class="mb-4">
+   <fieldset class="mb-4" formGroupName="EmailSetting">
     <div class="row">
       <div class="col-md-12 text-right">
         <label for="note">
-           <input type="checkbox">
+           <input type="checkbox" formControlName="IsActive">
            اعدادات الدعم الفنى
         </label>
       </div>
       <div class="col-md-3 text-right">
-        <input type="text" class="form-control" placeholder="البريد الاكترونى">
+        <input type="text" class="form-control" placeholder="البريد الاكترونى" formControlName="SystemSettingValue">
       </div>
     </div>
-   </section>
+   </fieldset>
 
-   <section class="mb-4">
+   <fieldset class="mb-4" formGroupName="ldapSettings">
     <div class="row">
       <div class="col-md-12 text-right">
         <label for="note">
-           <input type="checkbox">
+           <input type="checkbox" formControlName="IsActive">
            اعدادات التكامل ACTIVE DIRECTORY
         </label>
       </div>
       <div class="col-md-3 text-right mb-3">
-        <input type="text" class="form-control" placeholder="SERVER URL">
+        <input type="text" class="form-control" placeholder="SERVER URL" formControlName="ServerURL">
       </div>
       <div class="col-md-3 text-right mb-3">
-        <input type="text" class="form-control" placeholder="PORT">
+        <input type="text" class="form-control" placeholder="PORT" formControlName="Port">
       </div>
       <div class="col-md-3 text-md-right mb-3">
-        <input type="text" class="form-control" placeholder="USESSL">
+        <input type="text" class="form-control" placeholder="USESSL" formControlName="UseSSL">
       </div>
       <div class="clearfix"></div>
       <div class="col-md-3 text-right mb-3">
-        <input type="text" class="form-control" placeholder="DOMAIN NAME">
+        <input type="text" class="form-control" placeholder="DOMAIN NAME" formControlName="DomainName">
       </div>
       <div class="col-md-3 text-right mb-3">
-        <input type="text" class="form-control" placeholder="DOMAIN DISTINGUISHED NAME">
+        <input type="text" class="form-control" placeholder="DOMAIN DISTINGUISHED NAME" formControlName="DomainDistinguishedName">
       </div>
       <div class="col-md-3 text-right mb-3">
-        <input type="text" class="form-control" placeholder="DOMAIN USER NAME">
+        <input type="text" class="form-control" placeholder="DOMAIN USER NAME" formControlName="DomainUserName">
       </div>
       <div class="clearfix"></div>
       <div class="col-md-3 text-right mb-3">
-        <input type="text" class="form-control" placeholder="PASSWORD">
+        <input type="text" class="form-control" placeholder="PASSWORD" formControlName="Password">
       </div>
     </div>
-   </section>
+   </fieldset>
 
    <div class="d-block w-100 text-center">
-    <button class="  save btn btn-main px-5 py-2 mx-auto"  > {{'TRANS.save' | translate}} </button>
+    <button type="submit" class="save btn btn-main px-5 py-2 mx-auto"> {{'TRANS.save' | translate}} </button>
     </div>
+</form>
+
+
+<!-- <h3>{{systemForm.value | json}}</h3> -->
 
 
 </div>
