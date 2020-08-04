@@ -334,7 +334,19 @@
     "Areyousureaddstudent": "هل متاكد من اضافة الطالب?",
     "sisManagment": "ادارة التكامل مع نظام sis",
     "integrationWay": "طريقة التكامل",
-    "integrationprocess": "منهجية التكامل"
+    "integrationprocess": "منهجية التكامل",
+
+    "notifications":"الاشعارات",
+    "Attendanceabsencereport":"تقرير نسب الحضور والغياب",
+    "Numberlecturesrecorded":"عدد المحاضرات المسجلة",
+
+    "Averageattendancerate":"متوسط نسبة الحضور",
+    "Averageabsencerate":"متوسط نسبة الغياب",
+    "registerUsing":" تسجيل باستخدام ",
+    "sessionPassword":" كلمة مرور الجلسة ",
+    "secondsTime":"عدد الثوانى",
+    "registerMethod":" طريقة التسجيل"
+
 
 
   }

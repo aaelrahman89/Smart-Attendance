@@ -5,20 +5,20 @@
   
     <nav aria-label="breadcrumb" class="col-md-6 mx-auto text-center font-weight-bold">
       <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a routerLink="">{{ 'TRANS.menuHome' | translate }}</a></li>
+        <!-- <li class="breadcrumb-item"><a routerLink="">{{ 'TRANS.menuHome' | translate }}</a></li>s -->
         <li class="breadcrumb-item"><a class="mx-2" >الملف الشخص</a></li>
       </ol>
     </nav>
 
 
     <div class="row text-right">
-        <div class="col-md-12 py-3">
+        <div class="col-md-12 py-4">
             <div class="row">
             <div class="col-md-6">
                 <div class="row">
 
             <div class="col-md-6">  <b class="color-p">الاسم بالغة  العربية</b> </div>
-            <div class="col-md-6">   {{profileinfo?.NameAr}}</div>
+            <div class="col-md-6">   {{profileinfo?.Name}}</div>
 
 
                 </div>
@@ -29,7 +29,7 @@
                 <div class="row">
 
             <div class="col-md-6">  <b class="color-p">    الاسم بااللغة الانجليزيه</b> </div>
-            <div class="col-md-6">   {{profileinfo?.NameEn}}</div>
+            <div class="col-md-6">  {{profileinfo?.Name}}</div>
 
                 </div>
             </div>
@@ -37,16 +37,15 @@
                 </div>
                 </div>
 
-                <div class="col-md-12 py-3">
+                <div class="col-md-12 py-4">
                     <div class="row">
                     <div class="col-md-6">
                         <div class="row">
         
                     <div class="col-md-6">  <b class="color-p">   البريد الالكتروني البديل</b> </div>
-     
                     <div class="col-md-6"> {{profileinfo?.AlternativeEmail}} <span> <a mdbBtn type="button" class="w-auto px-3 circle-btn"  mdbWavesEffect  (click)="basicModal.show()"><i class="far fa-edit"></i></a></span></div>
 
-        
+
                         </div>
                     </div>
         
@@ -55,18 +54,38 @@
                         <div class="row">
         
                     <div class="col-md-6">  <b class="color-p">      رقم الجوال</b> </div>
-                   
                     <div class="col-md-6">{{profileinfo?.TelephoneNumber}}  <span> <a mdbBtn type="button" class="w-auto px-3 circle-btn"  mdbWavesEffect  (click)="EditPhoneModal.show()"><i class="far fa-edit"></i></a></span></div>
-
                         </div>
                     </div>
         
                         </div>
                   
                     </div>
-        
+                    <div class="col-md-12 py-4">
+                        <div class="row">
+                        <div class="col-md-6">
+                            <div class="row">
+            
+                        <div class="col-md-6">  <b class="color-p">     الكليه </b> </div>
+                        <div class="col-md-6"> {{profileinfo?.CollegeName}} </div>
+            
+            
+                            </div>
+                        </div>
+            
+                       
+                        <div class="col-md-6">
+                            <div class="row">
+            
+                        <div class="col-md-6">  <b class="color-p">       القسم</b> </div>
+                        <div class="col-md-6">{{profileinfo?.DepartmentName}}  </div>
+                            </div>
+                        </div>
+            
+                            </div>
+                            </div>
 
-                            <div class="col-md-12 py-3">
+                            <div class="col-md-12 py-4">
                                 <div class="row">
                                 <div class="col-md-6">
                                     <div class="row">
@@ -79,7 +98,13 @@
                                 </div>
                     
                                
-                           
+                                <div class="col-md-6">
+                                    <div class="row">
+                    
+                                <div class="col-md-6">  <b class="color-p">       الدرجه العلمية</b> </div>
+                                <div class="col-md-6">معيد  </div>
+                                    </div>
+                                </div>
                     
                                     </div>
                                     </div>
@@ -89,11 +114,15 @@
   </div>
 
 
+
+
+
+
   <div mdbModal #basicModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <button type="button" class="close pull-right" aria-label="Close"  #closeModal (click)="basicModal.hide()">
+          <button type="button" class="close pull-right" aria-label="Close"  #closeModal1 (click)="basicModal.hide()">
             <span aria-hidden="true"><i class="far fa-times-circle"></i></span>
           </button>
           <h4 class="modal-title w-100" id="myModalLabel">{{ 'TRANS.modalEditTitle' | translate }}</h4>
@@ -111,9 +140,10 @@
             </div>
             <div class="form-group">
                 <b class="color-p mx-3 my-3 d-block text-right"> البريد الالكتروني الجديد</b>
-                <input
+                <input 
                 [class.is-invalid] = "editFormEmail.get('newAlternativeMail').invalid && editFormEmail.get('newAlternativeMail').touched"
-                type="email" class="form-control"  formControlName="newAlternativeMail" [readonly]="maketrueEmail">
+
+                type="email" class="form-control" formControlName="newAlternativeMail" [readonly]="maketrueEmail">
 
             </div>
 
@@ -127,16 +157,12 @@
             <div class="col-md-4 mx-auto">
              
                 <button type="button" [disabled]="editFormEmail.invalid" *ngIf="showBtnEdie" (click)="editEmail()" class="btn-main px-4 py-2 rounded-pill px-5"  >تعديل</button>
-                <button type="button" [disabled]="editFormEmail.invalid"  *ngIf="showconfirmationCode" (click)="SubmitconfirmationCode()" class="btn-main px-4 py-2 rounded-pill px-5"  >كودالتحقق</button>
+                <button type="button" [disabled]="editFormEmail.invalid" *ngIf="showconfirmationCode" (click)="SubmitconfirmationCode()" class="btn-main px-4 py-2 rounded-pill px-5"  >كودالتحقق</button>
 
                 <!-- <button type="submit" class="w-75 btn-main px-4 py-2 rounded-pill" aria-label="Close" (click)="basicModal.hide()" [disabled]="editForm.invalid">{{ 'TRANS.save' | translate }}</button> -->
             </div>
            </div>
-
-           {{editFormEmail.value|json}}
           </form>
-
-
         </div>
       </div>
     </div>
@@ -151,22 +177,28 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <button type="button" class="close pull-right" aria-label="Close"  #closeModal (click)="EditPhoneModal.hide()">
+          <button type="button" class="close pull-right" aria-label="Close"  #closeModal2 (click)="EditPhoneModal.hide()">
             <span aria-hidden="true"><i class="far fa-times-circle"></i></span>
           </button>
           <h4 class="modal-title w-100" id="myModalLabel">{{ 'TRANS.modalEditTitle' | translate }}</h4>
         </div>
         <div class="modal-body">
           <form [formGroup]="editFormPhone" >
-
             <div class="form-group">
               <b class="color-p mx-3 my-3 d-block text-right">  رقم الجوال القديم </b>
               <input type="text" class="form-control" disabled formControlName="oldMobile">
-            </div>
+      
 
+
+   
+
+            </div>
             <div class="form-group">
                 <b class="color-p mx-3 my-3 d-block text-right">  رقم الجوال الجديد</b>
+               
               <input type="number" class="form-control"  formControlName="newMobile" [readonly]="maketrue">
+
+
             </div>
 
             <div class="form-group" *ngIf="showconfirmationCodeMobile">
@@ -174,7 +206,6 @@
               <input type="number" class="form-control" formControlName="confirmationCode" >
                 
             </div>
-
             <input type="hidden" class="form-control" formControlName="isSms" >
            <div class="row">
             <div class="col-md-4 mx-auto">
@@ -185,9 +216,10 @@
                 <!-- <button type="submit" class="w-75 btn-main px-4 py-2 rounded-pill" aria-label="Close" (click)="basicModal.hide()" [disabled]="editForm.invalid">{{ 'TRANS.save' | translate }}</button> -->
             </div>
            </div>
-           {{editFormPhone.value | json}}
+           {{editFormPhone.value|json}}
           </form>
         </div>
       </div>
     </div>
   </div>
+

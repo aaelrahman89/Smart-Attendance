@@ -29,15 +29,15 @@ export class AppComponent implements OnInit  {
         mergeMap(route => route.data),
         map(data => data.hasOwnProperty('showMenu') ? data.showMenu : this.defaultShowMenu),
       );
-      
+
 
 
   }
 
   ngOnInit(){
- 
+
     this.spinner.show();
-    
+
     setTimeout(() => {
       /** spinner ends after 5 seconds */
       this.spinner.hide();

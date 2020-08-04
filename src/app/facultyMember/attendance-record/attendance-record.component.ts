@@ -81,11 +81,11 @@ export class AttendanceRecordComponent implements OnInit {
 
     // init search form
     this.srchForm = new FormGroup({
-      RegistrationMethodID: new FormControl(1),
-      sections: new FormControl(null),
-      lectures: new FormControl(null),
-      location: new FormControl(null),
-      date: new FormControl(null),
+      RegistrationMethodID: new FormControl(1, Validators.required),
+      sections: new FormControl(null, Validators.required),
+      lectures: new FormControl(null, Validators.required),
+      location: new FormControl(null, Validators.required),
+      date: new FormControl(null, Validators.required),
       ExpirationSeconds: new FormControl(0),
       registerUsingQRCODE: new FormControl(true),
       registerUsingNUMBER: new FormControl(false)
@@ -121,7 +121,7 @@ export class AttendanceRecordComponent implements OnInit {
 
   // Get Lectures Schedule by Crn onChange section
   onChangeSection(section) {
-    this.LectureScheduleFilterModelForAttendance.Crn = section.Crn;  // static value
+    this.LectureScheduleFilterModelForAttendance.Crn = section.Crn;
     this.LectureScheduleService.FilterForAttendance(this.LectureScheduleFilterModelForAttendance).subscribe(res => this.lectures = res.List);
   }
 
@@ -182,20 +182,32 @@ export class AttendanceRecordComponent implements OnInit {
   // Filter Attendance ThroughFacultyMemberendance Function (post from api)
   RegistrationAttendanceThroughStudentDeviceFunction() {
     this.FilterAttendanceStudentsService.RegistrationAttendanceThroughStudentDevice(this.filter).subscribe(res => {
-        this.showStatusBar = false;
-        this.mobCode = res.MobileCode;
-        this.showCards = false;
-        //start timer here
-        this.showTimer = true;
-        this.showqrCode = true;
-        this.startProg();
+      this.showStatusBar = false;
+      this.mobCode = res.MobileCode;
+      this.showCards = false;
+      //start timer here
+      this.showTimer = true;
+      this.showqrCode = true;
+      this.startProg();
 
     });
   }
 
 
+  // onChangeRegistrationMethodID -- to validate inputs on change
+  onChangeRegistrationMethodID(value){
+    if(value == 2){
+     this.srchForm.get('ExpirationSeconds').setValidators([Validators.required, Validators.min(1), Validators.max(900)]);
+     this.srchForm.get('ExpirationSeconds').updateValueAndValidity();
+    }else{
+      this.srchForm.get('ExpirationSeconds').clearValidators();
+      this.srchForm.get('ExpirationSeconds').updateValueAndValidity();
+    }
+  }
 
-  // Search Filter
+
+
+  // Submit
   searchSubmit() {
     if (this.srchForm.get('RegistrationMethodID').value == 1) {
       this.studentFilter();
@@ -204,11 +216,11 @@ export class AttendanceRecordComponent implements OnInit {
 
     if (this.srchForm.get('RegistrationMethodID').value == 2) {
       this.studentFilter();
-       this.RegistrationAttendanceThroughStudentDeviceFunction();
+      this.RegistrationAttendanceThroughStudentDeviceFunction();
     }
 
     if (this.srchForm.get('RegistrationMethodID').value == 3) {
-       // CODE HERE
+      // CODE HERE
     }
 
   }

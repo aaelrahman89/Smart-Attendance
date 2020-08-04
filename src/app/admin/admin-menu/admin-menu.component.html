@@ -39,7 +39,8 @@
               <span class=" fas headerIcons fa-user material-icons"></span>
               <span class="mx-1">{{ getUserName() }}</span></button>
             <div ngbDropdownMenu aria-labelledby="dropdownBasic2">
-              <a ngbDropdownItem>{{ 'TRANS.profile' | translate }}</a>
+              <a ngbDropdownItem routerLink="admin/Profileadmin" *ngIf="getUserRoleCondition('Admin')">{{ 'TRANS.profile' | translate }}</a>
+              <a ngbDropdownItem routerLink="facultyMember/ProfileFaculty" *ngIf="getUserRoleCondition('StaffMember')">{{ 'TRANS.profile' | translate }}</a>
               <a ngbDropdownItem (click)="AuthService.logoutUser()">{{ 'TRANS.signOut' | translate }}</a>
             </div>
           </div>

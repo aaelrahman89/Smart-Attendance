@@ -27,12 +27,15 @@
             <div class="form-group row">
               <b class="col-md-2 color-p d-block text-right p-0 mt-1"> طريقة التسجيل </b>
               <div class="col-md-10">
-                <select class="form-control" formControlName="RegistrationMethodID">
+                <select class="form-control" formControlName="RegistrationMethodID" (change)="onChangeRegistrationMethodID($event.target.value)">
                   <option selected disabled [value]="null">طريقة التسجيل</option>
                   <option *ngFor="let regstrationMethod of regstrationMethods" [value]="regstrationMethod.Id">
                    <span>{{regstrationMethod.Name}}</span>
                   </option>
                 </select>
+                <div class="invalid-feedback mt-2 text-right" *ngIf="srchForm.get('RegistrationMethodID').invalid && (srchForm.get('RegistrationMethodID').touched || srchForm.get('RegistrationMethodID').dirty)">
+                  <p class="m-0" *ngIf="srchForm.get('RegistrationMethodID').errors.required">{{ 'TRANS.validationReq' | translate }}</p>
+                </div>
               </div>
             </div>
            </div>
@@ -50,6 +53,9 @@
                      <span>{{section.CourseTitle}} - {{section.Crn}}</span>
                     </option>
                   </select>
+                  <div class="invalid-feedback mt-2 text-right" *ngIf="srchForm.get('sections').invalid && (srchForm.get('sections').touched || srchForm.get('sections').dirty)">
+                    <p class="m-0" *ngIf="srchForm.get('sections').errors.required">{{ 'TRANS.validationReq' | translate }}</p>
+                  </div>
                 </div>
               </div>
              </div>
@@ -67,6 +73,9 @@
                    <span>{{lecture.Name}} : {{lecture.StartTime | convertFrom24To12FormatAr}} الى {{lecture.EndTime | convertFrom24To12FormatAr}}</span>
                    </option>
                 </select>
+                <div class="invalid-feedback mt-2 text-right" *ngIf="srchForm.get('lectures').invalid && (srchForm.get('lectures').touched || srchForm.get('lectures').dirty)">
+                  <p class="m-0" *ngIf="srchForm.get('lectures').errors.required">{{ 'TRANS.validationReq' | translate }}</p>
+                </div>
               </div>
             </div>
            </div>
@@ -78,6 +87,9 @@
               <b class="col-md-2 color-p d-block text-right p-0 mt-1"> {{ 'TRANS.lecDate' | translate }} </b>
               <div class="col-md-10">
                <input type="date" class="form-control text-right" [placeholder]="'TRANS.lecDate' | translate" formControlName="date" [max]="date | date:'yyyy-MM-dd'" onkeydown="return false">
+               <div class="invalid-feedback mt-2 text-right" *ngIf="srchForm.get('date').invalid && (srchForm.get('date').touched || srchForm.get('date').dirty)">
+                <p class="m-0" *ngIf="srchForm.get('date').errors.required">{{ 'TRANS.validationReq' | translate }}</p>
+              </div>
               </div>
             </div>
            </div>
@@ -92,6 +104,9 @@
                  <option disabled [value]="null" selected>{{ 'TRANS.lectureLocation' | translate }}</option>
                  <option *ngFor="let room of rooms" [value]="room.Id">{{ room.RoomCode }}</option>
                </select>
+               <div class="invalid-feedback mt-2 text-right" *ngIf="srchForm.get('location').invalid && (srchForm.get('location').touched || srchForm.get('location').dirty)">
+                <p class="m-0" *ngIf="srchForm.get('location').errors.required">{{ 'TRANS.validationReq' | translate }}</p>
+              </div>
               </div>
             </div>
            </div>
@@ -120,10 +135,15 @@
 
   <div class="col-md-5 p-1 mt-3" *ngIf="srchForm.get('RegistrationMethodID').value == 2">
     <div class="form-group row">
-      <b class="col-md-2 color-p d-block text-right p-0 mt-1"> عدد الثوانى </b>
+      <b class="col-md-2 color-p d-block text-right p-0 mt-1"> {{ 'TRANS.secondsTime' | translate }} </b>
       <div class="col-md-10">
-       <input type="text" class="form-control text-right" formControlName="ExpirationSeconds">
+       <input type="number" class="form-control text-right" formControlName="ExpirationSeconds" min="1" max="999">
+       <div class="invalid-feedback mt-2 text-right" *ngIf="srchForm.get('ExpirationSeconds').invalid && (srchForm.get('ExpirationSeconds').touched || srchForm.get('ExpirationSeconds').dirty)">
+        <p class="m-0" *ngIf="srchForm.get('ExpirationSeconds').errors.required">{{ 'TRANS.validationReq' | translate }}</p>
+        <p class="m-0" *ngIf="srchForm.get('ExpirationSeconds').errors.min || srchForm.get('ExpirationSeconds').errors.max"> عدد الثوانى يجب ان يكون بين 1 الى 900 ثانية </p>
       </div>
+      </div>
+
     </div>
    </div>
 
@@ -131,7 +151,7 @@
 
    <div class="col-md-5 p-1 mt-3" *ngIf="srchForm.get('RegistrationMethodID').value == 2">
     <div class="form-group row">
-      <b class="col-md-2 color-p d-block text-right p-0 mt-1"> تسجيل باستخدام </b>
+      <b class="col-md-2 color-p d-block text-right p-0 mt-1"> {{ 'TRANS.registerUsing' | translate }} </b>
       <div class="col-md-10">
         <div class="col-md-12 text-right">
           <label for="note" class="ml-5 mt-1">
@@ -140,7 +160,7 @@
          </label>
          <label for="note">
           <input type="checkbox" formControlName="registerUsingNUMBER">
-          كلمة المرور
+          {{ 'TRANS.sessionPassword' | translate }}
        </label>
         </div>
       </div>
@@ -149,7 +169,7 @@
 
 
   <div class="col-md-12 text-center mb-4 mt-5">
-    <button type="button" class="btn-main px-4 py-2 rounded-pill" (click)="searchSubmit()">
+    <button type="button" class="btn-main px-4 py-2 rounded-pill" (click)="searchSubmit()" [disabled]="srchForm.invalid">
       {{ 'TRANS.registerStudents' | translate }}
     </button>
   </div>

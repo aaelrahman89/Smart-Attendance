@@ -1,0 +1,22 @@
+.mat-tab-labels, .mat-tab-list{
+    display: flex !important;
+    justify-content: center !important;
+}
+tbody td{
+    max-width: 200px;
+    font-size: 0.9em;
+}
+td .form-control{
+    height: 30px;
+    max-width: 200px;
+    margin: auto;
+}
+td select{
+    font-size: 0.9em;
+    padding: 0 5px;
+}
+input [type="checkbox"]{
+    width: 30px;
+    width: 30px;
+}
+ 

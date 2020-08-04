@@ -302,9 +302,17 @@
     "Areyousureaddstudent": "Are you sure you want to add the student?",
     "sisManagment": "Integration Management With SIS System",
     "integrationWay": "Way of Integration",
-    "integrationprocess": "Integration Process"
+    "integrationprocess": "Integration Process",
 
-
+    "notifications":"notifications",
+    "Numberlecturesrecorded":"Number of lectures recorded",
+    "Attendanceabsencereport":"Attendance and absence attendance report",
+    "Averageattendancerate":"Average attendance rate ",
+    "Averageabsencerate":"Average absence rate",
+    "registerUsing":" Register Using ",
+    "sessionPassword":"Session password",
+    "secondsTime":"Seconds",
+    "registerMethod":"Register Method"
 
   }
 }

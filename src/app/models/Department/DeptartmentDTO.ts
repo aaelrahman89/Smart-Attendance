@@ -1,6 +1,8 @@
 export interface DeptartmentDTO {
   DepartmentCode: string;
   CollegeCode: string;
+  Name: string;
+
   NameAr: string;
   NameEn: string;
   IsActive: boolean;
@@ -10,6 +12,8 @@ export interface DeptartmentDTO {
 
 interface College {
   CollegeCode: string;
+  Name: string;
+
   NameAr: string;
   NameEn: string;
   IsActive: boolean;

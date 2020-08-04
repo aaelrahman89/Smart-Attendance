@@ -61,7 +61,7 @@
      <div class="row">
          <div class="col-md-6 border-left">
              <h2 class="color-p font-weight-bold">شعار النظام</h2>
-             <input type="file"  (change)="handleFileInput($event)">
+             <input type="file"  (change)="handleFileInput($event)" accept=".png">
 
 
     <div>
@@ -75,8 +75,8 @@
          </div>
 
          <div class="col-md-6">
-<img width="150px" height="150px" src="data:image/png;base64,{{base64textString}}">
-<img width="150px" height="150px" [src]="Logo" >
+<img width="150px" height="150px" src="data:image/png;base64,{{base64textString}}" *ngIf="showLogoChange">
+<img width="150px" height="150px" [src]="Logo"  *ngIf="showLogo">
 
 
         </div>
@@ -97,15 +97,15 @@
      <div class="row">
          <div class="col-md-6 border-left">
              <h2 class="color-p font-weight-bold"> الرمز المفضل</h2>
-             <input type="file" (change)="faviconFileInput($event)">
+             <input type="file" (change)="faviconFileInput($event)" accept=".png">
              <!-- <br>  -->
              <!-- <span >Icon.icon</span> -->
          </div>
 
          <div class="col-md-6">
-          <img width="150px" height="150px" src="data:image/png;base64,{{base64textStringicon}}">
-          <img width="150px" height="150px" [src]="Favicon">
-    <link rel="icon" type="image/png" href="favicon.png" id="favIcon"/>
+          <img width="150px" height="150px" src="data:image/png;base64,{{base64textStringicon}}" *ngIf="showFaviconChange">
+          <img width="150px" height="150px" [src]="Favicon" *ngIf="showFavicon">
+    <link rel="icon" type="image/png" href="favicon.png" id="favIcon" *ngIf="showFavicon"/>
 
 
           <input type="hidden" formControlName="FaviconFileContent" >
@@ -161,7 +161,7 @@
     </div>
 
 
-   {{themeForm.value | json}}
+   <!-- {{themeForm.value | json}} -->
     </div>
 </form>
 

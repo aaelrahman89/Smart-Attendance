@@ -1,0 +1,29 @@
+ 
+.mat-tab-labels{
+    justify-content: center !important;
+}
+.mat-tab-label{
+    opacity: 1 !important;
+}
+.mat-tab-label-active{
+    font-weight: bold !important;
+    color: white;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+.mat-ink-bar, .mat-tab-label-active{
+    background-color: #023B7E; 
+}
+.mat-tab-body {
+    z-index: -1;
+  }
+  .mat-tab-body-wrapper{
+    background: rgb(241, 241, 241);
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    padding: 1em;
+}
+table thead{
+    background-color: #c9c9c9;
+    color: #023B7E;
+}

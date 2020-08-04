@@ -107,10 +107,17 @@ import { QRCodeModule } from 'angular2-qrcode';
 
 import { TermInterceptorService } from './services/term-interceptor.service';
 import { AgmCoreModule } from '@agm/core';
+
 import { SystemConfigurationComponent } from './admin/system-configuration/system-configuration.component';
 import { SisComponent } from './admin/sis/sis.component';
 import { IntegrationWayComponent } from './admin/sis/integration-way/integration-way.component';
 import { IntegrationProComponent } from './admin/sis/integration-pro/integration-pro.component';
+import { ProfileFacultyMemberComponent } from './facultyMember/profile-faculty-member/profile-faculty-member.component';
+
+import { CourseReportComponent } from './admin/AttendanceReport/course-report/course-report.component';
+import { NotificationComponent } from './admin/notification/notification.component';
+import { RateAttendanceReportComponent } from './admin/AttendanceReport/rate-report/rate-attendance-report/rate-attendance-report.component';
+import { RateAttendanceViewComponent } from './admin/AttendanceReport/rate-report/rate-attendance-view/rate-attendance-view.component';
 
 
 
@@ -193,9 +200,18 @@ export function HttpLoaderFactory(http: HttpClient) {
     ThemeComponent,
     ProfileAdminComponent,
     SystemConfigurationComponent,
+    ProfileFacultyMemberComponent,
     SisComponent,
     IntegrationWayComponent,
-    IntegrationProComponent
+    IntegrationProComponent,
+    
+    CourseReportComponent,
+    
+    NotificationComponent,
+    
+    RateAttendanceReportComponent,
+    
+    RateAttendanceViewComponent
 
   ],
   imports: [

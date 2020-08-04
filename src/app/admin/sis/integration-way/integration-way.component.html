@@ -1,1 +1,64 @@
-<p>integration-way works!</p>
+<div class="container py-2 px-1">
+    <form action=""  >
+    <div class="row justify-content-center" >
+        <b>كود الفصل الدراسي</b>
+        <!-- <input type="text" [value]="Code" class="form-control col-4 mx-4" > -->
+    </div>
+    <div class="row my-4">
+        <table class="w-100">
+            <thead class="p-3">
+                <tr>
+                    <th class="text-center py-2 px-1" >تفعيل</th>
+                    <th class="text-center py-2 px-1" >اسم الخدمة</th>
+                    <th class="text-center py-2 px-1" >مرات التكرار</th>
+                    <th class="text-center py-2 px-1" >وقت التشغيل</th>
+                    <th class="text-center py-2 px-1" >تاريخ التشغيل</th>
+                    <th class="text-center py-2 px-1" >الحالة</th>
+                    <th class="text-center py-2 px-1" >الاجراء</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let integrationService of integrationServices">
+                    <td class="text-center py-2 px-1">
+                        <input name="note" type="checkbox">
+                    </td>
+                    <td class="text-right py-2 px-1">
+                        <span>
+                            {{integrationService.ServiceName}}
+                        </span>
+                    </td>
+                    <!-- <td class="text-center py-2 px-1">
+                        <select   class="form-control"  >
+                            <option  [selected]="element.repeaterClasses[i].Name == element.integrationServices[i].DuplicateNumberName"  > {{element.repeaterClasses[i].Name}} </option>
+                        </select>
+                    </td>
+                    <td class="text-center py-2 px-1">
+                        <input type="time" class="form-control timeInput" [value]="element.integrationServices.Time"  id="">
+                    </td>
+                    <td class="text-center py-2 px-1">
+                        <input type="text"   [value]="element.integrationServices.Date" class="form-control"  id="">
+                    </td>
+                    <td class="text-center py-2 px-1">
+                        <i class="fas fa-circle mx-2" [style.color]="element.IsActive == true? '#00e000' : 'red'"></i>
+                       {{element.integrationServices[i].IsActiveName}}
+                    </td>
+                     <td class="text-center py-2 px-1">
+                        <i class="fas  mx-2 fa-edit"></i>
+                        <i class="fas  mx-2 fa-sync"></i>
+                    </td> -->
+                </tr>
+            </tbody>
+        </table>
+        <div class="row text-center w-100">
+            <button type="button"
+            class="relative save btn btn-main px-5 py-2 mx-auto waves-light"   >
+                حفظ
+            </button>
+        </div>
+    </div>
+</form>
+</div>
+<!--
+<dynamic-modal *ngIf="openModal == true"  (closeModal)="CustomModal()" (submitParent)="mainForm.ngSubmit.emit()">
+    {{ 'TRANS.confirmMessage' | translate }}
+  </dynamic-modal> -->

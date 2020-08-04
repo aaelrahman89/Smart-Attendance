@@ -1,0 +1,100 @@
+
+<div class="container-fluid px-3 ">
+
+    <!-- <page-title> {{'TRANS.TaskUnderProcedure'|translate}} </page-title> -->
+    <page-title>الملف الشخصي </page-title>
+  
+    <nav aria-label="breadcrumb" class="col-md-6 mx-auto text-center font-weight-bold">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a routerLink="">{{ 'TRANS.menuHome' | translate }}</a></li>
+        <li class="breadcrumb-item"><a class="mx-2" >الملف الشخص</a></li>
+      </ol>
+    </nav>
+
+
+<form [formGroup]="srchForm" (ngSubmit)="submit()">
+    <div class="row my-4 " >
+      <!-- print-div -->
+
+      <div class="col-md-3 mx-auto row rowInfo my-2">
+        <div>
+          <b for="" class="color-p mx-3 my-1 d-block">{{'TRANS.CollegeName'|translate}}  </b>
+        </div>
+        <div class=" col-md-12 text-right ">
+          <select class="form-control py-0"  formControlName="CRN"  title="{{'TRANS.CollegeName'|translate}}">
+
+            <option value="" selected disabled >{{'TRANS.selectColleges'|translate}}</option>
+
+
+<option></option>
+              <!-- <option  *ngFor="let college of colleges" [value]="college.CollegeCode">
+                {{  college.Name }}
+              </option> -->
+          </select>
+        </div>
+      </div>
+
+
+
+      <div class="col-md-3 mx-auto row rowInfo my-2">
+        <div>
+          <b for="" class="color-p mx-3 my-1 d-block">{{'TRANS.DepartmentName'|translate}} </b>
+        </div>
+        <div class=" col-md-12 text-right ">
+          <select class="form-control py-0 "  formControlName="CourseNumber"   title="{{'TRANS.DepartmentName'|translate}}">
+
+            <option value="" selected  >{{'TRANS.selectDepartments'|translate}}</option>
+            <option value="" selected  ></option>
+
+
+            <!-- <option *ngFor="let department of departments" [value]="department.DepartmentCode">
+              {{ department.Name }}
+            </option> -->
+          </select>
+        </div>
+      </div>
+
+
+      <div class="col-md-3 mx-auto row rowInfo my-2">
+        <div>
+          <b for="" class="color-p mx-3 my-1 d-block">{{'TRANS.DepartmentName'|translate}} </b>
+        </div>
+        <div class=" col-md-12 text-right ">
+          <select class="form-control py-0 "  formControlName="CourseSubject"   title="{{'TRANS.DepartmentName'|translate}}">
+
+            <option value="" selected  >{{'TRANS.selectDepartments'|translate}}</option>
+            <option value="" selected  ></option>
+
+
+            <!-- <option *ngFor="let department of departments" [value]="department.DepartmentCode">
+              {{ department.Name }}
+            </option> -->
+          </select>
+        </div>
+      </div>
+  
+
+
+
+
+      <div class="col-md-2 text-center botSerach ">
+        <button mdbWavesEffect type="submit" class="w-75 btn-main  py-2 rounded-pill " [disabled]="srchForm.invalid">
+
+          {{ 'TRANS.search' | translate }}
+          <i class="fas fa-search pr-2"></i>
+        </button>
+      </div>
+    </div>
+
+</form>
+
+
+
+
+  <!-- <div class="col-md-12">
+    <p>
+      {{ srchForm.value | json }}
+    </p>
+  </div> -->
+  </div>
+  

@@ -16,7 +16,7 @@
   --red: #e93737;
   --orange: #e78931;
   --mainColor: #1d1c39;
-  
+
 }
 button{
   border: none !important ;
@@ -161,7 +161,7 @@ table.dataTable thead td {
 }
 .MainBackgorundColor{
   background-color: var(--MainBackgorundColor);
-  
+
 }
 
 .MainTextColor{
@@ -380,7 +380,7 @@ input:focus,
 header {
   min-height: 10%;
   background-color: var(--MainBackgorundColor) !important;
-  
+
 
 
 
@@ -485,6 +485,9 @@ html[lang="en"]  .main-menu {
 .darkIcon,
 .menuActive .lightIcon {
   display: none;
+}
+table.dataTable.row-border tbody th, table.dataTable.row-border tbody td, table.dataTable.display tbody th, table.dataTable.display tbody td {
+  vertical-align: middle !important;
 }
 
 .expnd {
@@ -801,7 +804,7 @@ table.dataTable tbody th, table.dataTable tbody td{
   font-size: 16px !important;
     font-weight: bold;
 
-    
+
 }
 
 .userProfile button{

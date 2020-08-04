@@ -30,8 +30,12 @@ imagesUrl:string="/assets/imgs/mainLogo.png";
 base64textString:string;
 base64textStringicon:string;
 Favicon:string;
-showicon:boolean=true;
+showLogo:boolean=true;
+showLogoChange:boolean=false;
+
 showFavicon:boolean=true;
+showFaviconChange:boolean=false;
+
 
 image;
 
@@ -44,7 +48,8 @@ image;
     private notificationService: NotificationService,
     public Router: Router,
     private _sanitizer: DomSanitizer,
-    private Location: Location
+    private Location: Location,
+    private router: Router,
   ) { }
 
   subscription: Subscription;
@@ -104,6 +109,9 @@ image;
 
 
   handleFileInput(evt){
+
+    this.showLogo=false;
+this.showLogoChange=true;
       var files = evt.target.files;
       var file = files[0];
 
@@ -126,6 +134,9 @@ image;
             console.log(btoa(binaryString));
     }
     faviconFileInput(evt){
+
+this.showFavicon=false;
+this.showFaviconChange=true;
       var files = evt.target.files;
       var file = files[0];
 
@@ -194,15 +205,17 @@ getcolor(){
 //   Logo:this.base64textString
 // })
 console.log('form value is', this.themeForm.value);
-    this.ThemeSettingservice.PostTheme(this.themeForm.value).subscribe(res => {
+    this.ThemeSettingservice.PostTheme(this.themeForm.value).subscribe(res => { 
       this.getcolor();
       console.log('save res', res);
 
+      this.Router.navigateByUrl("admin/theme", {skipLocationChange:true}).then(() => {
+        this.Router.navigate([decodeURI(this.Location.path())]);
+        
+    });
 
     });
-    this.Router.navigateByUrl("admin/theme", {skipLocationChange:true}).then(() => {
-      this.Router.navigate([decodeURI(this.Location.path())]);
-    });
+    
   }
 
   // saveTheme(){

@@ -1,3 +1,10 @@
+import { RateAttendanceViewComponent } from './admin/AttendanceReport/rate-report/rate-attendance-view/rate-attendance-view.component';
+import { RateAttendanceReportComponent } from './admin/AttendanceReport/rate-report/rate-attendance-report/rate-attendance-report.component';
+import { NotificationComponent } from './admin/notification/notification.component';
+import { CourseReportComponent } from './admin/AttendanceReport/course-report/course-report.component';
+
+
+import { ProfileFacultyMemberComponent } from './facultyMember/profile-faculty-member/profile-faculty-member.component';
 import { SystemConfigurationComponent } from './admin/system-configuration/system-configuration.component';
 import { ProfileAdminComponent } from './admin/profile-admin/profile-admin.component';
 
@@ -51,6 +58,7 @@ import { AttendanceSettingsComponent } from './admin/attendance-settings/attenda
 import { AlertComponent } from './components/alert/alert.component';
 import { CompletedListComponent } from './facultyMember/MyTasks/Completed/completed-list/completed-list.component';
 
+ 
 import { DashboardComponent } from './admin/dashboard/dashboard.component'
 import { MainIndexComponent } from './mainIndex/main-index/main-index.component';
 import { SisComponent } from './admin/sis/sis.component';
@@ -80,12 +88,21 @@ const routes: Routes = [
   { path: 'admin/StudentEnrollment/:Crn/:College/:Department/:Term', component: StudentEnrollmentViewComponent, canActivate: [AuthGuard] },
   { path: 'admin/Profileadmin', component: ProfileAdminComponent, canActivate: [AuthGuard] },
   { path: 'admin/theme', component: ThemeComponent, canActivate: [AuthGuard] },
+
   { path: 'admin/sis', component: SisComponent, canActivate: [AuthGuard] },
 
 
+  { path: 'admin/RateReport', component: RateAttendanceReportComponent, canActivate: [AuthGuard] },
+  { path: 'admin/RateReportView', component: RateAttendanceViewComponent, canActivate: [AuthGuard] },
+
+  { path: 'admin/CourseReport', component: CourseReportComponent, canActivate: [AuthGuard] },
+  { path: 'admin/Notification', component: NotificationComponent, canActivate: [AuthGuard] },
+ 
+
+   
   { path: 'refresh', component: RefreshComponent },
 
-
+ 
   { path: 'login', component: LoginComponent, data: { showMenu: false } },
   { path: 'register', component: RegisterComponent, canActivate: [AuthGuard] },
 
@@ -109,11 +126,18 @@ const routes: Routes = [
 
   { path: 'facultyMember/TasksProgresView/:Id', component: ProgressViewComponent, canActivate: [AuthGuard] },
   { path: 'facultyMember/AskedpermissionView/:Id', component: AskedpermissionComponent, canActivate: [AuthGuard] },
+  { path: 'facultyMember/ProfileFaculty', component: ProfileFacultyMemberComponent, canActivate: [AuthGuard] },
+
+
+
+
+
+  
 
   { path: 'admin/system-configuration', component: SystemConfigurationComponent, canActivate: [AuthGuard] },
 
 
-
+  
 
 
   // Must be last route
